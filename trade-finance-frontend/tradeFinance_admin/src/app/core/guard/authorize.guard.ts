@@ -30,7 +30,7 @@ export class AuthorizeGuard implements CanActivate, CanLoad {
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (this.tokenStorage.getUser()) {
-        let userRole = this.tokenStorage.getUser().roles;
+        let userRole = this.tokenStorage.getUser().role.name;
         if (userRole === Role.User) {
           this.snackbar.showNotification("snackbar-danger","You don't have the rights to access this resource !")
           

@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // logic for select active menu in dropdown
-        const role = ["ROLE_ADMIN", "ROLE_CLERK"];
+        const role = ["ROLE_ADMIN", "ROLE_CLERK", "ROLE_SUPERUSER"];
         const currenturl = event.url.split("?")[0];
         const firstString = currenturl.split("/").slice(1)[0];
 
@@ -129,138 +129,62 @@ export class SidebarComponent implements OnInit, OnDestroy {
   privileges: any[] = [];
 
   ngOnInit() {
-    this.currentUser = this.tokenCookieService.getUser();
-    // const role = this.currentUser.roles[0];
 
+    this.currentUser = this.tokenCookieService.getUser();
     if (this.currentUser) {
       console.log("this.currentUser:::: ", this.currentUser);
       this.userName = this.currentUser.username;
       this.userRole = this.currentUser.role.name;
-      // const userRole = this.currentUser.roles[0];
       this.userFullName = this.currentUser.username;
       this.userImg = "assets/images/user/profile_img.png";
 
       console.log("this.currentUser : ", this.currentUser);
-
+      
       const userId = this.currentUser.id;
-      const module = JSON.parse(localStorage.getItem(`selectedModule_${userId}`) || '{}');
+      const module = JSON.parse(
+        localStorage.getItem(`selectedModule_${userId}`) || "{}"
+      );
+      const myPrivileges = JSON.parse(
+        localStorage.getItem(`userPrivileges_${userId}`) || "{}"
+      );
 
-      if(module){
-        console.log("this.module : ", module);
-        const selectedModule = this.currentUser.role.clients.find((client) => client.name === module);
-        console.log("this.selectedModule : ", selectedModule);
-        const modulePrivileges = selectedModule.privileges;
+      console.log("module ::: ", module);
+      console.log("myPrivileges :::: ", myPrivileges);
 
-        // if (selectedModule) {
-        //   const moduleMapping = {
-        //     // Module mapping here
-        //     AdminModule: AdminModule,
-        //     ProcurementModule: ProcurementModule,
-        //     HumanResourceModule: HumanResourceModule,
-        //     FinanceModule: FinanceModule,
-        //     FixedAssetsModule: FixedAssetsModule,
-        //     SuppliersManagementModule: SuppliersManagementModule,
-        //     BudgetModule: BudgetModule,
-        //     ImprestModule: ImprestModule,
-        //     PrepaymentModule: PrepaymentModule,
-        //     InventoryModule: InventoryModule,
-        //   };
+      const moduleMapping = {
+        AdminModule: AdminModule
+      };
 
-        //   if (module in moduleMapping) {
-        //     // Rest of your code...
-        //     this.sidebarItems = moduleMapping[module].filter((route) => {
-        //       const isRouteVisible = route.privilege.some((privilege) =>
-        //         modulePrivileges.includes(privilege)
-        //       );
-        //       if (!isRouteVisible) {
-        //         return false;
-        //       }
-        //       if (route.submenu.length === 0) {
-        //         return true;
-        //       }
-        //       route.submenu = route.submenu.filter((submenu) =>
-        //         submenu.privilege.some((privilege) =>
-        //           modulePrivileges.includes(privilege)
-        //         )
-        //       );
-        //       return route.submenu.length > 0;
-        //     });
-        //   } else {
-        //     this.notificationService.alertWarning(
-        //       "No sidebar items available for this module...!!"
-        //     );
-        //   }
-        // } else {
-        //   this.notificationService.alertWarning("Invalid module selected...!!");
-        // }
+      if (module in moduleMapping) {
+        this.sidebarItems = moduleMapping[module].filter((route) => {
+          const isRouteVisible = route.privilege.some((privilege) =>
+            myPrivileges.includes(privilege)
+          );
+          if (!isRouteVisible) {
+            return false;
+          }
+          if (route.submenu.length === 0) {
+            return true;
+          }
+          route.submenu = route.submenu.filter((submenu) =>
+            submenu.privilege.some((privilege) =>
+              myPrivileges.includes(privilege)
+            )
+          );
+          return route.submenu.length > 0;
+        });
+        console.log("myPrivileges: ", myPrivileges);
+      } else {
+        // this.notificationService.alertWarning(
+        //   "No sidebar items available for this module...!!"
+        // );
       }
 
+      this.sidebarItems = AdminModule.filter((x) => x.role.indexOf(this.userRole) !== -1);
+      if (this.userRole === Role.Superuser) {
+        this.userType = Role.Superuser;
+      }
     }
-   
-
-    // if (this.currentUser) {
-    //   console.log("this.currentUser:::: ", this.currentUser);
-    //   this.userName = this.currentUser.username;
-    //   this.userRole = this.currentUser.role.name;
-    //   // const userRole = this.currentUser.roles[0];
-    //   this.userFullName = this.currentUser.username;
-    //   this.userImg = "assets/images/user/profile_img.png";
-
-    //   console.log("this.currentUser : ", this.currentUser);
-
-    //   // const userId = this.currentUser.id;
-    //   // const module = JSON.parse(localStorage.getItem(`selectedModule_${userId}`) || '{}');
-    //   // const myPrivileges = JSON.parse(localStorage.getItem(`userPrivileges_${userId}`) || '{}');
-
-    //   const userId = this.currentUser.id;
-    //   const module = JSON.parse(
-    //     localStorage.getItem(`selectedModule_${userId}`) || "{}"
-    //   );
-    //   const myPrivileges = JSON.parse(
-    //     localStorage.getItem(`userPrivileges_${userId}`) || "{}"
-    //   );
-
-    //   console.log("module ::: ", module);
-    //   console.log("myPrivileges :::: ", myPrivileges);
-
-    //   const moduleMapping = {
-    //     AdminModule: AdminModule,
-    //     ProcurementModule: ProcurementModule,
-    //     HumanResourceModule: HumanResourceModule,
-    //     FinanceModule: FinanceModule,
-    //     FixedAssetsModule: FixedAssetsModule,
-    //     SuppliersManagementModule: SuppliersManagementModule,
-    //     BudgetModule: BudgetModule,
-    //     ImprestModule: ImprestModule,
-    //     PrepaymentModule: PrepaymentModule,
-    //     InventoryModule: InventoryModule,
-    //   };
-
-    //   if (module in moduleMapping) {
-    //     this.sidebarItems = moduleMapping[module].filter((route) => {
-    //       const isRouteVisible = route.privilege.some((privilege) =>
-    //         myPrivileges.includes(privilege)
-    //       );
-    //       if (!isRouteVisible) {
-    //         return false;
-    //       }
-    //       if (route.submenu.length === 0) {
-    //         return true;
-    //       }
-    //       route.submenu = route.submenu.filter((submenu) =>
-    //         submenu.privilege.some((privilege) =>
-    //           myPrivileges.includes(privilege)
-    //         )
-    //       );
-    //       return route.submenu.length > 0;
-    //     });
-    //     console.log("myPrivileges: ", myPrivileges);
-    //   } else {
-    //     this.notificationService.alertWarning(
-    //       "No sidebar items available for this module...!!"
-    //     );
-    //   }
-    // }
 
     // this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
     this.initLeftSidebar();
