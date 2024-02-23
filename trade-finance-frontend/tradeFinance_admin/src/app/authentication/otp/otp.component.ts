@@ -120,7 +120,7 @@ export class OtpComponent implements OnInit {
       //           "Login Successful"
       //         );
 
-              this.router.navigateByUrl("/dashboard/dashboard");
+              this.router.navigateByUrl("/admin/dashboard");
             // } else {
             //   this.snackbar.showNotification("snackbar-danger", res.message);
             // }
