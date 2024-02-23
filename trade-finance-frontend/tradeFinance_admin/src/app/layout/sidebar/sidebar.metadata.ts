@@ -11,5 +11,5 @@ export interface RouteInfo {
   badgeClass: string;
   role: string[];
   submenu: RouteInfo[];
-  privilege: string[];
+  // privilege: string[];
 }

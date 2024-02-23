@@ -78,6 +78,7 @@ export class SigninComponent
               "snackbar-success",
               res.body.message
             );
+            console.log("User", this.tokenCookieService.getUser());
             this.router.navigate(["/authentication/OTP"]);
           } else {
             this.snackbar.showNotification("snackbar-danger", res.body.message);

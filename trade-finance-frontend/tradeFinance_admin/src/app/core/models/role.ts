@@ -1,7 +1,7 @@
 export enum Role {
   Admin = "ROLE_ADMIN",
   User = "ROLE_USER",
-  
+  Superuser = "ROLE_SUPERUSER"
 }
 
 // Clerk = "ROLE_CLERK",

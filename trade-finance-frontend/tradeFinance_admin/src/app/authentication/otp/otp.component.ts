@@ -140,27 +140,6 @@ export class OtpComponent implements OnInit {
     }
   }
 
-  // ngAfterViewInit() {
-  //   const inputs =
-  //     document.querySelectorAll<HTMLInputElement>('input[type="text"]');
-
-  //   inputs.forEach((input, index) => {
-  //     input.addEventListener("input", (event) => {
-  //       const target = event.target as HTMLInputElement;
-  //       const maxLength = target.maxLength;
-  //       const inputLength = target.value.length;
-
-  //       if (inputLength === maxLength) {
-  //         const nextIndex = index + 1;
-
-  //         if (inputs[nextIndex]) {
-  //           (inputs[nextIndex] as HTMLInputElement).focus();
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
-
   ngAfterViewInit() {
 
     const inputs = document.querySelectorAll<HTMLInputElement>('input[type="text"]');
