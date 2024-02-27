@@ -13,10 +13,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "", redirectTo: "/authentication/signin", pathMatch: "full" },
+      // {
+      //   path: "dashboard",
+      //   loadChildren: () =>
+      //     import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
+      // },
       {
-        path: "dashboard",
+        path: "admin",
         loadChildren: () =>
-          import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
+          import("./admin/admin.module").then((m) => m.AdminModule),
       }
     ],
   },

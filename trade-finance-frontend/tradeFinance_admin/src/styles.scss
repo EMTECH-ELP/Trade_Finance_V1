@@ -17,8 +17,6 @@ html {
   //color: white;
 }
 
-//******************************************************************************************************
-
 .error-list {
   display: flex;
   flex-wrap: wrap;
@@ -32,7 +30,6 @@ html {
   padding: 5px 10px;
 }
 
-//*************************************************************************************************************************************
 .table-responsive {
   overflow-x: auto;
 }
@@ -52,20 +49,6 @@ tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-//******************************************************************************************
-
-//*****************************************************************************************************************************
-// Badge Colors
-// $badge-color-hod: #007bff; // Blue for HOD
-// $badge-color-hod-approved: #28a745; // Green for HOD Approved
-// $badge-color-finance: #e81c62; // Pink for Finance
-// $badge-color-finance-approved: #28a745; // Green for Finance Approved
-// $badge-color-procurement: #ffc107; // Yellow for Procurement
-// $badge-color-procurement-approved: #28a745; // Green for Procurement Approved
-
-// // // Remark Text Colors
-// $remark-text-color: #777; // Gray for remark text
-
 $badge-color-hod: #2196f3; // Blue for HOD
 $badge-color-hod-approved: #4caf50; // Green for HOD Approved
 $badge-color-finance: #e91e63; // Pink for Finance
@@ -76,20 +59,6 @@ $badge-color-procurement-approved: #795548; // Brown for Procurement Approved
 // Remark Text Colors
 $remark-text-color: #757575; // Grey for remark text
 
-
-
-// $badge-color-hod: linear-gradient(to right, #0056b3, #0088ff); // Blue gradient for HOD
-// $badge-color-hod-approved: linear-gradient(to right, #218838, #28a745); // Green gradient for HOD Approved
-// $badge-color-finance: linear-gradient(to right, #e81c62, #ff5b9e); // Pink gradient for Finance
-// $badge-color-finance-approved: linear-gradient(to right, #218838, #28a745); // Green gradient for Finance Approved
-// $badge-color-procurement: linear-gradient(to right, #ffc107, #ffdd59); // Yellow gradient for Procurement
-// $badge-color-procurement-approved: linear-gradient(to right, #218838, #28a745); // Green gradient for Procurement Approved
-
-// Remark Text Gradient
-// $remark-text-color: linear-gradient(to right, #ccc, #777); // Gray gradient for remark text
-
-
-// Define styles for the chat header section
 .col-xs-12.col-sm-12.col-md-12.col-lg-12 {
   .bg-color {
     margin-right: 10px;
