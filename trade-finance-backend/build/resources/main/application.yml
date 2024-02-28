@@ -1,0 +1,80 @@
+server:
+  port: 5600
+
+spring:
+  application:
+    useOTP: false
+    otpProd: false
+    otpTestMail: tkilunda@emtechhouse.co.ke
+    name: E&MT VCB BANKING SOLUTION
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: false
+
+    properties:
+      hibernate:
+        format_sql: true
+  #        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  datasource:
+
+    #
+    url:  jdbc:mariadb://localhost/comrades
+    username: root
+    password:
+
+    #    url:  jdbc:mariadb://52.15.152.26:3306/muumini
+    #    username: emtech
+    #    password: emtech@2022
+
+
+    driverClassName: org.mariadb.jdbc.Driver
+
+
+
+users:
+  app:
+    jwtSecret: /buCOEjS/+H7ZwekxyLKLdDeegHUGEytjxuivosdrzjRG4g4E+kA3uXO5lvGBVsl2NwqsgiGUUI5bjgY/6WG/VSIIG+22b1Rvdb59BY0YRod6Dnjnp0REsPn//hshs6ucnOVCBRp0lbVb1kP+EDOM7W7N72/+t+R1d8JQ4pjisoJZI4e0MV3PlZtzXKI0SY2EQUtI
+    jwtExpirationMs: 43200000
+
+    client:
+      origin: http://localhost:4200/
+emtech:
+  sms:
+    sendSmsUrl: https://api.tililtech.com/sms/v3/sendsms
+    api_key:  i7eo93sSVfhPUZalcH62zwkF8GprMXjQygWY5DELNKTI1BnCuqRbdtJ0mxAO4v
+    service_id: 0
+    response_type: json
+    shortcode:  Tilil
+organisation:
+  email: no-reply@emtechhouse.co.ke
+
+
+  #  fams.email.sender = no-reply@emtechhouse.co.ke
+  #  fams.email.host = mail.emtechhouse.co.ke
+  #  fams.email.port = 25
+  #  fams.email.password = Pass123$$
+  #  fams.email.protocol = smtp
+
+  #  Super User Details
+
+
+
+
+  superUserEmail: no-reply@emtechhouse.co.ke
+  superUserFirstName: Superuser
+  superUserLastName: Admin
+  superUserUserName: ChurchAdmin
+  superUserCommunity: 00
+  superUserPhone: 07xxxxxxxx
+  superUserSolCode: 000
+  superUserPassword: Admin
+  maxNoOfTellers: 2
+
