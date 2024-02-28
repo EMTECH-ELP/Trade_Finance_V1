@@ -6,7 +6,7 @@
       <ul class="list"
         [ngStyle]="{'position' : 'relative', 'max-height' : listMaxHeight+'px', 'max-width' : listMaxWidth+'px'}"
         [perfectScrollbar]>
-        <li class="sidebar-user-panel">
+        <!-- <li class="sidebar-user-panel">
           <div class="user-panel">
             <div class=" image">
               <img src={{userImg}} class="img-circle user-img-circle" alt="User Image" />
@@ -16,7 +16,7 @@
             <div class="sidebar-userpic-name">{{userName}} </div>
             <div class="profile-usertitle-job ">{{userRole}} </div>
           </div>
-        </li>
+        </li> -->
         
         <!-- Top Most level menu -->
         <li [class.active]="level1Menu === sidebarItem.moduleName && sidebarItem.submenu.length != 0"

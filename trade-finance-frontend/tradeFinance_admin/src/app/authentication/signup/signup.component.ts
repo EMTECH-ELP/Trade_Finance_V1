@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     } else {
-      this.router.navigate(["/admin/dashboard/main"]);
+      this.router.navigate(["/admin/dashboard"]);
     }
   }
 }
