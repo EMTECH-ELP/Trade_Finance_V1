@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: "maker",
         loadChildren: () =>
-          import("./admin/admin.module").then((m) => m.AdminModule),
+          import("./maker/maker.module").then((m) => m.MakerModule),
       }
     ],
   },

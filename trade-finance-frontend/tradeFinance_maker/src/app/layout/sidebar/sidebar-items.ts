@@ -2,7 +2,8 @@ import { RouteInfo } from "./sidebar.metadata";
 
 export const AdminModule: RouteInfo[] = [
   {
-    path: "/dashboard/dashboard",
+    // path: "/dashboard/dashboard",
+    path: "/maker/dashboard/analytics",
     title: "Dashboard",
     moduleName: "dashboard",
     iconType: "feather",
