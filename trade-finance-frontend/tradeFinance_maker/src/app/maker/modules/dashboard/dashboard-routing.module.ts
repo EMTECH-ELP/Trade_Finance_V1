@@ -6,10 +6,10 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent,
-    // canActivate: [RoutePrivilegeGuard],
+    path: 'analytics', component: DashboardComponent,
     data: { requiredPrivilege: ['Dashboard'] }
-  },];
+  },
+];
 
 
 @NgModule({
