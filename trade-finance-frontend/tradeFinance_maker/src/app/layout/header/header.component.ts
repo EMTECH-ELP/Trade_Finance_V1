@@ -114,7 +114,7 @@ export class HeaderComponent
     this.userName = this.tokenCookieService.getUser().username;
     this.userImg = "assets/images/user/profile_img.png";
 
-    this.homePage = "maker/dashboard";
+    this.homePage = "/maker/dashboard/analytics";
 
     
 
