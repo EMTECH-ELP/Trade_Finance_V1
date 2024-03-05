@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./gen-widgets.component.scss"],
 })
 export class GenWidgetsComponent implements OnInit {
+  makersCount: number = 0;
   suppliersCount: number = 0;
   expenseCount: number = 0;
   costCentersCount: number = 0;
@@ -37,6 +38,11 @@ export class GenWidgetsComponent implements OnInit {
   }
   userManagement() {
     this.router.navigateByUrl('/admin/user-accounts/all');
+  }
+
+  public getMakers(){
+
+    
   }
 
   getExpenses(){

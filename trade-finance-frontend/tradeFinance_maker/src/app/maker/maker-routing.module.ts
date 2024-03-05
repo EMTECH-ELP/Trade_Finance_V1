@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  {
+    path: "demo",
+    loadChildren: () =>
+      import("./modules/demo/demo.module").then(
+        (m) => m.DemoModule
+      ),
+  }
 ];
 
 @NgModule({
