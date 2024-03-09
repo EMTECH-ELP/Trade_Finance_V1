@@ -17,6 +17,7 @@ const routes: Routes = [
         path: "checker",
         loadChildren: () =>
           import("./checker/checker.module").then((m) => m.CheckerModule),
+          
       },
       {
         path: "maker",
