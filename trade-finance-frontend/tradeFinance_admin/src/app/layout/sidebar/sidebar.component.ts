@@ -231,6 +231,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
+    this.tokenCookieService.signOut();
     this.router.navigate(["/authentication/signin"]);
   }
 }
