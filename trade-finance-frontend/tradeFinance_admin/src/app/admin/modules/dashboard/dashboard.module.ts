@@ -26,7 +26,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 import { AnalyticsComponent } from './pages/components/analytics/analytics.component';
 
-
 @NgModule({
   declarations: [
     DashboardComponent,
