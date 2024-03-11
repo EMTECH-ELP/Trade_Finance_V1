@@ -69,7 +69,7 @@ export const AdminModule: RouteInfo[] = [
         badge: "",
         badgeClass: "",
         role: ["ROLE_SUPERUSER"],
-        // privilege: ["Manage Role"],
+       
         submenu: [],
       },
       {
