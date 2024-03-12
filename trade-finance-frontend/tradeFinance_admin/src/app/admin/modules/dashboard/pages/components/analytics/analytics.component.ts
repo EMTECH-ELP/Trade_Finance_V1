@@ -53,19 +53,9 @@ export class AnalyticsComponent  {
   constructor() {
     this.chartOptions = {
       series: [
+       
         {
-          name: "DC",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
-        },
-        {
-          name: "LC",
+          name: "LCs",
           data: this.generateDayWiseTimeSeries(
             new Date("11 Feb 2017 GMT").getTime(),
             20,
@@ -87,7 +77,7 @@ export class AnalyticsComponent  {
           )
         },
         {
-          name: "BG",
+          name: "BGs",
           data: this.generateDayWiseTimeSeries(
             new Date("11 Feb 2017 GMT").getTime(),
             20,
@@ -99,7 +89,7 @@ export class AnalyticsComponent  {
         },
 
         {
-          name: "DC",
+          name: "DCs",
           data: this.generateDayWiseTimeSeries(
             new Date("11 Feb 2017 GMT").getTime(),
             20,
@@ -133,7 +123,7 @@ export class AnalyticsComponent  {
           }
         }
       },
-      colors: ["#008FFB","orange", "black", "#CED4DC","#9B2827","green"],
+      colors: ["#008FFB","orange","#CED4DC","#9B2827","green"],
       dataLabels: {
         enabled: false
       },
