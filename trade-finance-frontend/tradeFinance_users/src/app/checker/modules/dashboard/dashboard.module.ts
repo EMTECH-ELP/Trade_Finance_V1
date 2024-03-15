@@ -59,4 +59,7 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
     CommonModule,
  
     
-  ])
+  ],
+exports: [GenWidgetsComponent]
+})
+export class DashboardModule { }
