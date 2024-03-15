@@ -1,1 +1,289 @@
-<p>create works!</p>
+<mat-horizontal-stepper linear>
+
+    <!-- Step 1: Applicant Details -->
+    <mat-step label="Applicant Details" [formGroup]="applicantsForm" completed="false">
+<form>
+<mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName" type="text" required>
+    <mat-hint >Name as per identification document</mat-hint>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Middle Name</mat-label>
+    <input matInput formControlName="middleName" type="text">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" type="text" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phonenumber" type="tel" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Business Name</mat-label>
+    <input matInput formControlName="businessName" type="text" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Account Name</mat-label>
+    <input matInput formControlName="accountName" type="text" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Account Number</mat-label>
+    <input matInput formControlName="accountNumber" type="number" required>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address" type="address" required>
+</mat-form-field>
+</form>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    </mat-step>
+
+<!--Step 2: Beneficiary Details-->
+<mat-step label="Beneficiary Details" [formGroup]="beneficiaryForm" completed="false">
+    <form>
+    <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firsttName" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName" type="text" >
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" type="address" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Bank Name</mat-label>
+        <input matInput formControlName="bankName" type="text" required>
+        <mat-form-field>
+            <mat-label>Account Name</mat-label>
+            <input matInput formControlName="accountName" type="text" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Account Number</mat-label>
+            <input matInput formControlName="accountNumber" type="number" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Bank Code</mat-label>
+            <input matInput formControlName="bankCode" type="number" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>SWIFT Code</mat-label>
+            <input matInput formControlName="swiftCode" type="text" required>
+        </mat-form-field>
+    </mat-form-field>
+</form>
+    <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+    </div>
+</mat-step>
+
+<!-- Step 3: LC Details -->
+<mat-step label="LC Details" [formGroup]="lcForm" completed="false">
+    <form>
+    <mat-form-field>
+        <mat-label>LC Type</mat-label>
+        <mat-select [(value)]="selectedValue" multiple>
+          <mat-optgroup label="Export LC">
+            <mat-option value="revocable">Revocable</mat-option>
+            <mat-option value="irrevocable">Irrevocable</mat-option>
+            <mat-option value="confirmed">Confirmed</mat-option>
+            <mat-option value="unconfirmed">Unconfirmed</mat-option>
+            <mat-option value="transferable">Transferable</mat-option>
+            <mat-option value="backtoback">Back-to-Back</mat-option>
+            <mat-option value="sight">Sight</mat-option>
+            <mat-option value="deferred">Deferred</mat-option>
+            <mat-option value="standby">Standby</mat-option>
+        </mat-optgroup>
+            <mat-optgroup label="Import LC">
+                <mat-option value="revocable">Revocable</mat-option>
+                <mat-option value="irrevocable">Irrevocable</mat-option>
+                <mat-option value="confirmed">Confirmed</mat-option>
+                <mat-option value="unconfirmed">Unconfirmed</mat-option>
+                <mat-option value="transferable">Transferable</mat-option>
+                <mat-option value="backtoback">Back-to-Back</mat-option>
+                <mat-option value="sight">Sight</mat-option>
+                <mat-option value="deferred">Deferred</mat-option>
+                <mat-option value="standby">Standby</mat-option>
+            </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Port of Loading</mat-label>
+        <input matInput formControlName="portOfLoading" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Shipment Date</mat-label>
+        <input matInput formControlName="shipmentDate" type="date" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Port of Discharge</mat-label>
+        <input matInput formControlName="portOfDischarge" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Incoterms</mat-label>
+        <input matInput formControlName="incoterms" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Expiry Date</mat-label>
+        <input matInput formControlName="expiryDate" type="date" required>
+    </mat-form-field>
+</form>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    </mat-step>
+
+    <!--Step 4: Collateral and Guarantee Details-->
+    <mat-step label="Collateral Details" [formGroup]="collateralForm" completed="false">
+        <form>
+            <mat-form-field>
+                <mat-label>Collateral Type</mat-label>
+                <input matInput formControlName="collateralType" type="text" required>
+            </mat-form-field>
+        <mat-form-field>
+            <mat-label>Collateral ID</mat-label>
+            <input matInput formControlName="collateralId" type="number" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Collateral Value</mat-label>
+            <input matInput formControlName="collateralValue" type="number" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" type="tel" required>
+        </mat-form-field>
+    </form>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    </mat-step>
+
+    <!--Step 5: Guarantee Details-->
+    <mat-step label="Guarantee Details" [formGroup]="guaranteeForm" completed="false">
+        <form>
+        <mat-form-field>
+            <mat-label>Guarantor's Full Name</mat-label>
+            <input matInput formControlName="fullName" type="text" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" type="tel" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="tel" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" type="address" required>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Guarantee Amount</mat-label>
+            <input matInput formControlName="guaranteeAmount" type="number" required>
+        </mat-form-field>
+    </form>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    </mat-step>
+
+    <!--Step 6: Document Upload Section-->
+    <mat-step label="Documents Upload" [formGroup]="documentsForm" completed="false">
+<form>
+    <mat-form-field>
+      <mat-label for="commercialInvoice">Upload Commercial Invoice</mat-label>
+      <input matInput type="file" formControlName="commercialInvoice">
+      
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label for="billOfLading">Upload Bill Of Lading</mat-label>
+        <input matInput type="file" formControlName="billOfLading">
+      </mat-form-field>
+    <mat-form-field>
+        <mat-label for="certificateOfOrigin">Upload Certificate Of Origin</mat-label>
+        <input matInput type="file" formControlName="certificateOfOrigin">
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label for="airwayBill">Upload Airway Bill</mat-label>
+        <input matInput type="file" formControlName="airwayBill">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="insuranceCertificate">Upload Insurance Certificate</mat-label>
+        <input matInput type="file" formControlName="insuranceCertificate">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="preshipmentInspection">Upload Preshipment Inspection</mat-label>
+        <input matInput type="file" formControlName="preshipmentInspection">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="commercialDocuments">Upload Commercial Documents</mat-label>
+        <input matInput type="file" formControlName="commercialDocuments">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="transportDocuments">Upload Transport Documents</mat-label>
+        <input matInput type="file" formControlName="transportDocuments">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="billOfExchange">Upload Bill Of Exchange</mat-label>
+        <input matInput type="file" formControlName="billOfExchange">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="packingList">Upload Packing List</mat-label>
+        <input matInput type="file" formControlName="packingList">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="financialDocuments">Financial Documents</mat-label>
+        <input matInput type="file" formControlName="commercialInvoice">
+      </mat-form-field>
+</form>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    </mat-step>
+
+    <!--Step 7: Preview and Submit-->
+    <mat-step label="Preview and Submit" completed="false">
+<form>
+    <div>
+        <h2>Preview</h2>
+  <!-- <p>Name: {{ formData.name }}</p>
+  <p>Email: {{ formData.email }}</p>
+  <p>Message: {{ formData.message }}</p> -->
+        <button mat-raised-button type="submit" color="primary">Submit</button>
+         <button mat-raised-button type="reset" color="warn">Cancel</button>
+      </div>
+</form>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+    </mat-step>
+</mat-horizontal-stepper>
