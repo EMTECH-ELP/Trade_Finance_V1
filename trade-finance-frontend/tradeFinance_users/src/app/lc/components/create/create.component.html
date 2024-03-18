@@ -205,14 +205,9 @@
           <mat-form-field>
             <input matInput placeholder="Collateral Value" formControlName="collateralValue" type="number">
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
-
-    <!--Step 5: Guarantee Details-->
-    <mat-step label="Guarantee Details">
+          <br>
+          <small>Enter Guarantor's Details Below:</small>
+          <br>
         <mat-form-field>
             <input matInput placeholder="Full Name" formControlName="guarantorName" type="text">
           </mat-form-field>
@@ -235,7 +230,7 @@
             <button mat-button matStepperNext>Next</button>
         </div>
     </mat-step>
- <!-- Step 6: Document Upload Section -->
+ <!-- Step 5: Document Upload Section -->
  <mat-step label="Document Upload Section">
     <div> <mat-form-field>
          <input matInput placeholder="Commercial Invoice" formControlName="commercialInvoice" type="text">
@@ -387,7 +382,7 @@
     </div>
 </mat-step>
 
-  <!-- Step 7: Confirmation and Advising -->
+  <!-- Step 6: Confirmation and Advising -->
   <mat-step label="Confirmation and Advising">
     <mat-form-field> 
   <mat-label>Confirm</mat-label>
@@ -409,7 +404,7 @@
         <button mat-button matStepperNext>Next</button>
     </div>
     </mat-step>
-<!-- Step 8: Preview and Submit -->
+<!-- Step 7: Preview and Submit -->
 <mat-step label="Preview and Submit">
     <div>
         <h2>Preview</h2>
