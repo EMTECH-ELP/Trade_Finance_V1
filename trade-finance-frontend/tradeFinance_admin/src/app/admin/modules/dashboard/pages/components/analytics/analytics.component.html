@@ -1,18 +1,31 @@
-
-<div id="chart">
-  
-<b>TRADE FINANCE FINANCIAL INSTRUMENTS TRANSACTION TRENDS</b>
+<div class="container">
+<div id="charty">
   <apx-chart
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [xaxis]="chartOptions.xaxis"
-    [dataLabels]="chartOptions.dataLabels"
-    [yaxis]="chartOptions.yaxis"
-    [colors]="chartOptions.colors"
-    [legend]="chartOptions.legend"
-    [fill]="chartOptions.fill"
+  [series]="chartOptions.series"
+  [chart]="chartOptions.chart"
+  [xaxis]="chartOptions.xaxis"
+  [markers]="chartOptions.markers"
+  [stroke]="chartOptions.stroke"
+  [yaxis]="chartOptions.yaxis"
+  [dataLabels]="chartOptions.dataLabels"
+  [title]="chartOptions.title"
+  [fill]="chartOptions.fill"
+  [tooltip]="chartOptions.tooltip"
+  [legend]="chartOptions.legend"
+  [colors]="chartOptions.colors" 
   ></apx-chart>
 </div>
 
+<app-analtics2></app-analtics2>
+
+
+
+
+
+
+
+
+
+ 
 
 
