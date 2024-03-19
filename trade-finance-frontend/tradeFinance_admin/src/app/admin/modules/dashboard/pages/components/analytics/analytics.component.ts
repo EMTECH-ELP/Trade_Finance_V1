@@ -60,15 +60,15 @@ export class AnalyticsComponent implements OnInit {
     this.lineChartOptions = {
       series: [
         {
-          name: "Supplier 1",
+          name: "LC",
           data: [70, 200, 80, 180, 170, 105, 210,0, 250, 30, 120, 260],
         },
         {
-          name: "Supplier 2",
+          name: "Bills",
           data: [80, 250, 30, 120, 260, 100, 180,5, 130, 85, 225, 80],
         },
         {
-          name: "Supplier 3",
+          name: "Bank Guarantee",
           data: [85, 130, 85, 225, 80, 190, 120, 130, 85, 225, 80, 190],
         },
       ],
@@ -110,7 +110,7 @@ export class AnalyticsComponent implements OnInit {
       yaxis: {
         // opposite: true,
         title: {
-          text: "Payment Amount",
+          text: "Transaction Amount",
         },
       },
       legend: {
@@ -154,8 +154,6 @@ export class AnalyticsComponent implements OnInit {
       ],
     };
   }
-
-
   private chart4() {
     this.performanceRateChartOptions = {
       series: [
