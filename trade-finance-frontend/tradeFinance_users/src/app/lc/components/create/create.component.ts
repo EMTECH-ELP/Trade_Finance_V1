@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CreateService } from '../../services/create.service';
 
 @Component({
   selector: 'app-create',
@@ -8,7 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
   selectedValue: string;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private createService: CreateService) { }
   applicationForm= this.fb.group ({
     applicantFirstName: ['', Validators.required],
     applicantMiddleName: [''],
@@ -64,8 +66,24 @@ export class CreateComponent implements OnInit {
     numberOfCopies: ['', Validators.required],
     signed: ['', Validators.required],
     documentDescription: ['', Validators.required]
-  })
+  });
   
+
+  onSubmit() {
+    if (this.applicationForm.valid) {
+      const formData = this.applicationForm.value;
+      this.createService.submit(formData).subscribe(
+        response => {
+          // Handle successful submission response
+          console.log('Form submitted successfully:', response);
+        },
+        error => {
+          // Handle error
+          console.error('Error submitting form:', error);
+        }
+      );
+    }
+  }
 
   ngOnInit() {
     // ngOnInit code goes here

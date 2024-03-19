@@ -1,5 +1,5 @@
 <mat-horizontal-stepper linear>
-    <form [formGroup]="applicationForm">
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
     <!-- Step 1: Applicant Details -->
     <mat-step label="Applicant details" completed="false">
         <mat-form-field>
@@ -236,7 +236,7 @@
          <input matInput placeholder="Commercial Invoice" formControlName="commercialInvoice" type="text">
        </mat-form-field>
        <mat-form-field>
-         <input matInput placeholder="Number of Copies" formControlName="NumberOfCopies" type="number">
+         <input matInput placeholder="Number of Copies" formControlName="ciNumberOfCopies" type="number">
        </mat-form-field>
        <mat-form-field>
          <input matInput placeholder="Signed" formControlName="Signed" type="text">
