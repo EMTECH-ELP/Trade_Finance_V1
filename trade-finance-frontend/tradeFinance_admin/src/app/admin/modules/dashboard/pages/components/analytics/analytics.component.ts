@@ -228,7 +228,7 @@ export type ChartOptions = {
   dataLabels: ApexDataLabels;
   title: ApexTitleSubtitle;
   legend: ApexLegend;
-  colors: string[]; // Change to string array
+  colors:string[];// Change to string array
   fill: ApexFill;
   tooltip: ApexTooltip;
 };
@@ -252,17 +252,20 @@ export class AnalyticsComponent {
           name: "Transactions volumes",
           type: "column",
           data: [3, 3.1, 4, 4.5, 4.9,]
+          
         },
-        {
-          name: "Approved transactions ",
-          type: "line",
-          data: [0, 29, 37, 36,48]
-        },
+
         {
           name: "Pending Transaction",
           type: "line",
           data: [0, 10, 5, 20,36]
-        }
+        },
+        {
+          name: "Approved transactions ",
+          type: "line",
+          data: [8, 29, 37, 36,45]
+        },
+        
       ],
       chart: {
         height: 350,
@@ -274,7 +277,7 @@ export class AnalyticsComponent {
         enabled: true
       },
       stroke: {
-        width: [1, 1, 4,]
+        width: [1, 1, 4,5]
       },
       title: {
         text: "APPROVED AND PENDINGS TRANSACTIONS ANALYSIS",
@@ -282,7 +285,8 @@ export class AnalyticsComponent {
         offsetX: 110
       },
       xaxis: {
-        categories: ["lcs", "Invoices", "bills", "BGs", "DCs","2"]
+        categories: ["lcs", "Invoices", "bills", "BGs", "DCs",]
+       
       },
       yaxis: [
         {
@@ -291,7 +295,7 @@ export class AnalyticsComponent {
           },
           axisBorder: {
             show: true,
-            color: "#920a0a"
+            color: "black"
           },
           labels: {
             style: {
@@ -317,13 +321,16 @@ export class AnalyticsComponent {
           offsetY: 50,
           offsetX: 100
         }
+        
       },
       legend: {
         horizontalAlign: "left",
         offsetY: 50,
         offsetX: 100
       },
-      colors: ["#920a0a", "black", "yellow"  ] // Set the colors here
+
+    
+      colors: ["#920a0a", "yellow","blue",]
     };
   }
 };
