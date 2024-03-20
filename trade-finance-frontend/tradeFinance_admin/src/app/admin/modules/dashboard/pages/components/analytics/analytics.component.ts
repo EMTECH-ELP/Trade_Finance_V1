@@ -37,7 +37,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.sass']
+  styleUrls: ['./analytics.component.scss']
 })
 export class AnalyticsComponent implements OnInit {
   public performanceRateChartOptions: Partial<ChartOptions>;
@@ -60,15 +60,15 @@ export class AnalyticsComponent implements OnInit {
     this.lineChartOptions = {
       series: [
         {
-          name: "LC",
+          name: "Supplier 1",
           data: [70, 200, 80, 180, 170, 105, 210,0, 250, 30, 120, 260],
         },
         {
-          name: "Bills",
+          name: "Supplier 2",
           data: [80, 250, 30, 120, 260, 100, 180,5, 130, 85, 225, 80],
         },
         {
-          name: "Bank Guarantee",
+          name: "Supplier 3",
           data: [85, 130, 85, 225, 80, 190, 120, 130, 85, 225, 80, 190],
         },
       ],
@@ -110,7 +110,7 @@ export class AnalyticsComponent implements OnInit {
       yaxis: {
         // opposite: true,
         title: {
-          text: "Transaction Amount",
+          text: "Payment Amount",
         },
       },
       legend: {
@@ -154,6 +154,8 @@ export class AnalyticsComponent implements OnInit {
       ],
     };
   }
+
+
   private chart4() {
     this.performanceRateChartOptions = {
       series: [
