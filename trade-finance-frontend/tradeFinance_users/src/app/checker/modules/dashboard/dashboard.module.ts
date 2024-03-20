@@ -60,6 +60,6 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
  
     
   ],
-  exports: [GenWidgetsComponent]
+exports: [GenWidgetsComponent]
 })
 export class DashboardModule { }

@@ -1,215 +1,151 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { color } from 'echarts';
 import {
-  ApexAxisChartSeries,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
   ApexChart,
   ApexXAxis,
   ApexDataLabels,
   ApexStroke,
-  ApexMarkers,
   ApexYAxis,
-  ApexGrid,
-  ApexTitleSubtitle,
-  ApexTooltip,
   ApexLegend,
   ApexFill,
-  ApexResponsive,
-} from "ng-apexcharts";
-import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
-
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  stroke: ApexStroke;
-  dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
-  colors: string[];
-  yaxis: ApexYAxis;
-  grid: ApexGrid;
-  legend: ApexLegend;
-  tooltip: ApexTooltip;
-  fill: ApexFill;
-  title: ApexTitleSubtitle;
-  responsive: ApexResponsive[];
-  labels: any;
-};
+  ApexAxisChartSeries,
+  ApexMarkers,
+  ApexGrid,
+  ApexTitleSubtitle
+} from 'ng-apexcharts';
 
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.sass']
+  styleUrls: ['./analytics.component.scss']
 })
 export class AnalyticsComponent implements OnInit {
-  public performanceRateChartOptions: Partial<ChartOptions>;
+  public chartOptions: any;
+  public lineChartOptions: any;
 
-  public lineChartOptions: Partial<ChartOptions>;
-  public pieChartOptions: any;
-  //  color: ["#3FA7DC", "#F6A025", "#9BC311"],
+  constructor() {}
 
-  currentUser: any;
-
-  constructor(    private tokenCookieService: TokenCookieService,) {}
   ngOnInit() {
-    this.currentUser = this.tokenCookieService.getUser().username;
-    this.chart1();
-    this.chart2();
-    this.chart4();
-  }
 
-  private chart1() {
+    this.chartOptions = {
+      series: [180, 100, 120, 130, 150, 200],
+      chart: {
+        width: 380,
+        type: 'pie',
+        colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA'] // Fix the colors array
+      },
+      title: {
+        text: 'Volume average on a Monthly Basis in Millions',
+        align: 'left'
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function(val:any, opt:any) {
+          return Math.round(val);
+        },
+      },
+      labels: ['LC', 'DC', 'GUARANTEE', 'INVOICE', 'BILLS', 'RTGS'],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      ]
+    };
     this.lineChartOptions = {
       series: [
         {
-          name: "Supplier 1",
-          data: [70, 200, 80, 180, 170, 105, 210,0, 250, 30, 120, 260],
+          name: 'LC - 2023',
+          data: [28, 29, 33, 36, 32, 32, 33]
         },
         {
-          name: "Supplier 2",
-          data: [80, 250, 30, 120, 260, 100, 180,5, 130, 85, 225, 80],
+          name: 'DC - 2023',
+          data: [12, 19, 24, 28, 17, 23, 30]
         },
         {
-          name: "Supplier 3",
-          data: [85, 130, 85, 225, 80, 190, 120, 130, 85, 225, 80, 190],
+          name: 'QUARANTEE - 2023',
+          data: [16, 23, 33, 16, 22, 34, 25]
+        },
+        {
+          name: 'BILLS - 2023',
+          data: [11, 19, 25, 16, 34, 32, 29]
+        },
+        {
+          name: 'INVOICE- 2023',
+          data: [12, 19, 23, 26, 17, 22, 33]
+        },
+        {
+          name: 'RTGS- 2023',
+          data: [15, 26, 33, 36, 20, 32, 40]
         },
       ],
       chart: {
         height: 350,
-        type: "line",
-        foreColor: "#9aa0ac",
+        type: 'line',
         dropShadow: {
           enabled: true,
-          color: "#000",
+          color: '#000',
           top: 18,
           left: 7,
           blur: 10,
-          opacity: 0.2,
+          opacity: 0.2
         },
         toolbar: {
-          show: false,
-        },
+          show: false
+        }
       },
-      colors: ["#A5A5A5", "#875692", "#4CB5AC"],
+      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA'],
+      dataLabels: {
+        enabled: true
+      },
       stroke: {
-        curve: "smooth",
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Average Transactions on a Monthly Basis',
+        align:'left'
+
       },
       grid: {
+        borderColor: '#e7e7e7',
         row: {
-          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
       },
       markers: {
-        size: 3,
+        size: 1
       },
       xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         title: {
-          text: "Month",
-        },
+          text: 'Month'
+        }
       },
       yaxis: {
-        // opposite: true,
         title: {
-          text: "Payment Amount",
+          text: 'TRANSACTIONS'
         },
+        min: 5,
+        max: 40
       },
       legend: {
-        position: "top",
-        horizontalAlign: "right",
+        position: 'top',
+        horizontalAlign: 'right',
         floating: true,
         offsetY: -25,
-        offsetX: -5,
-      },
-      tooltip: {
-        theme: "dark",
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
+        offsetX: -5
+      }
+    }
   }
+};
 
-  private chart2() {
-    this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
-      chart: {
-        type: "donut",
-        width: 225,
-      },
-      legend: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      labels: ["Science", "Mathes", "Economics", "History", "Music"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {},
-        },
-      ],
-    };
-  }
-
-
-  private chart4() {
-    this.performanceRateChartOptions = {
-      series: [
-        {
-          name: "Invoice Amount",
-          data: [0, 20, 12, 6, 15, 25, 0],
-        },
-      ],
-      chart: {
-        height: 380,
-        type: "line",
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        foreColor: "#9aa0ac",
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ["#545454"],
-      dataLabels: {
-        enabled: true,
-      },
-      stroke: {
-        curve: "smooth",
-      },
-      markers: {
-        size: 1,
-      },
-      xaxis: {
-        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        title: {
-          text: "Weekday",
-        },
-      },
-      yaxis: {
-        title: {
-          text: "Invoice Amount($)",
-        },
-      },
-      tooltip: {
-        theme: "dark",
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
-  }
-}
