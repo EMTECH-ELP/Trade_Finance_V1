@@ -1,19 +1,11 @@
-<div class="card" style="position: relative; height: 450px; width: 450px;">
-<div id="charty">
-    <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [xaxis]="chartOptions.xaxis"
-      [stroke]="chartOptions.stroke"
-      [tooltip]="chartOptions.tooltip"
-      [dataLabels]="chartOptions.dataLabels"
-      [legend]="chartOptions.legend"
-      [markers]="chartOptions.markers"
-      [grid]="chartOptions.grid"
-      [yaxis]="chartOptions.yaxis"
-      [title]="chartOptions.title"
-    ></apx-chart>
-  </div>
-  
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+  <mat-card>
+    <mat-card-content>
+      <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+        [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [dataLabels]="chartOptions.dataLabels"
+        [legend]="chartOptions.legend" [markers]="chartOptions.markers" [grid]="chartOptions.grid"
+        [yaxis]="chartOptions.yaxis" [title]="chartOptions.title"></apx-chart>
+    </mat-card-content>
+  </mat-card>
+
 </div>
-  

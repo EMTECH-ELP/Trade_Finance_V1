@@ -277,7 +277,7 @@ export class AnalyticsComponent {
         enabled: true
       },
       stroke: {
-        width: [1, 1, 4,5]
+        width: [1, 1,4,]
       },
       title: {
         text: "APPROVED AND PENDINGS TRANSACTIONS ANALYSIS",
@@ -285,7 +285,7 @@ export class AnalyticsComponent {
         offsetX: 110
       },
       xaxis: {
-        categories: ["lcs", "Invoices", "bills", "BGs", "DCs",]
+        categories: ["lcs","bills","Invoices", "BGs", "DCs"]
        
       },
       yaxis: [
