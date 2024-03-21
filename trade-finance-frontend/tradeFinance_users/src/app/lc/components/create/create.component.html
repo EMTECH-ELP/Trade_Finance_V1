@@ -15,7 +15,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="First Name" formControlName="applicantFirstName" type="text">
-                
+
               </mat-form-field>
             </div>
 
@@ -70,12 +70,7 @@
                 <input matInput placeholder="SWIFT Code" formControlName="issuingSwiftCode" type="text">
               </mat-form-field>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <div>
-                <label for="Identification Document">Upload ID/Passport:</label>
-                <input type="file" id="identificationDocument" name="identificationDocument">
-              </div>
-            </div>
+
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
@@ -374,12 +369,6 @@
             </mat-form-field>
           </div>
 
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-            <div>
-              <label for="Identification Document">Upload ID/Passport:</label>
-              <input type="file" id="identificationDocument" name="identificationDocument">
-            </div>
-          </div>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
@@ -387,6 +376,18 @@
         </mat-step>
         <!-- Step 5: Document Upload Section -->
         <mat-step label="Document Upload Section">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div>
+              <label for="Identification Document">Upload Applicant ID/Passport:</label>
+              <input type="file" id="identificationDocument" name="applicantIdentificationDocument">
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div>
+              <label for="Identification Document">Upload Gurantor's ID/Passport:</label>
+              <input type="file" id="identificationDocument" name="guarantorIdentificationDocument">
+            </div>
+          </div>
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
             <div> <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Commercial Invoice" formControlName="commercialInvoice" type="text">
@@ -559,62 +560,62 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Packing List" formControlName="packingList" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Signed" formControlName="signed" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
                 <label for="Packing List">Upload Packing List:</label>
                 <input type="file" id="packingList" name="packingListFile">
               </div>
-              </div>
             </div>
-            <div> 
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field  class="full-width" appearance="outline" >
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Financial Documents" formControlName="financialDocuments" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-path" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-path" appearance="outline">
                 <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Signed" formControlName="signed" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline" >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
               </mat-form-field>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
                 <label for="Financial Documents">Upload Financial Documents:</label>
                 <input type="file" id="financialDocuments" name="financialDocuments">
               </div>
-              </div>
             </div>
+          </div>
 
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
         </mat-step>
 
         <!-- Step 6: Confirmation and Advising -->
