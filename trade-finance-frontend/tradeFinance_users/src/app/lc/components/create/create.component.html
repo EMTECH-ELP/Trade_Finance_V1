@@ -1,0 +1,664 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
+      </app-breadcrumb>
+    </div>
+
+    <mat-horizontal-stepper linear>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
+        <!-- Step 1: Applicant Details -->
+        <mat-step label="Applicant details" completed="false">
+          <div class="row">
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="First Name" formControlName="applicantFirstName" type="text">
+                
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Middle Name" formControlName="applicantMiddleName" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Last Name" formControlName="applicantLastName" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Address" formControlName="applicantAddress" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Email" formControlName="applicantEmail" type="email">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Phone Number" formControlName="applicantPhoneNumber" type="tel">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Business Name" formControlName="businessName" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Name" formControlName="applicantAccountName" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Number" formControlName="applicantAccountNumber" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bank" formControlName="issuingBank" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="SWIFT Code" formControlName="issuingSwiftCode" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Identification Document">Upload ID/Passport:</label>
+                <input type="file" id="identificationDocument" name="identificationDocument">
+              </div>
+            </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+
+          </div>
+        </mat-step>
+
+        <!--Step 2: Beneficiary Details-->
+        <mat-step label="Beneficiary Details" completed="false">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="First Name" formControlName="beneficiaryFirstName" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Middle Name" formControlName="beneficiaryMiddleName" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Last Name" formControlName="beneficiaryLastName" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Address" formControlName="beneficiaryAddress" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Email" formControlName="beneficiaryEmail" type="email">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Phone Number" formControlName="beneficiaryPhoneNumber" type="tel">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Account Name" formControlName="beneficiaryAccountName" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Account Number" formControlName="beneficiaryAccountNumber" type="number">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Bank" formControlName="beneficiaryBank" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="SWIFT Code" formControlName="beneficiarySwiftCode" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="City" formControlName="beneficiaryCity" type="text">
+            </mat-form-field>
+          </div>
+          <br>
+          <div>
+            <label for="Identification Document">Upload ID/Passport:</label>
+            <input type="file" id="identificationDocument" name="identificationDocument">
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+
+        <!-- Step 3: LC Details -->
+        <mat-step label="LC Details" completed="false">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="LC Type" formControlName="lcType" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Sub Type" formControlName="subType" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Applicable Rules" formControlName="applicableRules" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="" formControlName="isExpired" type="boolean">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Shipment Date" formControlName="shipmentDate" type="date">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Port of Discharge" formControlName="portOfDischarge" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Port of Loading" formControlName="portOfLoading" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Shipment Terms" formControlName="shipmentTerms" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Partial Shipment" formControlName="partialShipment" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Trans Shipment" formControlName="transShipment" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Issue Date" formControlName="issueDate" type="date">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Expiry Date" formControlName="expiryDate" type="date">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Usance" formControlName="usance" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Transferable" formControlName="transferable" type="boolean">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Negotiation Period" formControlName="negotiationPeriod" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Commodity Code" formControlName="commodityCode" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Quanity of Goods" formControlName="goodsQuantity" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Unit Price" formControlName="pricePerUnit" type="number">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Country of Origin" formControlName="countyOfOrigin" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Charges" formControlName="chargesBorneBy" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Amount" formControlName="amount" type="number">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Code" formControlName="amountCode" type="text">
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <!-- <mat-form-field> LC TYPE DROPDOWN LIST
+        <mat-label>LC Type</mat-label>
+        <mat-select [(value)]="selectedValue" multiple>
+          <mat-optgroup label="Export LC">
+            <mat-option value="revocable">Revocable</mat-option>
+            <mat-option value="irrevocable">Irrevocable</mat-option>
+            <mat-option value="confirmed">Confirmed</mat-option>
+            <mat-option value="unconfirmed">Unconfirmed</mat-option>
+            <mat-option value="transferable">Transferable</mat-option>
+            <mat-option value="backtoback">Back-to-Back</mat-option>
+            <mat-option value="sight">Sight</mat-option>
+            <mat-option value="deferred">Deferred</mat-option>
+            <mat-option value="standby">Standby</mat-option>
+        </mat-optgroup> -->
+        <!-- <mat-optgroup label="Import LC">
+                <mat-option value="revocable">Revocable</mat-option>
+                <mat-option value="irrevocable">Irrevocable</mat-option>
+                <mat-option value="confirmed">Confirmed</mat-option>
+                <mat-option value="unconfirmed">Unconfirmed</mat-option>
+                <mat-option value="transferable">Transferable</mat-option>
+                <mat-option value="backtoback">Back-to-Back</mat-option>
+                <mat-option value="sight">Sight</mat-option>
+                <mat-option value="deferred">Deferred</mat-option>
+                <mat-option value="standby">Standby</mat-option>
+            </mat-optgroup>
+        </mat-select>
+    </mat-form-field> -->
+
+        <!--Step 4: Collateral and Guarantee Details-->
+        <mat-step label="Collateral Details">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Collateral Type" formControlName="collateralType" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Collateral ID" formControlName="collateralId" type="number">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Collateral Value" formControlName="collateralValue" type="number">
+            </mat-form-field>
+          </div>
+          <br>
+          <p>Enter Guarantor's Details Below:</p>
+          <br>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Full Name" formControlName="guarantorName" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Address" formControlName="guarantorAddress" type="text">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Email" formControlName="guarantorEmail" type="email">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Phone Number" formControlName="guarantorPhoneNumber" type="tel">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div>
+              <label for="Identification Document">Upload ID/Passport:</label>
+              <input type="file" id="identificationDocument" name="identificationDocument">
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <!-- Step 5: Document Upload Section -->
+        <mat-step label="Document Upload Section">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div> <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Commercial Invoice" formControlName="commercialInvoice" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="ciNumberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="Signed" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Commercial Invoice">Upload Commercial Invoice:</label>
+                <input type="file" id="commercialInvoice" name="commercialInvoiceFile">
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div> <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bill of Lading" formControlName="billOfLading" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="signed" type="boolean">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Bill of Lading">Upload Bill of Lading :</label>
+                <input type="file" id="billOfLading" name="billOfLadingFile">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Certificate of Origin" formControlName="certificateOfOrigin" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Certificate Of Origin">Upload Certificate Of Origin :</label>
+                <input type="file" id="certificateOfOrigin" name="certificateOfOriginFile">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Airway Bill" formControlName="airwayBill" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="insuranceCertificate" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Airway Bill">Upload Airway Bill:</label>
+                <input type="file" id="airwayBill" name="airwayBillFile">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Preshipment Inspection" formControlName="preshipmentInspection"
+                  type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="transportDocuments" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Preshipment Inspection">Upload Preshipment Inspection:</label>
+                <input type="file" id="preshipmentInspection" name="preshipmentInspectionFile">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bill of Exchange" formControlName="billOfExchange" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Bill of Exchange">Upload Bill of Exchange:</label>
+                <input type="file" id="billOfExchange" name="billOfExchangeFile">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Packing List" formControlName="packingList" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline" >
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline" >
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline" >
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Packing List">Upload Packing List:</label>
+                <input type="file" id="packingList" name="packingListFile">
+              </div>
+              </div>
+            </div>
+            <div> 
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field  class="full-width" appearance="outline" >
+                <input matInput placeholder="Financial Documents" formControlName="financialDocuments" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-path" appearance="outline" >
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline" >
+                <input matInput placeholder="Signed" formControlName="signed" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline" >
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Financial Documents">Upload Financial Documents:</label>
+                <input type="file" id="financialDocuments" name="financialDocuments">
+              </div>
+              </div>
+            </div>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+
+        <!-- Step 6: Confirmation and Advising -->
+        <mat-step label="Confirmation and Advising">
+          <mat-form-field>
+            <mat-label>Confirm</mat-label>
+            <mat-select>
+              <mat-option> Yes</mat-option>
+              <mat-option> No</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Advise</mat-label>
+            <mat-select>
+              <mat-option> Yes</mat-option>
+              <mat-option> No</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <!-- Step 7: Preview and Submit -->
+        <mat-step label="Preview and Submit">
+          <div>
+            <h2>Preview</h2>
+            <button mat-raised-button type="submit" color="primary">Submit</button>
+            <button mat-raised-button type="reset" color="warn">Cancel</button>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </mat-step>
+
+      </form>
+    </mat-horizontal-stepper>
+
+
+
+
+    <!-- <p>Name: {{ formData.name }}</p>
+  <p>Email: {{ formData.email }}</p>
+  <p>Message: {{ formData.message }}</p> -->
+  </div>
+</section>
