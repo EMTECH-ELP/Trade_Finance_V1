@@ -4,7 +4,7 @@ export const AdminModule: RouteInfo[] = [
 
   //Checker Sidebar Items
   {
-    path: "/dashboard/dashboard",
+    path: "/checker/dashboard/analytics",
     title: "Dashboard",
     moduleName: "dashboard",
     iconType: "feather",

@@ -1,14 +1,29 @@
+<div class="row">
 
+  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+    <mat-card>
+      <mat-card-content>
+        <div class="chart">
+          <apx-chart [series]="chartOptions.series" [colors]="lineChartOptions.colors" [title]="chartOptions.title"
+            [chart]="chartOptions.chart" [labels]="chartOptions.labels" [dataLabels]="chartOptions.dataLabels"
+            [responsive]="chartOptions.responsive"></apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-    <div class="charts-container">
-    <div class="chart">
-    <apx-chart [series]="chartOptions.series" [colors]="lineChartOptions.colors"[title]="chartOptions.title"[chart]="chartOptions.chart" [labels]="chartOptions.labels" [dataLabels]="chartOptions.dataLabels"
-      [responsive]="chartOptions.responsive"></apx-chart>
-    </div>
-    <div class="chart-line">
-    <apx-chart [series]="lineChartOptions.series" [chart]="lineChartOptions.chart" [xaxis]="lineChartOptions.xaxis"
-      [stroke]="lineChartOptions.stroke" [dataLabels]="lineChartOptions.dataLabels" [markers]="lineChartOptions.markers"
-      [colors]="lineChartOptions.colors" [yaxis]="lineChartOptions.yaxis" [grid]="lineChartOptions.grid"
-      [legend]="lineChartOptions.legend" [title]="lineChartOptions.title"></apx-chart>
-    </div>
   </div>
+
+  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+    <mat-card>
+      <mat-card-content>
+        <div class="chart-line">
+          <apx-chart [series]="lineChartOptions.series" [chart]="lineChartOptions.chart"
+            [xaxis]="lineChartOptions.xaxis" [stroke]="lineChartOptions.stroke"
+            [dataLabels]="lineChartOptions.dataLabels" [markers]="lineChartOptions.markers"
+            [colors]="lineChartOptions.colors" [yaxis]="lineChartOptions.yaxis" [grid]="lineChartOptions.grid"
+            [legend]="lineChartOptions.legend" [title]="lineChartOptions.title"></apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
