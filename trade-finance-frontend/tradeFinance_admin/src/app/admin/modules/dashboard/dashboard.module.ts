@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 import { AnalyticsComponent } from './pages/components/analytics/analytics.component';
+import { Analtics2Component } from './pages/components/analtics2/analtics2.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
     GenWidgetsComponent,
 
     ResetPasswordComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    Analtics2Component
   ],
   imports: [
     CommonModule,
@@ -56,6 +59,7 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
     MatFormFieldModule,
     MatSelectModule,
     CommonModule,
+    MatCardModule
  
     
   ],
