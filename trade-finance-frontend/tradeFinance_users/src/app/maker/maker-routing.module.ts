@@ -4,11 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: "dashboard",
-    loadChildren:() =>
-    import("./modules/dashboard/dashboard.module").then(
-      (m)=> m.DashboardModule
-    ),
-  },
+    loadChildren: () =>
+      import("./modules/dashboard/dashboard.module").then((m) => m.DashboardModule),
+      
+  }
 ];
 
 @NgModule({

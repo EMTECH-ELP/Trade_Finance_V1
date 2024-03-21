@@ -4,7 +4,7 @@ export const AdminModule: RouteInfo[] = [
 
   //Checker Sidebar Items
   // {
-  //   path: "/maker/dashboard/analytics",
+  //   path: "/dashboard/dashboard",
   //   title: "Dashboard",
   //   moduleName: "dashboard",
   //   iconType: "feather",
@@ -19,7 +19,7 @@ export const AdminModule: RouteInfo[] = [
   // },
 
   // {
-  //   path: "/maker/dashboard",
+  //   path: "/checker/dashboard",
   //   title: "Services",
   //   moduleName: "Services",
   //   iconType: "feather",
@@ -32,7 +32,7 @@ export const AdminModule: RouteInfo[] = [
   //   // privilege: ["All Roles", "Manage Role"],
   //   submenu: [
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "Letter of Credit",
   //       moduleName: "Letter of Credit",
   //       iconType: "feather",
@@ -46,7 +46,7 @@ export const AdminModule: RouteInfo[] = [
   //       submenu: [],
   //     },
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "Documentary Credit",
   //       moduleName: "Documentary Credit",
   //       iconType: "feather",
@@ -60,7 +60,7 @@ export const AdminModule: RouteInfo[] = [
   //       submenu: [],
   //     },
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "Bank Guarantee",
   //       moduleName: "Bank Guarantee",
   //       iconType: "feather",
@@ -74,7 +74,7 @@ export const AdminModule: RouteInfo[] = [
   //       submenu: [],
   //     },
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "Invoice Discounting",
   //       moduleName: "Invoice Discounting",
   //       iconType: "feather",
@@ -88,7 +88,7 @@ export const AdminModule: RouteInfo[] = [
   //       submenu: [],
   //     },
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "Bills",
   //       moduleName: "Bills",
   //       iconType: "feather",
@@ -102,7 +102,7 @@ export const AdminModule: RouteInfo[] = [
   //       submenu: [],
   //     },
   //     {
-  //       path: "",
+  //       path: "/checker/dashboard",
   //       title: "RTGS",
   //       moduleName: "RTGS",
   //       iconType: "feather",
@@ -119,7 +119,7 @@ export const AdminModule: RouteInfo[] = [
   //   ],
   // },
   // {
-  //   path: "",
+  //   path: "/checker/My tickets/analytics",
   //   title: "My tickets",
   //   moduleName: "My tickets",
   //   iconType: "feather",
@@ -133,7 +133,7 @@ export const AdminModule: RouteInfo[] = [
   //   submenu: [],
   // },
   // {
-  //   path: "",
+  //   path: "/checker/Reports/analytics",
   //   title: "Reports",
   //   moduleName: "Reports",
   //   iconType: "feather",
@@ -147,7 +147,7 @@ export const AdminModule: RouteInfo[] = [
   //   submenu: [],
   // },
   // {
-  //   path: "",
+  //   path: "/checker/Reports/analytics",
   //   title: "Settings",
   //   moduleName: "Settings",
   //   iconType: "feather",
@@ -162,9 +162,22 @@ export const AdminModule: RouteInfo[] = [
   // },
 
   //Maker sidebar items
-
   {
-    path: "/maker/dashboard",
+    path: "/maker/dashboard/analytics",
+    title: "Dashboard",
+    moduleName: "dashboard",
+    iconType: "feather",
+    icon: "activity",
+    class: "",
+    groupTitle: false,
+    badge: "",
+    badgeClass: "",
+    role: ["ROLE_SUPERUSER"],
+    // privilege: ["All Roles", "Manage Role"],
+    submenu: []
+  },
+  {
+    path: "/lc/create",
     title: "Services",
     moduleName: "services",
     iconType: "feather",
@@ -191,7 +204,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "",
         title: "Bills",
         moduleName: "bills",
         iconType: "feather",
@@ -205,7 +218,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "",
         title: "Bank Guarantee",
         moduleName: "bank guarantee",
         iconType: "feather",
@@ -219,7 +232,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "",
         title: "Documentary collection",
         moduleName: "documentary collection",
         iconType: "feather",
@@ -233,7 +246,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "",
         title: "Invoice Discounting",
         moduleName: "invoice discounting",
         iconType: "feather",
@@ -252,7 +265,7 @@ export const AdminModule: RouteInfo[] = [
 
   },
   {
-    path: "/maker/dashboard",
+    path: "",
     title: "My tickets",
     moduleName: "My tickets",
     iconType: "feather",
@@ -266,7 +279,7 @@ export const AdminModule: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: "/maker/dashboard",
+    path: "",
     title: "Reports",
     moduleName: "reports",
     iconType: "feather",
