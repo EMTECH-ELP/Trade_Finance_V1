@@ -1,0 +1,18 @@
+
+.charts-container {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure charts don't wrap to the next line */
+  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  
+}
+.chart {
+  flex: 1;
+  max-width: auto;
+  margin-top: 10px;
+}
+.chart-line {
+  flex: 1;
+  max-width: auto;
+  margin-top: 10px;
+  margin-right:50px;
+}
