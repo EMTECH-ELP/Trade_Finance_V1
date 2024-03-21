@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.sass']
+  styleUrls: ['./analytics.component.scss']
 })
 export class AnalyticsComponent implements OnInit {
   public chartOptions: any;

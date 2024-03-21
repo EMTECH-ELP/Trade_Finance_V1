@@ -62,6 +62,6 @@ import { MatCardModule } from '@angular/material/card';
  
     
   ],
-  exports: [GenWidgetsComponent]
+exports: [GenWidgetsComponent]
 })
 export class DashboardModule { }
