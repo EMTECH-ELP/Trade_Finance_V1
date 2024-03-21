@@ -16,11 +16,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { ViewMakersComponent } from './Makers/view-makers/view-makers.component';
+import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
 
 
 @NgModule({
   declarations: [
   
+  
+    ViewMakersComponent,
+           AddMakersComponent
   ],
   imports: [
     CommonModule,
