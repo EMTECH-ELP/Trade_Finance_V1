@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -37,132 +37,179 @@ export type ChartOptions = {
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.scss']
+  styleUrls: ['./analytics.component.sass']
 })
-export class AnalyticsComponent  {
+export class AnalyticsComponent implements OnInit {
+  public performanceRateChartOptions: Partial<ChartOptions>;
 
-  // constructor(    private tokenCookieService: TokenCookieService,) {}
-  // ngOnInit() {
-    
-  // }
+  public lineChartOptions: Partial<ChartOptions>;
+  public pieChartOptions: any;
+  //  color: ["#3FA7DC", "#F6A025", "#9BC311"],
 
-  
-  @ViewChildren("chart") chart: AnalyticsComponent;
-  public chartOptions: Partial<ChartOptions>;
+  currentUser: any;
 
-  constructor() {
-    this.chartOptions = {
+  constructor(    private tokenCookieService: TokenCookieService,) {}
+  ngOnInit() {
+    this.currentUser = this.tokenCookieService.getUser().username;
+    this.chart1();
+    this.chart2();
+    this.chart4();
+  }
+
+  private chart1() {
+    this.lineChartOptions = {
       series: [
-       
         {
-          name: "LCs",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
+          name: "Supplier 1",
+          data: [70, 200, 80, 180, 170, 105, 210,0, 250, 30, 120, 260],
         },
         {
-          name: "Invoices",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
+          name: "Supplier 2",
+          data: [80, 250, 30, 120, 260, 100, 180,5, 130, 85, 225, 80],
         },
         {
-          name: "BGs",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
+          name: "Supplier 3",
+          data: [85, 130, 85, 225, 80, 190, 120, 130, 85, 225, 80, 190],
         },
-
-        {
-          name: "DCs",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
-        },
-        {
-          name: "BILLS",
-          data: this.generateDayWiseTimeSeries(
-            new Date("11 Feb 2017 GMT").getTime(),
-            20,
-            {
-              min: 10,
-              max: 20
-            }
-          )
-        }
       ],
-
       chart: {
-        type: "area",
         height: 350,
-    
-        stacked: true,
-        events: {
-          selection: function(chart, e) {
-            console.log(new Date(e.xaxis.min));
-          }
-        }
+        type: "line",
+        foreColor: "#9aa0ac",
+        dropShadow: {
+          enabled: true,
+          color: "#000",
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2,
+        },
+        toolbar: {
+          show: false,
+        },
       },
-      colors: ["#008FFB","orange","#CED4DC","#9B2827","green"],
-      dataLabels: {
-        enabled: false
+      colors: ["#A5A5A5", "#875692", "#4CB5AC"],
+      stroke: {
+        curve: "smooth",
       },
-      fill: {
-        type: "gradient",
-        gradient: {
-          opacityFrom: 0.6,
-          opacityTo: 0.8
-        }
+      grid: {
+        row: {
+          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5,
+        },
+      },
+      markers: {
+        size: 3,
+      },
+      xaxis: {
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+        title: {
+          text: "Month",
+        },
+      },
+      yaxis: {
+        // opposite: true,
+        title: {
+          text: "Payment Amount",
+        },
       },
       legend: {
         position: "top",
-        horizontalAlign: "left"
+        horizontalAlign: "right",
+        floating: true,
+        offsetY: -25,
+        offsetX: -5,
       },
-      xaxis: {
-        type: "datetime"
-      }
+      tooltip: {
+        theme: "dark",
+        marker: {
+          show: true,
+        },
+        x: {
+          show: true,
+        },
+      },
     };
   }
 
-  public generateDayWiseTimeSeries = function(baseval, count, yrange) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-      var x = baseval;
-      var y =
-        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+  private chart2() {
+    this.pieChartOptions = {
+      series: [44, 55, 13, 43, 22],
+      chart: {
+        type: "donut",
+        width: 225,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      labels: ["Science", "Mathes", "Economics", "History", "Music"],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {},
+        },
+      ],
+    };
+  }
 
-      series.push([x, y]);
-      baseval += 86400000;
-      i++;
-    }
-    return series;
-  };
+
+  private chart4() {
+    this.performanceRateChartOptions = {
+      series: [
+        {
+          name: "Invoice Amount",
+          data: [0, 20, 12, 6, 15, 25, 0],
+        },
+      ],
+      chart: {
+        height: 380,
+        type: "line",
+        dropShadow: {
+          enabled: true,
+          color: "#000",
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2,
+        },
+        foreColor: "#9aa0ac",
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ["#545454"],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: "smooth",
+      },
+      markers: {
+        size: 1,
+      },
+      xaxis: {
+        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        title: {
+          text: "Weekday",
+        },
+      },
+      yaxis: {
+        title: {
+          text: "Invoice Amount($)",
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        marker: {
+          show: true,
+        },
+        x: {
+          show: true,
+        },
+      },
+    };
+  }
 }
-
-
- 
-
-
-
-
