@@ -1,5 +1,8 @@
 import { NgModule } from "@angular/core";
 
+
+
+
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
 
@@ -35,6 +38,8 @@ import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { environment } from "src/environments/environment.prod";
 import { MainDashboardComponent } from "./layout/app-layout/main-dashboard/main-dashboard.component";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
+
+import { MatCardModule } from '@angular/material/card';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -71,6 +76,7 @@ export function createTranslateLoader(http: HttpClient): any {
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
+    MatCardModule,
     
     TranslateModule.forRoot({
       loader: {

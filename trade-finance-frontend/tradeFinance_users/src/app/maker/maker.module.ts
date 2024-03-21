@@ -4,8 +4,11 @@ import { CommonModule } from '@angular/common';
 import { MakerRoutingModule } from './maker-routing.module';
 
 
+
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     CommonModule,
     MakerRoutingModule
