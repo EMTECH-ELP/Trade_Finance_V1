@@ -236,7 +236,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.scss']
+  styleUrls: ['./analytics.component.sass']
 })
 export class AnalyticsComponent {
   @ViewChildren("chart") chart: ChartComponent;
@@ -245,8 +245,16 @@ export class AnalyticsComponent {
   public chartOptions: Partial<ChartOptions>;
   public chartOptions1: Partial<ChartOptions>;
 
-  constructor() {
-    this.chartOptions = {
+  constructor(    private tokenCookieService: TokenCookieService,) {}
+  ngOnInit() {
+    this.currentUser = this.tokenCookieService.getUser().username;
+    this.chart1();
+    this.chart2();
+    this.chart4();
+  }
+
+  private chart1() {
+    this.lineChartOptions = {
       series: [
         {
           name: "Transactions volumes",
