@@ -87,7 +87,6 @@ export class TokenCookieService {
     // if the cookie was not found, return null
     return null;
   }
-
   public saveUser(user: any): void {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
