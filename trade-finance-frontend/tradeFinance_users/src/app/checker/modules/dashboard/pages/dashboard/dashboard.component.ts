@@ -18,6 +18,8 @@ import {
   ChartComponent,
 } from "ng-apexcharts";
 
+import { MatCardModule } from '@angular/material/card';
+
 
 import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
 import { ResetPasswordComponent } from "../components/reset-password/reset-password.component";
