@@ -41,6 +41,7 @@ import { MatCardModule } from '@angular/material/card';
     DashboardRoutingModule,
     ComponentsModule,
     SharedModule,
+    MatCardModule,
 
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts"),
