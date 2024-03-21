@@ -1,7 +1,12 @@
-#chart {
-    max-width: 650px;
+.container {
+    // max-width: 650px;
     // margin: 35px auto;
-    align-content: start;
-    justify-content: start;
-    
-  }
+    // align-content: end;
+    // justify-content: end;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1;
+    width: 650;
+}
