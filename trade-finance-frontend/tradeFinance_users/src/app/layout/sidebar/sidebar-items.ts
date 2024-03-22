@@ -32,7 +32,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/lc/create",
+        path: "/lc/view",
         title: "Letter of Credit",
         moduleName: "Letter of Credit",
         iconType: "feather",
@@ -46,7 +46,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/checker/dashboard",
+        path: "/lc/modify",
         title: "Documentary Credit",
         moduleName: "Documentary Credit",
         iconType: "feather",
