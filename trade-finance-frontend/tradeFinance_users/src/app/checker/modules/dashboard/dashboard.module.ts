@@ -7,7 +7,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { GenWidgetsComponent } from './pages/gen-widgets/gen-widgets.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -41,6 +41,8 @@ import { MatCardModule } from '@angular/material/card';
     DashboardRoutingModule,
     ComponentsModule,
     SharedModule,
+    FormsModule,
+    MatCardModule,
 
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts"),
@@ -57,7 +59,6 @@ import { MatCardModule } from '@angular/material/card';
 
     MatFormFieldModule,
     MatSelectModule,
-    CommonModule,
     MatCardModule
  
     

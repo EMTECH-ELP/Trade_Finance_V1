@@ -1,0 +1,127 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Makers'" [items]="['Home']" [active_item]="'View'">
+            </app-breadcrumb>
+        </div>
+
+<!-- Search button -->
+<div
+  class="input-group"
+  style="
+    width: 1800px;
+    height: 100px;
+    background-color: rgb(252, 247, 247);
+    margin-top: 0;
+    margin-bottom: 80px;
+  "
+>
+  <input
+    type="text"
+    placeholder="Seach by Employee Id or Email"
+    style="
+      width: 300px;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-left: 10px;
+      height: 50px;
+      padding: 10px;
+    "
+    matSuffix="search"
+    input
+  />
+
+  <button
+    class="btn btn-fill"
+    style="
+      background-color: rgb(126, 7, 7);
+      height: 50px;
+      width: 100px;
+      margin: 20px;
+      color: white;
+    "
+    (click)="openAddFormDialog()"
+  >
+    Add
+  </button>
+</div>
+
+<div class="addContainer">
+  <div class="contact-details">
+    <div class="modalHeader">
+      <!-- <div class="contact-details-name mb-1">Select Property row</div>
+      <button
+        mat-icon-button
+        (click)="dialogRef.close()"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button> -->
+    </div>
+    <div mat-dialog-content>
+      <div class="table-responsive m-t-5">
+        <div class="body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="font-weight:bolder; font-size: large;" >Name</th >
+                  <th style="font-weight:bolder; font-size: large;">Employee ID</th >
+                  <th style="font-weight:bolder; font-size: large;">Email</th >
+                  <th style="font-weight:bolder; font-size: large;">Branch Name</th >
+                  <th style="font-weight:bolder; font-size: large;">Branch Code</th >
+                  <th style="font-weight:bolder; font-size: large;">Status</th>
+                  <th style="font-weight:bolder; font-size: large;">Actions</th >
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of rows">
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.employeeId }}</td>
+                  <td>{{ row.email }}</td>
+                  <td>{{ row.branchName }}</td>
+                  <td>{{ row.branchCode }}</td>
+                  <td>{{ row.status }}</td>
+                  <td>
+                    <button
+                      mat-icon-button
+                      (click)="edit(row)"
+                      aria-label="Edit"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      (click)="viewDetails(row)"
+                      aria-label="View Details"
+                    >
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      (click)="delete(row)"
+                      aria-label="Delete"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+        
+
+    </div>
+</section>
