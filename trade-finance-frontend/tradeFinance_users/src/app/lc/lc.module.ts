@@ -20,7 +20,8 @@ import { CreateComponent } from './components/create/create.component';
 @NgModule({
   declarations: [
     TransferlcComponent,
-    CreateComponent
+    CreateComponent,
+    ModifyComponent
   ],
   imports: [
     CommonModule,
@@ -41,4 +42,5 @@ import { CreateComponent } from './components/create/create.component';
   ]
 })
 export class LcModule { }import { } from './components/create/create.component';
+import { ModifyComponent } from './components/modify/modify.component';
 

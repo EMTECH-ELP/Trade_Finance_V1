@@ -401,16 +401,19 @@
                 <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
               </mat-form-field>
             </div>
-          </div>
+          </div>  
+          <div class="row">
+
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-            <div>
+           <div>
               <label for="Commercial Invoice">Upload Commercial Invoice:</label>
               <input type="file" id="commercialInvoice" name="commercialInvoiceFile">
             </div>
           </div>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <div> <mat-form-field class="full-width" appearance="outline">
+          
+             <mat-form-field class="full-width" appearance="outline">
                   <input matInput placeholder="Bill of Lading" formControlName="billOfLading" type="text">
                 </mat-form-field>
               </div>
@@ -419,20 +422,23 @@
                   <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
                 </mat-form-field>
               </div>
+         
+            
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
                 <mat-form-field class="full-width" appearance="outline">
                   <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
                 </mat-form-field>
               </div>
-
+            </div>
+      
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
                 <label for="Bill of Lading">Upload Bill of Lading :</label>
                 <input type="file" id="billOfLading" name="billOfLadingFile">
               </div>
-
-            </div>
           </div>
-          <div>
+          </div>
+          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Certificate of Origin" formControlName="certificateOfOrigin" type="text">
@@ -449,11 +455,13 @@
               </mat-form-field>
             </div>
             <div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div>
               <label for="Certificate Of Origin">Upload Certificate Of Origin :</label>
               <input type="file" id="certificateOfOrigin" name="certificateOfOriginFile">
             </div>
           </div>
-          <div>
+        </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Airway Bill" formControlName="airwayBill" type="text">
@@ -469,13 +477,14 @@
                 <input matInput placeholder="Document Description" formControlName="insuranceCertificate" type="text">
               </mat-form-field>
             </div>
-
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
             <div>
               <label for="Airway Bill">Upload Airway Bill:</label>
               <input type="file" id="airwayBill" name="airwayBillFile">
             </div>
           </div>
-          <div>
+          </div>
+          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Preshipment Inspection" formControlName="preshipmentInspection"
@@ -499,8 +508,8 @@
                 <input type="file" id="preshipmentInspection" name="preshipmentInspectionFile">
               </div>
             </div>
-          </div>
-          <div>
+          </div >
+          <div class="row" >
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Bill of Exchange" formControlName="billOfExchange" type="text">
@@ -517,14 +526,15 @@
                 <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
               </mat-form-field>
             </div>
-
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
             <div>
               <label for="Bill of Exchange">Upload Bill of Exchange:</label>
               <input type="file" id="billOfExchange" name="billOfExchangeFile">
             </div>
           </div>
+          </div>
 
-          <div>
+          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Packing List" formControlName="packingList" type="text">
@@ -552,7 +562,7 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Financial Documents" formControlName="financialDocuments" type="text">
@@ -611,15 +621,23 @@
         </mat-step>
         <!-- Step 7: Preview and Submit -->
         <mat-step label="Preview and Submit">
-          <div>
+        
+          <div  >
             <h3>Preview</h3>
+            <div class="row" >
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
             <button mat-raised-button type="submit" color="primary">Submit</button>
+         
             <button mat-raised-button type="reset" color="warn">Cancel</button>
+          </div>
+          </div>
           </div>
           <div>
             <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
           </div>
+     
         </mat-step>
+    
       </form>
     </mat-horizontal-stepper>
 
