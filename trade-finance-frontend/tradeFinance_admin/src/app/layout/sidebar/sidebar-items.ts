@@ -17,7 +17,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "",
+    path: "view",
     title: "User Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -30,7 +30,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/users/checkers",
+        path: "/admin/dashboard",
         title: "Checkers",
         moduleName: "dashboard",
         iconType: "feather",
@@ -44,7 +44,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/users/makers",
+        path: "/users/view",
         title: "Makers",
         moduleName: "dashboard",
         iconType: "feather",
