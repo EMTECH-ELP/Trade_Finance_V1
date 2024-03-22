@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransferlcComponent } from './components/transferlc/transferlc.component';
@@ -17,20 +13,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
-<<<<<<< HEAD
-=======
 import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
 import { CreateComponent } from './components/create/create.component';
 import { ModifyComponent } from './components/modify/modify.component';
+import { ViewComponent } from './components/view/view.component';
 
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     TransferlcComponent,
     CreateComponent,
-    ModifyComponent
+    ModifyComponent,
+    ViewComponent
   ],
   imports: [
     CommonModule,
@@ -46,12 +49,16 @@ import { ModifyComponent } from './components/modify/modify.component';
     HttpClientModule,
     SharedModule,
     ComponentsModule,
-<<<<<<< HEAD
-=======
-   
-  
-    ComponentsModule,
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTableModule,
+    MatTableExporterModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatTabsModule,
+    MatButtonToggleModule,
     ReactiveFormsModule
   ]
 })
