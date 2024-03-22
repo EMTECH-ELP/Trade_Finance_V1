@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MakerRoutingModule } from './maker-routing.module';
-
+import { TestRoutingModule } from './test-routing.module';
 
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    MakerRoutingModule
+    TestRoutingModule
   ]
 })
-export class MakerModule { }
+export class TestModule { }
