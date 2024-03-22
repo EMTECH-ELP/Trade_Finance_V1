@@ -30,7 +30,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "",
+        path: "/admin/dashboard",
         title: "Checkers",
         moduleName: "dashboard",
         iconType: "feather",
@@ -61,7 +61,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "",
+    path: "/admin/dashboard",
     title: "Security Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -76,7 +76,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "",
+    path: "/admin/dashboard",
     title: "System management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -89,7 +89,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "",
+        path: "/admin/dashboard",
         title: "Master data",
         moduleName: "dashboard",
         iconType: "feather",
@@ -103,7 +103,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
+        path: "/admin/dashboard",
         title: "Workflows Management",
         moduleName: "dashboard",
         iconType: "feather",
@@ -119,7 +119,7 @@ export const AdminModule: RouteInfo[] = [
     ],
   },
   {
-    path: "",
+    path: "/admin/dashboard",
     title: "Report and Analytics",
     moduleName: "dashboard",
     iconType: "feather",
@@ -132,7 +132,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "",
+        path: "/admin/dashboard",
         title: "Transactions Reports",
         moduleName: "dashboard",
         iconType: "feather",
