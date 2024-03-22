@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
 import { CreateComponent } from './components/create/create.component';
 import { ModifyComponent } from './components/modify/modify.component';
 
@@ -38,7 +39,11 @@ import { ModifyComponent } from './components/modify/modify.component';
     HttpClientModule,
     SharedModule,
     ComponentsModule,
+   
+  
+    ComponentsModule,
     ReactiveFormsModule
   ]
 })
-export class LcModule { }
+export class LcModule { }import { } from './components/create/create.component';
+

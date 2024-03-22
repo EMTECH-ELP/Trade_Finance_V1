@@ -19,7 +19,11 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
+<<<<<<< HEAD
+    path: "/maker/dashboard",
+=======
     path: "/checker/dashboard",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
     title: "Services",
     moduleName: "Services",
     iconType: "feather",
@@ -34,7 +38,25 @@ export const AdminModule: RouteInfo[] = [
       {
         path: "/lc/create",
         title: "Letter of Credit",
+<<<<<<< HEAD
+        moduleName: "letter of credit",
+        iconType: "feather",
+        icon: "user-check",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: ["ROLE_SUPERUSER"],
+        // privilege: ["All Roles"],
+        submenu: [],
+      },
+      {
+        path: "/maker/dashboard",
+        title: "Bills",
+        moduleName: "bills",
+=======
         moduleName: "Letter of Credit",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
         iconType: "feather",
         icon: "user-check",
         class: "ml-menu",
@@ -46,6 +68,9 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
+<<<<<<< HEAD
+        path: "/maker/dashboard",
+=======
         path: "/checker/dashboard",
         title: "Documentary Credit",
         moduleName: "Documentary Credit",
@@ -61,6 +86,7 @@ export const AdminModule: RouteInfo[] = [
       },
       {
         path: "/checker/dashboard",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
         title: "Bank Guarantee",
         moduleName: "Bank Guarantee",
         iconType: "feather",
@@ -74,7 +100,25 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
+<<<<<<< HEAD
+        path: "/maker/dashboard",
+        title: "Documentary collection",
+        moduleName: "documentary collection",
+        iconType: "feather",
+        icon: "user-check",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: ["ROLE_SUPERUSER"],
+        // privilege: ["Manage Role"],
+        submenu: [],
+      },
+      {
+        path: "/maker/dashboard",
+=======
         path: "/checker/dashboard",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
         title: "Invoice Discounting",
         moduleName: "Invoice Discounting",
         iconType: "feather",
@@ -119,7 +163,11 @@ export const AdminModule: RouteInfo[] = [
     ],
   },
   {
+<<<<<<< HEAD
+    path: "/maker/dashboard",
+=======
     path: "/checker/My tickets/analytics",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
     title: "My tickets",
     moduleName: "My tickets",
     iconType: "feather",
@@ -133,7 +181,11 @@ export const AdminModule: RouteInfo[] = [
     submenu: [],
   },
   {
+<<<<<<< HEAD
+    path: "/maker/dashboard",
+=======
     path: "/checker/Reports/analytics",
+>>>>>>> 51c6bada1435c265808e8825b4bf591a715af664
     title: "Reports",
     moduleName: "Reports",
     iconType: "feather",
