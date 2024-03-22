@@ -13,11 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
+import { CreateComponent } from './components/create/create.component';
 
 
 @NgModule({
   declarations: [
     TransferlcComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
@@ -32,8 +35,10 @@ import { ComponentsModule } from '../shared/components/components.module';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    ComponentsModule,
+    ComponentsModule
+   
   
   ]
 })
-export class LcModule { }
+export class LcModule { }import { } from './components/create/create.component';
+
