@@ -167,7 +167,7 @@ export const AdminModule: RouteInfo[] = [
     title: "Dashboard",
     moduleName: "dashboard",
     iconType: "feather",
-    icon: "activity",
+    icon: "airplay",
     class: "",
     groupTitle: false,
     badge: "",
@@ -177,7 +177,7 @@ export const AdminModule: RouteInfo[] = [
     submenu: []
   },
   {
-    path: "/lc/create",
+    path: "/maker/dashboard",
     title: "Services",
     moduleName: "services",
     iconType: "feather",
@@ -190,7 +190,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/maker/dashboard",
+        path: "/lc/create",
         title: "Letter of Credit",
         moduleName: "letter of credit",
         iconType: "feather",
@@ -204,7 +204,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
+        path: "/maker/dashboard",
         title: "Bills",
         moduleName: "bills",
         iconType: "feather",
@@ -218,7 +218,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
+        path: "/maker/dashboard",
         title: "Bank Guarantee",
         moduleName: "bank guarantee",
         iconType: "feather",
@@ -232,7 +232,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
+        path: "/maker/dashboard",
         title: "Documentary collection",
         moduleName: "documentary collection",
         iconType: "feather",
@@ -246,7 +246,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
+        path: "/maker/dashboard",
         title: "Invoice Discounting",
         moduleName: "invoice discounting",
         iconType: "feather",
@@ -265,7 +265,7 @@ export const AdminModule: RouteInfo[] = [
 
   },
   {
-    path: "",
+    path: "/maker/dashboard",
     title: "My tickets",
     moduleName: "My tickets",
     iconType: "feather",
@@ -279,7 +279,7 @@ export const AdminModule: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: "",
+    path: "/maker/dashboard",
     title: "Reports",
     moduleName: "reports",
     iconType: "feather",

@@ -11,13 +11,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { CreateComponent } from './components/create/create.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     TransferlcComponent,
+    CreateComponent,
   ],
   imports: [
     CommonModule,
