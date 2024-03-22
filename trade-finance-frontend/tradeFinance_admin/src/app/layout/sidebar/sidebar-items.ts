@@ -17,7 +17,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "/admin/dashboard",
+    path: "view",
     title: "User Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -44,7 +44,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/dashboard",
+        path: "/users/view",
         title: "Makers",
         moduleName: "dashboard",
         iconType: "feather",

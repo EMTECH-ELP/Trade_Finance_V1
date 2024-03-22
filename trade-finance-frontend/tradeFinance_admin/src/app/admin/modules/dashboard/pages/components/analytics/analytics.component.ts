@@ -1,18 +1,221 @@
-import { Component, OnInit } from "@angular/core";
+
+// import { Component,OnInit,ViewChildren } from "@angular/core";
+
+// import {
+//   ChartComponent,
+//   ApexAxisChartSeries,
+//   ApexChart,
+//   ApexFill,
+//   ApexTooltip,
+//   ApexXAxis,
+//   ApexColors,
+//   ApexLegend,
+//   ApexDataLabels,
+//   ApexTitleSubtitle,
+//   ApexYAxis
+// } from "ng-apexcharts";
+
+// export type ChartOptions = {
+//   series: ApexAxisChartSeries;
+//   chart: ApexChart;
+//   xaxis: ApexXAxis;
+//   markers: any; //ApexMarkers;
+//   stroke: any; //ApexStroke;
+//   yaxis: ApexYAxis | ApexYAxis[];
+//   dataLabels: ApexDataLabels;
+//   title: ApexTitleSubtitle;
+//   legend: ApexLegend;
+//   colors: string[];
+//   fill: ApexFill;
+//   tooltip: ApexTooltip;
+// };
+
+//  @Component({
+//   selector: 'app-analytics',
+//   templateUrl: './analytics.component.html',
+//   styleUrls: ['./analytics.component.scss']
+// })
+
+// export class AnalyticsComponent {
+//   @ViewChildren("chart") chart: ChartComponent;
+//   @ViewChildren("charty") charty: ChartComponent;
+
+//   public chartOptions: Partial<ChartOptions>;
+//   public chartOptions1: Partial<ChartOptions>;
+
+//   constructor() {
+//     this.chartOptions = {
+//       series: [
+       
+//         {
+//           name: "Transactions volumes",
+//           type: "column",
+//           data: [3, 3.1, 4, 4.5,4.9],
+//           color: "#920a0a 50%"
+//         },
+//         {
+//           name: "Transactions volumes",
+//           type: "column",
+//           data: [3, 3.1, 4, 4.5,4.9],
+//           // Change colors to an array
+//           color: ["#920a0a", "#920a0a", "#920a0a", "#920a0a", "#920a0a"]
+//         },
+       
+//         {
+//           name: "Pending Transaction",
+//           type: "line",
+//           data: [0, 10, 5, 20, 40, ]
+//         },
+        
+
+//       ],
+//       chart: {
+//         height: 400,
+//         type: "line",
+//         stacked: false,
+//       },
+      
+//       dataLabels: {
+//         enabled: true
+        
+//       },
+
+//       stroke: {
+//         width: [1, 1, 4]
+//       },
+//       title: {
+//         text: " APROVED AND PENDINGS TRANSACTIONS ANALYSIS ",
+//         align: "left",
+//         offsetX: 110
+//       },
+      
+//       xaxis: {
+//         categories: ["lcs", "Invoices", "bills", "BGs", "DCs"],
+//         color:["#920a0a 50%","#920a0a 50%","#920a0a 50%","#920a0a 50%","#920a0a 50%"]
+      
+//     },
+//       yaxis: [
+//         {
+//           axisTicks: {
+//             show: true
+//           },
+//           axisBorder: {
+//             show: true,
+//             color: "#920a0a 50%"
+//           },
+//           labels: {
+//             style: {
+//               // color: "#920a0a 50%)"
+//             }
+//           },
+//           title: {
+//             text: "volumes> ",
+//             style: {
+//               color: "#920a0a 50%"
+//             }
+//           },
+//           tooltip: {
+//             enabled: true
+//           }
+//         },
+//         {
+//           seriesName: "Income",
+//           opposite: true,
+//           axisTicks: {
+//             show: true
+//           },
+//           axisBorder: {
+//             show: true,
+//             color: "#00E396"
+//           },
+//           labels: {
+//             style: {
+//               // color: "#00E396"
+//             }
+//           },
+//           title: {
+//             text: "Operating Cashflow (thousand crores)",
+//             style: {
+//               color: "#00E396"
+//             }
+//           }
+//         },
+//         {
+//           seriesName: "Revenue",
+//           opposite: true,
+//           axisTicks: {
+//             show: true
+//           },
+//           axisBorder: {
+//             show: true,
+//             color: "#FEB019"
+//           },
+//           labels: {
+//             style: {
+//               // color: "#FEB019"
+//             }
+//           },
+//           title: {
+//             text: "Revenue (thousand crores)",
+//             style: {
+//               color: "#FEB019"
+//             }
+//           }
+//         },
+//         {
+//           seriesName: "Transaction",
+//           opposite: true,
+//           axisTicks: {
+//             show: true
+//           },
+//           axisBorder: {
+//             show: true,
+//             color: "##FFC879"
+//           },
+//           labels: {
+//             style: {
+//               // color: "##FFC879"
+//             }
+//           },
+//           title: {
+//             text: "Transaction (thousand crores)",
+//             style: {
+//               color: ""
+//             }
+//           }
+//         }
+//       ],
+//       tooltip: {
+//         fixed: {
+//           enabled: true,
+//           position: "topLeft", // topRight, topLeft, bottomRight, bottomLeft
+//           offsetY: 50,
+//           offsetX: 100
+//         }
+//       },
+//       legend: {
+//         horizontalAlign: "left",
+//         offsetX: 40
+//       }
+//     };
+  
+//   }
+// }
+
+
+
+import { Component, ViewChildren } from "@angular/core";
 import {
+  ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexStroke,
-  ApexMarkers,
-  ApexYAxis,
-  ApexGrid,
-  ApexTitleSubtitle,
-  ApexTooltip,
-  ApexLegend,
   ApexFill,
-  ApexResponsive,
+  ApexTooltip,
+  ApexXAxis,
+  ApexLegend,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexYAxis
 } from "ng-apexcharts";
 import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
 
@@ -20,18 +223,15 @@ export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
-  stroke: ApexStroke;
+  markers: any; //ApexMarkers;
+  stroke: any; //ApexStroke;
+  yaxis: ApexYAxis | ApexYAxis[];
   dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
-  colors: string[];
-  yaxis: ApexYAxis;
-  grid: ApexGrid;
-  legend: ApexLegend;
-  tooltip: ApexTooltip;
-  fill: ApexFill;
   title: ApexTitleSubtitle;
-  responsive: ApexResponsive[];
-  labels: any;
+  legend: ApexLegend;
+  colors:string[];// Change to string array
+  fill: ApexFill;
+  tooltip: ApexTooltip;
 };
 
 @Component({
@@ -39,177 +239,115 @@ export type ChartOptions = {
   templateUrl: './analytics.component.html',
   styleUrls: ['./analytics.component.sass']
 })
-export class AnalyticsComponent implements OnInit {
-  public performanceRateChartOptions: Partial<ChartOptions>;
+export class AnalyticsComponent {
+  @ViewChildren("chart") chart: ChartComponent;
+  @ViewChildren("charty") charty: ChartComponent;
 
-  public lineChartOptions: Partial<ChartOptions>;
-  public pieChartOptions: any;
-  //  color: ["#3FA7DC", "#F6A025", "#9BC311"],
-
+  public chartOptions: Partial<ChartOptions>;
+  public chartOptions1: Partial<ChartOptions>;
   currentUser: any;
+  lineChartOptions: {
+    series: { name: string; type: string; data: number[]; }[]; chart: { height: number; type: string; stacked: boolean; }; dataLabels: { enabled: boolean; }; stroke: { width: number[]; }; title: { text: string; align: string; offsetX: number; }; xaxis: { categories: string[]; }; yaxis: { axisTicks: { show: boolean; }; axisBorder: { show: boolean; color: string; }; labels: { style: {}; }; title: { text: string; style: { color: string; }; }; tooltip: { enabled: boolean; }; }[]; tooltip: {
+      fixed: {
+        enabled: boolean; position: string; // topRight, topLeft, bottomRight, bottomLeft
+        offsetY: number; offsetX: number;
+      };
+    }; legend: { horizontalAlign: string; offsetY: number; offsetX: number; }; colors: string[];
+  };
 
   constructor(    private tokenCookieService: TokenCookieService,) {}
   ngOnInit() {
     this.currentUser = this.tokenCookieService.getUser().username;
     this.chart1();
-    this.chart2();
-    this.chart4();
+   
   }
 
   private chart1() {
     this.lineChartOptions = {
       series: [
         {
-          name: "Supplier 1",
-          data: [70, 200, 80, 180, 170, 105, 210,0, 250, 30, 120, 260],
+          name: "Transactions volumes",
+          type: "column",
+          data: [3, 3.1, 4, 4.5, 4.9,]
+          
+        },
+
+        {
+          name: "Pending Transaction",
+          type: "line",
+          data: [0, 10, 5, 20,36]
         },
         {
-          name: "Supplier 2",
-          data: [80, 250, 30, 120, 260, 100, 180,5, 130, 85, 225, 80],
+          name: "Approved transactions ",
+          type: "line",
+          data: [8, 29, 37, 36,45]
         },
-        {
-          name: "Supplier 3",
-          data: [85, 130, 85, 225, 80, 190, 120, 130, 85, 225, 80, 190],
-        },
+        
       ],
       chart: {
         height: 350,
         type: "line",
-        foreColor: "#9aa0ac",
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ["#A5A5A5", "#875692", "#4CB5AC"],
-      stroke: {
-        curve: "smooth",
-      },
-      grid: {
-        row: {
-          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
-      markers: {
-        size: 3,
-      },
-      xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
-        title: {
-          text: "Month",
-        },
-      },
-      yaxis: {
-        // opposite: true,
-        title: {
-          text: "Payment Amount",
-        },
-      },
-      legend: {
-        position: "top",
-        horizontalAlign: "right",
-        floating: true,
-        offsetY: -25,
-        offsetX: -5,
-      },
-      tooltip: {
-        theme: "dark",
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
-  }
-
-  private chart2() {
-    this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
-      chart: {
-        type: "donut",
-        width: 225,
-      },
-      legend: {
-        show: false,
+        stacked: false,
+        
       },
       dataLabels: {
-        enabled: false,
-      },
-      labels: ["Science", "Mathes", "Economics", "History", "Music"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {},
-        },
-      ],
-    };
-  }
-
-
-  private chart4() {
-    this.performanceRateChartOptions = {
-      series: [
-        {
-          name: "Invoice Amount",
-          data: [0, 20, 12, 6, 15, 25, 0],
-        },
-      ],
-      chart: {
-        height: 380,
-        type: "line",
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        foreColor: "#9aa0ac",
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ["#545454"],
-      dataLabels: {
-        enabled: true,
+        enabled: true
       },
       stroke: {
-        curve: "smooth",
+        width: [1, 1,4,]
       },
-      markers: {
-        size: 1,
+      title: {
+        text: "APPROVED AND PENDINGS TRANSACTIONS ANALYSIS",
+        align: "left",
+        offsetX: 110
       },
       xaxis: {
-        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        title: {
-          text: "Weekday",
-        },
+        categories: ["lcs","bills","Invoices", "BGs", "DCs"]
+       
       },
-      yaxis: {
-        title: {
-          text: "Invoice Amount($)",
-        },
-      },
+      yaxis: [
+        {
+          axisTicks: {
+            show: true
+          },
+          axisBorder: {
+            show: true,
+            color: "black"
+          },
+          labels: {
+            style: {
+              // color: "#920a0a"
+            }
+          },
+          title: {
+            text: "volumes>",
+            style: {
+              color: "black"
+            }
+          },
+          tooltip: {
+            enabled: true
+          }
+        }
+        // Other y-axis configurations...
+      ],
       tooltip: {
-        theme: "dark",
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
+        fixed: {
+          enabled: true,
+          position: "topLeft", // topRight, topLeft, bottomRight, bottomLeft
+          offsetY: 50,
+          offsetX: 100
+        }
+        
       },
+      legend: {
+        horizontalAlign: "left",
+        offsetY: 50,
+        offsetX: 100
+      },
+
+    
+      colors: ["#920a0a", "yellow","blue",]
     };
   }
-}
+};
