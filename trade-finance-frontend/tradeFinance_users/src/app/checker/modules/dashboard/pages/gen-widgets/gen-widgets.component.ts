@@ -25,18 +25,18 @@ export class GenWidgetsComponent implements OnInit {
   }
 
   suppliers() {
-    this.router.navigateByUrl('/admin/supplier/suppliers-management/all');
+   // this.router.navigateByUrl('/admin/supplier/suppliers-management/all');
 
   }
   expenses() {
-    this.router.navigateByUrl('/admin/supplier/expenses-management/all');
+    //this.router.navigateByUrl('/admin/supplier/expenses-management/all');
     
   }
   costCenters() {
-    this.router.navigateByUrl('/admin/supplier/cost-centers-management/all');
+   // this.router.navigateByUrl('/admin/supplier/cost-centers-management/all');
   }
   userManagement() {
-    this.router.navigateByUrl('/admin/user-accounts/all');
+    //this.router.navigateByUrl('/admin/user-accounts/all');
   }
 
   getExpenses(){
