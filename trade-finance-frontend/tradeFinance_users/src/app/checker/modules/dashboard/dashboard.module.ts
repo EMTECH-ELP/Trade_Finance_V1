@@ -42,6 +42,7 @@ import { MatCardModule } from '@angular/material/card';
     ComponentsModule,
     SharedModule,
     FormsModule,
+    MatCardModule,
 
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts"),
@@ -58,7 +59,6 @@ import { MatCardModule } from '@angular/material/card';
 
     MatFormFieldModule,
     MatSelectModule,
-    CommonModule,
     MatCardModule
  
     
