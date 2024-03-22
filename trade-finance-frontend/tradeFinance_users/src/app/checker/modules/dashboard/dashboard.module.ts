@@ -57,7 +57,6 @@ import { MatCardModule } from '@angular/material/card';
 
     MatFormFieldModule,
     MatSelectModule,
-    CommonModule,
     MatCardModule
  
     
