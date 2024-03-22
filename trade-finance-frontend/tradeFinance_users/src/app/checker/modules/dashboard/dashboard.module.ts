@@ -7,7 +7,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { GenWidgetsComponent } from './pages/gen-widgets/gen-widgets.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -40,6 +40,7 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
     DashboardRoutingModule,
     ComponentsModule,
     SharedModule,
+    FormsModule,
 
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts"),

@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
 
@@ -71,7 +71,7 @@ export function createTranslateLoader(http: HttpClient): any {
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
-    
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
