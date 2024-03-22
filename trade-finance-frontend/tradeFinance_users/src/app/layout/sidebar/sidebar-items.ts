@@ -32,7 +32,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/checker/dashboard",
+        path: "/lc/modify",
         title: "Letter of Credit",
         moduleName: "Letter of Credit",
         iconType: "feather",

@@ -217,6 +217,7 @@ import {
   ApexTitleSubtitle,
   ApexYAxis
 } from "ng-apexcharts";
+import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -236,7 +237,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.scss']
+  styleUrls: ['./analytics.component.sass']
 })
 export class AnalyticsComponent {
   @ViewChildren("chart") chart: ChartComponent;
@@ -244,9 +245,25 @@ export class AnalyticsComponent {
 
   public chartOptions: Partial<ChartOptions>;
   public chartOptions1: Partial<ChartOptions>;
+  currentUser: any;
+  lineChartOptions: {
+    series: { name: string; type: string; data: number[]; }[]; chart: { height: number; type: string; stacked: boolean; }; dataLabels: { enabled: boolean; }; stroke: { width: number[]; }; title: { text: string; align: string; offsetX: number; }; xaxis: { categories: string[]; }; yaxis: { axisTicks: { show: boolean; }; axisBorder: { show: boolean; color: string; }; labels: { style: {}; }; title: { text: string; style: { color: string; }; }; tooltip: { enabled: boolean; }; }[]; tooltip: {
+      fixed: {
+        enabled: boolean; position: string; // topRight, topLeft, bottomRight, bottomLeft
+        offsetY: number; offsetX: number;
+      };
+    }; legend: { horizontalAlign: string; offsetY: number; offsetX: number; }; colors: string[];
+  };
 
-  constructor() {
-    this.chartOptions = {
+  constructor(    private tokenCookieService: TokenCookieService,) {}
+  ngOnInit() {
+    this.currentUser = this.tokenCookieService.getUser().username;
+    this.chart1();
+   
+  }
+
+  private chart1() {
+    this.lineChartOptions = {
       series: [
         {
           name: "Transactions volumes",

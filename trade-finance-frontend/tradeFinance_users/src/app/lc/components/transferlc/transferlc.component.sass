@@ -1,0 +1,90 @@
+.container
+  position: relative
+  max-width: 90%
+  width: 100%
+  background: #fff
+  padding: 20px 50px
+  border-radius: 8px
+
+  h2
+    padding-top: 30px
+
+  label
+    font-size: 16px
+    font-weight: 100
+    font-family: Arial, Helvetica, sans-serif
+
+  .form
+    margin-top: 20px
+
+    .input-box
+      width: 100%
+      margin-top: 5px
+
+      label
+        color: #333
+
+      input, .select-box
+        position: relative
+        height: 50px
+        width: 100%
+        outline: none
+        font-size: 1rem
+        color: #707070
+        margin-top: 8px
+        border-radius: 6px
+        padding: 0 15px
+
+        &:focus
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1)
+
+    .column
+      display: flex
+      column-gap: 15px
+
+      @media screen and (max-width: 500px)
+        flex-wrap: wrap
+
+    .address input, .select-box
+      margin-top: 15px
+
+    .submit-btn, .modify-btn, .cancel-btn
+      float: right
+      flex-direction: row
+      margin: 10px 0
+      padding: 14px 30px
+      border-radius: 5px
+      background: #b61e1e
+      border: none
+      color: white
+
+      &:hover
+        background: #6365e0
+
+    .modify-btn
+      margin-right: 30px
+
+    .cancel-btn
+      margin-right: 30px
+
+  .form-shadow
+    box-shadow: rgba(187, 185, 185, 0.35) 0px 5px 15px
+
+  input.ng-invalid.ng-touched
+    border: red 2px solid
+
+  small
+    color: red
+    font-weight: bold
+
+  header
+    padding-top: 30px
+
+  .container.VALID
+    border: green 3px solid
+
+  .container.INVALID
+    border: red 3px solid
+
+  .container.PENDING
+    border: orange 3px solid

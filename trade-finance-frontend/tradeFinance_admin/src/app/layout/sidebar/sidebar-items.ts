@@ -17,7 +17,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "",
+    path: "view",
     title: "User Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -30,7 +30,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/users/checkers",
+        path: "",
         title: "Checkers",
         moduleName: "dashboard",
         iconType: "feather",
@@ -44,7 +44,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/users/makers",
+        path: "/users/view",
         title: "Makers",
         moduleName: "dashboard",
         iconType: "feather",
@@ -61,7 +61,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "/admin/dashboard",
+    path: "",
     title: "Security Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -76,7 +76,7 @@ export const AdminModule: RouteInfo[] = [
   },
 
   {
-    path: "/admin/dashboard",
+    path: "",
     title: "System management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -89,7 +89,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "/admin/dashboard",
+        path: "",
         title: "Master data",
         moduleName: "dashboard",
         iconType: "feather",
@@ -103,7 +103,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/dashboard",
+        path: "",
         title: "Workflows Management",
         moduleName: "dashboard",
         iconType: "feather",
@@ -119,7 +119,7 @@ export const AdminModule: RouteInfo[] = [
     ],
   },
   {
-    path: "/admin/dashboard",
+    path: "",
     title: "Report and Analytics",
     moduleName: "dashboard",
     iconType: "feather",
@@ -132,7 +132,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "/admin/dashboard",
+        path: "",
         title: "Transactions Reports",
         moduleName: "dashboard",
         iconType: "feather",

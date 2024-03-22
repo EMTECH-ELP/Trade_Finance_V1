@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MakersComponent } from './makers.component';
+import { AddMakersComponent } from './add-makers.component';
 
-describe('MakersComponent', () => {
-  let component: MakersComponent;
-  let fixture: ComponentFixture<MakersComponent>;
+describe('AddMakersComponent', () => {
+  let component: AddMakersComponent;
+  let fixture: ComponentFixture<AddMakersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MakersComponent ]
+      declarations: [ AddMakersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MakersComponent);
+    fixture = TestBed.createComponent(AddMakersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

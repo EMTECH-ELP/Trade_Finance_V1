@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckersComponent } from './checkers/checkers.component';
-import { MakersComponent } from './makers/makers.component';
+import { ViewMakersComponent } from './Makers/view-makers/view-makers.component';
+import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
+
 
 const routes: Routes = [
-  { path: "checkers", component: CheckersComponent},
-  { path: "makers", component: MakersComponent }
+{path:'view',component:ViewMakersComponent},
+{path:'add',component:AddMakersComponent}
 ];
 
 @NgModule({
