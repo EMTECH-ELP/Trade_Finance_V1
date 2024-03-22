@@ -46,7 +46,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/lc/modify",
+        path: "/checker/dashboard",
         title: "Documentary Credit",
         moduleName: "Documentary Credit",
         iconType: "feather",
