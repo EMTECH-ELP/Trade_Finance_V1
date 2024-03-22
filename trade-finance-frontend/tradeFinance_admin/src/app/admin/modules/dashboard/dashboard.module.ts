@@ -32,9 +32,10 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [
     DashboardComponent,
     GenWidgetsComponent,
+    AnalyticsComponent,
 
     ResetPasswordComponent,
-    AnalyticsComponent,
+    
     Analtics2Component
   ],
   imports: [
