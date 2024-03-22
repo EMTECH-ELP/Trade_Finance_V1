@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
 import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
@@ -29,7 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     TransferlcComponent,
     CreateComponent,
     ModifyComponent,
