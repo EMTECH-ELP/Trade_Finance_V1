@@ -190,7 +190,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/maker/dashboard",
+        path: "/lc/modify",
         title: "Letter of Credit",
         moduleName: "letter of credit",
         iconType: "feather",
