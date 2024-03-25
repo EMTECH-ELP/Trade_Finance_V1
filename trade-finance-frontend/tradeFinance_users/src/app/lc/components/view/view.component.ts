@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { CreateComponent } from '../create/create.component';
+import { Router } from '@angular/router';
 
 interface LetterOfCredit {
   name: string;
@@ -32,7 +34,7 @@ export class ViewComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   isLoading = true;
   products: any;
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   
   ngOnInit(): void {
@@ -79,7 +81,19 @@ export class ViewComponent implements OnInit {
   }
 
   public add(){
+    // const dialogConfig = new MatDialogConfig()
+    // dialogConfig.disableClose = false
+    // dialogConfig.autoFocus = true
+    // dialogConfig.width = '1000px'
+    // dialogConfig.data = { test: "data" }
 
+    // const dialogRef = this.dialog.open(CreateComponent, dialogConfig);
+
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log('closed');
+    // });
+  this.router.navigate(["/lc/create"])
   }
 
   public refresh(){
