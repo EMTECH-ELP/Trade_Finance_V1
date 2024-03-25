@@ -18,6 +18,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { ViewMakersComponent } from './Makers/view-makers/view-makers.component';
 import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
+import { ViewCheckersComponent } from './Checkers/view-checkers/view-checkers.component';
+import { AddCheckersComponent } from './Checkers/add-checkers/add-checkers.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
   
   
     ViewMakersComponent,
-           AddMakersComponent
+           AddMakersComponent,
+           ViewCheckersComponent,
+           AddCheckersComponent
   ],
   imports: [
     CommonModule,
