@@ -224,7 +224,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="LC Type" formControlName="lcType" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('lyType'). invalid && applicationForm.get('lcType').touched">
+              <small *ngIf="applicationForm.get('lcType'). invalid && applicationForm.get('lcType').touched">
                 *LC Type is required</small>
             </div>
 
@@ -381,7 +381,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Code" formControlName="amountCode" type="text">
+                <input matInput placeholder="Amount Code" formControlName="amountCode" type="text">
               </mat-form-field>
               <small
               *ngIf="applicationForm.get('amountCode'). invalid && applicationForm.get('amountCode').touched">
@@ -662,11 +662,7 @@
                 <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
               </mat-form-field>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Signed" formControlName="signed" type="text">
-              </mat-form-field>
-            </div>
+           
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
@@ -690,10 +686,7 @@
                 <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
               </mat-form-field>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Signed" formControlName="signed" type="text">
-              </mat-form-field>
+           
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field class="full-width" appearance="outline">
@@ -706,7 +699,7 @@
                 <input type="file" id="financialDocuments" name="financialDocuments">
               </div>
             </div>
-          </div>
+          
 
           <div>
             <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
