@@ -28,6 +28,11 @@ const routes: Routes = [
         path: "lc",
         loadChildren: () =>
           import("./lc/lc.module").then((m) => m.LcModule),
+      },
+      {
+        path: "bank-guarantee",
+        loadChildren: () =>
+          import("./bank-guarantee/bank-guarantee.module").then((m) => m.BankGuaranteeModule),
       }
     ],
   },
