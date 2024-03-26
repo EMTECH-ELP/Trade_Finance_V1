@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CreateService {
-  private _url = 'http://192.168.89.236:8085/LC'; // URL to which we will post the data
+  private _url = 'http://192.168.89.236:8085/api/v1/LC/create';    // URL to which we will post the data
 
   constructor(private http: HttpClient) { }  
 
