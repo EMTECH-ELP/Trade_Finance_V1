@@ -40,6 +40,7 @@ export class CreateComponent implements OnInit {
     applicableRules: ['', Validators.required],
     isExpired: ['',Validators.required],
     shipmentDate: ['', Validators.required],
+    portOfDischarge: ['', Validators.required],
     portOfLoading: ['', Validators.required],
     shipmentTerms: ['', Validators.required],
     partialShipment: ['', Validators.required],
@@ -75,11 +76,11 @@ export class CreateComponent implements OnInit {
       const formData = this.applicationForm.value;
       this.createService.submit(formData).subscribe(
         response => {
-          // Handle successful submission response
+          
           console.log('Form submitted successfully:', response);
         },
         error => {
-          // Handle error
+         
           console.error('Error submitting form:', error);
         }
       );
