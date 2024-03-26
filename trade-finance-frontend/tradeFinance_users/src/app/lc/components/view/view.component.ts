@@ -5,6 +5,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateComponent } from '../create/create.component';
 import { Router } from '@angular/router';
+import { TestComponent } from '../../test/test.component';
+import { LcService } from '../../services/lc.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 interface LetterOfCredit {
   name: string;
@@ -29,49 +32,46 @@ export class ViewComponent implements OnInit {
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'customerName', 'description', 'actions'];
-  @ViewChild(MatPaginator) paginator: MatPaginator; 
+  displayedColumns: string[] = ['no', 'letterOfCreditNumber', 'applicantAccountNumber', 'beneficiaryAccountNumber', 'actions'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   isLoading = true;
   products: any;
-  constructor(private dialog: MatDialog, private router: Router) { }
+  lcs: any;
 
-  
+
+  constructor(private dialog: MatDialog,
+    private router: Router,
+    private lcService: LcService,
+    private snackbar: SnackbarService) { }
+
+
   ngOnInit(): void {
-    this.getProducts();
+    this.getLCs();
   }
 
-  public getProducts() {
-        this.products = [
-          {
-              no: 1,
-              productCategory: 'Electronics',
-              description: 'Smartphone with advanced features',
-              actions: ['View Details', 'Add to Cart']
-          },
-          {
-              no: 2,
-              productCategory: 'Clothing',
-              description: 'Casual T-shirt made of cotton',
-              actions: ['View Details', 'Add to Cart']
-          },
-          {
-              no: 3,
-              productCategory: 'Home & Kitchen',
-              description: 'Stainless steel cookware set',
-              actions: ['View Details', 'Add to Cart']
-          },
-          // Add more mock data items as needed
-      ];;
-        console.log("Products list:", this.products);
-        if (this.products) {
-          this.isLoading = false
+  public getLCs() {
+    this.lcService.getAllLCs().subscribe({
+      next: ((res) => {
+        console.log("Response", res);
+        if (res.length > 0) {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.isLoading = false;
+        } else {
+          this.isLoading = false;
+          this.snackbar.showNotification("", "No LCs found!")
         }
-        this.dataSource = new MatTableDataSource(this.products);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      }),
+      error: ((err) => {
+        this.isLoading = false;
+      }),
+      complete: (() => { })
+    });
   }
-  
+
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -80,27 +80,42 @@ export class ViewComponent implements OnInit {
     }
   }
 
-  public add(){
-    // const dialogConfig = new MatDialogConfig()
-    // dialogConfig.disableClose = false
-    // dialogConfig.autoFocus = true
-    // dialogConfig.width = '1000px'
-    // dialogConfig.data = { test: "data" }
-
-    // const dialogRef = this.dialog.open(CreateComponent, dialogConfig);
-
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log('closed');
-    // });
-  this.router.navigate(["/lc/create"])
+  public add() {
+    this.router.navigate(["/lc/create"])
   }
 
-  public refresh(){
-    this.getProducts();
+  public openViewLcComponent(row) {
+
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '600px'
+    dialogConfig.data = { rowData: row }
+
+    const dialogRef = this.dialog.open(TestComponent, dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('closed');
+    });
+  }
+  public refresh() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '600px'
+    dialogConfig.data = { test: "row" }
+
+    const dialogRef = this.dialog.open(TestComponent, dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('closed');
+    });
   }
 
-  public verify(){
+  public verify() {
+
 
   }
 }
