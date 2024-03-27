@@ -9,11 +9,12 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-makers.component.scss']
 })
 export class AddMakersComponent implements OnInit {
-selectedStatus:string
-  form:FormGroup
+
+  selectedStatus:string
+  form: FormGroup
 
 
-  constructor(private dialogRef:MatDialogRef<AddMakersComponent>,
+  constructor(public dialogRef:MatDialogRef<AddMakersComponent>,
     private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -40,4 +41,6 @@ selectedStatus:string
     this.dialogRef.close();
   }
 
-}
+  onClick(){
+    this.dialogRef.close();
+  }}
