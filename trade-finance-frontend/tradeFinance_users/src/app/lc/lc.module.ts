@@ -34,7 +34,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     TransferlcComponent,
     CreateComponent,
     ModifyComponent,
-    ViewComponent
+    ViewComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,
@@ -64,4 +65,5 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   ]
 })
 export class LcModule { }import { } from './components/create/create.component';
+import { TestComponent } from './test/test.component';
 

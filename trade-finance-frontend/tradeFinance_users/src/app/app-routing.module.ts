@@ -28,6 +28,26 @@ const routes: Routes = [
         path: "lc",
         loadChildren: () =>
           import("./lc/lc.module").then((m) => m.LcModule),
+      },
+      {
+        path: "bank-guarantee",
+        loadChildren: () =>
+          import("./bank-guarantee/bank-guarantee.module").then((m) => m.BankGuaranteeModule),
+      },
+      {
+        path: "bills",
+        loadChildren: () =>
+          import("./bills/bills.module").then((m) => m.BillsModule),
+      },
+      {
+        path: "invoice-discounting",
+        loadChildren: () =>
+          import("./invoice-discounting/invoice-discounting.module").then((m) => m.InvoiceDiscountingModule),
+      },
+      {
+        path: "documentary-collection",
+        loadChildren: () =>
+          import("./documentary-collections/documentary-collections.module").then((m) => m.DocumentaryCollectionsModule),
       }
     ],
   },

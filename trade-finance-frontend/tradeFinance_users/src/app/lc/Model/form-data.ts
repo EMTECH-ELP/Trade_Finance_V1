@@ -1,57 +1,57 @@
-export class FormData {
-    public applicantFirstName: string
-    public applicantMiddleName: string
-    public applicantLastName: string
-    public applicantAddress: string
-    public applicantEmail: string
-    public applicantPhoneNumber: number
-    public businessName: string
-    public applicantAccountName: string
-    public applicantAccountNumber: number
-    public issuingBank: string
-    public issuingSwiftCode: string
-    public beneficiaryFirstName: string
-    public beneficiaryMiddleName: string
-    public beneficiaryLastName: string
-    public beneficiaryAddress: string
-    public beneficiaryEmail: string
-    public beneficiaryPhoneNumber: number
-    public beneficiaryAccountName: string
-    public beneficiaryAccountNumber: number
-    public beneficiaryBank: string
-    public beneficiarySwiftCode: string
-    public beneficiaryCity: string
-    public lcType: string
-    public subType: string
-    public applicableRules: string
-    public isExpired: boolean
-    public shipmentDate: Date
-    public portOfDischarge: string
-    public portOfLoading: string
-    public shipmentTerms: string
-    public partialShipment: string
-    public transShipment: string
-    public issueDate: Date
-    public expiryDate: Date
-    public usance: string
-    public transferable: boolean
-    public negotiationPeriod: string
-    public commodityCode: string
-    public goodsQuantity: string
-    public pricePerUnit: number
-    public countyOfOrigin: string
-    public chargesBorneBy: string
-    public amount: number
-    public amountCode: string
-    public collateralType: string
-    public collateralId: number
-    public collateralValue: number
-    public guarantorName: string
-    public guarantorAddress: string
-    public guarantorEmail:string
-    public guarantorPhoneNumber: number
-    public billOfLading: string
-    public numberOfCopies: number
-    public signed: boolean
-    public documentDescription: string
+export interface FormData {
+     applicantFirstName: string
+     applicantMiddleName: string
+     applicantLastName: string
+     applicantAddress: string
+     applicantEmail: string
+     applicantPhoneNumber: number
+     businessName: string
+     applicantAccountName: string
+     applicantAccountNumber: number
+     issuingBank: string
+     issuingSwiftCode: string
+     beneficiaryFirstName: string
+     beneficiaryMiddleName: string
+     beneficiaryLastName: string
+     beneficiaryAddress: string
+     beneficiaryEmail: string
+     beneficiaryPhoneNumber: number
+     beneficiaryAccountName: string
+     beneficiaryAccountNumber: number
+     beneficiaryBank: string
+     beneficiarySwiftCode: string
+     beneficiaryCity: string
+     lcType: string
+     subType: string
+     applicableRules: string
+     isExpired: boolean
+     shipmentDate: Date
+     portOfDischarge: string
+     portOfLoading: string
+     shipmentTerms: string
+     partialShipment: string
+     transShipment: string
+     issueDate: Date
+     expiryDate: Date
+     usance: string
+     transferable: boolean
+     negotiationPeriod: string
+     commodityCode: string
+     goodsQuantity: string
+     pricePerUnit: number
+     countyOfOrigin: string
+     chargesBorneBy: string
+     amount: number
+     amountCode: string
+     collateralType: string
+     collateralId: number
+     collateralValue: number
+     guarantorName: string
+     guarantorAddress: string
+     guarantorEmail:string
+     guarantorPhoneNumber: number
+     billOfLading: string
+     numberOfCopies: number
+     signed: boolean
+     documentDescription: string
 }
