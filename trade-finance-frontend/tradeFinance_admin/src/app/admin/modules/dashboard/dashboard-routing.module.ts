@@ -6,9 +6,9 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent,
+    path: 'view', component: DashboardComponent,
     // canActivate: [RoutePrivilegeGuard],
-    data: { requiredPrivilege: ['Dashboard'] }
+  
   },];
 
 
