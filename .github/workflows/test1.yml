@@ -1,0 +1,33 @@
+name: Sync to Organization Repo EMTECH
+
+on:
+  schedule:
+    - cron: '00 18 * * 3' # Runs every Friday at 6:00PM
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: 'emtech-repo/trade-finance'
+          token: ${{ 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 }}
+          path: 'trade-finance'
+
+      - name: Checkout repo for Trade Finance
+        uses: actions/checkout@v2
+        with:
+          repository: 'FaithAdhiambo456/TradeFinance'
+          token: ${{ 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 }}
+          path: 'Trade Finance'
+
+      - name: Create Pull Request
+        uses: emtech/create-pull-request@v3
+        with:
+          token: ${{ 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}}
+          commit-message: 'Sync changes from Trade Finance'
+          title: 'Weekly sync from Trade Finance'
+          body: 'Automatically synced changes from repo.'
+          branch: 'sync-branch'
+          delete-branch: true
