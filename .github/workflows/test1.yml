@@ -2,7 +2,7 @@ name: Sync to Organization Repo EMTECH
 
 on:
   schedule:
-    - cron: '00 18 * * 3' # Runs every Friday at 6:00PM
+    - cron: '32 17 * * 3' # test run for today 17.32
 
 jobs:
   sync:
