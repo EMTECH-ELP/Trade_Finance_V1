@@ -30,7 +30,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/admin/dashboard",
+        path: "/users/viewcheckers",
         title: "Checkers",
         moduleName: "dashboard",
         iconType: "feather",

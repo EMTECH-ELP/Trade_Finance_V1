@@ -10,10 +10,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class AddCheckersComponent implements OnInit {
 
   selectedStatus:string
-  form:FormGroup
+  form: FormGroup
 
 
-  constructor(private dialogRef:MatDialogRef<AddCheckersComponent>,
+  constructor(public dialogRef:MatDialogRef<AddCheckersComponent>,
     private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -40,4 +40,7 @@ export class AddCheckersComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onClick(){
+    this.dialogRef.close();
+  }
 }

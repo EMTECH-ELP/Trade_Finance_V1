@@ -1,175 +1,148 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'Transfer LC'">
+      </app-breadcrumb>
+    </div>
+
+
 <section class="container ">
-  <header>Transfer of Documentary Credit</header>
+  <!-- <header>Transfer of Documentary Credit</header> -->
   <!-- Section 1: Beneficiary Details -->
   <form class="form" [formGroup]="transferForm" (ngSubmit)="OnSubmit()">
     <div class="row">
-      <h2>Beneficiary Details</h2>
+      <h4>Secondary Beneficiary & Transfer Details</h4>
 
-      <div class="col-md-3">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
         <div class="input-box">
 
-          <label for="ID">Beneficiary ID</label>
-          <input type="number"   value="Beneficiary ID" formControlName="beneficiaryId" />
-        <!-- <small  [class.is-invalid]="transferForm.get('BeneficiaryId')?.invalid && transferForm.get('BeneficiaryId')?.touched" class="text-danger">Beneficiary ID is required</small> -->
+          <label for="first name">First Name</label>
+          <input type="text" formControlName="secondaryBeneficiaryFirstName" />
+          <!-- <small  [class.is-invalid]="transferForm.get('BeneficiaryId')?.invalid && transferForm.get('BeneficiaryId')?.touched" class="text-danger">Beneficiary ID is required</small> -->
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
+
+          <label for="phone number">Phone Number</label>
+          <input type="number" id="secondaryBeneficiaryPhoneNumber" formControlName="secondaryBeneficiaryPhoneNumber" />
         </div>
 
 
-        <div class="col-md-3 input-box">
-         
-          <label for="CIF">Primary Beneficiary CIF</label>
-          <input type="number" value="Primary Beneficiary CIF" formControlName="primaryBeneficiaryCif" />
-        </div>
+
       </div>
 
-      <div class="col-md-3">
-        <div class="input-box">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
 
-          <label for="name">Primary Beneficiary Name</label>
-          <input type="text" id="Primary Beneficiary Name" formControlName="primaryBeneficiaryName" />
+          <label for="middle name">Middle Name</label>
+          <input type="text" id=" secondaryBeneficiaryMiddleName" formControlName="secondaryBeneficiaryMiddleName" />
         </div>
-        <div class="col-md-3 input-box">
-          <label for="account">Primary Beneficiary Account No</label>
-          <input type="number" value="Primary Beneficiary Account No." formControlName="primaryBeneficiaryAccount" />
-        </div>
-      </div>
-      <div class="col-md-3">
+
         <div class="input-box ">
-          <label for="name">Secondary Beneficiary Name</label>
-          <input type="text" id="Secondary Beneficiary Name" formControlName="secondaryBeneficiaryName" />
+          <label for="address">Country</label>
+          <input type="text" id="secondaryBeneficiaryCountry" formControlName="secondaryBeneficiaryCountry" />
         </div>
-        <div class="col-md-3 input-box">
-          <label for="account">Secondary Beneficiary account No</label>
-          <input type="number" value="Secondary Beneficiary account No." formControlName="secondaryBeneficiaryAccount" />
+
+
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <div class="input-box">
+          <label for="Last Name">Last Name</label>
+          <input type="text" id="secondaryBeneficiaryLastName" formControlName="secondaryBeneficiaryLastName" />
         </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
+          <label for="city">City</label>
+          <input type="text" id=" secondaryBeneficiaryCity" formControlName="secondaryBeneficiaryCity" />
+        </div>
+        <!-- <div class="col-md-3 input-box">
+          <label for="phone number">Phone Number</label>
+          <input type="number" id="secondaryBeneficiaryPhoneNumber" formControlName="secondaryBeneficiaryPhoneNumber" />
+        </div> -->
+
       </div>
 
-      <div class="col-md-3">
-        <div class="input-box">  
-        <label for="email"> Secondary Beneficiary Email</label>
-         <input type="number" id="email"
-            formControlName="beneficiaryEmail" />
-            <!-- <div  *ngIf="transferForm.get('secondaryBeneficiaryAccount')?.invalid && transferForm.get('secondaryBeneficiaryAccount')?.touched">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <div class="input-box">
+          <label for="email"> Email</label>
+          <input type="email" formControlName="secondaryBeneficiaryEmail" />
+          <!-- <div  *ngIf="transferForm.get('secondaryBeneficiaryAccount')?.invalid && transferForm.get('secondaryBeneficiaryAccount')?.touched">
             <small  [*ngIf= "transferForm.get('secondaryBeneficiaryAccount').errors?.required"]class="text-danger">Account No. is required</small>
             <small  [*ngIf= "transferForm.get('secondaryBeneficiaryAccount').errors?.minlength" ]class="text-danger">Account No. must be atleast 15 characters.</small>
             </div> -->
         </div>
-        <div class="col-md-3 input-box">
-        
-          <label for="name">Bank Name</label>
-          <input type="text" id="Bank Name" formControlName="bankName" />
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
+          <label for="address">P.O.Box</label>
+          <input type="text"
+            formControlName=" secondaryBeneficiaryAddress" />
         </div>
+
       </div>
     </div>
 
     <div class="row">
-      <h2>Address Details</h2>
-      <div class="col-md-3">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
         <div class="input-box">
-          <label for="country">Country</label>
-          <input type="text" placeholder="Kenya" formControlName="beneficiaryCountry">
+          <label for="accountName">Account Name</label>
+          <input type="text" formControlName="secondaryBeneficiaryAccountName">
         </div>
-        <!-- <select name="country" formControlName="country">
-            <option hidden>Country</option>
-            <option>Kenya</option>
-            <option>USA</option>
-            <option>India</option>
-            <option>Uganda</option>
-            <option>Tanzania</option>
-            <option>Rwanda</option>
-            <option>Ethiopia</option>
-            <option>China</option>
-          </select> -->
 
         <!-- <small *ngIf="reactiveForm.get('address.country').invalid && reactiveForm.get('address.country').touched">
             *Country is a required field.
           </small> -->
-
-
-
-        <div class="col-md-3 input-box">
-          <label for="city">City</label>
-          <input type="text" formControlName="beneficiaryCity" />
-        </div>
+          <div class="col-md-3 input-box">
+            <label for="Bank">Bank Name</label>
+            <input type="text" formControlName="secondaryBeneficiaryBank" />
+          </div>
+      
       </div>
 
-      <div class="col-md-3">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
         <div class="input-box">
-          <label for="postal">Postal Code</label>
-          <input type="number" formControlName="beneficiaryPostalCode" />
+          <label for="account">Account Number</label>
+          <input type="number" formControlName="secondaryBeneficiaryAccountNumber">
         </div>
-        <div class="col-md-3 input-box">
-          <label for="address">State</label>
-          <input type="text" id="state" formControlName="state" />
+         <div class="input-box">
+          <label for="SwiftCode">Swift Code</label>
+          <input type="number" formControlName="secondaryBeneficiarySwiftCode" />
         </div>
+
+       
       </div>
-      <div class="col-md-4">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
         <div class="input-box ">
-          <label for="expiry date">Issue Date</label>
-          <input type="date" placeholder="Issue Date" formControlName="issueDate" />
+          <label for="transferAmount">Amount to transfer</label>
+          <input type="number" formControlName="transferAmount" />
         </div>
+        <div class="input-box">
+          <label for="transfer date">Transfer Date</label>
+          <input type="date" placeholder="transferDate" formControlName="transferDate" />
+        </div>
+        
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
+          <label for="latestShipmentDate">Latest Shipment Date</label>
+          <input type="date" placeholder="latestShipmentDate" formControlName="latestShipmentDate" />
+        </div>
+       
         <div class="input-box">
           <label for="expiry date">Expiry Date</label>
-          <input type="date" placeholder="Expiry Date" formControlName="expiryDate" />
+          <input type="date" placeholder="Expiry Date" formControlName="newExpiryDate" />
         </div>
       </div>
-
-
     </div>
-    <div class="row"> <br>
-      <h2>Financial Credit Transfer Details</h2>
-      <div class="col-md-3">
-        <div class="input-box">
-        
-          <label for="country">Amount to transfer</label>
-          <input type="number" value="Transferrable Amount" formControlName="transferableAmount" />
-
-        </div>
-
-        <div class="col-md-3 input-box">
-       
-          <label for="lcvalue">LC Value</label>
-          <input type="number" value="LC value" formControlName="lcValue" />
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="input-box">
-          <label for="postal code">Primary beneficiary Amount</label>
-          <input type="number" value="Amount in percentage & currency to Primary Beneficiary"
-            formControlName="primaryBeneficiaryAmount" />
-        </div>
-        <div class="col-md-3 input-box">
-          <label for="Unverified LC value">Unverified LC value</label>
-          <input type="number" value="Unverified LC value" formControlName="unverifiedLcValue" />
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="input-box">
-          <label for="Secondary beneficiary Amount">Secondary beneficiary Amount</label>
-          <input type="number" value="Amount in  currency to Secondary Beneficiary"
-            formControlName="secondaryBeneficiaryeAmount" />
-        </div>
-        <div class="input-box">
-          <label for="Swift code">Swift Code</label>
-          <input type="number" value="swift"
-            formControlName="swiftCode" />
-        </div>
-
-      </div>
-
-
-
-    </div>
-<br>
+   
+    <br>
     <div class="clearfix">
       <button [disabled]="!transferForm.valid" type="submit" class="submit-btn">Submit</button>
-    <button type="button" class="modify-btn">Modify</button>
-     <button type="button" class="cancel-btn">Cancel</button>
+      <button type="button" class="modify-btn">Modify</button>
+      <button type="button" class="cancel-btn">Cancel</button>
       <!-- <input type="submit" value="Submit" class="submit-btn"> -->
     </div>
     <!-- [disabled]="!reactiveForm.valid" -->
   </form>
-<!-- {{transferForm.value | json}} -->
+  <!-- {{transferForm.value | json}} -->
 
 
 
@@ -179,70 +152,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  <!-- <h1>Transfer of letter of Credit</h1>
-<div class="form">
-  <form (ngSubmit)="onSubmit()"> -->
-  <!-- [formGroup]="reactiveForm"  -->
-
-  <!-- <div class=" flex container"> -->
-  <!-- <div class="row align-items-start">
-        <div class="col">
-          <label for="ID">Beneficiary ID</label>
-          <input type="text" id="ID" formControlName="Beneficiary ID">
-
-          <label for="CIF">Primary Beneficiary CIF</label>
-          <input type="text" id="CIF"  formControlName="Beneficiary CIF">
-
-          <label for="CIF">Primary Beneficiary Name</label>
-          <input type="text" id="Pname"  formControlName="Primary Beneficiary Name">
-
-          <label for="Name">Primary Beneficiary Account</label>
-          <input type="text" id="Pacc" formControlName="Primary Beneficiary Account">
-
-          <label for="Name">Secondary Beneficiary Name</label>
-          <input type="text" id="SName" formControlName="Secondary Beneficiary Name">
-
-          <label for="CIF">Secondary Beneficiary Account</label>
-          <input type="text" id="Sacc" formControlName="Primary Beneficiary Account">
-        </div>
-
-        <div class=" col align-items-center">
-          <label for="CIF">Transferrable Amount</label>
-          <input type="number" id="amount" placeholder="Enter the full amount" formControlName="Amount">
-        <label for="Share1">Primary beneficiary proportion</label>
-        <input type="percentage" placeholder="Amount in %" formControlName="Percentage">
-        <input type="number" placeholder="Amount in numbers" formControlName="Value">
-        <label for="Share2">Secondary beneficiary proportion</label>
-        <input type="percentage" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-        <label for="CIF">Bank Name</label>
-        <input type="text" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-      </div>
-        <div class="col align-items-end">
-          <label for="CIF">Beneficiary CIF</label>
-          <input type="text" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-        <label for="CIF">Beneficiary CIF</label>
-        <input type="text" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-        <label for="CIF">Beneficiary CIF</label>
-        <input type="text" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-        <label for="CIF">Beneficiary CIF</label>
-        <input type="text" id="CIF" placeholder="CIF" formControlName="Beneficiary CIF">
-      </div>
-        <input type="submit" value="Submit" id="btn">
-        <button type="submit" value="Submit">Submit</button> -->
-  <!-- </div> -->
-
-  <!-- </div>
-  </form>
-</div> -->
 
   <!-- <mat-form-field hintLabel="beneficiary ID">
     <mat-label>Enter some input</mat-label>
