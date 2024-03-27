@@ -23,7 +23,8 @@ import { ModifyComponent } from './components/modify/modify.component';
   declarations: [
     TransferlcComponent,
     CreateComponent,
-    ModifyComponent
+    ModifyComponent,
+    DeleteLcComponent
   ],
   imports: [
     CommonModule,
@@ -46,4 +47,5 @@ import { ModifyComponent } from './components/modify/modify.component';
   ]
 })
 export class LcModule { }import { } from './components/create/create.component';
+import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 
