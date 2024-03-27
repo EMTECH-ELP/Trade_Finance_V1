@@ -19,7 +19,7 @@
         
         <br />
 
-        <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="otpForm">
           <div class="inputs d-flex flex-row justify-content-center mt-2">
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="first" maxlength="1" />
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="second" maxlength="1" />
@@ -27,8 +27,8 @@
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="fourth" maxlength="1" />
           </div>
           <div class="mt-4 px-2">
-            <button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading"
-            class="auth-form-btn dark-green-button" [disabled]="!otpForm.valid" type="submit" style="display: block; width: 100%">
+            <button mat-raised-button color="primary"
+            class="auth-form-btn dark-green-button" (click)="onSubmit()" style="display: block; width: 100%">
               Validate
             </button>
           </div>

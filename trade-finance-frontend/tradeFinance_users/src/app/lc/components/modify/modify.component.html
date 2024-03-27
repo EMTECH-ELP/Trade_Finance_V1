@@ -1,14 +1,13 @@
 <!-- <p>modify works!</p> -->
 <div class="conteiner">
-  <h1>TRANSACTION MODIFICATION AND AMENDMENTS</h1>
+  <b>MODIFY OR AMEND LC</b>
 <form [formGroup]="searchForm" (ngSubmit)=" onsubmit()">
   <div>
     <label for="searchCriteria">Search by:</label>
     <select formControlName="searchCriteria" id="searchCriteria">
       <option value="id">ID</option>
-      <option value="email">Email</option>
       <option value="name">Name</option>
-      <option value="name">Businessname</option>
+      <option value="name">lc no</option>
       <option value="name">Account no</option>
     </select>
   </div>
@@ -21,7 +20,7 @@
   <div>
     <button>search</button>
   </div>
-  <button (click)="onModify()">Modify/Amend</button>
+ 
 </form>
 
 
