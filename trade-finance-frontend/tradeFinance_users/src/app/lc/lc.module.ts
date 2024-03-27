@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransferlcComponent } from './components/transferlc/transferlc.component';
@@ -17,10 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
-<<<<<<< HEAD
-=======
 import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
 import { CreateComponent } from './components/create/create.component';
 import { ModifyComponent } from './components/modify/modify.component';
 
@@ -46,14 +40,9 @@ import { ModifyComponent } from './components/modify/modify.component';
     HttpClientModule,
     SharedModule,
     ComponentsModule,
-<<<<<<< HEAD
-=======
    
-  
-    ComponentsModule,
->>>>>>> 96849888ac75a10bc8f5318ab338925863e91725
     ReactiveFormsModule
   ]
 })
-export class LcModule { }import { } from './components/create/create.component';
+export class LcModule { }
 
