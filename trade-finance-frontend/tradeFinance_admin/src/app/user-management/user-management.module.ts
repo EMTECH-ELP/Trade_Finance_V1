@@ -5,7 +5,7 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
 
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -18,6 +18,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { ViewMakersComponent } from './Makers/view-makers/view-makers.component';
 import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
+import { ViewCheckersComponent } from './Checkers/view-checkers/view-checkers.component';
+import { AddCheckersComponent } from './Checkers/add-checkers/add-checkers.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
@@ -25,24 +33,33 @@ import { AddMakersComponent } from './Makers/add-makers/add-makers.component';
   
   
     ViewMakersComponent,
-           AddMakersComponent
+           AddMakersComponent,
+           ViewCheckersComponent,
+           AddCheckersComponent
   ],
   imports: [
     CommonModule,
     UserManagementRoutingModule,
-    ComponentsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule, 
+    HttpClientModule,
     SharedModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+    MatCardModule,
     MatTableModule,
     MatTableExporterModule,
     MatMenuModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatInputModule,
-    MatSelectModule,
     MatTabsModule,
-    MatButtonToggleModule,
-    FormsModule
+    MatButtonToggleModule
   ]
 })
 export class UserManagementModule { }

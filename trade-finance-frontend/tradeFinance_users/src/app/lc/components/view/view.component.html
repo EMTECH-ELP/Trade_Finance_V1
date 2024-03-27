@@ -79,13 +79,20 @@
                           1}}</mat-cell>
                       </ng-container>
       
-                      <ng-container matColumnDef="customerName">
+                      <ng-container matColumnDef="letterOfCreditNumber">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Customer name</mat-header-cell>
                         <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                           {{row.productCategory}}</mat-cell>
                       </ng-container>
       
-                      <ng-container matColumnDef="description">
+                      <ng-container matColumnDef="applicantAccountNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header
+                          class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
+                        <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
+                          {{row.description}}</mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="beneficiaryAccountNumber">
                         <mat-header-cell *matHeaderCellDef mat-sort-header
                           class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
                         <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
@@ -97,7 +104,7 @@
                         <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-30"
                           (click)="onSelect(row)">
 
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="openViewConfirmationDialog(row)"
+                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="openViewLcComponent(row)"
                             class="tbl-action-btn">
                             <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
                           </button>
@@ -112,6 +119,11 @@
                             <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete'"></app-feather-icons>
                           </button>
                          
+
+                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
+                            (click)="verify(row)"  class="tbl-action-btn">
+                            <app-feather-icons [icon]="'move'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                          </button>
 
                         </mat-cell>
                       </ng-container>

@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TransferService } from '../../services/transfer.service';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class TransferlcComponent implements OnInit {
   
   transferForm!: FormGroup;
  
-  constructor(private fb: FormBuilder, private _transferService: TransferService){};
+  constructor(private fb: FormBuilder){};
 
   ngOnInit(): void {
     this.transferForm = this.fb.group({

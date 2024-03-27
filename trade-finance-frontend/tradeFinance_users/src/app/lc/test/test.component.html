@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+        <img src="/assets/images/equity_logo.jpg" width="60px" height="45px" class="px-2 mx-2" alt="avatar" />
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 d-flex justify-content-center align-items-center">
+        <span style="font-weight: bold; font-size: 16px;">Add New LC</span>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 d-flex justify-content-end align-items-center">
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<form [formGroup]="testForm">
+    <div class="row">
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Applicant First name</mat-label>
+                <input matInput formControlName="applicantFirstName" required />
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="testForm.get('applicantFirstName')?.hasError('required')">
+                    Applicant First name is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Applicant Last name</mat-label>
+                <input matInput formControlName="applicantLastName" required />
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="testForm.get('applicantLastName')?.hasError('required')">
+                    Applicant Last name is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Applicant Email</mat-label>
+                <input matInput formControlName="applicantEmail" required />
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error *ngIf="testForm.get('applicantEmail')?.hasError('required')">
+                    Applicant Email is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Benefeciary Email</mat-label>
+                <input matInput formControlName="beneficiaryEmail" required />
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error *ngIf="testForm.get('beneficiaryEmail')?.hasError('required')">
+                    Beneficiary Email is required
+                </mat-error>
+            </mat-form-field>
+        </div>5
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                <div class="example-button-row" align="end">
+                    <button mat-raised-button color="primary" [disabled]="!testForm.valid" (click)="submit()">
+                        Save
+                    </button>
+                    <button mat-raised-button color="warn" (click)="onClick()" tabindex="-1">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

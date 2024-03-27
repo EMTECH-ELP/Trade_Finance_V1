@@ -1,34 +1,41 @@
 <div class="row">
-
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
 
 
     <h2 mat-dialog-title>Add New Makers</h2>
     <mat-dialog-content>
-      <form (ngSubmit)="onSubmit()" #form="ngForm">
+      
     
     <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input matInput placeholder="Name" name="name" ngModel required>
         </mat-form-field>
       </div>
     
         
     <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input matInput placeholder="EmployeeId" name="name" ngModel required>
         </mat-form-field>
         </div>
+                
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Email" name="Email" ngModel required>
+      </mat-form-field>
+      </div>
         
     
     
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input matInput placeholder="Branch Name" name="branchName" ngModel required>
         </mat-form-field>
-        <mat-form-field>
+
+        <mat-form-field appearance="outline">
           <input matInput placeholder="Branch Code" name="branchCode" ngModel required>
         </mat-form-field>
     
-        <mat-form-field>
+        <mat-form-field appearance="outline">
     
     
       
@@ -40,15 +47,14 @@
           </mat-select>
           
         </mat-form-field>
-    
-    
+     </mat-dialog-content> <br>
+      <mat-dialog-actions>
+        <button style="color: white;background-color: rgb(126, 7, 7);" mat-button (click)="onClose()">Cancel</button>
+        <button style="color: white;background-color: rgb(126, 7, 7);" mat-button [disabled]="form.invalid" (click)="onSubmit()">Add</button>
+      </mat-dialog-actions>
     
       </form>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="onClose()">Cancel</button>
-      <button mat-button color="primary" [disabled]="form.invalid" (click)="onSubmit()">Add</button>
-    </mat-dialog-actions>
+ 
     
     </div>
     

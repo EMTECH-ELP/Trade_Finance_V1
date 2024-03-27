@@ -82,7 +82,7 @@ styleUrls: ['./analtics2.component.scss']
         dashArray: [0, 8, 5]
       },
       title: {
-        text: "TRANSACTIONS TRENDS",
+        text: " ISSUANCE TRANSACTIONS TRENDS",
         align: "center"
       },
       legend: {
@@ -120,31 +120,7 @@ styleUrls: ['./analtics2.component.scss']
           "12 Jan"
         ]
       },
-      tooltip: {
-        y: [
-          {
-            title: {
-              formatter: function(val) {
-                return val + " (mins)";
-              }
-            }
-          },
-          {
-            title: {
-              formatter: function(val) {
-                return val + " per session";
-              }
-            }
-          },
-          {
-            title: {
-              formatter: function(val) {
-                return val;
-              }
-            }
-          }
-        ]
-      },
+      
       grid: {
         borderColor: "#f1f1f1"
       }
