@@ -5,92 +5,6 @@
       <app-breadcrumb [title]="'Checkers'" [items]="['Home']" [active_item]="'View'">
       </app-breadcrumb>
     </div>
-
-    <!-- Search button -->
-    <!-- <div class="input-group" style="
-      width: 1800px;
-      height: 50px;
-      background-color: rgb(252, 247, 247);
-      margin-top: 0;
-      margin-bottom: 80px;
-  ">
-      <mat-form-field appearance="fill" style="margin-top: 20px; margin-left: 10px; height: 50px; width: 300px;">
-        <mat-label>Search by Employee Id or Email</mat-label>
-        <input matInput placeholder="Search by Employee Id or Email" [(ngModel)]="searchQuery" (keyup.enter)="search()">
-        <button mat-flat-button style="background-color: rgb(252, 247, 247);" matSuffix (click)="search()"
-          aria-label="Search">
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-
-
-
-
-
-
-      <button class="btn btn-fill" style="
-        background-color: rgb(126, 7, 7);
-        height: 50pxpx;
-        width: 50px;
-        margin: 20px;
-        color: white;
-        padding: 5px;
-        border-radius: 5px;
-      " (click)="openAddFormDialog()">
-        Add
-      </button>
-    </div>
-
-    <div class="addContainer">
-      <div class="contact-details">
-        <div class="modalHeader">
-        </div>
-        <div mat-dialog-content>
-          <div class="table-responsive m-t-5">
-            <div class="body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7) ;">Name</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Employee ID</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Email</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Branch Name</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Branch Code</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Status</th>
-                      <th style="font-weight:light; font-size: large;color: rgb(126, 7, 7)">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let row of rows">
-                      <td>{{ row.name }}</td>
-                      <td>{{ row.employeeId }}</td>
-                      <td>{{ row.email }}</td>
-                      <td>{{ row.branchName }}</td>
-                      <td>{{ row.branchCode }}</td>
-                      <td>{{ row.status }}</td>
-                      <td>
-                        <button mat-icon-button (click)="edit(row)" aria-label="Edit">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button (click)="viewDetails(row)" aria-label="View Details">
-                          <mat-icon>visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button (click)="delete(row)" aria-label="Delete">
-                          <mat-icon>delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
     <div class="row">
 
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -137,7 +51,7 @@
 
               <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
                 #exporter="matTableExporter">
-                
+
                 <ng-container matColumnDef="no">
                   <mat-header-cell *matHeaderCellDef mat-sort-header
                     class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
@@ -146,14 +60,15 @@
                 </ng-container>
 
                 <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Name</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="psl-3 tbl-col-width-per-40">Name</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.name}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="employeeId">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header
-                    class="psl-3 tbl-col-width-per-40">Employee Id</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Employee
+                    Id</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.employeeId}}</mat-cell>
                 </ng-container>
@@ -166,22 +81,21 @@
                 </ng-container>
 
                 <ng-container matColumnDef="branchName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header
-                    class="psl-3 tbl-col-width-per-40">Branch name</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Branch
+                    name</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.branchName}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="branchCode">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header
-                    class="psl-3 tbl-col-width-per-40">Branch code</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Branch
+                    code</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.branchCode}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="status">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header
-                    class="psl-3 tbl-col-width-per-40">Branch code</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Status</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.status}}</mat-cell>
                 </ng-container>
@@ -191,18 +105,18 @@
                   <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-30"
                     (click)="onSelect(row)">
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="openViewConfirmationDialog(row)"
-                      class="tbl-action-btn">
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
+                      (click)="openViewConfirmationDialog(row)" class="tbl-action-btn">
                       <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
 
                     <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                      (click)="openDeleteConfirmationDialog(row)"  class="tbl-action-btn">
+                      (click)="openDeleteConfirmationDialog(row)" class="tbl-action-btn">
                       <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                      (click)="verify(row)"  class="tbl-action-btn">
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="verify(row)"
+                      class="tbl-action-btn">
                       <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
 
@@ -218,7 +132,7 @@
                 <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
 
               </mat-table>
-              
+
               <div *ngIf="isLoading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>

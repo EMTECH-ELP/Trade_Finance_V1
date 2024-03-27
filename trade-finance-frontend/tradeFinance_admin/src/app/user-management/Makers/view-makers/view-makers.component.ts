@@ -1,72 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddMakersComponent } from '../add-makers/add-makers.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-view-makers',
   templateUrl: './view-makers.component.html',
   styleUrls: ['./view-makers.component.scss']
 })
 export class ViewMakersComponent implements OnInit {
-  dialogRef: any;
-  searchQuery: any;
-  
-  filteredRows:any[]=[];
-  // Sample data
-  rows :any[]= [
-    { name: 'John Doe', employeeId: '12345', email: 'john@equity.co.ke', branchName: 'Umoja', branchCode: 'A001', status: 'Active' },
-    { name: 'Nickson', employeeId:'6578', email: 'nickson@equitybank.co.ke', branchName: 'Kasarani', branchCode: 'A001', status: 'Active' },
-    { name: ' Alex Maina', employeeId: '17654', email: 'alex@equitybank.co.ke', branchName: 'Westlands', branchCode: 'A001', status: 'Active' },
-    { name: 'Mary Wangu', employeeId: '65677', email: 'mary@equitybank.co.ke', branchName: 'Garden City', branchCode: 'A001', status: 'Active' },
-    { name: 'Rose Mary', employeeId: '1876', email: 'rose@equitybank.co.ke', branchName: 'Ruiru', branchCode: 'A001', status: 'Active' },
-    { name: 'Willys Ari', employeeId: '18945', email: 'willys@equitybank.co.ke', branchName: 'Moyale', branchCode: 'A001', status: 'Active' },
-  ]
-  constructor( private dialog:MatDialog) { }
-    ngOnInit(): void {
-      this.filteredRows=this.rows
+ 
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['no', 'name', 'employeeId', 'email', 'branchName', 'branchCode','status'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  isLoading = true;
+  rows: any;
+
+  constructor(private dialog: MatDialog) { }
+  ngOnInit(): void {
+    this.getRows();
+  }
+
+  public getRows() {
+    this.rows = [
+      { name: 'Anne Wairimu', employeeId: '12345', email: 'ann@equitybank.co.ke', branchName: 'Kasarani', branchCode: '054', status: 'Active' },
+      { name: 'Fridah Atieno', employeeId: '6578', email: 'fridah@equitybank.co.ke', branchName: 'Limuru', branchCode: '032', status: 'Active' },
+      { name: 'Alex James', employeeId: '17654', email: 'alex@equitybank.co.ke', branchName: 'Eldoret', branchCode: '122', status: 'Flagged' },
+      { name: 'Zippy West', employeeId: '65677', email: 'zippy@equitybank.co.ke', branchName: 'Nakuru', branchCode: '078', status: 'Active' },
+      { name: 'Mark Carl', employeeId: '1876', email: 'mark@equitybank.co.ke', branchName: 'Kisii', branchCode: '098', status: 'Active' },
+      { name: 'Regina Maina', employeeId: '18945', email: 'regina@equitybank.co.ke', branchName: 'Nyali', branchCode: '101', status: 'Active' },
+    ];
+
+    console.log("list:", this.rows);
+    if (this.rows) {
+      this.isLoading = false
     }
- search() {
-      if (this.searchQuery.trim() === '') {
-        // If search query is empty, show all rows
-        this.filteredRows = this.rows;
-      } else {
-        // Filter rows based on searchQuery
-        this.filteredRows = this.rows.filter(row =>
-          row.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          row.employeeId.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          row.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          row.branchName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          row.branchCode.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          row.status.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-      }
+    this.dataSource = new MatTableDataSource(this.rows);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  public applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-  
-  
+  }
+
+  public refresh() {
+    this.getRows();
+  }
+
+  public add(){
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '600px'
+    dialogConfig.data = { test: "data" }
+
+    const dialogRef = this.dialog.open(AddMakersComponent, dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('closed');
+    });
+  }
+
   edit(row: any): void {
     // Implement edit functionality here
     console.log('Edit:', row);
   }
-  
+
   viewDetails(row: any): void {
     // Implement view details functionality here
     console.log('View Details:', row);
   }
-  
+
   delete(row: any): void {
     // Implement delete functionality here
-    console.log('Delete:', row);}
-  
-  
-    openAddFormDialog(): void {
-      const dialogRef = this.dialog.open(AddMakersComponent, {
-        width: '400px', // Set the width of the dialog
-        disableClose: false, // Prevent closing the dialog by clicking outside or pressing Escape
-        autoFocus: true, // Automatically focus on the first form field in the dialog
-      });
-  
-      // Subscribe to the dialog closed event (optional)
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
+    console.log('Delete:', row);
+  }
 
-    }}
+
+  openAddFormDialog(): void {
+    const dialogRef = this.dialog.open(AddMakersComponent, {
+
+    });
+
+  }
+
+    }
