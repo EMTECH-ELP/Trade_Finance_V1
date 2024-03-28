@@ -9,17 +9,15 @@ import { LcService } from '../../services/lc.service';
   styleUrls: ['./create.component.sass']
 })
 export class CreateComponent implements OnInit {
-
-
   selectedValue: string;
   applicationForm: FormGroup;
 
   constructor(private fb: FormBuilder,
     private lcService: LcService) { }
- 
+
 
   ngOnInit() {
-    
+
     this.applicationForm = this.fb.group({
       applicantFirstName: ['', Validators.required],
       applicantMiddleName: [''],
@@ -77,10 +75,10 @@ export class CreateComponent implements OnInit {
       signed: ['', Validators.required],
       documentDescription: ['', Validators.required]
     });
-  
+
   }
 
-  public  onSubmit() {
+  public onSubmit() {
 
     console.log("Form data", this.applicationForm.value);
     this.lcService.createLc(this.applicationForm.value).subscribe({
@@ -91,7 +89,7 @@ export class CreateComponent implements OnInit {
       error: ((err) => {
 
       }),
-       complete: (() => {})
+      complete: (() => { })
     })
   }
 }

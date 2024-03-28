@@ -1,0 +1,33 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+   <!-- breadcrumb -->
+   <app-breadcrumb [title]="'Bank Guarantee'" [items]="['Home']" [active_item]="'New Bank Guarantee'">
+</app-breadcrumb>
+</div>
+<mat-horizontal-stepper linear>
+   <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
+
+  <!-- Step 1: Applicant Details -->
+  <mat-step label="Applicant Details">
+   <div class="row">
+
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+         <mat-form-field class="full-width" appearance="outline">
+            <input matInput placeholder="First Name" formControlName="applicantFirstName" type="text">
+          </mat-form-field>
+          <br>
+                
+         </div>
+         
+      </div>
+
+  </mat-step>
+
+      </form>
+
+</mat-horizontal-stepper>
+
+
+</div>
+</section>

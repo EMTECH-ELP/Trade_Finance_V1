@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-bill',
-  templateUrl: './create-bill.component.html',
-  styleUrls: ['./create-bill.component.sass']
+  selector: 'app-create-dc',
+  templateUrl: './create-dc.component.html',
+  styleUrls: ['./create-dc.component.sass']
 })
-export class CreateBillComponent implements OnInit {
+export class CreateDcComponent implements OnInit {
+
+
 
   selectedValue: string;
   applicationForm: FormGroup;
 onSubmit: any;
-
   constructor() { }
 
   ngOnInit(): void {
