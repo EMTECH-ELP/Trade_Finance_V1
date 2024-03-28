@@ -104,7 +104,7 @@
                         <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-30"
                           (click)="onSelect(row)">
 
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="OpenDcComponent(row)"
+                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="openViewLcComponent(row)"
                             class="tbl-action-btn">
                             <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
                           </button>
