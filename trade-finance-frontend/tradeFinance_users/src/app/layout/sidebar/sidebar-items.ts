@@ -218,7 +218,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/bank-guarantee/createbg",
+        path: "/bank-guarantee/viewbg",
         title: "Bank Guarantee",
         moduleName: "bank guarantee",
         iconType: "feather",
