@@ -9,8 +9,8 @@ import { LcService } from '../../services/lc.service';
   styleUrls: ['./create.component.sass']
 })
 export class CreateComponent implements OnInit {
-
-
+  importLc: string[]= ['Revocable', 'Irrevocable', 'Confirmed', 'Unconfirmed', 'Transferable', 'Back-to-Back', 'Sight', 'Deferred', 'Standby', 'Red Clause']
+  shipmentTerms: string[]= ['EXW', 'FCA', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP']
   selectedValue: string;
   applicationForm: FormGroup;
 
@@ -44,7 +44,6 @@ export class CreateComponent implements OnInit {
       beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
       lcType: ['', Validators.required],
-      subType: ['', Validators.required],
       applicableRules: ['', Validators.required],
       isExpired: ['', Validators.required],
       shipmentDate: ['', Validators.required],
@@ -55,6 +54,7 @@ export class CreateComponent implements OnInit {
       transShipment: ['', Validators.required],
       issueDate: ['', Validators.required],
       expiryDate: ['', Validators.required],
+      subType: ['', Validators.required],
       usance: ['', Validators.required],
       transferable: ['', Validators.required],
       negotiationPeriod: ['', Validators.required],
@@ -72,16 +72,13 @@ export class CreateComponent implements OnInit {
       guarantorAddress: ['', Validators.required],
       guarantorEmail: ['', Validators.required],
       guarantorPhoneNumber: ['', Validators.required],
-      billOfLading: ['', Validators.required],
-      numberOfCopies: ['', Validators.required],
-      signed: ['', Validators.required],
-      documentDescription: ['', Validators.required]
+      documentName1: ['', Validators.required],
+      documentDescription1: ['', Validators.required]
     });
   
   }
 
-  public  onSubmit() {
-
+  onSubmit() {
     console.log("Form data", this.applicationForm.value);
     this.lcService.createLc(this.applicationForm.value).subscribe({
       next: ((response) => {
@@ -89,7 +86,7 @@ export class CreateComponent implements OnInit {
         console.log("Lc create response", response);
       }),
       error: ((err) => {
-
+        console.error(err)
       }),
        complete: (() => {})
     })
