@@ -1,0 +1,14 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Invoice Discounting'" [items]="['Home']" [active_item]="'New Invoice'">
+            </app-breadcrumb>
+        </div>
+
+        <mat-horizontal-stepper linear>
+            <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
+            </form>
+        </mat-horizontal-stepper>
+    </div>
+</section>

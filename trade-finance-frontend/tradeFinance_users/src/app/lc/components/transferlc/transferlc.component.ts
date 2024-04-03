@@ -20,26 +20,23 @@ export class TransferlcComponent implements OnInit {
 
   ngOnInit(): void {
     this.transferForm = this.fb.group({
-      beneficiaryId: new FormControl(null, [Validators.required,]),
-      primaryBeneficiaryCif: new FormControl(null, [Validators.required,]),
-      beneficiaryEmail: new FormControl(null, [Validators.required, Validators.email]),
-      primaryBeneficiaryName: new FormControl(null, Validators.required,),
-      primaryBeneficiaryAccount: new FormControl(null, Validators.required,),
-      secondaryBeneficiaryName: new FormControl(null, Validators.required,),
-      secondaryBeneficiaryAccount: new FormControl(null, Validators.required,),
-      bankName: new FormControl(null, Validators.required,),
-        state: new FormControl(null, Validators.required),
-        beneficiaryCountry: new FormControl(null, Validators.required),
-        beneficiaryCity: new FormControl(null),
-        beneficiaryPostalCode: new FormControl(null, Validators.required),
-        issueDate: new FormControl(null, Validators.required),
-        expiryDate: new FormControl(null, Validators.required),
-        transferableAmount: new FormControl(null, Validators.required),
-        primaryBeneficiaryAmount: new FormControl(null, Validators.required),
-        secondaryBeneficiaryeAmount: new FormControl(null, Validators.required),
-        lcValue: new FormControl(null, Validators.required),
-        unverifiedLcValue: new FormControl(null, Validators.required),
-        swiftCode: new FormControl(null, Validators.required),
+      secondaryBeneficiaryFirstName: new FormControl(null, [Validators.required,]),
+      secondaryBeneficiaryMiddleName: new FormControl(null, [Validators.required,]),
+      secondaryBeneficiaryLastName: new FormControl(null, Validators.required,),
+      secondaryBeneficiaryAddress: new FormControl(null, Validators.required,),
+      secondaryBeneficiaryEmail: new FormControl(null, [Validators.required, Validators.email]),
+      secondaryBeneficiaryPhoneNumber: new FormControl(null, Validators.required,),
+      secondaryBeneficiaryAccountNumber: new FormControl(null, Validators.required,),
+      secondaryBeneficiaryAccountName: new FormControl(null, Validators.required,),
+      secondaryBeneficiaryCity: new FormControl(null, Validators.required),
+      secondaryBeneficiaryCountry: new FormControl(null, Validators.required),
+      secondaryBeneficiaryBank: new FormControl(null),
+      secondaryBeneficiarySwiftCode: new FormControl(null, Validators.required),
+      newExpiryDate: new FormControl(null, Validators.required),
+      transferAmount: new FormControl(null, Validators.required),
+      latestShipmentDate: new FormControl(null, Validators.required),
+      transferDate: new FormControl(null, Validators.required),
+        
      
     });
 

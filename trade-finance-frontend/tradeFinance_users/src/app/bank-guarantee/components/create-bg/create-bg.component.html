@@ -1,0 +1,609 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Bank Guarantee'" [items]="['Home']" [active_item]="'New LC'">
+      </app-breadcrumb>
+    </div>
+
+    <mat-horizontal-stepper linear>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
+        <!-- Step 1: Applicant Details -->
+        <mat-step label="Applicant details">
+          <div class="row">
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="First Name" formControlName="applicantFirstName" type="text">
+              </mat-form-field>
+
+              <br>
+              <small
+                *ngIf="applicationForm.get('applicantFirstName').invalid && applicationForm.get('applicantFirstName').touched">
+                *First Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Middle Name" formControlName="applicantMiddleName" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Last Name" formControlName="applicantLastName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantLastName'). invalid && applicationForm.get('applicantLastName').touched">
+                *Last Name is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Address" formControlName="applicantAddress" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantAddress').invalid && applicationForm.get('applicantAddress').touched">
+                *Address is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Email" formControlName="applicantEmail" type="email">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantEmail').invalid && applicationForm.get('applicantEmail').touched">
+                *Enter valid email address</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Phone Number" formControlName="applicantPhoneNumber" type="tel">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantPhoneNumber').invalid && applicationForm.get('applicantPhoneNumber').touched">
+                *Phone Number is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Business Name" formControlName="businessName" type="text">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('businessName').invalid && applicationForm.get('businessName').touched">
+                *Business Name is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Name" formControlName="applicantAccountName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantAccountName').invalid && applicationForm.get('applicantAccountName').touched">
+                *Account Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Number" formControlName="applicantAccountNumber" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('applicantAccountNumber').invalid && applicationForm.get('applicantAccountNumber').touched">
+                *Account Number is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bank" formControlName="issuingBank" type="text">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('issuingBank').invalid && applicationForm.get('issuingBank').touched">
+                *Issuing Bank Name is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="SWIFT Code" formControlName="issuingSwiftCode" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('issuingSwiftCode').invalid && applicationForm.get('issuingSwiftCode').touched">
+                *Issuing Swift Code is required</small>
+            </div>
+            <div>
+              <label for="Applicant Identification Document">Upload Applicant's ID/Passport:</label>
+              <input type="file" id="identificationDocument" name="applicantIdentificationDocument">
+            </div>
+            <div>
+              <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+            </div>
+
+          </div>
+        </mat-step>
+
+        <!--Step 2: Beneficiary Details-->
+        <mat-step label="Beneficiary Details">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="First Name" formControlName="beneficiaryFirstName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryFirstName'). invalid && applicationForm.get('beneficiaryFirstName').touched">
+                *Beneficiary First Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Middle Name" formControlName="beneficiaryMiddleName" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Last Name" formControlName="beneficiaryLastName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryLastName'). invalid && applicationForm.get('beneficiaryLastName').touched">
+                *Beneficiary Last Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Address" formControlName="beneficiaryAddress" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryAddress'). invalid && applicationForm.get('beneficiaryAddress').touched">
+                *Beneficiary Address is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Email" formControlName="beneficiaryEmail" type="email">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryEmail'). invalid && applicationForm.get('beneficiaryEmail').touched">
+                *Beneficiary Email is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Phone Number" formControlName="beneficiaryPhoneNumber" type="tel">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryPhoneNumber'). invalid && applicationForm.get('beneficiaryPhoneNumber').touched">
+                *Beneficiary Phone Number is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Name" formControlName="beneficiaryAccountName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryAccountName'). invalid && applicationForm.get('beneficiaryAccountName').touched">
+                *Beneficiary Account Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Number" formControlName="beneficiaryAccountNumber" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryAccountNumber'). invalid && applicationForm.get('beneficiaryAccountNumber').touched">
+                *Beneficiary Account Number is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bank Name" formControlName="beneficiaryBank" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryBank'). invalid && applicationForm.get('beneficiaryBank').touched">
+                *Beneficiary Bank Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="SWIFT Code" formControlName="beneficiarySwiftCode" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiarySwiftCode'). invalid && applicationForm.get('beneficiarySwiftCode').touched">
+                *Swift Code is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="City" formControlName="beneficiaryCity" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('beneficiaryCity'). invalid && applicationForm.get('beneficiaryCity').touched">
+                *Beneficiary City is required</small>
+            </div>
+            <div>
+              <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+              <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+            </div>
+          </div>
+        </mat-step>
+
+
+        <!-- Step 3: Guarantee Details -->
+        <mat-step label="Guarantee Details">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Guarantee Type" formControlName="bgType" type="text">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('bgType'). invalid && applicationForm.get('bgType').touched">
+                *BC Type is required</small>
+              </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Issue Date" formControlName="issueDate" type="date">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('issueDate'). invalid && applicationForm.get('issueDate').touched">
+                *Issue Date is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Expiry Date" formControlName="expiryDate" type="date">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('expiryDate'). invalid && applicationForm.get('expiryDate').touched">
+                *Expiry Date is required</small>
+            </div>
+
+        
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Amount" formControlName="amount" type="number">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('amount'). invalid && applicationForm.get('amount').touched">
+                *Amount is mandatory</small>
+            </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Amount Code" formControlName="amountCode" type="text">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('amountCode'). invalid && applicationForm.get('amountCode').touched">
+                *Amount Code is mandatory</small>
+            </div>
+            <div>
+              <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+              <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <!--Step 4: Goods and Shipment Details Details-->
+        <mat-step label=" Goods and Shipment Details">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Goods Description" formControlName="goodsDescription" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('goodsDescription'). invalid && applicationForm.get('goodsDescription').touched">
+                *Goods Description is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Quantity" formControlName="quantityValue" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('quantityValue'). invalid && applicationForm.get('quantityValue').touched">
+                *Quantity Value is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Amount" formControlName="amountID" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('amountID'). invalid && applicationForm.get('amountID').touched">
+                *Total Amount is required</small>
+            </div>
+
+            <br>
+         
+            <br>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Country of Origin" formControlName="countryName" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('countryName'). invalid && applicationForm.get('countryName').touched">
+                *Country Name is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Port of Loading" formControlName="portLoading" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('portLoading'). invalid && applicationForm.get('portLoading').touched">
+                *Port of Loading is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Port of Discharge" formControlName="portDischarge" type="text">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('portDischarge'). invalid && applicationForm.get('portDischarge').touched">
+                *Port of Discharge is required</small>
+            </div>
+
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Shipment Date" formControlName="shipmentDate" type="date">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('shipmentDate'). invalid && applicationForm.get('shipmentDate').touched">
+                *Shipment Date is required</small>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Bill of Lading/Airway Bill no" formControlName="billOfLading" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('billOfLading'). invalid && applicationForm.get('billOfLading').touched">
+                *Bill no is required</small>
+            </div>
+            
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Invoice no" formControlName="invoiceNo" type="number">
+              </mat-form-field>
+              <small
+                *ngIf="applicationForm.get('invoiceNo'). invalid && applicationForm.get('invoiceNo').touched">
+                *Invoice no is required</small>
+            </div>
+            <div>
+              <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+              <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+            </div>
+          </div>
+ </mat-step>
+
+<!-- step 5:security Details -->
+
+<mat-step label=" Security Details">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+      
+      <mat-form-field class="full-width" appearance=" ">
+        <input matInput placeholder="" formControlName="quantityValue" type="number">
+        <mat-radio-button style="display: flex;margin: 10px;flex-direction: row;">Pre-approved bank facility</mat-radio-button>
+        <mat-radio-button style="display: flex;margin: 10px; flex-direction: row;">Unsecured Bid Bond</mat-radio-button>
+        <mat-radio-button style="display: flex;margin: 10px; flex-direction: row;" >Cash Covered</mat-radio-button>
+      </mat-form-field>
+       </div>
+
+       <p>Cash cover Details: </p>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Charge Account" formControlName="chargeAccount" type="">
+      </mat-form-field>
+      <small
+        *ngIf="applicationForm.get('chargeAccount'). invalid && applicationForm.get('chargeAccount').touched">
+        *Charge Account is required</small>
+    </div>
+
+
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Currency" formControlName="currencyID" type="number">
+      </mat-form-field>
+      <small
+        *ngIf="applicationForm.get('currencyID'). invalid && applicationForm.get('currencyID').touched">
+        *Currency is required</small>
+    </div>
+    
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Amount" formControlName="amountValue" type="number">
+      </mat-form-field>
+      <small
+        *ngIf="applicationForm.get('amountValue'). invalid && applicationForm.get('amountValue').touched">
+        *Amount is required</small>
+    </div>
+
+    <div>
+      <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+      <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+    </div>
+  </div>
+</mat-step>
+
+
+
+        <!-- Step 6: Document Upload Section -->
+        <mat-step label="Document Upload Section">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Letter of Resolution" formControlName="resolution" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="resolutionNumberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Commercial Invoice">Upload Resolution:</label>
+                <input type="file" id="Resolution" name="resolutionFile">
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput placeholder="Bill of Lading" formControlName="billOfLading" type="text">
+                </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+                </mat-form-field>
+              </div>
+
+
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Bill of Lading">Upload Bill of Lading :</label>
+                <input type="file" id="billOfLading" name="billOfLadingFile">
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Application Form" formControlName="applicationForm" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                <div>
+                  <label for="Application Form">Upload Application Form :</label>
+                  <input type="file" id="applicationForm" name="applicationFormFile">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Invoice" formControlName="invoiceDoc" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="insuranceCertificate" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Invoice">Upload Invoice:</label>
+                <input type="file" id="invoice" name="invoiceFile">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Credit Appraisal" formControlName="creditAppraisal"
+                  type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="transportDocuments" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Credit Appraisal">Upload Credit Appraisal:</label>
+                <input type="file" id="creditAppraisal" name="creditAppraisalFile">
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Guide of Required Guarantee" formControlName="requiredGuarantee" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Number of Copies" formControlName="numberOfCopies" type="number">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Document Description" formControlName="documentDescription" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <div>
+                <label for="Guide of Required Guaranntee">Upload Guide of Required Guarantee:</label>
+                <input type="file" id="requiredGuarantee" name="requiredGuaranteeFile">
+              </div>
+            </div>
+          </div>
+              <div>
+            <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+            <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
+          </div>
+        </mat-step>
+        <!-- Step 7: Preview and Submit -->
+        <mat-step label="Preview and Submit"> <div>
+            <h3>Preview</h3>
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                <button mat-raised-button type="submit" style="margin: 5px;border-radius: 5px;background-color: white;">Submit</button>
+
+                <button mat-raised-button type="reset" color="warn" style="margin: 5px;border-radius: 5px;background-color: red;">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
+          </div>
+
+        </mat-step>
+
+      </form>
+    </mat-horizontal-stepper>
+
+  </div>
+</section>

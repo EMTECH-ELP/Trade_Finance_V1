@@ -16,10 +16,10 @@ export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private lcService: LcService) { }
- 
+
 
   ngOnInit() {
-    
+
     this.applicationForm = this.fb.group({
       applicantFirstName: ['', Validators.required],
       applicantMiddleName: [''],
@@ -75,7 +75,7 @@ export class CreateComponent implements OnInit {
       documentName1: ['', Validators.required],
       documentDescription1: ['', Validators.required]
     });
-  
+
   }
 
   onSubmit() {
@@ -88,7 +88,7 @@ export class CreateComponent implements OnInit {
       error: ((err) => {
         console.error(err)
       }),
-       complete: (() => {})
+      complete: (() => { })
     })
   }
 }
