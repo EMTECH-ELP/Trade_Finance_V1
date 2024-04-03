@@ -12,7 +12,7 @@ export const environment = {
 
   // baseUrl: "http://127.0.0.1:9090",
 
-  apiUrl: 'http://192.168.88.114:8085'
+  apiUrl: 'http://192.168.88.63:8085'
   
   
 };

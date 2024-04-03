@@ -2,6 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DocumentaryCollectionsRoutingModule } from './documentary-collections-routing.module';
+<<<<<<< HEAD
+import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
+
+
+@NgModule({
+  declarations: [
+    DeleteDcComponent
+  ],
+  imports: [
+    CommonModule,
+    DocumentaryCollectionsRoutingModule
+  ]
+=======
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { ComponentsModule } from "../shared/components/components.module";
@@ -32,5 +45,6 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatPaginatorModule,
         MatStepperModule
     ]
+>>>>>>> 95206ed3ffb0e06b912b33e95092991b58ba6946
 })
 export class DocumentaryCollectionsModule { }

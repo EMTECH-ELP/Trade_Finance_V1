@@ -2,6 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { InvoiceDiscountingRoutingModule } from './invoice-discounting-routing.module';
+<<<<<<< HEAD
+import { ModifyInvoiceComponent } from './components/modify-invoice/modify-invoice.component';
+
+
+@NgModule({
+  declarations: [
+    ModifyInvoiceComponent
+  ],
+  imports: [
+    CommonModule,
+    InvoiceDiscountingRoutingModule
+  ]
+=======
 import { CreateInvoiceComponent } from './components/create-invoice/create-invoice.component';
 import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -33,5 +46,6 @@ import { MatStepperModule } from '@angular/material/stepper';
         ComponentsModule,
         MatStepperModule
     ]
+>>>>>>> 95206ed3ffb0e06b912b33e95092991b58ba6946
 })
 export class InvoiceDiscountingModule { }
