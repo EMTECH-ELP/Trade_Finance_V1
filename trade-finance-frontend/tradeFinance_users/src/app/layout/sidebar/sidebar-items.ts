@@ -161,9 +161,9 @@ export const AdminModule: RouteInfo[] = [
   //     submenu: [],
   // },
 
-  //Maker sidebar items
+                  //Maker sidebar items
   {
-    path: "/maker/dashboard/analytics",
+    path: "/maker/dashboard/pages",   //Maker & checker share the same dashboard
     title: "Dashboard",
     moduleName: "dashboard",
     iconType: "feather",
