@@ -127,6 +127,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   privileges: any[] = [];
+  
 
   ngOnInit() {
 

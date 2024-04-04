@@ -1,0 +1,33 @@
+name: Sync to Organization Repo EMTECH
+
+on:
+ schedule:
+    - cron: '37 17 * * 3' # test run for today 17.32
+
+jobs:
+ sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: 'emtech-repo/trade-finance'
+          token: ${{ secrets.ORG_REPO_ACCESS_TOKEN }}
+          path: 'trade-finance'
+
+      - name: Checkout repo for Trade Finance
+        uses: actions/checkout@v2
+        with:
+          repository: 'FaithAdhiambo456/TradeFinance'
+          token: ${{ secrets.INDIVIDUAL_REPO_ACCESS_TOKEN }}
+          path: 'Trade Finance'
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.ORG_REPO_ACCESS_TOKEN }}
+          commit-message: 'Sync changes from Trade Finance'
+          title: 'Weekly sync from Trade Finance'
+          body: 'Automatically synced changes from repo.'
+          branch: 'sync-branch'
+          delete-branch: true
