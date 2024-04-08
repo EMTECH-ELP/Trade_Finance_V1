@@ -25,29 +25,25 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     DeleteBgComponent,
     CreateBgComponent,
         ViewBgComponent
-  ],
-  imports: [
-    CommonModule,
-    BankGuaranteeRoutingModule,
-    CommonModule,
-    BankGuaranteeRoutingModule,
-    ComponentsModule,
-    MatStepperModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatRadioModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatMenuModule,
-    MatTableModule,
-    MatTableExporterModule,
-    FormsModule
-  ]
-
-
-
+    ],
+    imports: [
+        CommonModule,
+        BankGuaranteeRoutingModule,
+        ComponentsModule,
+        MatStepperModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatRadioModule,
+        MatIconModule,
+        MatPaginatorModule,
+        MatMenuModule,
+        MatTableModule,
+        MatTableExporterModule,
+        FormsModule
+        
+    ]
 })
 export class BankGuaranteeModule { }
