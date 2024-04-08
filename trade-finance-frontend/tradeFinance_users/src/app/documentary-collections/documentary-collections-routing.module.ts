@@ -4,8 +4,8 @@ import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 
 const routes: Routes = [
-  {path:'viewDc',component:ViewDcComponent},
-  {path:'createDc',component:CreateDcComponent}
+  {path:"viewDc",component:ViewDcComponent},
+  {path:"createDc",component:CreateDcComponent}
 ];
 
 @NgModule({
