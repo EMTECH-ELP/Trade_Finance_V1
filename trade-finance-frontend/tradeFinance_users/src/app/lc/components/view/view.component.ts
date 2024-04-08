@@ -9,6 +9,8 @@ import { TestComponent } from '../../test/test.component';
 import { LcService } from '../../services/lc.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
+
+
 interface LetterOfCredit {
   name: string;
   employeeId: string;
@@ -24,6 +26,9 @@ interface LetterOfCredit {
   styleUrls: ['./view.component.sass']
 })
 export class ViewComponent implements OnInit {
+       
+
+
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
   totalCreatedLetters = 0;
@@ -48,8 +53,16 @@ export class ViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getLCs();
+    // this.loadtotalCreatedLetters();
+    // this.getLCs();
   }
+
+  // loadtotalCreatedLetters(){
+  //   this.lcService.gettotalCreatedLetters().subscribe((data: any[]) => {
+  //     this.dataSource = new MatTableDataSource(data);
+  //     this.isLoading = false;
+  //   });
+  // }
 
   public getLCs() {
     this.lcService.getAllLCs().subscribe({

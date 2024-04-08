@@ -178,7 +178,7 @@ export const AdminModule: RouteInfo[] = [
 //   },
 // ]  
 
-  //Maker sidebar items
+                 //Maker sidebar items
   {
     path: "/maker/dashboard/analytics",
     title: "Dashboard",
@@ -221,7 +221,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "/bills/viewbill",
         title: "Bills",
         moduleName: "bills",
         iconType: "feather",
@@ -235,7 +235,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "/bank-guarantee/viewbg",
         title: "Bank Guarantee",
         moduleName: "bank guarantee",
         iconType: "feather",
@@ -249,7 +249,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "/documentary-collections/viewDc",
         title: "Documentary collection",
         moduleName: "documentary collection",
         iconType: "feather",
@@ -263,7 +263,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/maker/dashboard",
+        path: "/invoice-discounting/viewInvoice",
         title: "Invoice Discounting",
         moduleName: "invoice discounting",
         iconType: "feather",
