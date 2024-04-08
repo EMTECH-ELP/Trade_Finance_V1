@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BankGuaranteeRoutingModule } from './bank-guarantee-routing.module';
+import { DeleteBgComponent } from './components/delete-bg/delete-bg.component';
 import { CreateBgComponent } from './components/create-bg/create-bg.component';
 import { ComponentsModule } from "../shared/components/components.module";
 import {MatStepperModule} from '@angular/material/stepper';
@@ -20,8 +21,9 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 
 
 @NgModule({
-    declarations: [
-        CreateBgComponent,
+  declarations: [
+    DeleteBgComponent,
+    CreateBgComponent,
         ViewBgComponent
     ],
     imports: [

@@ -7,8 +7,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LcService {
-
+  
+  
+  
   constructor(private httpClient: HttpClient) { }
+
+
 
   public createLc(lcData: any): Observable<any>{
     const url = `${environment.apiUrl}/api/v1/LC/create`;
