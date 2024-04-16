@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DocumentaryCollectionsRoutingModule } from './documentary-collections-routing.module';
+import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { ComponentsModule } from "../shared/components/components.module";
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatTableModule } from '@angular/material/table';
@@ -21,6 +22,7 @@ import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/htt
     declarations: [
         CreateDcComponent,
         ViewDcComponent,
+        DeleteDcComponent,
         
     ],
     imports: [
@@ -41,6 +43,9 @@ import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/htt
 
         
        
-    ]
+    ],
+
+  
+  
 })
 export class DocumentaryCollectionsModule { }

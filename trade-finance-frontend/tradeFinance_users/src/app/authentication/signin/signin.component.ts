@@ -40,6 +40,7 @@ export class SigninComponent
     private tokenCookieService: TokenCookieService,
     private dialog: MatDialog,
     private snackbar: SnackbarService
+   
   ) {
     super();
     this.router.onSameUrlNavigation = "reload";
@@ -65,6 +66,10 @@ export class SigninComponent
       this.error = "Username or Password not valid !";
       return;
     } else {
+
+      // this.authService.login(this.authForm.value).subscribe({
+      //   next: (res) => {
+      //     console.log("res: ", this.authForm.value);
 
       this.authService.login().subscribe({
         next: (res) => {
