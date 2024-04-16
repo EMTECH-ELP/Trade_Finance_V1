@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DocumentaryCollectionsRoutingModule } from './documentary-collections-routing.module';
-import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { ComponentsModule } from "../shared/components/components.module";
@@ -15,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/http";
+import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
 
 
 
