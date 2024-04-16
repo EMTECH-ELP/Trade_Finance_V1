@@ -60,19 +60,23 @@ export class AuthService {
     );
   }
   
+
+// Uncomment the code below when consuming endpoints. Then comment out the above,from login to catch error
+  
   // login(data: any): Observable<any> {
-    // let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/signin`;
-    // return this.http
-    //   .post(CREATE_URL, data, {
-    //     observe: "response",
-    //     headers: this.headers,
-    //     withCredentials: true,
-    //   })
-    //   .pipe(
-    //     map((res) => {
-    //       return res || {};
-    //     })
-    //   );
+  //   let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/signin`;
+  //   return this.http
+  //     .post(CREATE_URL, data, {
+  //       observe: "response",
+  //       headers: this.headers,
+  //       withCredentials: true,
+  //     })
+  //     .pipe(
+  //       map((res) => {
+
+  //         return res || {};
+  //       })
+  //     );
   // }
 
   verifyOTP(params: any): Observable<any> {
