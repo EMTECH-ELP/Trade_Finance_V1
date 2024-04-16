@@ -180,7 +180,7 @@ export const AdminModule: RouteInfo[] = [
 
                  //Maker sidebar items
   {
-    path: "/maker/dashboard/analytics",
+    path: "/checker/dashboard/analytics",        // Temporarily used for the maker's dashboard.
     title: "Dashboard",
     moduleName: "dashboard",
     iconType: "feather",
