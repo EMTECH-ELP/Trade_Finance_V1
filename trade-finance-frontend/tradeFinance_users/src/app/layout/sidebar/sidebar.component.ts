@@ -182,8 +182,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
       }
 
       this.sidebarItems = AdminModule.filter((x) => x.role.indexOf(this.userRole) !== -1);
-      if (this.userRole === Role.Superuser) {
-        this.userType = Role.Superuser;
+      if (this.userRole === Role.User) {
+        this.userType = Role.User;
       }
     }
 

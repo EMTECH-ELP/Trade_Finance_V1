@@ -2,14 +2,25 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
+      <app-breadcrumb [title]="'Bills'" [items]="['Home']" [active_item]="'New Bills'">
       </app-breadcrumb>
     </div>
 
     <mat-horizontal-stepper linear>
       <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
-        <!-- Step 1: Applicant Details -->
-        <mat-step label="Applicant details">
-          <div class="row">
-
+        <mat-step label="Applicants Details">
+          <mat-label>Account Number</mat-label>
+            <input matInput placeholder="Account Number"type="text" formControlName="accountNumber">
+            <mat-form-field>
+              <input matInput placeholder="Input">
+            </mat-form-field>
             
+        
+        
+        
+        
+          </mat-step>
+      </form>
+    </mat-horizontal-stepper>
+  </div>
+</section>

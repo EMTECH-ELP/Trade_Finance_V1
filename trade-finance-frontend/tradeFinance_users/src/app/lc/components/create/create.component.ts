@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LcService } from '../../services/lc.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
 
 
 @Component({
@@ -9,27 +11,49 @@ import { LcService } from '../../services/lc.service';
   styleUrls: ['./create.component.sass']
 })
 export class CreateComponent implements OnInit {
+  ShowLookupComponent: boolean = false;
   selectedValue: string;
   applicationForm: FormGroup;
+  // dialog: any;
+  router: any;
 
   constructor(private fb: FormBuilder,
-    private lcService: LcService) { }
+    private lcService: LcService,
+    private dialog: MatDialog
+    // private lookupDialog: MatDialogRef<LookupComponent>
+  ) { }
+
+
+  // public lookup(row){
+  //   const dialogConfig = new MatDialogConfig()
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true
+  //   dialogConfig.width = '600px'
+  //   dialogConfig.data = { rowData: row }
+
+  //   const dialogRef = this.dialog.open (LookupComponent, dialogConfig)
+  //   dialogRef.afterClosed().subscribe((result)=>{
+  //     console.log('closed');
+
+  //   })
+  // }
 
 
   ngOnInit() {
 
     this.applicationForm = this.fb.group({
-      applicantFirstName: ['', Validators.required],
-      applicantMiddleName: [''],
-      applicantLastName: ['', Validators.required],
-      applicantAddress: ['', Validators.required],
-      applicantEmail: ['', [Validators.required, Validators.email]],
-      applicantPhoneNumber: ['', Validators.required],
-      businessName: ['', Validators.required],
-      applicantAccountName: ['', Validators.required],
-      applicantAccountNumber: ['', Validators.required],
-      issuingBank: ['', Validators.required],
-      issuingSwiftCode: ['', Validators.required],
+      accountNumber: ['', Validators.required],
+      cifId: ['', Validators.required],
+      nationalId: ['', Validators.required],
+      accountName: ['', Validators.required],
+      currency: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      country: ['', Validators.required],
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
@@ -42,7 +66,6 @@ export class CreateComponent implements OnInit {
       beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
       lcType: ['', Validators.required],
-      subType: ['', Validators.required],
       applicableRules: ['', Validators.required],
       isExpired: ['', Validators.required],
       shipmentDate: ['', Validators.required],
@@ -70,16 +93,13 @@ export class CreateComponent implements OnInit {
       guarantorAddress: ['', Validators.required],
       guarantorEmail: ['', Validators.required],
       guarantorPhoneNumber: ['', Validators.required],
-      billOfLading: ['', Validators.required],
-      numberOfCopies: ['', Validators.required],
-      signed: ['', Validators.required],
-      documentDescription: ['', Validators.required]
+      documentName1: ['', Validators.required],
+      documentDescription1: ['', Validators.required]
     });
 
   }
 
-  public onSubmit() {
-
+  onSubmit() {
     console.log("Form data", this.applicationForm.value);
     this.lcService.createLc(this.applicationForm.value).subscribe({
       next: ((response) => {
@@ -87,9 +107,21 @@ export class CreateComponent implements OnInit {
         console.log("Lc create response", response);
       }),
       error: ((err) => {
-
+        console.error(err)
       }),
       complete: (() => { })
     })
+    alert('Form Submitted Successfully!')
   }
+  openLookup(): void {
+    // Create a MatDialogConfig object
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '500px';
+    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+  
+    // Open the LookupComponent dialog with the dialog config
+    const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
+  }
+  
+
 }

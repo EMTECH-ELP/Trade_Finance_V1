@@ -12,7 +12,7 @@ export class CreateBgComponent implements OnInit {
   applicationForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-) { }
+  ) { }
 
 
   ngOnInit() {
@@ -29,6 +29,8 @@ export class CreateBgComponent implements OnInit {
       applicantAccountNumber: ['', Validators.required],
       issuingBank: ['', Validators.required],
       issuingSwiftCode: ['', Validators.required],
+
+      //  step 2: beneficiary details
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
@@ -40,37 +42,35 @@ export class CreateBgComponent implements OnInit {
       beneficiaryBank: ['', Validators.required],
       beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
-      lcType: ['', Validators.required],
-      subType: ['', Validators.required],
-      applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      shipmentDate: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
-      portOfLoading: ['', Validators.required],
-      shipmentTerms: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      transShipment: ['', Validators.required],
+
+      // step 3: Guarantee Details
+      bgType: ['', Validators.required],
       issueDate: ['', Validators.required],
       expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
-      transferable: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
-      chargesBorneBy: ['', Validators.required],
       amount: ['', Validators.required],
       amountCode: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
+
+      // step 4:Goods and shipment details
+      goodsDescription: ['', Validators.required],
+      quantityValue: ['', Validators.required],
+      amountID: ['', Validators.required],
+      countryName: ['', Validators.required],
+      portLoading: ['', Validators.required],
+      portDischarge: ['', Validators.required],
+      shipmentDate: ['', Validators.required],
       billOfLading: ['', Validators.required],
-      numberOfCopies: ['', Validators.required],
+      invoiceNo: ['', Validators.required],
+
+      // step 5:Security Details
+      chargeAccount: ['', Validators.required],
+      amountValue: ['', Validators.required],
+      currencyID: ['', Validators.required],
+
+// step 6:Document upload details
+
+
+
+
       signed: ['', Validators.required],
       documentDescription: ['', Validators.required]
     });

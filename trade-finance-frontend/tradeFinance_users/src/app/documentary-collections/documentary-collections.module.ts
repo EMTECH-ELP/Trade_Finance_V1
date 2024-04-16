@@ -5,7 +5,7 @@ import { DocumentaryCollectionsRoutingModule } from './documentary-collections-r
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { ComponentsModule } from "../shared/components/components.module";
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatTableModule } from '@angular/material/table';
