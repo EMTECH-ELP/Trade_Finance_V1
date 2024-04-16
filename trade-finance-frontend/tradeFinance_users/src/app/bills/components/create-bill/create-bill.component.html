@@ -1,14 +1,15 @@
 <section class="content">
-    <div class="content-block">
-      <div class="block-header">
-        <!-- breadcrumb -->
-        <app-breadcrumb [title]="'Bills'" [items]="['Home']" [active_item]="'New Bills'">
-        </app-breadcrumb>
-      </div>
-  
-      <mat-horizontal-stepper linear>
-        <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
-</form>
-       </mat-horizontal-stepper>
-        </div>
-            </section>
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
+      </app-breadcrumb>
+    </div>
+
+    <mat-horizontal-stepper linear>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
+        <!-- Step 1: Applicant Details -->
+        <mat-step label="Applicant details">
+          <div class="row">
+
+            

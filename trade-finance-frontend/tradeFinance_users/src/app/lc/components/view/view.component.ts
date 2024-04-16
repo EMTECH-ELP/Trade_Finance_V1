@@ -115,7 +115,7 @@ export class ViewComponent implements OnInit {
   }
 
   public verify() {
-
+    this.router.navigate(['/lc/lcApproval'])
 
   }
 }
