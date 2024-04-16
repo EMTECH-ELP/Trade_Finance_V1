@@ -5,6 +5,7 @@
 $MaterialIcons_FontPath: "~material-icons-font/fonts";
 @import "~material-icons-font/sass/main";
 @import "~material-icons-font/sass/Regular";
+@import "~@angular/material/theming";
 
 
 
@@ -219,5 +220,102 @@ $remark-text-color: #757575; // Grey for remark text
 
 .mat-button {
   margin-right: 8px !important;
+  
+}
+//my doumentary collection styling
+
+.draftDC{
+  background-color: maroon;
+  color: white;
+  border-radius: 5px;
+  margin-left: 300px;
+  padding: 2px 25px;
+  border: none;
+  
+  
 }
 
+.previousDC{
+  background-color: maroon;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 25px;
+  border: none;
+}
+
+.nextDC{
+  background-color: maroon;
+  color: white;
+  border-radius: 5px;
+  margin-left: 700px;
+  padding: 2px 25px;
+  border: none;
+}
+
+
+
+.form-containerDC {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-groupDc {
+  display: inline-block;
+    width: calc(33.33% - 20px); /* Adjust width for 3 elements per row with margins */
+    margin-right: 20px; /* Adjust spacing between elements */
+    margin-bottom: 20px; /* Adjust vertical spacing */
+    box-sizing: border-box;
+    vertical-align: top; /* Align elements to the top */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Adjust spacing between label and input */
+}
+input[type="text"],
+input[type="email"],
+input[ type="tel"],
+input[ type="date"],
+select,
+
+textarea {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.DC{
+  color: maroon;
+}
+
+
+#searchIcon {
+  background-color: transparent; /* Remove background color */
+  color: maroon; /* Set icon color to maroon */
+  border: none; /* Remove border */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+
+
+.buttonSearch-container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Add space between buttons */
+}
+
+.buttonSearch {
+  flex: 1; /* Each button takes equal space */
+  margin-right: 8px; /* Add margin between buttons */
+  min-width: 100px; /* Set a minimum width for the buttons */
+  background-color: maroon; /* Set the background color */
+  color: white; /* Set the text color */
+  border: none; /* Remove the border */
+  border-radius: 5px; /* Remove border radius */
+}
+
+.buttonSearch:last-child {
+  margin-right: 0; /* Remove margin for the last button */
+}
