@@ -37,6 +37,7 @@ import { MainDashboardComponent } from "./layout/app-layout/main-dashboard/main-
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 
 import { MatCardModule } from '@angular/material/card';
+import { LookupComponent } from "./lookups/lookup/lookup.component";
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -63,6 +64,7 @@ export function createTranslateLoader(http: HttpClient): any {
     AuthLayoutComponent,
     MainLayoutComponent,
     MainDashboardComponent,
+    LookupComponent
     
 
   ],
