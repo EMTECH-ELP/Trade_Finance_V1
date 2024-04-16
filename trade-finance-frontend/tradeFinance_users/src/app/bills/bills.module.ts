@@ -13,6 +13,7 @@ import { ComponentsModule } from "../shared/components/components.module";
 import { FormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         ComponentsModule,
         FormsModule,
         MatStepperModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule
     ]
 })
 export class BillsModule { }

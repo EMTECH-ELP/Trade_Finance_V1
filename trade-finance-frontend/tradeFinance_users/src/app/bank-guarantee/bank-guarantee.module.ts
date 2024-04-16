@@ -2,19 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BankGuaranteeRoutingModule } from './bank-guarantee-routing.module';
-<<<<<<< HEAD
-import { DeleteBgComponent } from './components/delete-bg/delete-bg.component';
-
-
-@NgModule({
-  declarations: [
-    DeleteBgComponent
-  ],
-  imports: [
-    CommonModule,
-    BankGuaranteeRoutingModule
-  ]
-=======
 import { CreateBgComponent } from './components/create-bg/create-bg.component';
 import { ComponentsModule } from "../shared/components/components.module";
 import {MatStepperModule} from '@angular/material/stepper';
@@ -56,6 +43,5 @@ import { MatTableExporterModule } from 'mat-table-exporter';
         FormsModule
         
     ]
->>>>>>> 95206ed3ffb0e06b912b33e95092991b58ba6946
 })
 export class BankGuaranteeModule { }

@@ -19,4 +19,9 @@ export class LcService {
     const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
     return this.httpClient.get<any>(url);
   }
+  public getFormDetailsByAccountNumber(accountNumber: string): Observable<any> {
+    const url = `${environment.getApiUrl}/api/account/account-details`; // Using environment.getApiUrl for GET
+    return this.httpClient.get<any>(url);
+  }
+  
 }
