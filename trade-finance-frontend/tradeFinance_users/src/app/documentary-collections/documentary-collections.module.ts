@@ -12,12 +12,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/http";
+
 
 
 @NgModule({
     declarations: [
         CreateDcComponent,
-        ViewDcComponent
+        ViewDcComponent,
+        
     ],
     imports: [
         CommonModule,
@@ -30,7 +34,13 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatTableModule,
         MatMenuModule,
         MatPaginatorModule,
-        MatStepperModule
+        MatStepperModule,
+        MatFormFieldModule,
+        HttpClientModule,
+        
+
+        
+       
     ]
 })
 export class DocumentaryCollectionsModule { }

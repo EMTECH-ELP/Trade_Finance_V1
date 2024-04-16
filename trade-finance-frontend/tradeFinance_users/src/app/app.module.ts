@@ -35,6 +35,10 @@ import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { environment } from "src/environments/environment.prod";
 import { MainDashboardComponent } from "./layout/app-layout/main-dashboard/main-dashboard.component";
 import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { MatFormField } from "@angular/material/form-field";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatStepperModule } from '@angular/material/stepper'; // Import MatStepperModule
+
 
 import { MatCardModule } from '@angular/material/card';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -64,9 +68,11 @@ export function createTranslateLoader(http: HttpClient): any {
     MainLayoutComponent,
     MainDashboardComponent,
     
+    
 
   ],
   imports: [
+    MatAutocompleteModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

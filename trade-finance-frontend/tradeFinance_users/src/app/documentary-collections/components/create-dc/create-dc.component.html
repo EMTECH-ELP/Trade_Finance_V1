@@ -1,15 +1,456 @@
 <section class="content">
-    <div class="content-block">
-      <div class="block-header">
-        <!-- breadcrumb -->
-        <app-breadcrumb [title]="'Documentary Collections'" [items]="['Home']" [active_item]="'New DC'">
-        </app-breadcrumb>
-      </div>
-  
-      <mat-horizontal-stepper linear>
-        <form [formGroup]="applicationForm" (ngSubmit)="onSubmit">
-</form>
-       </mat-horizontal-stepper>
-        </div>
-            </section>
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Documentary Collections'" [items]="['Home']" [active_item]="'New DC'">
+      </app-breadcrumb>
+    </div>
+    
 
+<div class="form-containerDC">
+  <form [formGroup]="dcForm" (ngSubmit)="submitForm()">
+    <mat-horizontal-stepper linear>
+      <mat-step label="Applicant Details">
+        
+          <p class="DC">Applicant Details</p>
+
+  
+          
+    <div class="form-rowDC"> 
+            <div class="form-groupDc">
+              <label for="custAccountNumber"> Account Number:</label>
+              <input type="text" id="custAccountNumber" formControlName="custAccountNumber" [value]="dcForm.get('custAccountNumber').value">
+              <button mat-icon-button (click)="onSearchIconClick()" id="searchIcon">
+                <mat-icon>search</mat-icon>
+              </button>
+             
+            </div> 
+
+
+         <div class="form-groupDc">
+          <label for="custAccountName"> Account Name:</label>
+          <input type="text" id="custAccountName" formControlName="custAccountName" [value]="dcForm.get('custAccountName').value">
+         </div>
+
+         
+         <div class="form-groupDc">
+          <label for="currency"> Account Balance:</label>
+          <input type="text" id="custBalance" formControlName="custBalance" [value]="dcForm.get('custBalance').value">
+        </div>
+
+  </div>   
+  
+ 
+
+
+  <div class="form-rowDC">
+          <div class="form-groupDc">  
+            <label for="custAddress">Physical Address:</label>
+            <input type="text" id="custAddress" formControlName="custAddress" [value]="dcForm.get('custAddress').value">
+          </div> 
+
+
+          <div class="form-groupDc">
+            <label for="custEmail">Email:</label>
+            <input type="email" id="custEmail" formControlName="custEmail" [value]="dcForm.get('custEmail').value">
+          </div> 
+
+
+
+         <div class="form-groupDc">
+            <label for="custPhone">Phone Number:</label>
+            <input type="tel" id="custPhone" formControlName="custPhone" [value]="dcForm.get('custPhone').value">
+         </div>
+
+ </div>
+
+
+
+
+          
+
+  <div class="form-rowDC">           
+         <div class="form-groupDc">
+           <label for="custBranch"> Equity Branch:</label>
+           <input type="text" id="custBranch" formControlName="custBranch" [value]="dcForm.get('custBranch').value">
+          </div>
+
+
+          
+</div>
+
+
+   
+        
+
+
+        <div>
+            <button class="previousDC">Cancel</button>
+            <button class="nextDC" mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+      
+
+
+        <mat-step label="Beneficiary Details">         
+           <p class="DC">Beneficiary Details</p>
+
+   <div class="form-rowDC">
+          <div class="form-groupDc">
+           <label for="benFirstName">First Name:</label>
+           <input type="text" id="benFirstName" formControlName="benFirstName">
+          </div>
+         
+
+
+          <div class="form-groupDc">
+           <label for="benMiddleName">Middle Name:</label>
+           <input type="text" id="benMiddleName" formControlName="benMiddleName">
+          </div>
+         
+         
+          <div class="form-groupDc">
+           <label for="benLastName">Last Name:</label>
+           <input type="text" id="benLastName" formControlName="benLastName">
+          </div>
+</div>    
+             
+<div class="form-rowDC">
+          <div class="form-groupDc">
+           <label for="benAddress">Physical Address:</label>
+           <input type="text" id="benAddress" formControlName="benAddress">
+          </div>
+
+
+          <div class="form-groupDc">
+           <label for="benEmail">Email:</label>
+           <input type="email" id="benEmail" formControlName="benEmail">
+          </div>
+
+          <div class="form-groupDc">
+           <label for="benPhone">Phone Number:</label>
+           <input type="tel" id="benPhone" formControlName="benPhone">
+          </div>
+</div>
+
+
+
+
+           
+
+         <p class="DC">Beneficiary Account Details</p>
+          
+<div class="form-rowDC">
+  
+        <div class="form-groupDc">
+         <label for="benBank"> Beneficiary Bank:</label>
+         <input type="text" id="benBank" formControlName="benBank">
+        </div>
+
+      
+        <div class="form-groupDc">
+         <label for="benBankCode"> Beneficiary Bank Code:</label>
+         <input type="text" id="benBankCode" formControlName="benBankCode">
+        </div>
+
+
+        <div class="form-groupDc">
+         <label for="benBankSwift"> Beneficiary Bank Swift Code:</label>
+         <input type="text" id="benBankSwift" formControlName="benBankSwift">
+        </div>
+</div>
+
+<div class="form-rowDC">
+
+        <div class="form-groupDc">
+          <label for="benCity"> City:</label>
+          <input type="text" id="benCity" formControlName="benCity">
+        </div>
+
+        <div class="form-groupDc">
+          <label for="benCountry"> Country:</label>
+          <select id="benCountry" formControlName="benCountry">
+           <option value="Kenya">Kenya</option>
+           <option value="China">China</option>
+           <option value="USA">USA</option>
+         </select>
+       </div>
+
+        <div class="form-groupDc">
+          <label for="benAddress"> Physical Address:</label>
+          <input type="text" id="benAddress" formControlName="benAddress">
+        </div>
+
+</div>
+
+<div class="form-rowDC">
+
+        <div class="form-groupDc">
+          <label for="benAccountName"> Account Name:</label>
+          <input type="text" id="benAccountName" formControlName="benAccountName">
+        </div>
+
+        <div class="form-groupDc">
+          <label for="benAccountNumber"> Account Number:</label>
+          <input type="text" id="benAccountNumber" formControlName="benAccountNumber">
+        </div>
+
+        <div class="form-groupDc">  
+          <label for="currency"> Currency:</label>
+          <input type="text" id="currency" formControlName="benCurrency">
+        </div>
+ </div>
+
+
+          
+
+
+
+  
+
+
+           <div>
+            <button class="previousDC" mat-button matStepperPrevious>Previous</button>
+            <button class="nextDC" mat-button matStepperNext>Next</button>
+          </div>
+
+        </mat-step>
+
+
+
+
+        <mat-step label="Goods and Shipment Details">
+          <p class="DC">Goods and Shipment Details</p>
+
+ <div class="form-rowDC">
+
+       <div class="form-groupDc">
+          <label for="originCountry"> Country of Origin:</label>
+          <input type="text" id="originCountry" formControlName="originCountry">
+       </div>
+
+          
+       <div class="form-groupDc">
+          <label for="loadingPort"> Port of Loading:</label>
+          <input type="text" id="loadingPort" formControlName="loadingPort">
+        </div>
+
+        <div class="form-groupDc">
+          <label for="dischargePort"> Port of Discharge:</label>
+          <input type="text" id="dischargePort" formControlName="dischargePort">
+        </div>
+ </div>    
+
+ <div class="form-rowDC">
+
+        <div class="form-groupDc">
+           <label for="goodsDescription"> Goods Description:</label>
+           <input type="text" id="goodsDescription" formControlName="goodsDescription">
+        </div>
+
+        <div class="form-groupDc">
+           <label for="DCquantity"> Quantity:</label>
+          <input type="text" id="DCquantity" formControlName="DCquantity">
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="DCvalue"> Value:</label>
+          <input type="text" id="DCvalue" formControlName="DCvalue">
+        </div>
+ </div>
+
+        <div class="form-groupDc">
+          <label for="shipDateStart"> Date of Shipment:</label>
+          <input type="date" id="shipDateStart" formControlName="shipDateStart">
+
+
+          <label for="shipDateEnd"> Date of Arrival:</label>
+          <input type="date" id="shipDateEnd" formControlName="shipDateEnd">
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="DCbillOfLading"> Bill of Lading No:</label>
+          <input type="text" id="DCbillOfLading" formControlName="DCbillOfLading">
+        </div>
+
+
+
+        <div class="form-groupDc">
+          <label for="DCinvoice"> Invoice No:</label>
+          <input type="text" id="DCinvoice" formControlName="DCinvoice">
+        </div>
+
+
+
+
+<div class="form-rowDC">
+          
+
+          
+ </div>
+
+
+         
+
+
+         
+
+ 
+ 
+
+          
+
+
+
+          <div>
+            <button class="previousDC" mat-button matStepperPrevious>Previous</button>
+            <button class="nextDC" mat-button matStepperNext>Next</button>
+          </div>
+
+        </mat-step>
+
+
+
+
+        <mat-step label="Documentary Collection Details">
+          <p class="DC">Documentary Collection Details</p>
+
+        <div class="form-groupDc">
+           <label for="dcType"> Documentery Collection type:</label>
+           <select id="dcType" formControlName="dcType">
+            <option value="select">Select</option>
+            <option value="sight">Sight Documentary Collection</option>
+            <option value="time">Time Documentary Collection</option>
+            <option value="partial">Sight Documentary Collection (partial payment)</option>
+          </select>
+        </div>
+
+
+        <div class="form-groupDc">
+           <label for="totPayableAmount"> Total Amount Payable:</label>
+           <input type="text" id="totPayableAmount" formControlName="totPayableAmount">
+        </div>
+
+
+        <div class="form-groupDc">
+           <label for="chargeAccount"> Charge Account:</label>
+           <input type="text" id="chargeAccount" formControlName="chargeAccount">
+        </div>
+
+
+        <div class="form-groupDc">
+           <label for="curr"> Currency:</label>
+           <input type="text" id="payableAmount" formControlName="payableAmount">
+        </div>
+
+        <div class="form-groupDc">
+           <label for="payingAmount"> Amount to Pay:</label>
+           <input type="text" id="payingAmount" formControlName="payingAmount">
+        </div>
+ 
+          
+        
+           
+    
+          <div>
+            <button class="previousDC" mat-button matStepperPrevious>Previous</button>
+            <button class="nextDC" mat-button matStepperNext>Next</button>
+          </div>
+
+        </mat-step>
+
+
+
+        
+
+        <mat-step label="Supporting Documents">
+          <p class="DC">Supporting Documents</p>
+        
+
+        <div class="form-groupDc">
+          <label for="invoiceDocument"> Upload Invoice:</label>
+          <input type="file" id="invoiceDocument" formControlName="invoices[]" multiple>
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="packingList">Upload Packing List:</label>
+          <input type="file" id="packingList" formControlName="packingList[]" multiple>
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="billOfLading">Upload Bill of Lading:</label>
+          <input type="file" id="billOfLading" formControlName="billOfLading[]" multiple>
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="billOfExchange">Upload Bill of Exchange:</label>
+          <input type="file" id="billOfExchange" formControlName="billOfExchange[]" multiple>
+        </div>
+
+
+
+        <div class="form-groupDc">
+          <label for="insuranceCertificate">Upload Insurance Cerificate:</label>
+          <input type="file" id="insuranceCertificate" formControlName="insuranceCertificate[]" multiple>
+        </div>
+
+        <div class="form-groupDc">
+          <label for="inspectionCertificate">Upload Inspection Certificate:</label>
+          <input type="file" id="inspectionCertificate" formControlName="insuranceCertificate[]" multiple>
+        </div>
+
+
+        <div class="form-groupDc">
+          <label for="originCert">Upload Insurance Cerificate:</label>
+          <input type="file" id="originCert" formControlName="originCert[]" multiple>
+        </div>
+
+
+          <div>
+            <button class="previousDC" mat-button matStepperPrevious>Previous</button>
+            <button class="previewDC" mat-button matStepperNext>Preview</button>
+          </div>
+
+        </mat-step>
+
+
+
+
+        <mat-step label="Preview Documentary Collection">         
+           <p>Preview Documentary Collection</p>
+
+           <div id="preview">
+            <script>
+            </script>
+            </div>
+            
+
+           <div>
+            <button mat-button (click)="cancelPreview()">Edit</button>
+            <button mat-button (click)="saveAsDraft()">Save as Draft</button>
+            <button mat-button color="primary" (click)="submitForm()">Submit</button>
+         </div>
+          
+         <div *ngIf="isPreviewMode">
+          <p>Loading preview...</p> <!-- Optionally, you can show a loading indicator -->
+        </div>
+
+        </mat-step>
+
+
+
+
+
+
+
+        
+      </mat-horizontal-stepper>
+    </form>
+</div>
+  </div>
+</section>
