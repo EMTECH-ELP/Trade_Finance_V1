@@ -72,37 +72,48 @@
                     #exporter="matTableExporter">
     
                     <!-- ID Column -->
+                   
                     <ng-container matColumnDef="no">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
                         class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
-                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                        {{ row.no }}; let i = index" class="psl-3 tbl-col-width-per-10">{{i +
+                      <mat-cell *matCellDef="let element;  let i = index" class="psl-3 tbl-col-width-per-10">{{i +
                         1}}</mat-cell>
                     </ng-container>
     
+<!--     <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
+                        {{ row.no }}; let i = index" class="psl-3 tbl-col-width-per-10">{{i +
+                        1}}</mat-cell> -->
+
                     <ng-container matColumnDef="letterOfCreditNumber">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Letter of Credit Number</mat-header-cell>
-                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                        {{row.letterOfCreditNumber }}</mat-cell>
+                      <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">LC No.</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-10">
+                        {{ row.letterOfCreditNumber}}</mat-cell>
                     </ng-container>
     
-                    <ng-container matColumnDef="applicantAccountNumber">
+                    <ng-container matColumnDef="applicantAccountName">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
-                        class="psl-3 tbl-col-width-per-40">Applicant Account Number</mat-header-cell>
-                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                        {{row.applicantAccountNumber}}</mat-cell>
+                        class="psl-4 tbl-col-width-per-40">Applicant Account Name</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                        {{ row.applicantAccountName}}</mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="beneficiaryAccountNumber">
+                    <ng-container matColumnDef="applicantAccountNumber">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
-                        class="psl-3 tbl-col-width-per-40">Beneficiary Account Number</mat-header-cell>
-                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                        {{ row.beneficiaryAccountNumber}}</mat-cell>
+                        class="psl-4 tbl-col-width-per-50">Applicant Account Number</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
+                        {{ row.applicantAccountNumber}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-40">Status</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                        {{ row.status}}</mat-cell>
                     </ng-container>
     
                     <ng-container matColumnDef="actions">
                       <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
-                      <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-30"
+                      <mat-cell *matCellDef="let row; let i=index;" 
                         (click)="onSelect(row)">
 
                         <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="OpenDcComponent(row)"
@@ -122,8 +133,9 @@
                        
 
                         <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                          (click)="verify(row)"  class="tbl-action-btn">
-                          <app-feather-icons [icon]="'move'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                          (click)="transfer(row)"  class="tbl-action-btn">
+                          <mat-icon>swap_horiz</mat-icon>
+
                         </button>
 
                       </mat-cell>

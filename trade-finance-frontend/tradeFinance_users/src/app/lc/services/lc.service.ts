@@ -19,8 +19,12 @@ export class LcService {
     return this.httpClient.post<any>(url, lcData);
   }
 
-  public getAllLCs(): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
+  // public getAllLCs(): Observable<any>{
+  //   const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
+  //   return this.httpClient.get<any>(url);
+  // }
+  public transferLc(): Observable<any>{
+    const url = `${environment.apiUrl}/api/v1/LC/transfer`;  //To confirm & replace
     return this.httpClient.get<any>(url);
   }
 }
