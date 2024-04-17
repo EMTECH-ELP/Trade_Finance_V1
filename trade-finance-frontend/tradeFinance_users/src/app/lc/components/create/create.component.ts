@@ -24,20 +24,6 @@ export class CreateComponent implements OnInit {
   ) { }
 
 
-  // public lookup(row){
-  //   const dialogConfig = new MatDialogConfig()
-  //   dialogConfig.disableClose = true
-  //   dialogConfig.autoFocus = true
-  //   dialogConfig.width = '600px'
-  //   dialogConfig.data = { rowData: row }
-
-  //   const dialogRef = this.dialog.open (LookupComponent, dialogConfig)
-  //   dialogRef.afterClosed().subscribe((result)=>{
-  //     console.log('closed');
-
-  //   })
-  // }
-
 
   ngOnInit() {
 
@@ -54,17 +40,27 @@ export class CreateComponent implements OnInit {
       postalCode: ['', Validators.required],
       countryCode: ['', Validators.required],
       country: ['', Validators.required],
+
+      //Step2: Beneficiary details
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
       beneficiaryAddress: ['', Validators.required],
       beneficiaryEmail: ['', [Validators.required, Validators.email]],
-      beneficiaryPhoneNumber: ['', Validators.required],
+      beneficiaryIban: ['', Validators.required],
+      beneficiaryAddressLine1: ['', Validators.required],
+      beneficiaryBankAddressLine2: [''],
+      beneficiaryPostalCode: ['', Validators.required],
+      beneficiaryCountryCode: ['', Validators.required],
+      beneficiaryCountry: ['', Validators.required],
+      advisingBankName: ['', Validators.required],
+      advisingBankCountry: ['', Validators.required],
+      advisingBankBic: ['', Validators.required],     //For SWIFT CODE
       beneficiaryAccountName: ['', Validators.required],
       beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryBank: ['', Validators.required],
-      beneficiarySwiftCode: ['', Validators.required],
+      beneficiaryPhoneNumber: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
+    //Step 3: LC details      
       lcType: ['', Validators.required],
       applicableRules: ['', Validators.required],
       isExpired: ['', Validators.required],
@@ -85,7 +81,7 @@ export class CreateComponent implements OnInit {
       countyOfOrigin: ['', Validators.required],
       chargesBorneBy: ['', Validators.required],
       amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
+      currencyCode: ['', Validators.required],
       collateralType: ['', Validators.required],
       collateralId: ['', Validators.required],
       collateralValue: ['', Validators.required],
@@ -111,6 +107,8 @@ export class CreateComponent implements OnInit {
       }),
       complete: (() => { })
     })
+    this.applicationForm.reset()
+    this.ngOnInit()
     alert('Form Submitted Successfully!')
   }
   openLookup(): void {
@@ -121,7 +119,34 @@ export class CreateComponent implements OnInit {
   
     // Open the LookupComponent dialog with the dialog config
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe({
+      next: (res: any) => {
+        console.log("received data", res),
+
+        console.log("passed email", res.data[0].email)
+        
+        this.patchApplicationForm(res.data[0])
+      }
+    })
   }
+
+  public patchApplicationForm(data: any): void {
+    this.applicationForm.patchValue({
+    accountNumber: data.accountNumber,
+    cifId: data.cifId,
+    nationalId: data.nationalId,
+    accountName: data.accountName,
+    currency: data.currency,
+    email: data.email,
+    phoneNumber: data.phoneNumber,
+    address: data.address,
+    city: data.city,
+    postalCode: data.postalCode,
+    countryCode: data.countryCode ? data.countryCode : 'NAN', 
+    country: data.country
+ });
+}
   
 
 }
