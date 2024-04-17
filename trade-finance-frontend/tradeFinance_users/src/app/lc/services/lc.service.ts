@@ -7,29 +7,21 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LcService {
-  
-  
-  
+  applicationForm: any;
+  searchForm: any;
+  accountNumber: any;
+  dialogRef: any;
+
   constructor(private httpClient: HttpClient) { }
-
-
 
   public createLc(lcData: any): Observable<any>{
     const url = `${environment.apiUrl}/api/v1/LC/create`;
     return this.httpClient.post<any>(url, lcData);
   }
 
-  // public getAllLCs(): Observable<any>{
-  //   const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
-  //   return this.httpClient.get<any>(url);
-  // }
   public transferLc(): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/transfer`;  //To confirm & replace
-    return this.httpClient.get<any>(url);
-  }
-  public getFormDetailsByAccountNumber(accountNumber: string): Observable<any> {
-    const url = `${environment.getApiUrl}/api/account/account-details`; // Using environment.getApiUrl for GET
+    const url = `${environment.apiUrl}/api/v1/LC/transfer`;
     return this.httpClient.get<any>(url);
   }
   
-}
+ }
