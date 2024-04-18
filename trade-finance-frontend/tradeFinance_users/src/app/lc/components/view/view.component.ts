@@ -148,7 +148,7 @@ selectedStatus: any;
   }
 
   public verify() {
-
+    this.router.navigate(['/lc/lcApproval'])
 
   }
  public transfer(row){
