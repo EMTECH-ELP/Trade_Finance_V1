@@ -1,67 +1,8 @@
-// import { Component, OnInit } from '@angular/core';
-// import { LcService } from '../../services/lc.service';
-// import { FormBuilder, FormGroup } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-modify',
-//   templateUrl: './modify.component.html',
-//   styleUrls: ['./modify.component.scss']
-// })
-
-
-// export class ModifyComponent implements OnInit {
-
-
-//   searchForm: FormGroup;
-//   searchByOptions = ['ID', 'Email', 'firstname', 'Businessname', 'account no'];
-//   selectedSearchBy: string = 'ID';
-//   searchTerm: string = '';
-//   searchResults: any[] = [];
-
-//   constructor(private LcService: LcService,
-//     private formBuilder: FormBuilder) { }
-
-//   ngOnInit(): void {
-
-//     this.searchForm = this.formBuilder.group({
-
-//     });
-//   }
-
-//   search(): void {
-
-//   }
-
-//   onsubmit() { }
-
-//   onModify() { }
-
-//   Modify(result: any): void {
-//     // Implement modify functionality here
-//   }
-// }
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { LcService } from '../../services/lc.service';
-
-
-// @Component({
-//   selector: 'app-create',
-//   templateUrl: './create.component.html',
-//   styleUrls: ['./create.component.sass']
-// })
-// export class CreateComponent implements OnInit 
-
-
-
 
 import { Component, OnInit } from '@angular/core';
 import { LcService } from '../../services/lc.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify',
@@ -70,21 +11,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 
-export class ModifyComponent implements OnInit
-
-
-{
-
-
+export class ModifyComponent implements OnInit {
+  searchOption: any;
+  searchTerm: any;
   selectedValue: string;
   applicationForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-    private lcService: LcService) { }
- 
 
-  ngOnInit() {
-    
+  searchQuery: string = '';
+  formData: any = {
+    lcno: '',
+    cif: '',
+    accountno: ''}
+searchForm: any;
+searchResults: any;
+
+   modifies(){
+      // this will updates the database on the changes made/modified
+  
+  }
+
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private lcService: LcService) { }
+
+
+  ngOnInit(): void {
+
     this.applicationForm = this.fb.group({
       applicantFirstName: ['', Validators.required],
       applicantMiddleName: [''],
@@ -142,21 +95,36 @@ export class ModifyComponent implements OnInit
       signed: ['', Validators.required],
       documentDescription: ['', Validators.required]
     });
-  
+
   }
 
-  public  onSubmit() {
 
-    console.log("Form data", this.applicationForm.value);
-    this.lcService.createLc(this.applicationForm.value).subscribe({
-      next: ((response) => {
-
-        console.log("Lc create response", response);
-      }),
-      error: ((err) => {
-
-      }),
-       complete: (() => {})
-    })
+  handleSearchClick() {
+    this.router.navigate(["/create"])
+    // throw new Error('Method not implemented.');
   }
+
+
+
+
+  public onSubmit() {
+
+  console.log("Form data", this.applicationForm.value);
+  this.lcService.createLc(this.applicationForm.value).subscribe({
+    next: ((response) => {
+
+      console.log("Lc create response", response);
+    }),
+    error: ((err) => {
+
+    }),
+    complete: (() => { })
+  })
 }
+
+}
+
+
+
+
+
