@@ -14,12 +14,14 @@ import { FormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RecoveryComponent } from './components/recovery/recovery.component';
 
 
 @NgModule({
     declarations: [
         CreateBillComponent,
-        ViewBillComponent
+        ViewBillComponent,
+        RecoveryComponent
     ],
     imports: [
         CommonModule,
