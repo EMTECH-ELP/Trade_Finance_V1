@@ -41,10 +41,10 @@ export class ViewBillComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getLCs();
+    this.getBills();
   }
 
-  public getLCs() {}
+  public getBills() {}
    
  
 
