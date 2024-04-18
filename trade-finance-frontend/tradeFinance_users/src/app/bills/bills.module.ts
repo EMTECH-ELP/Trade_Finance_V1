@@ -10,7 +10,6 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ComponentsModule } from "../shared/components/components.module";
-
 import {MatStepperModule} from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,9 +19,9 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
-        CreateBillComponent,
-        ViewBillComponent
-    ], 
+
+
+  ], 
     imports: [
         MatFormFieldModule,
         MatOptionModule,

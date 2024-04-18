@@ -5,19 +5,25 @@ import { DocumentaryCollectionsRoutingModule } from './documentary-collections-r
 import { CreateDcComponent } from './components/create-dc/create-dc.component';
 import { ViewDcComponent } from './components/view-dc/view-dc.component';
 import { ComponentsModule } from "../shared/components/components.module";
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/http";
+import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
+
 
 
 @NgModule({
     declarations: [
         CreateDcComponent,
-        ViewDcComponent
+        ViewDcComponent,
+        DeleteDcComponent,
+        
     ],
     imports: [
         CommonModule,
@@ -30,7 +36,16 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatTableModule,
         MatMenuModule,
         MatPaginatorModule,
-        MatStepperModule
-    ]
+        MatStepperModule,
+        MatFormFieldModule,
+        HttpClientModule,
+        
+
+        
+       
+    ],
+
+  
+  
 })
 export class DocumentaryCollectionsModule { }

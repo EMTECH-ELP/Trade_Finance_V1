@@ -40,6 +40,7 @@ export class SigninComponent
     private tokenCookieService: TokenCookieService,
     private dialog: MatDialog,
     private snackbar: SnackbarService
+   
   ) {
     super();
     this.router.onSameUrlNavigation = "reload";
@@ -66,6 +67,10 @@ export class SigninComponent
       return;
     } else {
 
+      // this.authService.login(this.authForm.value).subscribe({
+      //   next: (res) => {
+      //     console.log("res: ", this.authForm.value);
+
       this.authService.login().subscribe({
         next: (res) => {
           console.log("res: ", res.body);
@@ -79,7 +84,7 @@ export class SigninComponent
               res.body.message
             );
             console.log("User", this.tokenCookieService.getUser());
-            this.router.navigate(["/authentication/OTP"]);
+            this.router.navigate(["/checker/dashboard/analytics"]);
           } else {
             this.snackbar.showNotification("snackbar-danger", res.body.message);
           }

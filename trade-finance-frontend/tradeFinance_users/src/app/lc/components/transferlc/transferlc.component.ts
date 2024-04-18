@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { LcService } from '../../services/lc.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transferlc',
@@ -15,8 +16,11 @@ export class TransferlcComponent implements OnInit {
 
   
   transferForm!: FormGroup;
+  lcService: any;
  
-  constructor(private fb: FormBuilder){};
+ 
+  constructor(private fb: FormBuilder,
+    private router: Router,){};
 
   ngOnInit(): void {
     this.transferForm = this.fb.group({
@@ -42,7 +46,24 @@ export class TransferlcComponent implements OnInit {
 
 
   }
-  OnSubmit() {
+
+  onCancel(){
+    this.router.navigate(["/lc/view"])
+  }
+
+    onSubmit() {
+      console.log("Form data", this.transferForm.value);
+      this.lcService.transferlc(this.transferForm.value).subscribe({
+        next: ((response) => {
+  
+          console.log("Lc transfer response", response);
+        }),
+        error: ((err) => {
+          console.error(err)
+        }),
+        complete: (() => { })
+      })
+    }
     // console.log(this.transferForm);
     // this._transferService.transfer(this.transferForm.value)
     // .subscribe(
@@ -53,7 +74,7 @@ export class TransferlcComponent implements OnInit {
   }
 
 
-}
+
 // if (this.reactiveForm.valid) {
 //   const formData = this.reactiveForm.value;
 //   this.dataService.submitFormData(formData).subscribe(
