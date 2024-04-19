@@ -42,6 +42,8 @@ import { MatStepperModule } from '@angular/material/stepper'; // Import MatStepp
 
 import { MatCardModule } from '@angular/material/card';
 import { LookupComponent } from "./lookups/lookup/lookup.component";
+
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -82,6 +84,7 @@ export function createTranslateLoader(http: HttpClient): any {
     PerfectScrollbarModule,
     ClickOutsideModule,
     FormsModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

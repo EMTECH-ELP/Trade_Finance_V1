@@ -15,14 +15,18 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {HttpClientModule,HTTP_INTERCEPTORS,HttpClient} from "@angular/common/http";
 import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
+import { MaterialModule } from '../shared/material.module';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+
 
 
 
 @NgModule({
     declarations: [
-        CreateDcComponent,
         ViewDcComponent,
         DeleteDcComponent,
+        CreateDcComponent
         
     ],
     imports: [
@@ -39,6 +43,10 @@ import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
         MatStepperModule,
         MatFormFieldModule,
         HttpClientModule,
+        MaterialModule,
+        MatOptionModule,
+        MatSelectModule,
+        
         
 
         
