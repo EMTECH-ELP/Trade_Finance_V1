@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BankGuaranteeService } from '../../services/bank-guarantee.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
 
 @Component({
   selector: 'app-create-bg',
@@ -12,23 +15,27 @@ export class CreateBgComponent implements OnInit {
   applicationForm: FormGroup;
 
   constructor(private fb: FormBuilder,
+    private bgService: BankGuaranteeService,
+    private dialog: MatDialog
   ) { }
 
 
   ngOnInit() {
 
     this.applicationForm = this.fb.group({
-      applicantFirstName: ['', Validators.required],
-      applicantMiddleName: [''],
-      applicantLastName: ['', Validators.required],
-      applicantAddress: ['', Validators.required],
-      applicantEmail: ['', [Validators.required, Validators.email]],
-      applicantPhoneNumber: ['', Validators.required],
-      businessName: ['', Validators.required],
-      applicantAccountName: ['', Validators.required],
-      applicantAccountNumber: ['', Validators.required],
-      issuingBank: ['', Validators.required],
-      issuingSwiftCode: ['', Validators.required],
+      //Step1: Applicants details
+      accountNumber: ['', Validators.required],
+      cifId: ['', Validators.required],
+      nationalId: ['', Validators.required],
+      accountName: ['', Validators.required],
+      currency: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      city: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      country: ['', Validators.required],
 
       //  step 2: beneficiary details
       beneficiaryFirstName: ['', Validators.required],
@@ -44,13 +51,48 @@ export class CreateBgComponent implements OnInit {
       beneficiaryCity: ['', Validators.required],
 
       // step 3: Guarantee Details
-      bgType: ['', Validators.required],
-      issueDate: ['', Validators.required],
+      type: ['', Validators.required],
+      guaranteeType: ['', Validators.required],
+      purpose: ['', Validators.required],
+      additionalInformation: [''],
+      bankId: ['', Validators.required],
+      guaranteeAmount: ['', Validators.required],
+      guaranteeCurrency: ['', Validators.required],
+      currencyRate: ['', Validators.required],
       expiryDate: ['', Validators.required],
-      amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
-
-      // step 4:Goods and shipment details
+      validityPeriod: ['', Validators.required],
+      maxClaimPeriod: ['', Validators.required],
+      applicableRules: ['', Validators.required],
+      counterGuaranteeStatus: ['', Validators.required],
+      guaranteeStatus: ['', Validators.required],
+      chargesBorneBy: ['', Validators.required],
+      provisionAmount: ['', Validators.required],
+      //Step 4: Counter Guarantee Details
+      guaranteeNo: [''],
+      counterGuaranteeAmount: [''],
+      counterGuaranteeExpiryDate: [''],
+      claimExpiryDate: [''],
+      swiftCode: [''],
+      branchCode: [''],
+      remarks: [''],
+      counteGuaranteeStatus: [''],
+      //Step 5: Margin Details
+      marginType: ['', Validators.required],
+      marginAccount: ['', Validators.required],
+      collectedMarginRate: ['', Validators.required],
+      marginAmount: ['', Validators.required],
+      collectedMarginAmount: ['', Validators.required],
+      releasedMarginAmount: ['', Validators.required],
+      //Step 6: Security Details
+      securityType: ['', Validators.required],
+      securityAmount: ['', Validators.required],
+      securityCurrency: ['', Validators.required ],
+      chargeAccount: ['', Validators.required ],
+      description: ['', Validators.required],
+      issuer: ['', Validators.required],
+      maturityDate: ['', Validators.required],
+      securityRating: ['', Validators.required],
+      // step 7:Goods and shipment details
       goodsDescription: ['', Validators.required],
       quantityValue: ['', Validators.required],
       amountID: ['', Validators.required],
@@ -60,24 +102,28 @@ export class CreateBgComponent implements OnInit {
       shipmentDate: ['', Validators.required],
       billOfLading: ['', Validators.required],
       invoiceNo: ['', Validators.required],
-
-      // step 5:Security Details
-      chargeAccount: ['', Validators.required],
-      amountValue: ['', Validators.required],
-      currencyID: ['', Validators.required],
-
-// step 6:Document upload details
+ 
+      // step 8:Document upload details
+      letterOfResolution: [''],
+      documentDescription1: ['',]
 
 
 
-
-      signed: ['', Validators.required],
-      documentDescription: ['', Validators.required]
+      
     });
 
   }
 
   public onSubmit() {
 
+  }
+  openLookup(): void {
+    // Create a MatDialogConfig object
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '500px';
+    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+
+    // Open the LookupComponent dialog with the dialog config
+    const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
   }
 }

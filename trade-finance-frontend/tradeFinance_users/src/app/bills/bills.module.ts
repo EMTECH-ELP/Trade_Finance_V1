@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BillsRoutingModule } from './bills-routing.module';
 import { CreateBillComponent } from './components/create-bill/create-bill.component';
 import { ViewBillComponent } from './components/view-bill/view-bill.component';
@@ -10,18 +10,21 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ComponentsModule } from "../shared/components/components.module";
-import { FormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
-        CreateBillComponent,
-        ViewBillComponent
-    ],
+
+
+  ], 
     imports: [
+        MatFormFieldModule,
+        MatOptionModule,
         CommonModule,
         BillsRoutingModule,
         MatIconModule,
@@ -31,9 +34,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatPaginatorModule,
         ComponentsModule,
         FormsModule,
-        MatStepperModule,
         ReactiveFormsModule,
-        MatFormFieldModule
+        MatSelectModule,
+        MatStepperModule
     ]
 })
 export class BillsModule { }

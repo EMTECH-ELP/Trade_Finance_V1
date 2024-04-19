@@ -207,7 +207,7 @@ export const AdminModule: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/lc/view",
+        path: "/lc/modify",
         title: "Letter of Credit",
         moduleName: "letter of credit",
         iconType: "feather",
@@ -220,6 +220,7 @@ export const AdminModule: RouteInfo[] = [
         // privilege: ["All Roles"],
         submenu: [],
       },
+
       {
         path: "/bills/viewbill",
         title: "Bills",
