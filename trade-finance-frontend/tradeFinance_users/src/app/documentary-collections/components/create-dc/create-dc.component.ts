@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {HttpClient} from "@angular/common/http";
-import { MatDialog } from '@angular/material/dialog';
+//import {HttpClient} from "@angular/common/http";
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DcServiceService } from '../../dc-service.service';
+import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
+
+
 
 
 
@@ -14,153 +17,117 @@ import { DcServiceService } from '../../dc-service.service';
   providers: [ DcServiceService ],
 })
 export class CreateDcComponent implements OnInit {
-  dcForm: FormGroup;
-  isPreviewMode: boolean = false;
+  ShowLookupComponent: boolean = false;
+  selectedValue: string;
+  applicationForm: FormGroup;
+  // dialog: any;
+  router: any;
 
-  constructor(private fb: FormBuilder, private http: HttpClient,private dialog: MatDialog,private dcService: DcServiceService) {}
-
-  ngOnInit(): void {
-    this.initForm(); // Initialize dcForm property in ngOnInit()
-  }
-
-  initForm(): void {
-    // Initialize dcForm using FormBuilder
-    this.dcForm = this.fb.group({
-      documentaryCollectionDetails: this.fb.group({
-        // Defined form controls and nested form groups 
-        dcType: ['select', Validators.required],
-        
-      }),
-      // Defined top-level form controls 
-      custAccountNumber: ['', Validators.required],
-    custAccountName: ['', Validators.required],
-    custBalance: ['', Validators.required],
-    custAddress: ['', Validators.required],
-    custEmail: ['', [Validators.required, Validators.email]],
-    custPhone: ['', Validators.required],
-    custBranch: ['', Validators.required],
-    benFirstName: [''],
-    benMiddleName: [''],
-    benLastName: [''],
-    benAddress: ['', Validators.required],
-    benEmail: ['', [Validators.required, Validators.email]],
-    benPhone: ['', Validators.required],
-    benBank: ['', Validators.required],
-    benBankCode: ['', Validators.required],
-    benBankSwift: ['', Validators.required],
-    benCity: ['', Validators.required],
-    benCountry: ['', Validators.required],
-    benAccountName: ['', Validators.required],
-    benAccountNumber: ['', Validators.required],
-    benCurrency: ['', Validators.required],
-    originCountry:['', Validators.required],
-    loadingPort:['', Validators.required],
-    dischargePort:['', Validators.required],
-    goodsDescription:['', Validators.required],
-    DCquantity:['', Validators.required],
-    DCvalue:['', Validators.required],
-    shipDateStart:['', Validators.required],
-    shipDateEnd:['', Validators.required],
-    DCbillOfLading:['', Validators.required],
-    DCinvoice:['', Validators.required],
-    totPayableAmount:['', Validators.required],
-    chargeAccount:['', Validators.required],
-    payableAmount:['', Validators.required],
-    payingAmount:['', Validators.required],
-    invoices: [[], [Validators.required]],
-    packingList: [[], Validators.required],
-    billOfLading: [[], Validators.required],
-    billOfExchange: [[], Validators.required],
-    insuranceCertificate: [[]],
-    inspectionCertificate: [[]],
-    originCert: [[], Validators.required]
+  constructor(private fb: FormBuilder,
+    private dcservice: DcServiceService,
+    private dialog: MatDialog
+    // private lookupDialog: MatDialogRef<LookupComponent>
+  ) { }
 
 
-    
+  // public lookup(row){
+  //   const dialogConfig = new MatDialogConfig()
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true
+  //   dialogConfig.width = '600px'
+  //   dialogConfig.data = { rowData: row }
+
+  //   const dialogRef = this.dialog.open (LookupComponent, dialogConfig)
+  //   dialogRef.afterClosed().subscribe((result)=>{
+  //     console.log('closed');
+
+  //   })
+  // }
+
+
+  ngOnInit() {
+
+    this.applicationForm = this.fb.group({
+      accountNumber: ['', Validators.required],
+      cifId: ['', Validators.required],
+      nationalId: ['', Validators.required],
+      accountName: ['', Validators.required],
+      currency: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      country: ['', Validators.required],
+      beneficiaryFirstName: ['', Validators.required],
+      beneficiaryMiddleName: [''],
+      beneficiaryLastName: ['', Validators.required],
+      beneficiaryAddress: ['', Validators.required],
+      beneficiaryEmail: ['', [Validators.required, Validators.email]],
+      beneficiaryPhoneNumber: ['', Validators.required],
+      beneficiaryAccountName: ['', Validators.required],
+      beneficiaryAccountNumber: ['', Validators.required],
+      beneficiaryBank: ['', Validators.required],
+      beneficiarySwiftCode: ['', Validators.required],
+      beneficiaryCity: ['', Validators.required],
+      lcType: ['', Validators.required],
+      applicableRules: ['', Validators.required],
+      isExpired: ['', Validators.required],
+      shipmentDate: ['', Validators.required],
+      portOfDischarge: ['', Validators.required],
+      portOfLoading: ['', Validators.required],
+      shipmentTerms: ['', Validators.required],
+      partialShipment: ['', Validators.required],
+      transShipment: ['', Validators.required],
+      issueDate: ['', Validators.required],
+      expiryDate: ['', Validators.required],
+      usance: ['', Validators.required],
+      transferable: ['', Validators.required],
+      negotiationPeriod: ['', Validators.required],
+      commodityCode: ['', Validators.required],
+      goodsQuantity: ['', Validators.required],
+      pricePerUnit: ['', Validators.required],
+      countyOfOrigin: ['', Validators.required],
+      chargesBorneBy: ['', Validators.required],
+      amount: ['', Validators.required],
+      amountCode: ['', Validators.required],
+      collateralType: ['', Validators.required],
+      collateralId: ['', Validators.required],
+      collateralValue: ['', Validators.required],
+      guarantorName: ['', Validators.required],
+      guarantorAddress: ['', Validators.required],
+      guarantorEmail: ['', Validators.required],
+      guarantorPhoneNumber: ['', Validators.required],
+      documentName1: ['', Validators.required],
+      documentDescription1: ['', Validators.required]
     });
+
   }
 
+  onSubmit() {
+    console.log("Form data", this.applicationForm.value);
+    this.dcservice.createDc(this.applicationForm.value).subscribe({
+      next: ((response) => {
+
+        console.log("dc create response", response);
+      }),
+      error: ((err) => {
+        console.error(err)
+      }),
+      complete: (() => { })
+    })
+    alert('Form Submitted Successfully!')
+  }
+  openLookup(): void {
+    // Create a MatDialogConfig object
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '500px';
+    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+  
+    // Open the LookupComponent dialog with the dialog config
+    const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
+  }
   
 
-  
-
-
-
-  
-  onSearchIconClick() {
-    const accountNumber = this.dcForm.get('custAccountNumber').value;
-    if (accountNumber) {
-      // Make API call to fetch customer details
-      this.dcService.getCustomerDetails(accountNumber).subscribe(
-        (data: any) => {
-          // Update form controls with fetched data
-          this.dcForm.patchValue({
-            custAccountName: data.accountName,
-            custBalance: data.balance,
-            custAddress:data.address,
-            custEmail:data.email,
-            custPhone:data.phoneNumber,
-            custBranch:data.branch,
-
-            // Update other form controls similarly
-          });
-        },
-        (error) => {
-          console.error('Error fetching customer details:', error);
-        }
-      );
-    } else {
-      console.error('Account number is required.');
-      alert ('Account number is required.');
-    }
-  }
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-  onSubmit(): void {
-   // Handle form submission
-   if (this.dcForm.valid) {
-    // Show preview mode
-    this.isPreviewMode = true;
-  } 
-  else {
-    // Form is invalid, show error message or prevent submission
-    console.log('Form is invalid');
-  }
-
-  }
-
-  cancelPreview(): void {
-    // Cancel preview mode
-    this.isPreviewMode = false;
-  }
-
-  saveAsDraft(): void {
-    // Save form data as draft
-    console.log('Form saved as draft');
-    console.log('Draft data:', this.dcForm.value);
-    this.isPreviewMode = false; // Exit preview mode after saving as draft
-  }
-
-  submitForm(): void {
-    // Send form data to the server
-    console.log('Form submitted successfully');
-    console.log('Form data:', this.dcForm.value);
-    this.isPreviewMode = false; // Exit preview mode after form submission
-    
-}
 }

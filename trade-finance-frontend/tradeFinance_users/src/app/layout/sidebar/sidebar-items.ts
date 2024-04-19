@@ -249,7 +249,7 @@ export const AdminModule: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/documentary-collections/viewDc",
+        path: "/documentary-collection/viewDc",
         title: "Documentary collection",
         moduleName: "documentary collection",
         iconType: "feather",
