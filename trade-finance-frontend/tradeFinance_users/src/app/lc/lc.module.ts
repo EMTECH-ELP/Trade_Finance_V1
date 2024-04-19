@@ -17,7 +17,7 @@ import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.
 import { CreateComponent } from './components/create/create.component';
 import { ModifyComponent } from './components/modify/modify.component';
 import { ViewComponent } from './components/view/view.component';
-
+import { MatOption } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -35,7 +35,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ModifyComponent,
     DeleteLcComponent,
     ViewComponent,
-    TestComponent
+    TestComponent,
+    VerifyLcComponent
   ],
   imports: [
     CommonModule,
@@ -67,4 +68,5 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class LcModule { }import { } from './components/create/create.component';
 import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TestComponent } from './test/test.component';
+import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-bill',
@@ -7,10 +6,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./create-bill.component.sass']
 })
 export class CreateBillComponent implements OnInit {
-
-  selectedValue: string;
-  applicationForm: FormGroup;
-onSubmit: any;
 
   constructor() { }
 
