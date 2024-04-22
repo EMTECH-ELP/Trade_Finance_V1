@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LcService } from '../../services/lc.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,13 @@ export class CreateComponent implements OnInit {
   selectedValue: string;
   applicationForm: FormGroup;
   // dialog: any;
-  router: any;
+ // router: any;
 
   constructor(private fb: FormBuilder,
     private lcService: LcService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
     // private lookupDialog: MatDialogRef<LookupComponent>
   ) { }
 
@@ -33,7 +36,7 @@ export class CreateComponent implements OnInit {
       nationalId: ['', Validators.required],
       accountName: ['', Validators.required],
       currency: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
@@ -45,25 +48,25 @@ export class CreateComponent implements OnInit {
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
+      beneficiaryAccountNumber: ['', Validators.required],
+      beneficiaryAccountName: ['', Validators.required],
       beneficiaryEmail: ['', [Validators.required, Validators.email]],
       beneficiaryIban: ['', Validators.required],
       beneficiaryAddressLine1: ['', Validators.required],
-      beneficiaryBankAddressLine2: [''],
+      beneficiaryAddressLine2: [''],
+      beneficiaryCity: ['', Validators.required],
       beneficiaryPostalCode: ['', Validators.required],
       beneficiaryCountryCode: ['', Validators.required],
       beneficiaryCountry: ['', Validators.required],
-      advisingBankName: ['', Validators.required],
-      advisingBankCountry: ['', Validators.required],
+      advisingBankName: [''],
+      advisingBankCountry: [''],
       advisingBankBic: ['', Validators.required],     //For SWIFT CODE
-      beneficiaryAccountName: ['', Validators.required],
-      beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryPhoneNumber: ['', Validators.required],
-      beneficiaryCity: ['', Validators.required],
-    //Step 3: LC details      
+      //beneficiaryPhoneNumber: ['', Validators.required],
+
+      //Step 3: LC details 
+      lcNumber: [''],
       lcType: ['', Validators.required],
       applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
       shipmentDate: ['', Validators.required],
       portOfDischarge: ['', Validators.required],
       portOfLoading: ['', Validators.required],
@@ -72,7 +75,7 @@ export class CreateComponent implements OnInit {
       transShipment: ['', Validators.required],
       issueDate: ['', Validators.required],
       expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
+      tenor: ['', Validators.required], 
       transferable: ['', Validators.required],
       negotiationPeriod: ['', Validators.required],
       commodityCode: ['', Validators.required],
@@ -81,15 +84,18 @@ export class CreateComponent implements OnInit {
       countyOfOrigin: ['', Validators.required],
       chargesBorneBy: ['', Validators.required],
       amount: ['', Validators.required],
+      transferAmount: [''],
+      transferCurrencyCode: [''],
+      newExpiryDate: [''],
       currencyCode: ['', Validators.required],
       collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
+      collateralId: ['',],
       collateralValue: ['', Validators.required],
       guarantorName: ['', Validators.required],
       guarantorAddress: ['', Validators.required],
       guarantorEmail: ['', Validators.required],
       guarantorPhoneNumber: ['', Validators.required],
-      documentName1: ['', Validators.required],
+      documentName1: ['', Validators.required],                   //one to nine
       documentDescription1: ['', Validators.required]
     });
 
@@ -110,13 +116,14 @@ export class CreateComponent implements OnInit {
     this.applicationForm.reset()
     this.ngOnInit()
     alert('Form Submitted Successfully!')
+    this.router.navigate(["/lc/view"]);
   }
   openLookup(): void {
     // Create a MatDialogConfig object
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
     dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
-  
+
     // Open the LookupComponent dialog with the dialog config
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
 
@@ -124,8 +131,8 @@ export class CreateComponent implements OnInit {
       next: (res: any) => {
         console.log("received data", res),
 
-        console.log("passed email", res.data[0].email)
-        
+          console.log("passed email", res.data[0].email)
+
         this.patchApplicationForm(res.data[0])
       }
     })
@@ -133,20 +140,20 @@ export class CreateComponent implements OnInit {
 
   public patchApplicationForm(data: any): void {
     this.applicationForm.patchValue({
-    accountNumber: data.accountNumber,
-    cifId: data.cifId,
-    nationalId: data.nationalId,
-    accountName: data.accountName,
-    currency: data.currency,
-    email: data.email,
-    phoneNumber: data.phoneNumber,
-    address: data.address,
-    city: data.city,
-    postalCode: data.postalCode,
-    countryCode: data.countryCode ? data.countryCode : 'NAN', 
-    country: data.country
- });
-}
-  
+      accountNumber: data.accountNumber,
+      cifId: data.cifId,
+      nationalId: data.nationalId,
+      accountName: data.accountName,
+      currency: data.currency,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      address: data.address,
+      city: data.city,
+      postalCode: data.postalCode,
+      countryCode: data.countryCode ? data.countryCode : 'NAN',
+      country: data.country
+    });
+  }
+
 
 }
