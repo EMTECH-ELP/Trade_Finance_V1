@@ -1,51 +1,10 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 09f69b5967e0d1748a9578889da9f1390fc58c5a
+<div class="top-bar">
+  <input type="search">
+</div>
 <section class="content">
-
   <div class="content-block">
-
-<!-- 
-<div class="lookup" >
-<div>
-  <select [(ngModel)]="searchOption">
-    <option value="ID">Search by LCNO</option>
-    <option value="Account">Search by AccountNO</option>
-  </select>
-</div>
-<br>
- <div>
-  <input type="text" [(ngModel)]="searchTerm" placeholder="Enter search term...">
-</div>
-<br>
-<div *ngif="">
-  <button (click)="handleSearchClick()" type='submit'>Search</button>
-</div>
-</div> -->
-
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <select formControlName="criteria">
-    <option value="id">ID</option>
-    <br>
-    <option value="lcno">LCNO</option>
-    <br>
-    <option value="accountNo">Account No</option>
-    <br>
-  </select>
-  <input type="text" formControlName="value" placeholder="Enter search value">
-  <button (click)="handleSearchClick()" type="submit">Search</button>
-</form>
-
-<div *ngIf="searchResults">
-  <!-- Display search results here -->
-</div>
-
-
-<!-- end -->
-
     <div class="block-header">
-
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'Modify LC'">
       </app-breadcrumb>
     </div>
@@ -57,7 +16,7 @@
           <br>
           <mat-form-field class="full-width" appearance="outline">
             <input matInput placeholder="LC Number" formControlName="lcNumber" type="text">
-            <mat-icon matSuffix>search</mat-icon>
+            <mat-icon matSuffix (click)="openModifyLookup()">search</mat-icon>
           </mat-form-field>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
