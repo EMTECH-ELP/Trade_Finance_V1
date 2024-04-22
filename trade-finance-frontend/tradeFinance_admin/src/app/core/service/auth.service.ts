@@ -70,17 +70,25 @@ export class AuthService {
       })
       .pipe(
         map((res) => {
+          console.log("service login", res)
           return res || {};
         })
       );
   }
 
-  verifyOTP(params: any): Observable<any> {
-    const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/otp/verify`;
+  validateOTP(data: any): Observable<any> {
+    const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/validateOtp`;
 
-    return this.http.get<any>(OTP_URL, {
-      params,
-    });
+    return this.http.post<any>(OTP_URL, data, {
+      observe: "response",
+      headers: this.headers,
+      withCredentials: true,
+    })
+    .pipe(
+      map((res) => {
+        console.log("otp service", res)
+        return res || {};
+      }));
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {

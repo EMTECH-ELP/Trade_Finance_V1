@@ -53,49 +53,94 @@ export class SigninComponent
 
     this.tokenCookieService.deleteUser();
   }
+  
+  
 
+  
   onSubmit() {
-
-    localStorage.clear();
-
-    this.submitted = true;
-    this.loading = true;
-    this.error = "";
-    if (this.authForm.invalid) {
-      this.error = "Username or Password not valid !";
-      return;
-    } else {
-
-      this.authService.login(this.authForm.value).subscribe({
-        next: (res) => {
-          console.log("res: ", res.body);
-
-          if (res.body.statusCode == 200) {
-
-            this.tokenCookieService.saveUser(res.body.entity);
-
-            this.snackbar.showNotification(
-              "snackbar-success",
-              res.body.message
-            );
-            console.log("User", this.tokenCookieService.getUser());
-            // this.router.navigate(["/authentication/OTP"]);
-            this.router.navigate(["/admin/dashboard/view"]);
-          } else {
-            this.snackbar.showNotification("snackbar-danger", res.body.message);
-          }
-
-          this.loading = false;
-        },
-        error: (error) => {
-          this.snackbar.showNotification(
-            "snackbar-danger",
-            error.message
-          );
-          this.loading = false;
+    this.authService.login(this.authForm.value).subscribe(
+      (res) => {
+        console.log("Res: ", res);
+  
+        if (res.body.statusCode === 207) {
+          this.tokenCookieService.saveUser(res.body.entity)
+          console.log("routing to otp")
+          this.router.navigate(["/authentication/OTP"]);
+          return; // Exit the function to prevent further navigation
         }
-      });
-    }
+  
+        // If OTP is not required, handle role-based navigation
+        if (res.entity && res.entity.role === "SUPER_ADMIN") {
+          this.router.navigate(["/admin/dashboard/view"]);
+        } else if (res.entity && (res.entity.role === "ADMIN" || res.entity.role === "USER")) {
+          if (res.entity.isFirstTimeLogin) {
+            this.router.navigate(["/authentication/reset-password"]);
+          } else {
+            this.router.navigate(["/authentication/OTP"]);
+          }
+        }
+      },
+      (err) => {
+        console.log(err);
+        this.error = err.message;
+        this.submitted = false;
+        this.loading = false;
+      }
+    );
+  }
+  
+  
+}
+
+
+
+
+
+//   onSubmit() {
+
+//     localStorage.clear();
+
+//     this.submitted = true;
+//     this.loading = true;
+//     this.error = "";
+//     if (this.authForm.invalid) {
+//       this.error = "Username or Password not valid !";
+//       return;
+//     } else {
+
+//       this.authService.login(this.authForm.value).subscribe({
+//         next: (res) => {
+//           console.log("res: ", res.body);
+
+//           if (res.body.statusCode == 200) {
+
+//             this.tokenCookieService.saveUser(res.body.entity);
+
+            
+
+//             this.snackbar.showNotification(
+//               "snackbar-success",
+//               res.body.message
+//             );
+//             console.log("User", this.tokenCookieService.getUser());
+//             this.router.navigate(["/admin/dashboard/view"]);
+//           } else {
+//             this.snackbar.showNotification("snackbar-danger", res.body.message);
+//           }
+
+//           this.loading = false;
+//         },
+//         error: (error) => {
+//           this.snackbar.showNotification(
+//             "snackbar-danger",
+//             error.message
+//           );
+//           this.loading = false;
+//         }
+//       });
+//     }
+//   }
+// }
 
 
     // localStorage.clear();
@@ -143,7 +188,3 @@ export class SigninComponent
 
     //   console.log(this.authForm.value);
     // }
-  }
-
-
-  }

@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: "OTP",
     component: OtpComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "signup",
@@ -36,6 +36,10 @@ const routes: Routes = [
   {
     path: "locked",
     component: LockedComponent,
+  },
+  {
+    path:'reset-password',
+    component:ResetPasswordComponent
   },
   {
     path: "page404",

@@ -116,7 +116,7 @@ export class SidebarComponent extends BaseComponent implements OnInit, OnDestroy
 
     if (this.currentUser) {
       
-      let userRole = this.currentUser.roles[0].role;
+      let userRole = this.currentUser.role;
       console.log("role", userRole)
 
       this.userFullName = this.currentUser.firstName;

@@ -1,21 +1,32 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DcServiceService {
-  private apiUrl = 'http://localhost:3000/customers'; // To replace this with backend API endpoint
-  constructor(private http: HttpClient) { }
+  
+  
+  
+  constructor(private httpClient: HttpClient) { }
 
 
-  // Method to fetch customer details based on account number
-  getCustomerDetails(accountNumber: string): Observable<any> {
-    const url = `${this.apiUrl}/accountNumber/${accountNumber}`;
-    return this.http.get<any>(url);
+
+  public createDc(dcdata: any): Observable<any>{
+    const url = `${environment.apiUrl}/api/v1/LC/create`;
+    return this.httpClient.post<any>(url, dcdata);
   }
 
-  // To add more API call methods as needed
+  // public getAllLCs(): Observable<any>{
+  //   const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
+  //   return this.httpClient.get<any>(url);
+  // }
+  
+  public getFormDetailsByAccountNumber(accountNumber: string): Observable<any> {
+    const url = `${environment.getApiUrl}/api/account/account-details`; // Using environment.getApiUrl for GET
+    return this.httpClient.get<any>(url);
+  }
+  
 }
