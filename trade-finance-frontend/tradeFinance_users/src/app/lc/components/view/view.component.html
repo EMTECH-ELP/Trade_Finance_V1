@@ -4,8 +4,39 @@
           <app-breadcrumb [title]="'Letter of Credit'" [items]="['Home']" [active_item]="'View'">
           </app-breadcrumb>
       </div>
-
-      <div class="user-info">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="lc-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="lc-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">CREATED LCs</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalCreatedLetters }}</span>
+          </div>
+        </div>
+      
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="lc-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px;  margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="lc-label-text" style="margin-right: auto; color: black; font-family: bolder; font-size: large;">PENDING LCs</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalPendingLetters }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="lc-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="lc-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">APPROVED LCs</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalApprovedLetters }}</span>
+          </div>
+        </div>
+      
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="lc-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="lc-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">REJECTED LCs</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalRejectedLetters }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="user-info">
           <p>Logged in user: {{ loggedInUser.name }} ({{ loggedInUser.role }})</p>
           <p>Total Letters of Credit:</p>
           <ul>
@@ -13,7 +44,7 @@
               <li>Pending: {{ totalPendingLetters }}</li>
               <li>Approved: {{ totalApprovedLetters }}</li>
           </ul>
-      </div>
+      </div> -->
 
       <div class="filter-section">
           <label for="filter-status">Filter by Status:</label>
@@ -69,7 +100,7 @@
                   </div>
     
                   <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
-                    #exporter="matTableExporter">
+                    #exporter="matTableExporter" >
     
                     <!-- ID Column -->
                    
@@ -84,24 +115,24 @@
                         {{ row.no }}; let i = index" class="psl-3 tbl-col-width-per-10">{{i +
                         1}}</mat-cell> -->
 
-                    <ng-container matColumnDef="letterOfCreditNumber">
+                    <ng-container matColumnDef="lcNumber">
                       <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">LC No.</mat-header-cell>
                       <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-10">
-                        {{ row.letterOfCreditNumber}}</mat-cell>
+                        {{ row.lcNumber}}</mat-cell>
                     </ng-container>
     
-                    <ng-container matColumnDef="applicantAccountName">
+                    <ng-container matColumnDef="accountName">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
-                        class="psl-4 tbl-col-width-per-40">Applicant Account Name</mat-header-cell>
+                        class="psl-4 tbl-col-width-per-40">Account Name</mat-header-cell>
                       <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
-                        {{ row.applicantAccountName}}</mat-cell>
+                        {{ row.accountName}}</mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="applicantAccountNumber">
+                    <ng-container matColumnDef="accountNumber">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
-                        class="psl-4 tbl-col-width-per-50">Applicant Account Number</mat-header-cell>
+                        class="psl-4 tbl-col-width-per-50">Account Number</mat-header-cell>
                       <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
-                        {{ row.applicantAccountNumber}}</mat-cell>
+                        {{ row.accountNumber}}</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
@@ -118,7 +149,7 @@
 
                         <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="OpenDcComponent(row)"
                           class="tbl-action-btn">
-                          <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                          <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"  (click)="OnViewClicked()"></app-feather-icons>
                         </button>
 
                         <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
