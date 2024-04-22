@@ -11,6 +11,12 @@ export class AddCheckersComponent implements OnInit {
 
   selectedStatus:string
   form: FormGroup
+  name: string;
+  employeeId: any;
+  status: string;
+  branchCode: any;
+  branchName: string;
+  email: string;
 
 
   constructor(public dialogRef:MatDialogRef<AddCheckersComponent>,
@@ -28,13 +34,20 @@ export class AddCheckersComponent implements OnInit {
 }
 
 
-  onSubmit(): void {
-    
-    // Here you can handle form submission
-    // For example, you can emit an event or call a service
-    // After submitting, close the dialog
+  
+onSubmit(): void {
+  if (this.form.valid) {
+    this.saveUser();
     this.dialogRef.close();
   }
+}
+
+saveUser() {
+  const savedUser = this.form.value;
+  // Here you can handle the savedUser object as needed
+  console.log(savedUser); // Example: Log the savedUser object
+  // You can also perform any further operations like sending the data to a server
+}
 
   onClose(): void {
     this.dialogRef.close();

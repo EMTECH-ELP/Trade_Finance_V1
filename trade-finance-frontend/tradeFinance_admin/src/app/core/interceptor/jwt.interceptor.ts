@@ -10,7 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentUser = this.tokenCookieService.getUser();
-    if (currentUser) {
+    if (currentUser && currentUser.accessToken) {
       const accessToken = currentUser.token
       const headers = new HttpHeaders({
         Authorization: `${'Bearer ' + accessToken}`,
@@ -26,16 +26,16 @@ export class JwtInterceptor implements HttpInterceptor {
       // console.log("cloneReq: ", cloneReq)
 
       return next.handle(cloneReq);
+    } else {
+        // clone the request and add the Authorization header
+        const cloneReq = request.clone({
+          withCredentials: false 
+        });
+  
+        // send the modified request
+        return next.handle(cloneReq);
     }
-    if (!currentUser) {
-      // clone the request and add the Authorization header
-      const cloneReq = request.clone({
-        withCredentials: false 
-      });
 
-      // send the modified request
-      return next.handle(cloneReq);
-    }
 
     return next.handle(request.clone());
 
