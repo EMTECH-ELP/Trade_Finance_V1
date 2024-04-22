@@ -16,6 +16,9 @@ const USER_KEY = "auth-user";
   providedIn: "root",
 })
 export class TokenStorageService {
+  signOut() {
+    throw new Error("Method not implemented.");
+  }
   headers = new HttpHeaders().set("Content-Type", "application/json");
 
   horizontalPosition: MatSnackBarHorizontalPosition = "end";

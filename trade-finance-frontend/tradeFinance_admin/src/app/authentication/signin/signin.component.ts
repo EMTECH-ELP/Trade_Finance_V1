@@ -47,7 +47,7 @@ export class SigninComponent
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
 
@@ -66,7 +66,7 @@ export class SigninComponent
       return;
     } else {
 
-      this.authService.login().subscribe({
+      this.authService.login(this.authForm.value).subscribe({
         next: (res) => {
           console.log("res: ", res.body);
 
@@ -79,7 +79,8 @@ export class SigninComponent
               res.body.message
             );
             console.log("User", this.tokenCookieService.getUser());
-            this.router.navigate(["/authentication/OTP"]);
+            // this.router.navigate(["/authentication/OTP"]);
+            this.router.navigate(["/admin/dashboard/view"]);
           } else {
             this.snackbar.showNotification("snackbar-danger", res.body.message);
           }
@@ -145,4 +146,4 @@ export class SigninComponent
   }
 
 
-}
+  }

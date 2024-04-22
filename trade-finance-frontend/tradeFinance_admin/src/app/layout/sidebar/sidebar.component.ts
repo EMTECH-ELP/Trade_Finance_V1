@@ -1,5 +1,8 @@
 import { Router, NavigationEnd } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
+import { ViewChild, } from '@angular/core';
+
+
 import {
   Component,
   Inject,
@@ -9,31 +12,18 @@ import {
   HostListener,
   OnDestroy,
 } from "@angular/core";
-// import { ROUTES } from "./sidebar-items";
-import { AuthService } from "src/app/core/service/auth.service";
+import { ROUTES } from "./sidebar-items";
 import { Role } from "src/app/core/models/role";
-
-import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
-// import { NotificationService } from "src/app/erp-procurement/data/services/notification.service";
-import {
-  AdminModule,
-  // BudgetModule,
-  // FinanceModule,
-  // FixedAssetsModule,
-  // HumanResourceModule,
-  // ImprestModule,
-  // InventoryModule,
-  // PrepaymentModule,
-  // ProcurementModule,
-  // SuppliersManagementModule,
-} from "./sidebar-items";
+import { TokenStorageService } from "src/app/core/service/token-storage.service";
+import { BaseComponent } from "src/app/shared/components/base/base.component";
 
 @Component({
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.sass"],
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+
+export class SidebarComponent extends BaseComponent implements OnInit, OnDestroy {
   public sidebarItems: any[];
   level1Menu = "";
   level2Menu = "";
@@ -51,26 +41,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   currentUser: any;
 
-  userName = "";
-  userRole = "";
-
-  // private myPrivileges = privileges;
-
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
-    private authService: AuthService,
-    // private tokenStorageService: TokenStorageService,
-    private tokenCookieService: TokenCookieService,
     private router: Router,
-    // private notificationService: NotificationService
+    private tokenStorageService: TokenStorageService
   ) {
+    super();
     const body = this.elementRef.nativeElement.closest("body");
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // logic for select active menu in dropdown
-        const role = ["ROLE_ADMIN", "ROLE_CLERK", "ROLE_SUPERUSER"];
+
+        const role = ["ADMIN", "STAFF", "MANUFACTURER", "WAREHOUSE", "SERVICE_PROVIDER"];
+
         const currenturl = event.url.split("?")[0];
         const firstString = currenturl.split("/").slice(1)[0];
 
@@ -125,64 +109,24 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.level3Menu = element;
     }
   }
-
-  privileges: any[] = [];
-
   ngOnInit() {
 
-    this.currentUser = this.tokenCookieService.getUser();
+    this.currentUser = this.tokenStorageService.getUser();
+    const role = this.currentUser.role;
+
     if (this.currentUser) {
-      console.log("this.currentUser:::: ", this.currentUser);
-      this.userName = this.currentUser.username;
-      this.userRole = this.currentUser.role.name;
-      this.userFullName = this.currentUser.username;
-      this.userImg = "assets/images/user/profile_img.png";
-
-      console.log("this.currentUser : ", this.currentUser);
       
-      const userId = this.currentUser.id;
-      const module = JSON.parse(
-        localStorage.getItem(`selectedModule_${userId}`) || "{}"
-      );
-      const myPrivileges = JSON.parse(
-        localStorage.getItem(`userPrivileges_${userId}`) || "{}"
-      );
+      let userRole = this.currentUser.roles[0].role;
+      console.log("role", userRole)
 
-      console.log("module ::: ", module);
-      console.log("myPrivileges :::: ", myPrivileges);
+      this.userFullName = this.currentUser.firstName;
+      this.userImg = "assets/images/prof.png";
 
-      const moduleMapping = {
-        AdminModule: AdminModule
-      };
+      this.sidebarItems = ROUTES.filter((x) => x.role.indexOf(userRole) !== -1);
+      console.log(userRole);
 
-      if (module in moduleMapping) {
-        this.sidebarItems = moduleMapping[module].filter((route) => {
-          const isRouteVisible = route.privilege.some((privilege) =>
-            myPrivileges.includes(privilege)
-          );
-          if (!isRouteVisible) {
-            return false;
-          }
-          if (route.submenu.length === 0) {
-            return true;
-          }
-          route.submenu = route.submenu.filter((submenu) =>
-            submenu.privilege.some((privilege) =>
-              myPrivileges.includes(privilege)
-            )
-          );
-          return route.submenu.length > 0;
-        });
-        console.log("myPrivileges: ", myPrivileges);
-      } else {
-        // this.notificationService.alertWarning(
-        //   "No sidebar items available for this module...!!"
-        // );
-      }
-
-      this.sidebarItems = AdminModule.filter((x) => x.role.indexOf(this.userRole) !== -1);
-      if (this.userRole === Role.Superuser) {
-        this.userType = Role.Superuser;
+      if (userRole === Role.Admin) {
+        this.userType = Role.Admin;
       }
     }
 
@@ -231,7 +175,29 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.tokenCookieService.signOut();
+    this.tokenStorageService.signOut();
     this.router.navigate(["/authentication/signin"]);
+    //window.location.reload();
+  }
+
+  showDropdown = false;
+
+  @ViewChild('dropdownContent', { static: false }) dropdownContent: ElementRef;
+  @ViewChild('dropdownButton', { static: false }) dropdownButton: ElementRef;
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+
+    if (this.showDropdown) {
+      // Position the dropdown content below the button
+      const buttonRect = this.dropdownButton.nativeElement.getBoundingClientRect();
+      this.dropdownContent.nativeElement.style.top = `${buttonRect.bottom}px`;
+      this.dropdownContent.nativeElement.style.left = `${buttonRect.left}px`;
+    }
+  }
+
+  // Optional: Programmatic navigation using Router (can be triggered elsewhere)
+  navigateToComponent(componentName: string) {
+    this.router.navigate([`/bonds/${componentName}`]);
   }
 }
