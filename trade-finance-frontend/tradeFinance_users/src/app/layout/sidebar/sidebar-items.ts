@@ -220,6 +220,7 @@ export const AdminModule: RouteInfo[] = [
         // privilege: ["All Roles"],
         submenu: [],
       },
+
       {
         path: "/bills/viewbill",
         title: "Bills",

@@ -1,12 +1,22 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+
+
+
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "src/app/core/service/auth.service";
+import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
+import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
+import { MatDialog } from "@angular/material/dialog";
+import { Subject, takeUntil, Subscription } from "rxjs";
+import { SnackbarService } from "src/app/shared/services/snackbar.service";
+
 @Component({
-  selector: "app-signup",
-  templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.scss"],
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   authForm: FormGroup;
   submitted = false;
   returnUrl: string;
@@ -19,14 +29,15 @@ export class SignupComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      fullName: ["", Validators.required],
-      
+    
       email: [
         "",
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      // password: ["", Validators.required],
-      // cpassword: ["", Validators.required],
+      currentPassword: ["", Validators.required],
+      newPassword: ["", Validators.required],
+      confirmPassword: ["", Validators.required],
+    
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
@@ -44,3 +55,5 @@ export class SignupComponent implements OnInit {
     }
   }
 }
+
+  

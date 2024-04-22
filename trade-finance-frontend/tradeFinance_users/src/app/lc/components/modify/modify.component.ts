@@ -1,67 +1,8 @@
-// import { Component, OnInit } from '@angular/core';
-// import { LcService } from '../../services/lc.service';
-// import { FormBuilder, FormGroup } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-modify',
-//   templateUrl: './modify.component.html',
-//   styleUrls: ['./modify.component.scss']
-// })
-
-
-// export class ModifyComponent implements OnInit {
-
-
-//   searchForm: FormGroup;
-//   searchByOptions = ['ID', 'Email', 'firstname', 'Businessname', 'account no'];
-//   selectedSearchBy: string = 'ID';
-//   searchTerm: string = '';
-//   searchResults: any[] = [];
-
-//   constructor(private LcService: LcService,
-//     private formBuilder: FormBuilder) { }
-
-//   ngOnInit(): void {
-
-//     this.searchForm = this.formBuilder.group({
-
-//     });
-//   }
-
-//   search(): void {
-
-//   }
-
-//   onsubmit() { }
-
-//   onModify() { }
-
-//   Modify(result: any): void {
-//     // Implement modify functionality here
-//   }
-// }
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { LcService } from '../../services/lc.service';
-
-
-// @Component({
-//   selector: 'app-create',
-//   templateUrl: './create.component.html',
-//   styleUrls: ['./create.component.sass']
-// })
-// export class CreateComponent implements OnInit 
-
-
-
 
 import { Component, OnInit } from '@angular/core';
 import { LcService } from '../../services/lc.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify',
@@ -71,11 +12,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export class ModifyComponent implements OnInit {
+searchResults: any;
+  applicationForm: any;
+handleSearchClick() {
+throw new Error('Method not implemented.');
+}
 
 
   selectedValue: string;
   modificationForm: FormGroup;
   router: any;
+searchForm: any;
 
   constructor(private fb: FormBuilder,
     private lcService: LcService) { }
@@ -102,7 +49,7 @@ export class ModifyComponent implements OnInit {
 
   }
 
-  public onSubmit() {
+  public onModify() {
 
     console.log("Form data", this.modificationForm.value);
     this.lcService.ModifyLc(this.modificationForm.value).subscribe({
@@ -121,4 +68,28 @@ export class ModifyComponent implements OnInit {
     
     this.router.navigate(["view"]);
   }
+
+
+
+
+  public onSubmit() {
+
+  console.log("Form data", this.applicationForm.value);
+  this.lcService.createLc(this.applicationForm.value).subscribe({
+    next: ((response) => {
+
+      console.log("Lc create response", response);
+    }),
+    error: ((err) => {
+
+    }),
+    complete: (() => { })
+  })
 }
+
+}
+
+
+
+
+

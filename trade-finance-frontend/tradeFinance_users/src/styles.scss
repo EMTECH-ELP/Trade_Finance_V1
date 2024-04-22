@@ -268,15 +268,15 @@ $remark-text-color: #757575; // Grey for remark text
     vertical-align: top; /* Align elements to the top */
 }
 
-label {
-  display: block;
-  margin-bottom: 5px; /* Adjust spacing between label and input */
-}
-input[type="text"],
-input[type="email"],
-input[ type="tel"],
-input[ type="date"],
-select,
+// label {
+//   display: block;
+//   margin-bottom: 5px; /* Adjust spacing between label and input */
+// }
+// input[type="text"],
+// input[type="email"],
+// input[ type="tel"],
+// input[ type="date"],
+// select,
 
 // textarea {
 //     width: 50%;
@@ -318,4 +318,9 @@ select,
 
 .buttonSearch:last-child {
   margin-right: 0; /* Remove margin for the last button */
+}
+
+.stepHeading{
+  color: maroon;
+  font-size: 22px;
 }
