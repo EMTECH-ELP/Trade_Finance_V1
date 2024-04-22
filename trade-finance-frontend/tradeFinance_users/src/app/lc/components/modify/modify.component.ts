@@ -70,93 +70,55 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 
-export class ModifyComponent implements OnInit
-
-
-{
+export class ModifyComponent implements OnInit {
 
 
   selectedValue: string;
-  applicationForm: FormGroup;
+  modificationForm: FormGroup;
+  router: any;
 
   constructor(private fb: FormBuilder,
     private lcService: LcService) { }
- 
+
 
   ngOnInit() {
-    
-    this.applicationForm = this.fb.group({
-      applicantFirstName: ['', Validators.required],
-      applicantMiddleName: [''],
-      applicantLastName: ['', Validators.required],
-      applicantAddress: ['', Validators.required],
-      applicantEmail: ['', [Validators.required, Validators.email]],
-      applicantPhoneNumber: ['', Validators.required],
-      businessName: ['', Validators.required],
-      applicantAccountName: ['', Validators.required],
-      applicantAccountNumber: ['', Validators.required],
-      issuingBank: ['', Validators.required],
-      issuingSwiftCode: ['', Validators.required],
-      beneficiaryFirstName: ['', Validators.required],
-      beneficiaryMiddleName: [''],
-      beneficiaryLastName: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
-      beneficiaryEmail: ['', [Validators.required, Validators.email]],
-      beneficiaryPhoneNumber: ['', Validators.required],
-      beneficiaryAccountName: ['', Validators.required],
-      beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryBank: ['', Validators.required],
-      beneficiarySwiftCode: ['', Validators.required],
-      beneficiaryCity: ['', Validators.required],
-      lcType: ['', Validators.required],
-      subType: ['', Validators.required],
+
+    this.modificationForm = this.fb.group({
+      lcNumber: ['', Validators.required],
+      lcType: [''],
       applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      shipmentDate: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
-      portOfLoading: ['', Validators.required],
-      shipmentTerms: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      transShipment: ['', Validators.required],
-      issueDate: ['', Validators.required],
+      currencyCode: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.email]],
       expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
-      transferable: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
       chargesBorneBy: ['', Validators.required],
-      amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
-      billOfLading: ['', Validators.required],
-      numberOfCopies: ['', Validators.required],
-      signed: ['', Validators.required],
-      documentDescription: ['', Validators.required]
+      negotiationPeriod: ['', Validators.required],
+      issueDate: ['', Validators.required],
+      tenor: ['', Validators.required],
+      transferable: ['', Validators.required],
+      confirm: ['', Validators.required],
+      advise: [''],
+
     });
-  
+
   }
 
-  public  onSubmit() {
+  public onSubmit() {
 
-    console.log("Form data", this.applicationForm.value);
-    this.lcService.createLc(this.applicationForm.value).subscribe({
+    console.log("Form data", this.modificationForm.value);
+    this.lcService.ModifyLc(this.modificationForm.value).subscribe({
       next: ((response) => {
 
-        console.log("Lc create response", response);
+        console.log("Lc modify response", response);
       }),
       error: ((err) => {
-
+        console.error(err)
       }),
-       complete: (() => {})
+      complete: (() => { })
     })
+    this.modificationForm.reset()
+    this.ngOnInit()
+    alert('Modification done Successfully and records updated!')
+    
+    this.router.navigate(["view"]);
   }
 }
