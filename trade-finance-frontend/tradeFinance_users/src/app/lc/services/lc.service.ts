@@ -7,6 +7,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LcService {
+  applicationForm: any;
+  searchForm: any;
+  accountNumber: any;
+  dialogRef: any;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,8 +19,9 @@ export class LcService {
     return this.httpClient.post<any>(url, lcData);
   }
 
-  public getAllLCs(): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/viewAll`;
+  public transferLc(): Observable<any>{
+    const url = `${environment.apiUrl}/api/v1/LC/transfer`;
     return this.httpClient.get<any>(url);
   }
-}
+  
+ }

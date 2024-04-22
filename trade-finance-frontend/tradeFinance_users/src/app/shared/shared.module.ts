@@ -7,6 +7,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MaterialModule } from "./material.module";
 import { FeatherIconsModule } from "./components/feather-icons/feather-icons.module";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { LookupComponent } from "../lookups/lookup/lookup.component";
 
 @NgModule({
   declarations: [],
