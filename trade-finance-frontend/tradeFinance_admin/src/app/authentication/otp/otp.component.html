@@ -21,6 +21,55 @@
 
         <form [formGroup]="otpForm">
           <div class="inputs d-flex flex-row justify-content-center mt-2">
+            <input id="firstDigit" name="firstDigit" class="mx-3 text-center form-control rounded" type="text" formControlName="first" maxlength="1" />
+            <input id="secondDigit" name="secondDigit" class="mx-3 text-center form-control rounded" type="text" formControlName="second" maxlength="1" />
+            <input id="thirdDigit" name="thirdDigit" class="mx-3 text-center form-control rounded" type="text" formControlName="third" maxlength="1" />
+            <input id="fourthDigit" name="fourthDigit" class="mx-3 text-center form-control rounded" type="text" formControlName="fourth" maxlength="1" />
+          </div>
+          <div class="mt-4 px-2">
+            <button mat-raised-button color="primary" 
+            class="auth-form-btn dark-green-button" 
+            
+            type="submit" 
+            style="display: block; width: 100%" (click)="onSubmit()" [disabled]="otpForm.invalid">
+              Validate
+            </button>
+          </div>
+        </form>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="otpBackground">
+  <div class="container height-100 d-flex justify-content-center align-items-center">
+    <div class="position-relative">
+      <div class="card text-center">
+        <div class="text-center">
+          <img src="assets/images/equity_logo.jpg" width="360px" height="200px" class="px-2 mx-2" alt="" />
+        </div>
+        <br />
+        <h6>
+          Please enter the one time password <br />
+          to verify your account
+        </h6>
+        <br />
+
+        <div>
+          <span>A code has been sent to </span>
+          <small>{{ maskedEmail }}</small>
+        </div>
+        
+        <br />
+
+        <form [formGroup]="otpForm">
+          <div class="inputs d-flex flex-row justify-content-center mt-2">
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="first" maxlength="1" />
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="second" maxlength="1" />
             <input class="mx-3 text-center form-control rounded" type="text" formControlName="third" maxlength="1" />
@@ -40,4 +89,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
