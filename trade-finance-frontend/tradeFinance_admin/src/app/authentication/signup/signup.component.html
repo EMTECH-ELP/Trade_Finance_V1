@@ -1,29 +1,32 @@
 <div class="auth-container">
   <div class="row auth-main">
-    <div class="col-sm-6 px-0 d-none d-sm-block" >
-      <img src="assets/images/sign-in.jpg" style="margin: 100px;" width="700px" height="600px"/>
-    </div>
-    <div class="col-sm-6 auth-form-section">
+    <!-- <div class="col-sm-6 px-0 d-none d-sm-block" >
+      <img src="assets/images/equity_logo.jpg" style="margin: 100px;" width="700px" height="600px"/>
+    </div> -->
+    <div class="col-sm-12 auth-form-section">
       <div class="form-section">
         <div class="auth-wrapper">
           <div class="text-center">
-            <img src="assets/images/em.jpg" width="100px" height="100px" alt="" />
+            <img src="assets/images/equity_logo.jpg" width="100px" height="100px" alt="" />
           </div>
-          <h2 class="welcome-msg"> Sign Up </h2>
-          <!-- <p class="auth-signup-text text-muted">Enter details to create your account</p> -->
+          <!-- <h4 class="welcome-msg"> Sign Up </h4> -->
+          <p class="auth-signup-text text-muted">Enter details to create your account</p>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
-                  <input matInput formControlName="username" required>
+                  <mat-label>Full Name</mat-label>
+                  <input matInput formControlName="fullName" required>
                   <mat-icon matSuffix>face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username').hasError('required')">
-                    Username is required
+                  <mat-error *ngIf="authForm.get('fullName').hasError('required')">
+                    Full Name is required
                   </mat-error>
                 </mat-form-field>
               </div>
             </div>
+
+
+            
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -36,7 +39,8 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row">
+
+            <!-- <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Password</mat-label>
@@ -49,6 +53,7 @@
                 </mat-form-field>
               </div>
             </div>
+
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -61,7 +66,9 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
+            </div> -->
+
+            
             <div class="flex-sb-m w-full  p-b-20">
               <div>
                 <span>Already Registered? <a routerLink="/authentication/signin">
@@ -69,11 +76,17 @@
                   </a></span>
               </div>
             </div>
+
+
+
+
             <div class="container-auth-form-btn">
               <button mat-flat-button color="primary" class="auth-form-btn" [disabled]="!authForm.valid " type="submit">
                 Register
               </button>
             </div>
+
+
           </form>
           <h6 class="social-login-title">OR</h6>
           <ul class="list-unstyled social-icon mb-0 mt-3">
