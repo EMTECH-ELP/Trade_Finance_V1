@@ -26,6 +26,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { LookupComponent } from './lookup/lookup.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     ViewMakersComponent,
            AddMakersComponent,
            ViewCheckersComponent,
-           AddCheckersComponent
+           AddCheckersComponent,
+           LookupComponent
   ],
   imports: [
     CommonModule,
