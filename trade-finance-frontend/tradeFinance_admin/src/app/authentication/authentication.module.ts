@@ -15,6 +15,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { OtpComponent } from './otp/otp.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -28,6 +29,7 @@ import { OtpComponent } from './otp/otp.component';
     LockedComponent,
     ForgotPasswordComponent,
     OtpComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,
