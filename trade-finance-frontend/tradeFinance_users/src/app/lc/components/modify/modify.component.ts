@@ -2,7 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LcService } from '../../services/lc.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModifyLookupComponent } from './modify-lookup/modify-lookup.component';
 
 @Component({
   selector: 'app-modify',
@@ -21,11 +23,14 @@ throw new Error('Method not implemented.');
 
   selectedValue: string;
   modificationForm: FormGroup;
-  router: any;
+  // router: any;
 searchForm: any;
 
   constructor(private fb: FormBuilder,
-    private lcService: LcService) { }
+    private lcService: LcService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,) { }
 
 
   ngOnInit() {
@@ -87,6 +92,28 @@ searchForm: any;
   })
 }
 
+openModifyLookup(){
+ // Create a MatDialogConfig object
+ const dialogConfig = new MatDialogConfig();
+ dialogConfig.width = '500px';
+ dialogConfig.data = { lcNumber: this.modificationForm.get('lcNumber').value };
+
+ // Open the LookupComponent dialog with the dialog config
+ const dialogRef = this.dialog.open(ModifyLookupComponent, dialogConfig);
+
+ dialogRef.afterClosed().subscribe({
+   next: (res: any) => {
+     console.log("received data", res),
+
+       console.log("passed tenor", res.data[0].tenor)
+
+     this.patchModificationForm(res.data[0])
+   }
+ })
+}
+  patchModificationForm(arg0: any) {
+    throw new Error('Method not implemented.');
+  }
 }
 
 
