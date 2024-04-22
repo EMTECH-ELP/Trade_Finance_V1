@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 import { TestComponent } from '../../test/test.component';
 import { LcService } from '../../services/lc.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { ModifyComponent } from '../modify/modify.component';
 
 
 
 interface LetterOfCredit {
   name: string;
-  letterOfCreditNumber: string;
-  applicantAccountName: string;
+  lcNumber: string;
+  accountName: string;
   applicaAccountNumber: string;
   status: string;
   branchCode: string;
@@ -29,13 +30,15 @@ interface LetterOfCredit {
 export class ViewComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters = 0;
-  totalPendingLetters = 0;
-  totalApprovedLetters = 0;
+  totalCreatedLetters : number = 0;
+  totalPendingLetters : number = 0;
+  totalApprovedLetters : number = 0;
+  totalRejectedLetters: number = 0;
   selectedactions = 'all';
+  
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'letterOfCreditNumber','applicantAccountName', 'applicantAccountNumber','status' ,'actions'];
+  displayedColumns: string[] = ['no', 'lcNumber','accountName', 'accountNumber','status' ,'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -45,65 +48,49 @@ export class ViewComponent implements OnInit {
   rows: any;
 selectedStatus: any;
 
+
   constructor(private dialog: MatDialog,
     private router: Router,
-    // private lcService: LcService,
+    private lcService: LcService,
     private snackbar: SnackbarService
     ) { }
 
 
-  ngOnInit(): void {
-    // this.loadtotalCreatedLetters();
-    this.getrows();
+  ngOnInit(): void { 
+    this.getAllLCs();
+   }
+
+ public getAllLCs() {
+    this.lcService.getAllLCs().subscribe({
+      next: (res: any) => {
+        const extractedData = res.data.map((lc: any, index: number) => ({
+          no: index + 1,
+          lcNumber: lc.lcNumber,
+          accountName: lc.accountName ? 'Account Name' : '', // Replace this with actual account name retrieval logic
+          accountNumber: lc.accountNumber ? lc.accountNumber : '',
+          status: lc.status,
+          actions: 'Actions' // Replace this with actual actions logic
+        }));
+
+        this.dataSource = new MatTableDataSource(extractedData);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (err) => {
+        console.error('Error fetching LCs:', err);
+        this.snackbar.showNotification('error', 'No LCs found');
+      }
+         });
   }
 
-  public getrows() {
-    this.rows = [
-      { no: '1', letterOfCreditNumber: '183', applicantAccountName: 'Kings Fashion Limited', applicantAccountNumber: '03321445518', status:'Pending',  actions: 'Active' },
-      { no: '2', letterOfCreditNumber: '652', applicantAccountName: 'R & X Electronics',  applicantAccountNumber: '03825432905', status:'Approved', actions: 'Active' },
-      { no: '3', letterOfCreditNumber: '876', applicantAccountName:  'Hasenye Shipping Co.Ltd', applicantAccountNumber: '03590835214', status:'Approved', actions: 'Flagged' },
-      { no: '4', letterOfCreditNumber: '656', applicantAccountName: 'JK Cement Manufacturers Ltd', applicantAccountNumber: '03676502126', status:'Pending', actions: 'Active' },
-      { no: '5', letterOfCreditNumber: '187', applicantAccountName: 'Joshua Cheese & Milk Distributers', applicantAccountNumber: '03765432901', status:'Pending', actions: 'Active' },
+ 
+
     
-    ];
-
-    console.log("list:", this.rows);
-    if (this.rows) {
-      this.isLoading = false
-    }
-    this.dataSource = new MatTableDataSource(this.rows);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
 
-  // loadtotalCreatedLetters(){
-  //   this.lcService.gettotalCreatedLetters().subscribe((data: any[]) => {
-  //     this.dataSource = new MatTableDataSource(data);
-  //     this.isLoading = false;
-  //   });
-  // }
 
-  // public getLCs() {
-  //   this.lcService.getAllLCs().subscribe({
-  //     next: ((res) => {
-  //       console.log("Response", res);
-  //       if (res.length > 0) {
-  //         this.dataSource = new MatTableDataSource(res);
-  //         this.dataSource.paginator = this.paginator;
-  //         this.dataSource.sort = this.sort;
-  //         this.isLoading = false;
-  //       } else {
-  //         this.isLoading = false;
-  //         this.snackbar.showNotification("", "No LCs found!")
-  //       }
-  //     }),
-  //     error: ((err) => {
-  //       this.isLoading = false;
-  //     }),
-  //     complete: (() => { })
-  //   });
-  // }
+
+
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -122,7 +109,7 @@ selectedStatus: any;
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
+    dialogConfig.width = '800px'
     dialogConfig.data = { rowData: row }
 
     const dialogRef = this.dialog.open(TestComponent, dialogConfig);
@@ -133,18 +120,19 @@ selectedStatus: any;
     });
   }
   public refresh() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
-    dialogConfig.data = { test: "row" }
+    // const dialogConfig = new MatDialogConfig()
+    // dialogConfig.disableClose = true
+    // dialogConfig.autoFocus = true
+    // dialogConfig.width = '600px'
+    // dialogConfig.data = { test: "row" }
 
-    const dialogRef = this.dialog.open(TestComponent, dialogConfig);
+    // const dialogRef = this.dialog.open(ModifyComponent, dialogConfig);
 
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('closed');
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log('closed');
+    // });
+    this.router.navigate(['/lc/modify'])
   }
 
   public verify() {
@@ -154,4 +142,5 @@ selectedStatus: any;
  public transfer(row){
   this.router.navigate(["/lc/transferlc"])
   }
+ 
 }
