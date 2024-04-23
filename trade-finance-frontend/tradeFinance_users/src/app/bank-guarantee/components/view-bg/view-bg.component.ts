@@ -15,9 +15,9 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ViewBgComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters = 0;
-  totalPendingLetters = 0;
-  totalApprovedLetters = 0;
+  totalCreatedBills = 0;
+  totalPendingBills = 0;
+  totalApprovedBills = 0;
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
@@ -28,6 +28,8 @@ export class ViewBgComponent implements OnInit {
   isLoading = true;
   products: any;
   lcs: any;
+totalCreatedLetters: any;
+totalPendingLetters: any;
 
 
   constructor(private dialog: MatDialog,

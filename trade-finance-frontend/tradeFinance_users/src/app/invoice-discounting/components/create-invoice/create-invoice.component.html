@@ -6,363 +6,153 @@
       </app-breadcrumb>
     </div>
 
-
-    <!-- <div>
-      <input type="text" style="margin-left: 75%;" [(ngModel)]="query" placeholder="Search by CIF">
-      <button mat-icon-button (click)="search()">
-        <mat-icon>search</mat-icon>
-      </button>
-
-    </div> -->
-    <!-- <div *ngIf="searchData">
-  Display search results here 
-</div>-->
-
-    <mat-horizontal-stepper linear>
+ <mat-horizontal-stepper linear>
       <form [formGroup]="invoiceDiscountingForm" (ngSubmit)="onSubmit()">
         <!-- Applicant's Details -->
         <mat-step label="Applicant Details">
-          <div class="input-box">
-            <div class="row">
-              <p style="color:rgb(160,64,65);font-size: 20px;"> Applicant Information (Exporter). </p> <span>*Search the Customer's details using CIF/Account No.</span>
-            
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field class="full-width" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Search by CIF</mat-label>
-                  <input matInput formControlName="cifId" placeholder="Enter CIF"/>
-                  <mat-icon (click)="onSearch()" matSuffix>search</mat-icon>
-                </mat-form-field>
-               
+          <p style="color: maroon; font-weight: bold;">Applicant Details:</p>
+          <div class="row" #applicationDetails>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Account Number</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Number" formControlName="accountNumber" type="text">
+                <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
+              </mat-form-field>
 
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field class="" style=" display:flex; flex-direction:row;white-space:nowrap;"
-                  appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;"> Search by Account No. </mat-label>
-                  <input matInput placeholder="Enter Account Number" formControlName="accountNumber">
-                  <mat-icon (click)="onRetrieve()" matSuffix>search</mat-icon>
-                </mat-form-field>
-                <!-- <label for="accountName"
-                  style="font-size:20px; display:flex; flex-direction:row;  white-space: nowrap;">Account Name <span
-                    class="red-asterisk" style="color: red;">*</span></label>
-                <input formControlName="applicantAccountName" type="text" required> -->
-                <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('accountName').invalid && invoiceDiscountingForm.get('accountName').touched"
-                  class="error-message">
-                  *Applicant's Account Name is required</small> -->
-              </div>
-
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2"
-                  style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;"> Account Name</mat-label>
-                  <input matInput placeholder="Account Name " formControlName="accountName">
-                </mat-form-field>
-              </div>
-              <!-- <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:20px;">Mat Label Example</mat-label>
-                <input matInput placeholder="Placeholder">
-              </mat-form-field> -->
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;"> Email</mat-label>
-                  <input matInput placeholder="Email Address" formControlName="email" type="email">
-                </mat-form-field>
-                <!-- <label for="email" style="font-size:20px;white-space: nowrap;"><span class="red-asterisk"
-                    style="color: red;">*</span></label> <br>
-                <input formControlName="applicantEmail" type="email"> -->
-
-                <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('applicantEmail'). invalid && invoiceDiscountingForm.get('applicantEmail').touched"
-                  class="error-message">
-                  *Beneficiary Last Name is required</small> -->
-              </div><br>
-
+              <br>
+              <small
+                *ngIf="invoiceDiscountingForm.get('accountNumber').invalid && invoiceDiscountingForm.get('accountNumber').touched">
+                *Account Number is required</small>
             </div>
-            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Business No.</mat-label>
-                  <input matInput placeholder="Business No." formControlName="businessNo" type="number">
-                </mat-form-field>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Customer's CIF ID</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="CIF ID" formControlName="cifId" type="string">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+              <small
+                *ngIf="invoiceDiscountingForm.get('accountNumber').invalid && invoiceDiscountingForm.get('accountNumber').touched">
+                *CIF ID is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>National ID</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Enter customer's ID" formControlName="nationalId" type="string">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('nationalId').invalid && invoiceDiscountingForm.get('nationalId').touched">
+                *Customer's national ID is required</small>
+            </div>
 
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Business Name</mat-label>
-                  <input matInput placeholder="Business Name" formControlName="businessName" >
-                </mat-form-field>
-
-                <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('applicantPhoneNo.'). invalid && invoiceDiscountingForm.get('applicantPhoneNo.').touched"
-                  class="error-message">
-                  *Phone number is required</small> -->
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Business Type</mat-label>
-                  <input matInput placeholder="E.g.,Sole Proprietorship,Partnership,Corporation etc" formControlName="businessType" >
-                </mat-form-field> 
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Industry Sector</mat-label>
-                  <input matInput placeholder="Clothing,Machinery etc" formControlName="industrySector" >
-                </mat-form-field> 
-              </div>
-          
-            </div><br>
-
-            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Phone No.</mat-label>
-                  <input matInput placeholder="Phone Number" formControlName="phoneNumber" type="number">
-                </mat-form-field>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Alternative Phone No.</mat-label>
-                  <input matInput placeholder="Alternative Phone Number" formControlName="alternativePhoneNumber"
-                    type="number">
-                </mat-form-field>
-
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Address</mat-label>
-                  <input matInput placeholder="Address" formControlName="address" >
-                </mat-form-field>
-              </div>
-              <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('applicantBank'). invalid && invoiceDiscountingForm.get('applicantBank').touched"
-                  class="error-message">
-                  *Bank is required</small> -->
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2" appearance="outline">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;">Country</mat-label>
-                  <mat-select formControlName="country">
-                    <mat-option value="Afghanistan">Afghanistan</mat-option>
-                    <mat-option value="Albania">Albania</mat-option>
-                    <mat-option value="Algeria">Algeria</mat-option><mat-option
-                      value="Andorra">Andorra</mat-option><mat-option value="Angola">Angola</mat-option><mat-option
-                      value="Anguilla">Anguilla</mat-option><mat-option value="Antigua &amp; Barbuda">Antigua &amp;
-                      Barbuda</mat-option><mat-option value="Argentina">Argentina</mat-option><mat-option
-                      value="Armenia">Armenia</mat-option><mat-option value="Aruba">Aruba</mat-option><mat-option
-                      value="Australia">Australia</mat-option><mat-option
-                      value="Austria">Austria</mat-option><mat-option
-                      value="Azerbaijan">Azerbaijan</mat-option><mat-option
-                      value="Bahamas">Bahamas</mat-option><mat-option value="Bahrain">Bahrain</mat-option><mat-option
-                      value="Bangladesh">Bangladesh</mat-option><mat-option
-                      value="Barbados">Barbados</mat-option><mat-option value="Belarus">Belarus</mat-option><mat-option
-                      value="Belgium">Belgium</mat-option><mat-option value="Belize">Belize</mat-option><mat-option
-                      value="Benin">Benin</mat-option><mat-option value="Bermuda">Bermuda</mat-option><mat-option
-                      value="Bhutan">Bhutan</mat-option><mat-option value="Bolivia">Bolivia</mat-option><mat-option
-                      value="Bosnia &amp;amp; Herzegovina">Bosnia &amp;amp; Herzegovina</mat-option><mat-option
-                      value="Botswana">Botswana</mat-option><mat-option value="Brazil">Brazil</mat-option><mat-option
-                      value="British Virgin Islands">British Virgin Islands</mat-option><mat-option
-                      value="Brunei">Brunei</mat-option><mat-option value="Bulgaria">Bulgaria</mat-option><mat-option
-                      value="Burkina Faso">Burkina Faso</mat-option><mat-option
-                      value="Burundi">Burundi</mat-option><mat-option value="Cambodia">Cambodia</mat-option><mat-option
-                      value="Cameroon">Cameroon</mat-option><mat-option value="Cape Verde">Cape
-                      Verde</mat-option><mat-option value="Cayman Islands">Cayman Islands</mat-option><mat-option
-                      value="Chad">Chad</mat-option><mat-option value="Chile">Chile</mat-option><mat-option
-                      value="China">China</mat-option><mat-option value="Colombia">Colombia</mat-option><mat-option
-                      value="Congo">Congo</mat-option><mat-option value="Cook Islands">Cook
-                      Islands</mat-option><mat-option value="Costa Rica">Costa Rica</mat-option><mat-option
-                      value="Cote D Ivoire">Cote D Ivoire</mat-option><mat-option
-                      value="Croatia">Croatia</mat-option><mat-option value="Cruise Ship">Cruise
-                      Ship</mat-option><mat-option value="Cuba">Cuba</mat-option><mat-option
-                      value="Cyprus">Cyprus</mat-option><mat-option value="Czech Republic">Czech
-                      Republic</mat-option><mat-option value="Denmark">Denmark</mat-option><mat-option
-                      value="Djibouti">Djibouti</mat-option><mat-option
-                      value="Dominica">Dominica</mat-option><mat-option value="Dominican Republic">Dominican
-                      Republic</mat-option><mat-option value="Ecuador">Ecuador</mat-option><mat-option
-                      value="Egypt">Egypt</mat-option><mat-option value="El Salvador">El
-                      Salvador</mat-option><mat-option value="Equatorial Guinea">Equatorial
-                      Guinea</mat-option><mat-option value="Estonia">Estonia</mat-option><mat-option
-                      value="Ethiopia">Ethiopia</mat-option><mat-option value="Falkland Islands">Falkland
-                      Islands</mat-option><mat-option value="Faroe Islands">Faroe Islands</mat-option><mat-option
-                      value="Fiji">Fiji</mat-option><mat-option value="Finland">Finland</mat-option><mat-option
-                      value="France">France</mat-option><mat-option value="French Polynesia">French
-                      Polynesia</mat-option><mat-option value="French West Indies">French West
-                      Indies</mat-option><mat-option value="Gabon">Gabon</mat-option><mat-option
-                      value="Gambia">Gambia</mat-option><mat-option value="Georgia">Georgia</mat-option><mat-option
-                      value="Germany">Germany</mat-option><mat-option value="Ghana">Ghana</mat-option><mat-option
-                      value="Gibraltar">Gibraltar</mat-option><mat-option value="Greece">Greece</mat-option><mat-option
-                      value="Greenland">Greenland</mat-option><mat-option
-                      value="Grenada">Grenada</mat-option><mat-option value="Guam">Guam</mat-option><mat-option
-                      value="Guatemala">Guatemala</mat-option><mat-option
-                      value="Guernsey">Guernsey</mat-option><mat-option value="Guinea">Guinea</mat-option><mat-option
-                      value="Guinea Bissau">Guinea Bissau</mat-option><mat-option
-                      value="Guyana">Guyana</mat-option><mat-option value="Haiti">Haiti</mat-option><mat-option
-                      value="Honduras">Honduras</mat-option><mat-option value="Hong Kong">Hong
-                      Kong</mat-option><mat-option value="Hungary">Hungary</mat-option><mat-option
-                      value="Iceland">Iceland</mat-option><mat-option value="India">India</mat-option><mat-option
-                      value="Indonesia">Indonesia</mat-option><mat-option value="Iran">Iran</mat-option><mat-option
-                      value="Iraq">Iraq</mat-option><mat-option value="Ireland">Ireland</mat-option><mat-option
-                      value="Isle of Man">Isle of Man</mat-option><mat-option
-                      value="Israel">Israel</mat-option><mat-option value="Italy">Italy</mat-option><mat-option
-                      value="Jamaica">Jamaica</mat-option><mat-option value="Japan">Japan</mat-option><mat-option
-                      value="Jersey">Jersey</mat-option><mat-option value="Jordan">Jordan</mat-option><mat-option
-                      value="Kazakhstan">Kazakhstan</mat-option><mat-option value="Kenya">Kenya</mat-option><mat-option
-                      value="Kuwait">Kuwait</mat-option><mat-option value="Kyrgyz Republic">Kyrgyz
-                      Republic</mat-option><mat-option value="Laos">Laos</mat-option><mat-option
-                      value="Latvia">Latvia</mat-option><mat-option value="Lebanon">Lebanon</mat-option><mat-option
-                      value="Lesotho">Lesotho</mat-option><mat-option value="Liberia">Liberia</mat-option><mat-option
-                      value="Libya">Libya</mat-option><mat-option
-                      value="Liechtenstein">Liechtenstein</mat-option><mat-option
-                      value="Lithuania">Lithuania</mat-option><mat-option
-                      value="Luxembourg">Luxembourg</mat-option><mat-option value="Macau">Macau</mat-option><mat-option
-                      value="Macedonia">Macedonia</mat-option><mat-option
-                      value="Madagascar">Madagascar</mat-option><mat-option
-                      value="Malawi">Malawi</mat-option><mat-option value="Malaysia">Malaysia</mat-option><mat-option
-                      value="Maldives">Maldives</mat-option><mat-option value="Mali">Mali</mat-option><mat-option
-                      value="Malta">Malta</mat-option><mat-option value="Mauritania">Mauritania</mat-option><mat-option
-                      value="Mauritius">Mauritius</mat-option><mat-option value="Mexico">Mexico</mat-option><mat-option
-                      value="Moldova">Moldova</mat-option><mat-option value="Monaco">Monaco</mat-option><mat-option
-                      value="Mongolia">Mongolia</mat-option><mat-option
-                      value="Montenegro">Montenegro</mat-option><mat-option
-                      value="Montserrat">Montserrat</mat-option><mat-option
-                      value="Morocco">Morocco</mat-option><mat-option
-                      value="Mozambique">Mozambique</mat-option><mat-option
-                      value="Namibia">Namibia</mat-option><mat-option value="Nepal">Nepal</mat-option><mat-option
-                      value="Netherlands">Netherlands</mat-option><mat-option value="Netherlands Antilles">Netherlands
-                      Antilles</mat-option><mat-option value="New Caledonia">New Caledonia</mat-option><mat-option
-                      value="New Zealand">New Zealand</mat-option><mat-option
-                      value="Nicaragua">Nicaragua</mat-option><mat-option value="Niger">Niger</mat-option><mat-option
-                      value="Nigeria">Nigeria</mat-option><mat-option value="Norway">Norway</mat-option><mat-option
-                      value="Oman">Oman</mat-option><mat-option value="Pakistan">Pakistan</mat-option><mat-option
-                      value="Palestine">Palestine</mat-option><mat-option value="Panama">Panama</mat-option><mat-option
-                      value="Papua New Guinea">Papua New Guinea</mat-option><mat-option
-                      value="Paraguay">Paraguay</mat-option><mat-option value="Peru">Peru</mat-option><mat-option
-                      value="Philippines">Philippines</mat-option><mat-option
-                      value="Poland">Poland</mat-option><mat-option value="Portugal">Portugal</mat-option><mat-option
-                      value="Puerto Rico">Puerto Rico</mat-option><mat-option
-                      value="Qatar">Qatar</mat-option><mat-option value="Reunion">Reunion</mat-option><mat-option
-                      value="Romania">Romania</mat-option><mat-option value="Russia">Russia</mat-option><mat-option
-                      value="Rwanda">Rwanda</mat-option><mat-option value="Saint Pierre &amp;amp; Miquelon">Saint Pierre
-                      &amp;amp; Miquelon</mat-option><mat-option value="Samoa">Samoa</mat-option><mat-option
-                      value="San Marino">San Marino</mat-option><mat-option
-                      value="Satellite">Satellite</mat-option><mat-option value="Saudi Arabia">Saudi
-                      Arabia</mat-option><mat-option value="Senegal">Senegal</mat-option><mat-option
-                      value="Serbia">Serbia</mat-option><mat-option
-                      value="Seychelles">Seychelles</mat-option><mat-option value="Sierra Leone">Sierra
-                      Leone</mat-option><mat-option value="Singapore">Singapore</mat-option><mat-option
-                      value="Slovakia">Slovakia</mat-option><mat-option
-                      value="Slovenia">Slovenia</mat-option><mat-option value="SO">Somalia</mat-option><mat-option
-                      value="South Africa">South Africa</mat-option><mat-option value="South Korea">South
-                      Korea</mat-option><mat-option value="Spain">Spain</mat-option><mat-option value="Sri Lanka">Sri
-                      Lanka</mat-option><mat-option value="St Kitts &amp;amp; Nevis">St Kitts &amp;amp;
-                      Nevis</mat-option><mat-option value="St Lucia">St Lucia</mat-option><mat-option
-                      value="St Vincent">St Vincent</mat-option><mat-option value="St. Lucia">St.
-                      Lucia</mat-option><mat-option value="Sudan">Sudan</mat-option><mat-option
-                      value="Suriname">Suriname</mat-option><mat-option
-                      value="Swaziland">Swaziland</mat-option><mat-option value="Sweden">Sweden</mat-option><mat-option
-                      value="Switzerland">Switzerland</mat-option><mat-option
-                      value="Syria">Syria</mat-option><mat-option value="Taiwan">Taiwan</mat-option><mat-option
-                      value="Tajikistan">Tajikistan</mat-option><mat-option
-                      value="Tanzania">Tanzania</mat-option><mat-option
-                      value="Thailand">Thailand</mat-option><mat-option value="Timor L&#x27;Este">Timor
-                      L&#x27;Este</mat-option><mat-option value="Togo">Togo</mat-option><mat-option
-                      value="Tonga">Tonga</mat-option><mat-option value="Trinidad &amp;amp; Tobago">Trinidad &amp;amp;
-                      Tobago</mat-option><mat-option value="Tunisia">Tunisia</mat-option><mat-option
-                      value="Turkey">Turkey</mat-option><mat-option
-                      value="Turkmenistan">Turkmenistan</mat-option><mat-option value="Turks &amp;amp; Caicos">Turks
-                      &amp;amp; Caicos</mat-option><mat-option value="Uganda">Uganda</mat-option><mat-option
-                      value="Ukraine">Ukraine</mat-option><mat-option value="United Arab Emirates">United Arab
-                      Emirates</mat-option><mat-option value="United Kingdom">United Kingdom</mat-option><mat-option
-                      value="Uruguay">Uruguay</mat-option><mat-option
-                      value="Uzbekistan">Uzbekistan</mat-option><mat-option
-                      value="Venezuela">Venezuela</mat-option><mat-option
-                      value="Vietnam">Vietnam</mat-option><mat-option value="Virgin Islands (US)">Virgin Islands
-                      (US)</mat-option><mat-option value="Yemen">Yemen</mat-option><mat-option
-                      value="Zambia">Zambia</mat-option><mat-option value="Zimbabwe">Zimbabwe</mat-option>
-
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div> <br>
-            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Postal Code </mat-label>
-                  <input matInput placeholder="Postal Code" formControlName="postalCode" >
-                </mat-form-field>
-
-                <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('branchCode').invalid && invoiceDiscountingForm.get('branchCode').touched"
-                  class="error-message">
-                  *Branch Code required</small> -->
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">City</mat-label>
-                  <input matInput placeholder="City" formControlName="city" >
-                </mat-form-field>
-              </div>
-
-          
-          
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label style="font-size:16px;white-space:nowrap;">Branch Name</mat-label>
-                  <input matInput placeholder="Branch Name" formControlName="branchName" >
-                </mat-form-field>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-                  <mat-label for="branchCode"
-                    style="font-size:16px; display:flex; flex-direction:row;  white-space: nowrap;">Branch Code
-                  </mat-label>
-                  <input matInput placeholder="Branch Code" formControlName="branchCode" >
-                </mat-form-field>
-              </div>
-              <!-- <small
-                  *ngIf="invoiceDiscountingForm.get('branchCode').invalid && invoiceDiscountingForm.get('branchCode').touched"
-                  class="error-message">
-                  *Branch Code required</small> -->
-
-
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Account Name</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Account Name" formControlName="accountName" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('accountName'). invalid && invoiceDiscountingForm.get('accountName').touched">
+                *Account Name is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Currency</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Currency" formControlName="currency" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('currency').invalid && invoiceDiscountingForm.get('currency').touched">
+                *Please specify the currency</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Email</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Email" formControlName="email" type="email">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('email').invalid && invoiceDiscountingForm.get('email').touched">
+                *Enter valid email address</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Phone Number</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Phone Number" formControlName="phoneNumber" type="tel">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('phoneNumber').invalid && invoiceDiscountingForm.get('phoneNumber').touched">
+                *Phone Number is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Address</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Address" formControlName="address" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('address').invalid && invoiceDiscountingForm.get('address').touched">
+                *Address is mandatory</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>City</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="City" formControlName="city" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('city').invalid && invoiceDiscountingForm.get('city').touched">
+                *City is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Postal Code</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Postal Code" formControlName="postalCode" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('postalCode').invalid && invoiceDiscountingForm.get('postalCode').touched">
+                *Postal code is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Country Code</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Country Code" formControlName="countryCode" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('countryCode').invalid && invoiceDiscountingForm.get('countryCode').touched">
+                *Country code is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Country</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Country" formControlName="country" type="text">
+              </mat-form-field>
+              <small *ngIf="invoiceDiscountingForm.get('country').invalid && invoiceDiscountingForm.get('country').touched">
+                *Applicant's country is required</small>
+            </div>
+            <div>
+              <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
             </div>
           </div>
-
-          <div>
-            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
-          </div>
-
-          <!-- </div> -->
         </mat-step>
-        <!--2.invoice Details & Document Upload-->
+        
 
         <mat-step label="Invoice Details & Document Upload-">
           <div class="row">
-
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Number </mat-label>
                 <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="number">
               </mat-form-field>
-              <!-- <label for="invoiceNumber"
-                style="font-size:20px; display:flex; flex-direction:row;  white-space: nowrap;"></label>
-              <input > -->
-            </div>
+               </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Amount</mat-label>
                 <input matInput formControlName="invoiceAmount" type="number">
               </mat-form-field>
+            </div>
 
-              <!-- <label for="invoiceDate"
-                style="font-size:20px; display:flex; flex-direction:row;  white-space: nowrap;"> <span
-                  class="red-asterisk" style="color: red;">*</span> </label>
-              <input class="full-width" formControlName="invoiceDate" type="date"> -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-label style="font-size:16px;">Company name</mat-label>
+                <input matInput formControlName="companyName" type="number">
+              </mat-form-field>
+            </div>
 
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-label style="font-size:16px;">Company address</mat-label>
+                <input matInput formControlName="companyAddress" type="number">
+              </mat-form-field>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Date </mat-label>
                 <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
@@ -371,8 +161,8 @@
                   style="color: red;">*</span></label> <br>
               <input formControlName="dueDate" type="date"> -->
             </div><br>
-          </div> <br>
-          <div class="row">
+           <br>
+          
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Due Date </mat-label>
@@ -393,19 +183,21 @@
                 </mat-select>
               </mat-form-field>
             </div>
+          </div>
+
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="Upload invoices">Upload Invoices</label>
               <input type="file" formControlName="invoices">
             </div>
-          </div>
-      
-          <div>
+         
+         <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
           </div>
         </mat-step>
+
         <!-- 3.Funding Details -->
-        <mat-step label="Export Working Capital Loan">
+        <mat-step label="funding details">
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
@@ -413,55 +205,298 @@
                 <input matInput formControlName="fundingAmount" >
               </mat-form-field>
               </div>
+
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                  <mat-label style="font-size:16px;"> credit limit</mat-label>
+                  <input matInput formControlName="creditLimit" >
+                </mat-form-field>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                    <mat-label style="font-size:16px;"> Credit Account </mat-label>
+                    <input matInput formControlName="creditAccount" >
+                  </mat-form-field>
+                  </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Disbursal Date</mat-label>
-                <input matInput formControlName="disbursalDate" >
+                <input matInput formControlName="disbursalDate" type="date">
               </mat-form-field>
               </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Re-Payment Date</mat-label>
-                <input matInput formControlName="repaymentDate" >
+                <input matInput formControlName="repaymentDate" type="date">
               </mat-form-field>
               </div>
-          
+
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+                <mat-form-field appearance="outline">
+                  <mat-label style="font-size:16px;">funding status</mat-label>
+                  <mat-select [(value)]="selected">
+                    <mat-option value="created" formControlName="status">Await funding approvel</mat-option>
+                    <mat-option value="approved" formControlName="status">Approved for funding</mat-option>
+                    <mat-option value="funded" formControlName="status">Funded</mat-option>
+                   </mat-select>
+                </mat-form-field>
+              </div> 
+
+               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                   <a href="">Terms and Conditions</a>
+                    <input matInput formControlName="fundingTerms" >
+                  </mat-form-field>
+                  </div>
+
+                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                    <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                      <mat-label style="font-size:16px;"> Credit check informaton </mat-label>
+                      <input matInput formControlName="creditCheckInformation" >
+                    </mat-form-field>
+                    </div>
+              
+                   
+
           </div>
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
           </div>
         </mat-step>
-        <!-- Payment Details -->
-        <mat-step label="Payment Details">
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:16px;"> Payment terms </mat-label>
-                <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="paymentTerms">
-              </mat-form-field>
-              </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:16px;"> Amount Paid </mat-label>
-                <input matInput formControlName="amount">
-              </mat-form-field>
-              </div>
+         <!-- importers details -->
+      <mat-step label="importers details">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Buyers FullName </mat-label>
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="buyersFullName">
+            </mat-form-field>
+            </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Buyer EmailAddress </mat-label>
+              <input matInput formControlName="buyerEmailAddress">
+            </mat-form-field>
+            </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Buyer Country </mat-label>
+              <input matInput formControlName="buyerCountry " type="text">
+            </mat-form-field>
+            </div>
+
+           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Buyer City </mat-label>
+              <input matInput formControlName="buyerCity" type="text">
+            </mat-form-field>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+              <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+
+      </mat-step>
       
-       
+
+      <!-- referee details -->
+
+      <mat-step label="referee details">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Referee email </mat-label>
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeEmail">
+            </mat-form-field>
+            </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Referee business no </mat-label>
+              <input matInput formControlName="refereeBusinessno">
+            </mat-form-field>
+            </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Referee business name  </mat-label>
+              <input matInput formControlName="refereeBussinessname " type="text">
+            </mat-form-field>
+            </div>
+
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:16px;"> Payment Date </mat-label>
-                <input matInput formControlName="paymentDate" type="date">
-              </mat-form-field>
-              </div>
-              <div>
-            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-            <button style="background-color: #ad3b3a;" mat-button (click)="onSubmit()" matStepperSubmit>Submit</button>
-          </div>
-          </div>
-        </mat-step>
-      </form>
+            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-label style="font-size:16px;"> Buyer City </mat-label>
+              <input matInput formControlName="buyerCity" type="text">
+            </mat-form-field>
+            </div>
+
+            <div>
+          <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+          <button style="background-color: #ad3b3a;" mat-button (click)="onSubmit()" matStepperSubmit>Submit</button>
+        </div>
+      </div>
+      </mat-step>
+      
+      
+</form>
     </mat-horizontal-stepper>
   </div>
 </section>
+
+
+
+
+
+<!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2" appearance="outline">
+  <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
+    <mat-label style="font-size:16px;">Country</mat-label>
+    <mat-select formControlName="country">
+      <mat-option value="Afghanistan">Afghanistan</mat-option>
+      <mat-option value="Albania">Albania</mat-option>
+      <mat-option value="Algeria">Algeria</mat-option>
+      <mat-option value="Andorra">Andorra</mat-option>
+      <mat-option value="Angola">Angola</mat-option>
+      <mat-option
+        value="Anguilla">Anguilla</mat-option>
+        <mat-option value="Antigua &amp; Barbuda">Antigua &amp;
+        Barbuda</mat-option><mat-option value="Argentina">Argentina</mat-option><mat-option
+        value="Armenia">Armenia</mat-option><mat-option value="Aruba">Aruba</mat-option><mat-option
+        value="Australia">Australia</mat-option><mat-option
+        value="Austria">Austria</mat-option><mat-option
+        value="Azerbaijan">Azerbaijan</mat-option><mat-option
+        value="Bahamas">Bahamas</mat-option><mat-option value="Bahrain">Bahrain</mat-option><mat-option
+        value="Bangladesh">Bangladesh</mat-option><mat-option
+        value="Barbados">Barbados</mat-option><mat-option value="Belarus">Belarus</mat-option><mat-option
+        value="Belgium">Belgium</mat-option><mat-option value="Belize">Belize</mat-option><mat-option
+        value="Benin">Benin</mat-option><mat-option value="Bermuda">Bermuda</mat-option><mat-option
+        value="Bhutan">Bhutan</mat-option><mat-option value="Bolivia">Bolivia</mat-option><mat-option
+        value="Bosnia &amp;amp; Herzegovina">Bosnia &amp;amp; Herzegovina</mat-option><mat-option
+        value="Botswana">Botswana</mat-option><mat-option value="Brazil">Brazil</mat-option><mat-option
+        value="British Virgin Islands">British Virgin Islands</mat-option><mat-option
+        value="Brunei">Brunei</mat-option><mat-option value="Bulgaria">Bulgaria</mat-option><mat-option
+        value="Burkina Faso">Burkina Faso</mat-option><mat-option
+        value="Burundi">Burundi</mat-option><mat-option value="Cambodia">Cambodia</mat-option><mat-option
+        value="Cameroon">Cameroon</mat-option><mat-option value="Cape Verde">Cape
+        Verde</mat-option><mat-option value="Cayman Islands">Cayman Islands</mat-option><mat-option
+        value="Chad">Chad</mat-option><mat-option value="Chile">Chile</mat-option><mat-option
+        value="China">China</mat-option><mat-option value="Colombia">Colombia</mat-option><mat-option
+        value="Congo">Congo</mat-option><mat-option value="Cook Islands">Cook
+        Islands</mat-option><mat-option value="Costa Rica">Costa Rica</mat-option><mat-option
+        value="Cote D Ivoire">Cote D Ivoire</mat-option><mat-option
+        value="Croatia">Croatia</mat-option><mat-option value="Cruise Ship">Cruise
+        Ship</mat-option><mat-option value="Cuba">Cuba</mat-option><mat-option
+        value="Cyprus">Cyprus</mat-option><mat-option value="Czech Republic">Czech
+        Republic</mat-option><mat-option value="Denmark">Denmark</mat-option><mat-option
+        value="Djibouti">Djibouti</mat-option><mat-option
+        value="Dominica">Dominica</mat-option><mat-option value="Dominican Republic">Dominican
+        Republic</mat-option><mat-option value="Ecuador">Ecuador</mat-option><mat-option
+        value="Egypt">Egypt</mat-option><mat-option value="El Salvador">El
+        Salvador</mat-option><mat-option value="Equatorial Guinea">Equatorial
+        Guinea</mat-option><mat-option value="Estonia">Estonia</mat-option><mat-option
+        value="Ethiopia">Ethiopia</mat-option><mat-option value="Falkland Islands">Falkland
+        Islands</mat-option><mat-option value="Faroe Islands">Faroe Islands</mat-option><mat-option
+        value="Fiji">Fiji</mat-option><mat-option value="Finland">Finland</mat-option><mat-option
+        value="France">France</mat-option><mat-option value="French Polynesia">French
+        Polynesia</mat-option><mat-option value="French West Indies">French West
+        Indies</mat-option><mat-option value="Gabon">Gabon</mat-option><mat-option
+        value="Gambia">Gambia</mat-option><mat-option value="Georgia">Georgia</mat-option><mat-option
+        value="Germany">Germany</mat-option><mat-option value="Ghana">Ghana</mat-option><mat-option
+        value="Gibraltar">Gibraltar</mat-option><mat-option value="Greece">Greece</mat-option><mat-option
+        value="Greenland">Greenland</mat-option><mat-option
+        value="Grenada">Grenada</mat-option><mat-option value="Guam">Guam</mat-option><mat-option
+        value="Guatemala">Guatemala</mat-option><mat-option
+        value="Guernsey">Guernsey</mat-option><mat-option value="Guinea">Guinea</mat-option><mat-option
+        value="Guinea Bissau">Guinea Bissau</mat-option><mat-option
+        value="Guyana">Guyana</mat-option><mat-option value="Haiti">Haiti</mat-option><mat-option
+        value="Honduras">Honduras</mat-option><mat-option value="Hong Kong">Hong
+        Kong</mat-option><mat-option value="Hungary">Hungary</mat-option><mat-option
+        value="Iceland">Iceland</mat-option><mat-option value="India">India</mat-option><mat-option
+        value="Indonesia">Indonesia</mat-option><mat-option value="Iran">Iran</mat-option><mat-option
+        value="Iraq">Iraq</mat-option><mat-option value="Ireland">Ireland</mat-option><mat-option
+        value="Isle of Man">Isle of Man</mat-option><mat-option
+        value="Israel">Israel</mat-option><mat-option value="Italy">Italy</mat-option><mat-option
+        value="Jamaica">Jamaica</mat-option><mat-option value="Japan">Japan</mat-option><mat-option
+        value="Jersey">Jersey</mat-option><mat-option value="Jordan">Jordan</mat-option><mat-option
+        value="Kazakhstan">Kazakhstan</mat-option><mat-option value="Kenya">Kenya</mat-option><mat-option
+        value="Kuwait">Kuwait</mat-option><mat-option value="Kyrgyz Republic">Kyrgyz
+        Republic</mat-option><mat-option value="Laos">Laos</mat-option><mat-option
+        value="Latvia">Latvia</mat-option><mat-option value="Lebanon">Lebanon</mat-option><mat-option
+        value="Lesotho">Lesotho</mat-option><mat-option value="Liberia">Liberia</mat-option><mat-option
+        value="Libya">Libya</mat-option><mat-option
+        value="Liechtenstein">Liechtenstein</mat-option><mat-option
+        value="Lithuania">Lithuania</mat-option><mat-option
+        value="Luxembourg">Luxembourg</mat-option><mat-option value="Macau">Macau</mat-option><mat-option
+        value="Macedonia">Macedonia</mat-option><mat-option
+        value="Madagascar">Madagascar</mat-option><mat-option
+        value="Malawi">Malawi</mat-option><mat-option value="Malaysia">Malaysia</mat-option><mat-option
+        value="Maldives">Maldives</mat-option><mat-option value="Mali">Mali</mat-option><mat-option
+        value="Malta">Malta</mat-option><mat-option value="Mauritania">Mauritania</mat-option><mat-option
+        value="Mauritius">Mauritius</mat-option><mat-option value="Mexico">Mexico</mat-option><mat-option
+        value="Moldova">Moldova</mat-option><mat-option value="Monaco">Monaco</mat-option><mat-option
+        value="Mongolia">Mongolia</mat-option><mat-option
+        value="Montenegro">Montenegro</mat-option><mat-option
+        value="Montserrat">Montserrat</mat-option><mat-option
+        value="Morocco">Morocco</mat-option><mat-option
+        value="Mozambique">Mozambique</mat-option><mat-option
+        value="Namibia">Namibia</mat-option><mat-option value="Nepal">Nepal</mat-option><mat-option
+        value="Netherlands">Netherlands</mat-option><mat-option value="Netherlands Antilles">Netherlands
+        Antilles</mat-option><mat-option value="New Caledonia">New Caledonia</mat-option><mat-option
+        value="New Zealand">New Zealand</mat-option><mat-option
+        value="Nicaragua">Nicaragua</mat-option><mat-option value="Niger">Niger</mat-option><mat-option
+        value="Nigeria">Nigeria</mat-option><mat-option value="Norway">Norway</mat-option><mat-option
+        value="Oman">Oman</mat-option><mat-option value="Pakistan">Pakistan</mat-option><mat-option
+        value="Palestine">Palestine</mat-option><mat-option value="Panama">Panama</mat-option><mat-option
+        value="Papua New Guinea">Papua New Guinea</mat-option><mat-option
+        value="Paraguay">Paraguay</mat-option><mat-option value="Peru">Peru</mat-option><mat-option
+        value="Philippines">Philippines</mat-option><mat-option
+        value="Poland">Poland</mat-option><mat-option value="Portugal">Portugal</mat-option><mat-option
+        value="Puerto Rico">Puerto Rico</mat-option><mat-option
+        value="Qatar">Qatar</mat-option><mat-option value="Reunion">Reunion</mat-option><mat-option
+        value="Romania">Romania</mat-option><mat-option value="Russia">Russia</mat-option><mat-option
+        value="Rwanda">Rwanda</mat-option><mat-option value="Saint Pierre &amp;amp; Miquelon">Saint Pierre
+        &amp;amp; Miquelon</mat-option><mat-option value="Samoa">Samoa</mat-option><mat-option
+        value="San Marino">San Marino</mat-option><mat-option
+        value="Satellite">Satellite</mat-option><mat-option value="Saudi Arabia">Saudi
+        Arabia</mat-option><mat-option value="Senegal">Senegal</mat-option><mat-option
+        value="Serbia">Serbia</mat-option><mat-option
+        value="Seychelles">Seychelles</mat-option><mat-option value="Sierra Leone">Sierra
+        Leone</mat-option><mat-option value="Singapore">Singapore</mat-option><mat-option
+        value="Slovakia">Slovakia</mat-option><mat-option
+        value="Slovenia">Slovenia</mat-option><mat-option value="SO">Somalia</mat-option><mat-option
+        value="South Africa">South Africa</mat-option><mat-option value="South Korea">South
+        Korea</mat-option><mat-option value="Spain">Spain</mat-option><mat-option value="Sri Lanka">Sri
+        Lanka</mat-option><mat-option value="St Kitts &amp;amp; Nevis">St Kitts &amp;amp;
+        Nevis</mat-option><mat-option value="St Lucia">St Lucia</mat-option><mat-option
+        value="St Vincent">St Vincent</mat-option><mat-option value="St. Lucia">St.
+        Lucia</mat-option><mat-option value="Sudan">Sudan</mat-option><mat-option
+        value="Suriname">Suriname</mat-option><mat-option
+        value="Swaziland">Swaziland</mat-option><mat-option value="Sweden">Sweden</mat-option><mat-option
+        value="Switzerland">Switzerland</mat-option><mat-option
+        value="Syria">Syria</mat-option><mat-option value="Taiwan">Taiwan</mat-option><mat-option
+        value="Tajikistan">Tajikistan</mat-option><mat-option
+        value="Tanzania">Tanzania</mat-option><mat-option
+        value="Thailand">Thailand</mat-option><mat-option value="Timor L&#x27;Este">Timor
+        L&#x27;Este</mat-option><mat-option value="Togo">Togo</mat-option><mat-option
+        value="Tonga">Tonga</mat-option><mat-option value="Trinidad &amp;amp; Tobago">Trinidad &amp;amp;
+        Tobago</mat-option><mat-option value="Tunisia">Tunisia</mat-option><mat-option
+        value="Turkey">Turkey</mat-option><mat-option
+        value="Turkmenistan">Turkmenistan</mat-option><mat-option value="Turks &amp;amp; Caicos">Turks
+        &amp;amp; Caicos</mat-option><mat-option value="Uganda">Uganda</mat-option><mat-option
+        value="Ukraine">Ukraine</mat-option><mat-option value="United Arab Emirates">United Arab
+        Emirates</mat-option><mat-option value="United Kingdom">United Kingdom</mat-option><mat-option
+        value="Uruguay">Uruguay</mat-option><mat-option
+        value="Uzbekistan">Uzbekistan</mat-option><mat-option
+        value="Venezuela">Venezuela</mat-option><mat-option
+        value="Vietnam">Vietnam</mat-option><mat-option value="Virgin Islands (US)">Virgin Islands
+        (US)</mat-option><mat-option value="Yemen">Yemen</mat-option><mat-option
+        value="Zambia">Zambia</mat-option><mat-option value="Zimbabwe">Zimbabwe</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+</div> -->

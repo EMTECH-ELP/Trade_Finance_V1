@@ -2,7 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LcService } from '../../services/lc.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModifyLookupComponent } from './modify-lookup/modify-lookup.component';
 
 @Component({
   selector: 'app-modify',
@@ -12,96 +14,64 @@ import { Router } from '@angular/router';
 
 
 export class ModifyComponent implements OnInit {
-  searchOption: any;
-  searchTerm: any;
-  selectedValue: string;
-  applicationForm: FormGroup;
-
-
-  searchQuery: string = '';
-  formData: any = {
-    lcno: '',
-    cif: '',
-    accountno: ''}
-searchForm: any;
 searchResults: any;
+  applicationForm: any;
+handleSearchClick() {
+throw new Error('Method not implemented.');
+}
 
-   modifies(){
-      // this will updates the database on the changes made/modified
-  
-  }
+
+  selectedValue: string;
+  modificationForm: FormGroup;
+  // router: any;
+searchForm: any;
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private lcService: LcService) { }
+    private lcService: LcService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
 
-    this.applicationForm = this.fb.group({
-      applicantFirstName: ['', Validators.required],
-      applicantMiddleName: [''],
-      applicantLastName: ['', Validators.required],
-      applicantAddress: ['', Validators.required],
-      applicantEmail: ['', [Validators.required, Validators.email]],
-      applicantPhoneNumber: ['', Validators.required],
-      businessName: ['', Validators.required],
-      applicantAccountName: ['', Validators.required],
-      applicantAccountNumber: ['', Validators.required],
-      issuingBank: ['', Validators.required],
-      issuingSwiftCode: ['', Validators.required],
-      beneficiaryFirstName: ['', Validators.required],
-      beneficiaryMiddleName: [''],
-      beneficiaryLastName: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
-      beneficiaryEmail: ['', [Validators.required, Validators.email]],
-      beneficiaryPhoneNumber: ['', Validators.required],
-      beneficiaryAccountName: ['', Validators.required],
-      beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryBank: ['', Validators.required],
-      beneficiarySwiftCode: ['', Validators.required],
-      beneficiaryCity: ['', Validators.required],
-      lcType: ['', Validators.required],
-      subType: ['', Validators.required],
+    this.modificationForm = this.fb.group({
+      lcNumber: ['', Validators.required],
+      lcType: [''],
       applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      shipmentDate: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
-      portOfLoading: ['', Validators.required],
-      shipmentTerms: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      transShipment: ['', Validators.required],
-      issueDate: ['', Validators.required],
+      currencyCode: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.email]],
       expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
-      transferable: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
       chargesBorneBy: ['', Validators.required],
-      amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
-      billOfLading: ['', Validators.required],
-      numberOfCopies: ['', Validators.required],
-      signed: ['', Validators.required],
-      documentDescription: ['', Validators.required]
+      negotiationPeriod: ['', Validators.required],
+      issueDate: ['', Validators.required],
+      tenor: ['', Validators.required],
+      transferable: ['', Validators.required],
+      confirm: ['', Validators.required],
+      advise: [''],
+
     });
 
   }
 
+  public onModify() {
 
-  handleSearchClick() {
-    this.router.navigate(["/create"])
-    // throw new Error('Method not implemented.');
+    console.log("Form data", this.modificationForm.value);
+    this.lcService.ModifyLc(this.modificationForm.value).subscribe({
+      next: ((response) => {
+
+        console.log("Lc modify response", response);
+      }),
+      error: ((err) => {
+        console.error(err)
+      }),
+      complete: (() => { })
+    })
+    this.modificationForm.reset()
+    this.ngOnInit()
+    alert('Modification done Successfully and records updated!')
+    
+    this.router.navigate(["view"]);
   }
 
 
@@ -122,6 +92,28 @@ searchResults: any;
   })
 }
 
+openModifyLookup(){
+ // Create a MatDialogConfig object
+ const dialogConfig = new MatDialogConfig();
+ dialogConfig.width = '500px';
+ dialogConfig.data = { lcNumber: this.modificationForm.get('lcNumber').value };
+
+ // Open the LookupComponent dialog with the dialog config
+ const dialogRef = this.dialog.open(ModifyLookupComponent, dialogConfig);
+
+ dialogRef.afterClosed().subscribe({
+   next: (res: any) => {
+     console.log("received data", res),
+
+       console.log("passed tenor", res.data[0].tenor)
+
+     this.patchModificationForm(res.data[0])
+   }
+ })
+}
+  patchModificationForm(arg0: any) {
+    throw new Error('Method not implemented.');
+  }
 }
 
 
