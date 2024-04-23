@@ -18,6 +18,7 @@ import { DeleteDcComponent } from './components/delete-dc/delete-dc.component';
 import { MaterialModule } from '../shared/material.module';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -46,6 +47,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
         MaterialModule,
         MatOptionModule,
         MatSelectModule,
+        MatCheckboxModule,
         
         
 
