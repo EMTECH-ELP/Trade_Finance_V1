@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
     ModifyInvoiceComponent,
     CreateInvoiceComponent,
     ViewInvoiceComponent,
+    InvoiceLookupComponent,
    
   
   ],

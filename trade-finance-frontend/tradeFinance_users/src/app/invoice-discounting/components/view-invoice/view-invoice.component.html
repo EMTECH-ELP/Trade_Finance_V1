@@ -1,202 +1,237 @@
 <section class="content">
-    <div class="content-block">
-        <div class="block-header">
-            <app-breadcrumb [title]="'Invoice Discounting'" [items]="['Home']" [active_item]="'View'">
-            </app-breadcrumb>
+  <div class="content-block">
+      <div class="block-header">
+          <app-breadcrumb [title]="'Invoice Discounting'" [items]="['Home']" [active_item]="'View'">
+          </app-breadcrumb>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="Invoices-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="Invoices-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">CREATED Invoices</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalCreatedInvoices }}</span>
+          </div>
         </div>
-
-        <div class="user-info">
-            <p>Logged in user: {{ loggedInUser.name }} ({{ loggedInUser.role }})</p>
-            <p>Total Invoices Issued:</p>
-            <ul>
-                <li>Created: {{ totalCreatedLetters }}</li>
-                <li>Pending: {{ totalPendingLetters }}</li>
-                <li>Approved: {{ totalApprovedLetters }}</li>
-            </ul>
+      
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="Invoices-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px;  margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="Invoices-label-text" style="margin-right: auto; color: black; font-family: bolder; font-size: large;">PENDING Invoices</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalPendingInvoices }}</span>
+          </div>
         </div>
-
-        <div class="filter-section">
-            <label for="filter-status">Filter by Status:</label>
-            <select id="filter-status" [(ngModel)]="selectedStatus">
-                <option value="all">All</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-            </select>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="Invoices-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="Invoices-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">APPROVED Invoices</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalApprovedInvoices }}</span>
+          </div>
         </div>
+      
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <div class="Invoices-label" style="color: maroon; border: 4px solid maroon; padding: 20px 20px 20px 20px; border-radius: 10px 10px 10px 10px; margin: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <span class="Invoices-label-text" style="margin-right: auto; color: black; font-family: bold; font-size: large;">REJECTED Invoices</span>
+            <span class="badge badge-pill badge-danger" style="border: 2px solid black; color: maroon;">{{ totalRejectinvoices }}</span>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="filter-section">
+          <label for="filter-status">Filter by Status:</label>
+          <select id="filter-status" [(ngModel)]="selectedStatus">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+          </select>
+      </div>
 
-        <div class="row">
+      <div class="row">
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="card">
-                <div class="body">
-      
-                  <div class="table-responsive">
-                    <div class="materialTableHeader">
-                      <div class="row">
-      
-                        <div class="col-12">
-                          <ul class="header-buttons-left ms-0">
-                            <li class="dropdown">
-                              <h2>Letters of credit</h2>
-                            </li>
-      
-                            <li class="dropdown m-l-20">
-                              <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                              <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
-                                class="browser-default search-field" aria-label="Search box">
-                            </li>
-      
-                            <li>
-                              <div class="m-l-10" matTooltip="Add">
-                                <button mat-mini-fab color="primary" (click)="add()">
-                                  <mat-icon class="col-white">add</mat-icon>
-                                </button>
-                              </div>
-                            </li>
-      
-                            <li>
-                              <div class="m-l-10" matTooltip="Refresh">
-                                <button mat-mini-fab color="primary" (click)="refresh()">
-                                  <mat-icon class="col-white">refresh</mat-icon>
-                                </button>
-                              </div>
-                            </li>
-      
-                          </ul>
-                        </div>
-      
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="body">
+    
+                <div class="table-responsive">
+                  <div class="materialTableHeader">
+                    <div class="row">
+    
+                      <div class="col-12">
+                        <ul class="header-buttons-left ms-0">
+                          <li class="dropdown">
+                            <h2>INVOICE DISCOUNTING</h2>
+                          </li>
+    
+                          <li class="dropdown m-l-20">
+                            <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                            <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
+                              class="browser-default search-field" aria-label="Search box">
+                          </li>
+    
+                          <li>
+                            <div class="m-l-10" matTooltip="Add">
+                              <button mat-mini-fab color="primary" (click)="add()">
+                                <mat-icon class="col-white">add</mat-icon>
+                              </button>
+                            </div>
+                          </li>
+    
+                          <li>
+                            <div class="m-l-10" matTooltip="Refresh">
+                              <button mat-mini-fab color="primary" (click)="refresh()">
+                                <mat-icon class="col-white">refresh</mat-icon>
+                              </button>
+                            </div>
+                          </li>
+    
+                        </ul>
                       </div>
+    
                     </div>
-      
-                    <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
-                      #exporter="matTableExporter">
-      
-                      <!-- ID Column -->
-                      <ng-container matColumnDef="no">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header
-                          class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index" class="psl-3 tbl-col-width-per-10">{{i +
-                          1}}</mat-cell>
-                      </ng-container>
-      
-                      <ng-container matColumnDef="letterOfCreditNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Customer name</mat-header-cell>
-                        <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                          {{row.productCategory}}</mat-cell>
-                      </ng-container>
-      
-                      <ng-container matColumnDef="applicantAccountNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header
-                          class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
-                        <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                          {{row.description}}</mat-cell>
-                      </ng-container>
-
-                      <ng-container matColumnDef="beneficiaryAccountNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header
-                          class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
-                        <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                          {{row.description}}</mat-cell>
-                      </ng-container>
-      
-                      <ng-container matColumnDef="actions">
-                        <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
-                        <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-30"
-                          (click)="onSelect(row)">
-
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="openViewLcComponent(row)"
-                            class="tbl-action-btn">
-                            <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                          </button>
-
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                            (click)="openDeleteConfirmationDialog(row)"  class="tbl-action-btn">
-                            <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                          </button>
-
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                            (click)="verify(row)"  class="tbl-action-btn">
-                            <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                          </button>
-                         
-
-                          <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                            (click)="verify(row)"  class="tbl-action-btn">
-                            <app-feather-icons [icon]="'move'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                          </button>
-
-                        </mat-cell>
-                      </ng-container>
-      
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      
-                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
-                        [style.cursor]="'pointer'" matRipple>
-                      </mat-row>
-      
-                      <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
-      
-                    </mat-table>
-      
-                    <!-- Loading spinner -->
-                    <div *ngIf="isLoading" class="tbl-spinner">
-                      <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
-                      </mat-progress-spinner>
-                    </div>
-      
-                    <mat-menu #contextMenu="matMenu">
-                      <ng-template matMenuContent let-item="item">
-                        <button mat-menu-item (click)="addNew()">
-                          <mat-icon>add_box</mat-icon>
-                          <span>Add Record</span>
-                        </button>
-                        <button mat-menu-item (click)="editCall(item)">
-                          <mat-icon>create</mat-icon>
-                          <span>Edit Record</span>
-                        </button>
-                        <button mat-menu-item (click)="openDeleteConfirmationDialog(item)">
-                          <mat-icon>delete</mat-icon>
-                          <span>Delete Record</span>
-                        </button>
-                        <button mat-menu-item (click)="refresh()">
-                          <mat-icon>refresh</mat-icon>
-                          <span>Refresh Record</span>
-                        </button>
-                        <button mat-menu-item disabled>
-                          <mat-icon>no_encryption</mat-icon>
-                          <span>Disable</span>
-                        </button>
-                        <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
-                          <mat-icon>list_alt</mat-icon>
-                          <span> Nested Menu</span>
-                        </button>
-                      </ng-template>
-                    </mat-menu>
-      
-                    <mat-menu #nestedmenu="matMenu">
-                      <button mat-menu-item>
-                        <mat-icon>mail_outline</mat-icon>
-                        <span>Item 1</span>
-                      </button>
-                      <button mat-menu-item>
-                        <mat-icon>call</mat-icon>
-                        <span>Item 2</span>
-                      </button>
-                      <button mat-menu-item>
-                        <mat-icon>chat</mat-icon>
-                        <span>Item 3</span>
-                      </button>
-                    </mat-menu>
-      
-                    <mat-paginator [pageSize]="10" [pageSizeOptions]="[2,5,10,20, 30, 40, 50, 100]"
-                      aria-label="Select page of users"></mat-paginator>
-      
                   </div>
-      
+    
+                  <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
+                    #exporter="matTableExporter" >
+    
+                    <!-- ID Column -->
+                   
+                    <ng-container matColumnDef="no">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
+                      <mat-cell *matCellDef="let element;  let i = index" class="psl-3 tbl-col-width-per-10">{{i +
+                        1}}</mat-cell>
+                    </ng-container>
+    
+<!--     <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
+                        {{ row.no }}; let i = index" class="psl-3 tbl-col-width-per-10">{{i +
+                        1}}</mat-cell> -->
+
+                    <ng-container matColumnDef="InvoiceDiscountingNoy">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">LC No.</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-10">
+                        {{ row.lcNumber}}</mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="accountName">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-40">Account Name</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                        {{ row.accountName}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="accountNumber">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-50">Account Number</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
+                        {{ row.accountNumber}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-40">Status</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                        {{ row.status}}</mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
+                      <mat-cell *matCellDef="let row; let i=index;" 
+                        (click)="onSelect(row)">
+
+                        <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="OpenDcComponent(row)"
+                          class="tbl-action-btn">
+                          <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"  (click)="OnViewClicked()"></app-feather-icons>
+                        </button>
+
+                        <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
+                          (click)="openDeleteConfirmationDialog(row)"  class="tbl-action-btn">
+                          <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+
+                        <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
+                          (click)="verify(row)"  class="tbl-action-btn">
+                          <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+                       
+
+                        <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
+                          (click)="transfer(row)"  class="tbl-action-btn">
+                          <mat-icon>swap_horiz</mat-icon>
+
+                        </button>
+
+                      </mat-cell>
+                    </ng-container>
+    
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
+                      [style.cursor]="'pointer'" matRipple>
+                    </mat-row>
+    
+                    <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
+    
+                  </mat-table>
+    
+                  <!-- Loading spinner -->
+                  <div *ngIf="isLoading" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+    
+                  <mat-menu #contextMenu="matMenu">
+                    <ng-template matMenuContent let-item="item">
+                      <button mat-menu-item (click)="addNew()">
+                        <mat-icon>add_box</mat-icon>
+                        <span>Add Record</span>
+                      </button>
+                      <button mat-menu-item (click)="editCall(item)">
+                        <mat-icon>create</mat-icon>
+                        <span>Edit Record</span>
+                      </button>
+                      <button mat-menu-item (click)="openDeleteConfirmationDialog(item)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete Record</span>
+                      </button>
+                      <button mat-menu-item (click)="refresh()">
+                        <mat-icon>refresh</mat-icon>
+                        <span>Refresh Record</span>
+                      </button>
+                      <button mat-menu-item disabled>
+                        <mat-icon>no_encryption</mat-icon>
+                        <span>Disable</span>
+                      </button>
+                      <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
+                        <mat-icon>list_alt</mat-icon>
+                        <span> Nested Menu</span>
+                      </button>
+                    </ng-template>
+                  </mat-menu>
+    
+                  <mat-menu #nestedmenu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>mail_outline</mat-icon>
+                      <span>Item 1</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>call</mat-icon>
+                      <span>Item 2</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>chat</mat-icon>
+                      <span>Item 3</span>
+                    </button>
+                  </mat-menu>
+    
+                  <mat-paginator [pageSize]="10" [pageSizeOptions]="[2,5,10,20, 30, 40, 50, 100]"
+                    aria-label="Select page of users"></mat-paginator>
+    
                 </div>
+    
               </div>
             </div>
-      
           </div>
-    </div>
+    
+        </div>
+  </div>
 </section>

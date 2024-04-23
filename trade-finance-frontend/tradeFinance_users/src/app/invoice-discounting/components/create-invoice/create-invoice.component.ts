@@ -3,7 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 // import { SearchService } from '../../services/search.service';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
+import { InvoiceLookupComponent } from '../../invoice-lookup/invoice-lookup.component';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,7 +22,7 @@ export class CreateInvoiceComponent implements OnInit {
   isLinear: true;
    query: string = '';
    searchData: any;
-
+  
    selected = 'created';
   dialog: any;
 // invoiceStatus: any;
@@ -54,9 +56,10 @@ export class CreateInvoiceComponent implements OnInit {
      invoiceDate: new FormControl(null, [Validators.required,]),
      invoiceNumber: new FormControl(null, [Validators.required,]),
      invoiceAmount: new FormControl(null, [Validators.required,]),
-     companyName:new FormControl(null,[Validators.required,]),
-     companyAddress: new FormControl(null, [Validators.required,]),
+     businessName:new FormControl(null,[Validators.required,]),
+     businessAddress: new FormControl(null, [Validators.required,]),
      dueDate: new FormControl(null, [Validators.required,]),
+     taxIdentificationNumber: new FormControl(null, [Validators.required,]),
      status: new FormControl(null, [Validators.required,]),
      invoices: new FormControl(null, [Validators.required,]),
 
@@ -67,19 +70,19 @@ export class CreateInvoiceComponent implements OnInit {
      creditAccount: new FormControl(null, [Validators.required,]),
      creditLimit: new FormControl(null, [Validators.required,]),
     //  importer details
-    buyerFullname: new FormControl(null, [Validators.required,]),
-    buyerEmailaddres: new FormControl(null, [Validators.required,]),
+    buyerName: new FormControl(null, [Validators.required,]),
+    buyerEmailAddress: new FormControl(null, [Validators.required,]),
     buyerCountry: new FormControl(null, [Validators.required,]),
     buyerCity: new FormControl(null, [Validators.required,]),
 
   //  referee details 
+  refereeFullName: new FormControl(null, [Validators.required,]),
   refereeEmail: new FormControl(null, [Validators.required,]),
-  refereeBussinessno: new FormControl(null, [Validators.required,]),
-  refereePhoneno: new FormControl(null, [Validators.required,]),
-  refereeBusinessname: new FormControl(null, [Validators.required,]),
+  refereeBussinessNumber: new FormControl(null, [Validators.required,]),
+  refereeBusinessnumber: new FormControl(null, [Validators.required,]),
+  refereeBusinessName: new FormControl(null, [Validators.required,]),
 
-    
-    
+  
   });
 
   }
@@ -90,13 +93,14 @@ export class CreateInvoiceComponent implements OnInit {
     //   });
   }
   openLookup(): void {
+  
     // Create a MatDialogConfig object
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
     dialogConfig.data = { accountNumber: this.invoiceDiscountingForm.get('accountNumber').value };
   
     // Open the LookupComponent dialog with the dialog config
-    const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
+    const dialogRef = this.dialog.open(InvoiceLookupComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe({
       next: (res: any) => {
@@ -120,6 +124,7 @@ export class CreateInvoiceComponent implements OnInit {
         console.error(err)
       }),
       complete: (() => { })
+      
     })
   } public patchinvoiceDiscountingForm(data: any): void {
     this.invoiceDiscountingForm.patchValue({

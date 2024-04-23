@@ -1,3 +1,6 @@
+<div class="top-bar">
+  <input type="search">
+</div>
 <section class="content">
   <div class="content-block">
     <div class="block-header">
@@ -122,56 +125,60 @@
           </div>
         </mat-step>
         
-
+<!-- //invoice details -->
         <mat-step label="Invoice Details & Document Upload-">
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Number </mat-label>
-                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="number">
+                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" >
               </mat-form-field>
                </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Amount</mat-label>
-                <input matInput formControlName="invoiceAmount" type="number">
+                <input matInput formControlName="invoiceAmount">
               </mat-form-field>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;">Company name</mat-label>
-                <input matInput formControlName="companyName" type="number">
+                <input matInput formControlName="businessName" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;">Company address</mat-label>
-                <input matInput formControlName="companyAddress" type="number">
+                <input matInput formControlName="businessAddress" type="number">
               </mat-form-field>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Date </mat-label>
                 <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
-              </mat-form-field>
-              <!-- <label for="dueDate" style="font-size:20px;white-space: nowrap;">Due Date <span class="red-asterisk"
-                  style="color: red;">*</span></label> <br>
-              <input formControlName="dueDate" type="date"> -->
+              </mat-form-field>  
             </div><br>
            <br>
-          
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:16px;"> Due Date </mat-label>
+                <mat-label style="font-size:16px;"> Due Date</mat-label>
                 <input matInput formControlName="dueDate" type="date">
               </mat-form-field>
-              <!-- <label for="invoiceAmount" style="font-size:20px;white-space: nowrap;">Invoice Amount <span
-                  class="red-asterisk" style="color: red;">*</span></label> <br>
-              <input formControlName="invoiceAmount" type="number"> -->
-            </div><br>
+             </div>
+            <br>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-label style="font-size:16px;"> Tax Identification Number</mat-label>
+                <input matInput formControlName="taxIdentificationNumber" type="number">
+              </mat-form-field>
+             </div>
+            <br>
+
+
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field appearance="outline">
                 <mat-label style="font-size:16px;">Invoice status</mat-label>
@@ -272,13 +279,13 @@
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Buyers FullName </mat-label>
-              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="buyersFullName">
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="buyersName">
             </mat-form-field>
             </div>
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Buyer EmailAddress </mat-label>
-              <input matInput formControlName="buyerEmailAddress">
+              <input matInput formControlName="buyerEmail">
             </mat-form-field>
             </div>
 
@@ -311,10 +318,25 @@
         <div class="row">
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <mat-label style="font-size:16px;"> Referee email </mat-label>
-              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeEmail">
+              <mat-label style="font-size:16px;"> Referee full name </mat-label>
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeFullname">
             </mat-form-field>
             </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-label style="font-size:16px;"> Referee number </mat-label>
+                <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeNumber">
+              </mat-form-field>
+              </div>
+
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+                <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                  <mat-label style="font-size:16px;"> Referee Email </mat-label>
+                  <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeEmail">
+                </mat-form-field>
+                </div>
+
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Referee business no </mat-label>

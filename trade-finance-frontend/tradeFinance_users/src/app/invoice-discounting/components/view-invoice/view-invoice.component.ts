@@ -15,9 +15,9 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 export class ViewInvoiceComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters = 0;
-  totalPendingLetters = 0;
-  totalApprovedLetters = 0;
+  totalCreatedInvoices = 0;
+  totalPendingInvoices = 0;
+  totalApprovedInvoices = 0;
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
@@ -28,6 +28,7 @@ export class ViewInvoiceComponent implements OnInit {
   isLoading = true;
   products: any;
   lcs: any;
+totalRejectinvoices: any;
 
 
   constructor(private dialog: MatDialog,

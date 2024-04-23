@@ -19,7 +19,7 @@ export class InvDiscountingService {
    
  
   public postData(data: any): Observable<any> {
-    const url = `${environment.apiUrl}/endpoint`;
+    const url = `${environment.invUrl}/invoices`;
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
 
