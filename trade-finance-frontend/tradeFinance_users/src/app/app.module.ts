@@ -38,8 +38,7 @@ import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatFormField } from "@angular/material/form-field";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatStepperModule } from '@angular/material/stepper'; // Import MatStepperModule
-
-
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { LookupComponent } from "./lookups/lookup/lookup.component";
 
@@ -70,7 +69,7 @@ export function createTranslateLoader(http: HttpClient): any {
     AuthLayoutComponent,
     MainLayoutComponent,
     MainDashboardComponent,
-    LookupComponent
+    LookupComponent,
     
     
 
@@ -84,6 +83,9 @@ export function createTranslateLoader(http: HttpClient): any {
     PerfectScrollbarModule,
     ClickOutsideModule,
     FormsModule,
+     
+
+   
     
     TranslateModule.forRoot({
       loader: {

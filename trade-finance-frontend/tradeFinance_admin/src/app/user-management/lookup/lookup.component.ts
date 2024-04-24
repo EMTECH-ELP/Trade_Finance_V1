@@ -15,7 +15,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class LookupComponent implements OnInit {
 
   searchForm: FormGroup; 
-  dialogRef: any;
   branchCode: any;
   branchName:any
   checkerForm: any;
@@ -40,11 +39,17 @@ export class LookupComponent implements OnInit {
     this.lookUpService.getFormDetailsByBranchCode(this.branchCode).subscribe(
       (data) => {
         // Handle successful response
+        console.log('Response Body', data); // Log the response body
+        
+        // Update the checkerForm with the received data
         this.checkerForm = data;
+        console.log("checker", this.checkerForm)
+        
         // Emit the application form event
         this.applicationFormEvent.emit(this.checkerForm);
-        const result = data
-        this.dialog.close(result)
+        
+        // Close the dialog with the received data
+        this.dialog.close(data);
       },
       (error) => {
         // Handle error
@@ -52,4 +57,5 @@ export class LookupComponent implements OnInit {
       }
     );
   }
+  
 }

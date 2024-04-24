@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LcService } from 'src/app/lc/services/lc.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modify-lookup',

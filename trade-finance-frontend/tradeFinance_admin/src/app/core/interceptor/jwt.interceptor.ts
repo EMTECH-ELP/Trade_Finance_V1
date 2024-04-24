@@ -11,7 +11,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentUser = this.tokenCookieService.getUser();
     if (currentUser && currentUser.accessToken) {
-      const accessToken = currentUser.token
+      const accessToken = currentUser.accessToken
       const headers = new HttpHeaders({
         Authorization: `${'Bearer ' + accessToken}`,
         UserName: `${currentUser.username}`,
