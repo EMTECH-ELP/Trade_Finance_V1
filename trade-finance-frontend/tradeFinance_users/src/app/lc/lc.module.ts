@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TransferlcComponent } from './components/transferlc/transferlc.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LcRoutingModule } from './lc-routing.module';
-import {MatStepperModule} from '@angular/material/stepper';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     TransferlcComponent,
     CreateComponent,
     ModifyComponent,
@@ -42,12 +42,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     LcRoutingModule,
     MatStepperModule,
-    MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
@@ -63,13 +62,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTabsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
     FormsModule,
-  
+    MatFormFieldModule,
     
+
+
+
+
   ]
 })
-export class LcModule { }import { } from './components/create/create.component';
+export class LcModule { } import { } from './components/create/create.component';
 import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TestComponent } from './test/test.component';
 import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
