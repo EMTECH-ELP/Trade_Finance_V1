@@ -63,7 +63,7 @@ export class CreateDcComponent implements OnInit {
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
+      beneficiaryAddressLine1: ['', Validators.required],
       beneficiaryEmail: ['', [Validators.required, Validators.email]],
       beneficiaryPhoneNumber: ['', Validators.required],
       beneficiaryAccountName: ['', Validators.required],
@@ -71,36 +71,28 @@ export class CreateDcComponent implements OnInit {
       beneficiaryBank: ['', Validators.required],
       beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
-      lcType: ['', Validators.required],
-      applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      shipmentDate: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
+      originCountry: ['', Validators.required],
+      loadingPort: ['', Validators.required],
+      dischargePort: ['', Validators.required],
+      goodsDescription: ['', Validators.required],
+      DCquantity: ['', Validators.required],
       portOfLoading: ['', Validators.required],
-      shipmentTerms: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      transShipment: ['', Validators.required],
-      issueDate: ['', Validators.required],
-      expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
-      transferable: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
-      chargesBorneBy: ['', Validators.required],
-      amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
-      documentName1: ['', Validators.required],
-      documentDescription1: ['', Validators.required]
+      shipDateStart: ['', Validators.required],
+      shipDateEnd: ['', Validators.required],
+      DCbillOfLading: ['', Validators.required],
+      DCinvoice: ['', Validators.required],
+      dcType: ['', Validators.required],
+      totPayableAmount: ['', Validators.required],
+      chargeAccount: ['', Validators.required],
+      payableAmount: ['', Validators.required],
+      payingAmount: ['', Validators.required],
+      invoices: [[], [Validators.required]],
+    packingList: [[], Validators.required],
+    billOfLading: [[], Validators.required],
+    billOfExchange: [[], Validators.required],
+    insuranceCertificate: [[]],
+    inspectionCertificate: [[]],
+    originCert: [[], Validators.required]
     });
 
   }
@@ -127,6 +119,27 @@ export class CreateDcComponent implements OnInit {
   
     // Open the LookupComponent dialog with the dialog config
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
+  }
+  
+
+
+
+  
+  rows: any[] = [
+    { documentType: 'Bill of Exchange', checked: false },
+    { documentType: 'Invoice', checked: false },
+    { documentType: 'Certificate of Origin', checked: false },
+    { documentType: 'Insurance Certificate', checked: false },
+    { documentType: 'Packing List', checked: false },
+    { documentType: 'Marine Bill of Lading', checked: false },
+    { documentType: 'CMR/Airway Bill', checked: false },
+    { documentType: 'Others', checked: false },
+    { documentType: 'Others', checked: false },
+    // Adds rows to html
+  ];
+
+  toggleRow(index: number) {
+    this.rows[index].checked = !this.rows[index].checked;
   }
   
 
