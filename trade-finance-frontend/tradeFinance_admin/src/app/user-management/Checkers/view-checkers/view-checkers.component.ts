@@ -54,7 +54,7 @@ export class ViewCheckersComponent implements OnInit {
   public refresh() {
     this.getRows();
   }
-
+ 
   public add(){
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
