@@ -443,85 +443,21 @@
               </thead>
               <tbody>
                 <!-- Row 1 -->
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Bill of Exchange</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="billOfExchange[]" multiple></td>  
-                </tr>
-                <!-- Row 2 -->
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Invoice</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="invoiceCertificate[]" multiple></td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Certificate of Origin</td>
-                  <td><input type="text"></td>                 
-                  <td><input type="text"></td> 
-                  <td><input matInput type="file" formControlName="certificateOfOrigin[]" multiple></td>                 
-                </tr>
 
 
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Packing List</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="PackingList[]" multiple></td>
+                <tr *ngFor="let row of rows; let i = index">
+                  <td><input type="checkbox" (change)="toggleRow(i)"></td>
+                  <td>{{ row.documentType }}</td>
+                  <td><input type="text" [disabled]="!row.checked"></td>
+                  <td><input type="text" [disabled]="!row.checked"></td>
+                  <td><input matInput type="file" formControlName="uploads" [disabled]="!row.checked"></td>
                 </tr>
 
-
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Marine Bill of Lading</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="billOfLading[]" multiple></td>
-                </tr>
-
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>CMR/Airway Bill</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="airwayBill[]" multiple></td>
-                 
-                </tr>
-        
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Insurance Certificate</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="insuranceCertificate[]" multiple></td>
-                </tr>
-
-
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Other</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="other[]" multiple></td>
-                </tr>
-
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Other</td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input matInput type="file" formControlName="other[]" multiple></td>
-                </tr>
               </tbody>
             </table>
           </div>
 
-       
+          
         
 
 
@@ -549,6 +485,10 @@
 
 
           </div>
+
+
+          
+          
 
 
           </mat-step>

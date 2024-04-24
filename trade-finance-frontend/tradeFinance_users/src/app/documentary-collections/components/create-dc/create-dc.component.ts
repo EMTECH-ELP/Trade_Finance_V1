@@ -122,4 +122,25 @@ export class CreateDcComponent implements OnInit {
   }
   
 
+
+
+  
+  rows: any[] = [
+    { documentType: 'Bill of Exchange', checked: false },
+    { documentType: 'Invoice', checked: false },
+    { documentType: 'Certificate of Origin', checked: false },
+    { documentType: 'Insurance Certificate', checked: false },
+    { documentType: 'Packing List', checked: false },
+    { documentType: 'Marine Bill of Lading', checked: false },
+    { documentType: 'CMR/Airway Bill', checked: false },
+    { documentType: 'Others', checked: false },
+    { documentType: 'Others', checked: false },
+    // Adds rows to html
+  ];
+
+  toggleRow(index: number) {
+    this.rows[index].checked = !this.rows[index].checked;
+  }
+  
+
 }
