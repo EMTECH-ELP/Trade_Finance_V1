@@ -131,21 +131,21 @@
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Number </mat-label>
-                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" >
+                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="string" >
               </mat-form-field>
                </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Invoice Amount</mat-label>
-                <input matInput formControlName="invoiceAmount">
+                <input matInput formControlName="invoiceAmount" type="number">
               </mat-form-field>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;">Company name</mat-label>
-                <input matInput formControlName="businessName" type="text">
+                <input matInput formControlName="businessName" type="string">
               </mat-form-field>
             </div>
 
@@ -196,34 +196,33 @@
               <label for="Upload invoices">Upload Invoices</label>
               <input type="file" formControlName="invoices">
             </div>
+            <div>
+              <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+              <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
          
-         <div>
-            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
-          </div>
-        </mat-step>
-
-        <!-- 3.Funding Details -->
+ <!-- 3.Funding Details -->
         <mat-step label="funding details">
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label style="font-size:16px;"> Funding Amount </mat-label>
-                <input matInput formControlName="fundingAmount" >
+                <input matInput formControlName="fundingAmount" type="number" >
               </mat-form-field>
               </div>
 
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
                 <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                   <mat-label style="font-size:16px;"> credit limit</mat-label>
-                  <input matInput formControlName="creditLimit" >
+                  <input matInput formControlName="creditLimit" type="number">
                 </mat-form-field>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
                   <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                     <mat-label style="font-size:16px;"> Credit Account </mat-label>
-                    <input matInput formControlName="creditAccount" >
+                    <input matInput formControlName="creditAccount" type="number">
                   </mat-form-field>
                   </div>
 
@@ -261,12 +260,10 @@
                   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
                     <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                       <mat-label style="font-size:16px;"> Credit check informaton </mat-label>
-                      <input matInput formControlName="creditCheckInformation" >
+                      <input matInput formControlName="creditCheckInformation" type="string" >
                     </mat-form-field>
                     </div>
-              
-                   
-
+  
           </div>
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
@@ -278,28 +275,28 @@
         <div class="row">
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <mat-label style="font-size:16px;"> Buyers FullName </mat-label>
-              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="buyersName">
+              <mat-label style="font-size:16px;"> Buyers Full Name </mat-label>
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="buyerName" type="text">
             </mat-form-field>
             </div>
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <mat-label style="font-size:16px;"> Buyer EmailAddress </mat-label>
-              <input matInput formControlName="buyerEmail">
+              <mat-label style="font-size:16px;"> Buyer Email Address </mat-label>
+              <input matInput formControlName="buyerEmail" type="string">
             </mat-form-field>
             </div>
 
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Buyer Country </mat-label>
-              <input matInput formControlName="buyerCountry " type="text">
+              <input matInput formControlName="buyerCountry " type="string">
             </mat-form-field>
             </div>
 
            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Buyer City </mat-label>
-              <input matInput formControlName="buyerCity" type="text">
+              <input matInput formControlName="buyerCity" type="string">
             </mat-form-field>
             </div>
 
@@ -319,42 +316,42 @@
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Referee full name </mat-label>
-              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeFullname">
+              <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeFullname" type="string">
             </mat-form-field>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <mat-label style="font-size:16px;"> Referee number </mat-label>
-                <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeNumber">
+                <mat-label style="font-size:16px;"> Referee business number </mat-label>
+                <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeBusinessNumber" type="string">
               </mat-form-field>
               </div>
 
               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
                 <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                   <mat-label style="font-size:16px;"> Referee Email </mat-label>
-                  <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeEmail">
+                  <input matInput placeholder="E.g,Net 60/90/120 days etc" formControlName="refereeEmail" type="string">
                 </mat-form-field>
                 </div>
 
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Referee business no </mat-label>
-              <input matInput formControlName="refereeBusinessno">
+              <input matInput formControlName="refereeBusinessNumber" type="string">
             </mat-form-field>
             </div>
 
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
               <mat-label style="font-size:16px;"> Referee business name  </mat-label>
-              <input matInput formControlName="refereeBussinessname " type="text">
+              <input matInput formControlName="refereeBussinessname " type="string">
             </mat-form-field>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
             <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <mat-label style="font-size:16px;"> Buyer City </mat-label>
-              <input matInput formControlName="buyerCity" type="text">
+              <mat-label style="font-size:16px;"> Referee City </mat-label>
+              <input matInput formControlName="refereeCity" type="string">
             </mat-form-field>
             </div>
 
@@ -364,7 +361,6 @@
         </div>
       </div>
       </mat-step>
-      
       
 </form>
     </mat-horizontal-stepper>

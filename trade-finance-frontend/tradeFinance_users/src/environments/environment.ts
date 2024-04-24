@@ -26,5 +26,5 @@ putUrl: ' http://192.168.137.1:v8085',        // Modify LC details fetched by Lc
 // invoice discounting
  invUrl: 'http://192.168.91.141:9000' ,     //post invoice discounting forms
   
-  
+
 };

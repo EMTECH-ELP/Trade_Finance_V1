@@ -11,9 +11,10 @@ export class InvoiceLookupComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
+  } 
 
   searchInvoice(){
-    // console.log("invoice found")
-  }
+   console.log("invoice found")
+  
+  } 
 }
