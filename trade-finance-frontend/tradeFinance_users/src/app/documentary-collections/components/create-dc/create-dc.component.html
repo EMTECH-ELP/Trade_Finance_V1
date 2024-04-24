@@ -6,14 +6,14 @@
     </div> 
    
 
-    <mat-horizontal-stepper linear>
+    <mat-horizontal-stepper linear >
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details" >
           <p class="stepHeading">Applicant details</p>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Number</mat-label>
+              <mat-label>Account Number</mat-label><br/>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountNumber" type="text">
                 <mat-icon matSuffix (click)="openLookup()" id="searchIcon">search</mat-icon>
@@ -25,7 +25,7 @@
 
             
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Customer's CIF ID</mat-label>
+              <mat-label>Customer's CIF ID</mat-label><br/>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="cifId" type="string">
                 <mat-icon matSuffix id="searchIcon">search</mat-icon>
