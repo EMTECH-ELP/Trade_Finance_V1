@@ -268,19 +268,18 @@ $remark-text-color: #757575; // Grey for remark text
     vertical-align: top; /* Align elements to the top */
 }
 
-// label {
-//   display: block;
-//   margin-bottom: 5px; /* Adjust spacing between label and input */
-// }
-// input[type="text"],
-// input[type="email"],
-// input[ type="tel"],
-// input[ type="date"],
-// select,
+label {
+  display: block;
+  margin-bottom: 5px; /* Adjust spacing between label and input */
+}
+input[type="text"],
+input[type="email"],
+input[ type="tel"],
+input[ type="date"],
+select,
 
 // textarea {
 //     width: 50%;
-//     padding: 8px;
 //     border: 1px solid #ccc;
 //     border-radius: 5px;
 //     box-sizing: border-box;
@@ -298,7 +297,6 @@ $remark-text-color: #757575; // Grey for remark text
   outline: none; /* Remove outline */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
-
 
 
 .buttonSearch-container {
@@ -323,4 +321,14 @@ $remark-text-color: #757575; // Grey for remark text
 .stepHeading{
   color: maroon;
   font-size: 22px;
+}
+.dcTable{
+  border-radius: 5px;
+  width: 90%;
+  border-color: maroon;
+}
+
+
+.info-box7-block{
+  background-color: maroon;
 }

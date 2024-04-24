@@ -14,4 +14,19 @@ export const environment = {
 
   //apiUrl: 'http://52.15.152.26:6300'
   
+
+
+  apiUrl: 'http://192.168.137.1:8085',
+  getBranchApiUrl: 'http://192.168.91.98:8082',
+  dcApiUrl: "http://192.168.0.1:9090",
+
+ userUrl:"http://192.168.91.98.8082",    
+
+
+ invUrl: 'https://your-backend-api.com/api'      //Replace with Inv.discounting Createform url
+
+
+
+
+
 };

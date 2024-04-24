@@ -16,7 +16,7 @@ export class LcService {
 //Creating a new LC
   public createLc(lcData: any): Observable<any>{
     const url = `${environment.apiUrl}/api/v1/LC/create`;
-    return this.httpClient.post<any>(url, lcData);
+    return this.httpClient.post<any>(url, lcData, { headers: { 'Content-Type': 'application/json'}});
   }
 
   public transferLc(): Observable<any>{

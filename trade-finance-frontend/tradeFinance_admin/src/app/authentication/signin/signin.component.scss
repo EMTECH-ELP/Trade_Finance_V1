@@ -17,11 +17,8 @@
 
 .form-box {
   border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  max-height: 1200px;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #ffffff;
@@ -29,26 +26,31 @@
   text-align: center;
   background-color: rgba(255, 255, 255, 0.75);
   margin-top: 50px;
+  height: 97vh;
+  width: 40%;
 }
 
 
 h6 {
   text-align: center;
-  color: #9B2827; /*Equity maroon*/
+  color: #9B2827;
+  /*Equity maroon*/
   font-weight: 400;
   font-family: Georgia, serif;
 }
 
 h4 {
   text-align: center;
-  color: #9B2827; /* Equity maroon */
+  color: #9B2827;
+  /* Equity maroon */
   font-weight: 500;
   font-family: Georgia, serif;
 }
 
-h2 {
+h5 {
   text-align: center;
-  color: #9B2827; /*Equity maroon */
+  color: #9B2827;
+  /*Equity maroon */
   font-weight: 600;
   font-family: Georgia, serif;
 }

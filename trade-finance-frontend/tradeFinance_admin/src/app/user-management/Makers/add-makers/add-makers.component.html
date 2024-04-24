@@ -14,11 +14,11 @@
   </div>
 </div>
 
-<form [formGroup]="form">
+<form [formGroup]="makerForm">
   <div class="row">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
       <mat-form-field class="full-width" appearance="outline">
-        <input matInput placeholder="Name" formControlName="name" required>
+        <input matInput placeholder="Full Name" formControlName="fullName" required>
       </mat-form-field>
     </div>
 
@@ -43,6 +43,7 @@
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
       <mat-form-field class="full-width" appearance="outline">
         <input matInput placeholder="Branch Code" formControlName="branchCode" required>
+        <mat-icon matSuffix (click)="openLookUp()" >search</mat-icon>
       </mat-form-field>
     </div>
 
@@ -56,11 +57,105 @@
       </mat-form-field>
     </div>
 
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Role" formControlName="role" required>
+        <mat-select matSuffix formControlName="role" required>
+          <mat-option value="checker">Checker</mat-option>
+          <mat-option value="maker">Maker</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
       <div class="example-button-row" align="end">
-        <button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+        <button type="submit" color="primary" [disabled]="!makerForm.valid" (click)="onSubmit()">Save</button>
         <button mat-raised-button color="warn" (click)="onClick()" tabindex="-1">Cancel</button>
       </div>
     </div>
   </div>
 </form>
+
+
+
+
+
+
+
+<!-- <div class="row">
+
+  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+    <img src="/assets/images/equity_logo.jpg" width="60px" height="45px" class="px-2 mx-2" alt="avatar" />
+  </div>
+
+  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 d-flex justify-content-center align-items-center">
+    <span style="font-weight: bold; font-size: 16px;">Add New Checkers</span>
+  </div>
+
+  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 d-flex justify-content-end align-items-center">
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="form">
+
+  <div class="row">
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Name" name="name" ngModel required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="EmployeeId" name="name" ngModel required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Email" name="Email" ngModel required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Branch Name" name="branchName" ngModel required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Branch Code" name="branchCode" ngModel required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-6  col-lg-6  col-md-6 col-sm-6  mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Status" name="status" ngModel required>
+        <mat-select matSuffix name="status" [(ngModel)]="selectedStatus" required>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="flagged">Flagged</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <div class="example-button-row" align="end">
+          <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit()">
+            Save
+          </button>
+          <button mat-raised-button color="warn" (click)="onClick()" tabindex="-1">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form> -->
