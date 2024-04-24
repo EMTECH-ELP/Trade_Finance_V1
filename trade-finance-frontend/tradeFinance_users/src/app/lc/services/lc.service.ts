@@ -11,6 +11,7 @@ export class LcService {
   searchForm: any;
   accountNumber: any;
   dialogRef: any;
+  modifyLc: any;
 
   constructor(private httpClient: HttpClient) { }
 //Creating a new LC
@@ -31,8 +32,8 @@ return this.httpClient.get<any>(url)
     const url = `${environment.getlcNoUrl}/api/v1/LC/lcNumber/{lcNumber}`;    //lcNumber lookup
     return this.httpClient.get<any>(url)
   }
-  public ModifyLc(lcData: any) : Observable<any> {
-    const url = `${environment.putUrl}/api/v1/LC/lcNumber/{lcNumber}`;         //put method to modify Lc details
-    return this.httpClient.put<any>(url, lcData)
-  }
+  // public ModifyLc(lcData: any) : Observable<any> {
+  //   const url = `${environment.putUrl}/api/v1/LC/lcNumber/{lcNumber}`;         //put method to modify Lc details
+  //   return this.httpClient.put<any>(url, lcData)
+  // }
  }
