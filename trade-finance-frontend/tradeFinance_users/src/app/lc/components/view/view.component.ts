@@ -30,15 +30,17 @@ interface LetterOfCredit {
 export class ViewComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters : number = 0;
-  totalPendingLetters : number = 0;
-  totalApprovedLetters : number = 0;
+  totalCreatedLetters: number = 10;
+  totalPendingLetters: number = 10;
+  totalApprovedLetters: number = 0;
   totalRejectedLetters: number = 0;
   selectedactions = 'all';
-  
+  count = 0;
+  lcCount = 0;
+
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'lcNumber','accountName', 'accountNumber','status' ,'actions'];
+  displayedColumns: string[] = ['no', 'lcNumber', 'accountName', 'accountNumber', 'status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -46,30 +48,32 @@ export class ViewComponent implements OnInit {
   products: any;
   lcs: any;
   rows: any;
-selectedStatus: any;
+  selectedStatus: any;
 
 
   constructor(private dialog: MatDialog,
     private router: Router,
     private lcService: LcService,
     private snackbar: SnackbarService
-    ) { }
+  ) { }
 
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getAllLCs();
-   }
+  }
 
- public getAllLCs() {
+  public getAllLCs() {
     this.lcService.getAllLCs().subscribe({
       next: (res: any) => {
         const extractedData = res.data.map((lc: any, index: number) => ({
           no: index + 1,
           lcNumber: lc.lcNumber,
+          lcType: lc.lcType,
+          amount: lc.amount,
           accountName: lc.accountName ? 'Account Name' : '', // Replace this with actual account name retrieval logic
           accountNumber: lc.accountNumber ? lc.accountNumber : '',
           status: lc.status,
-          actions: 'Actions' // Replace this with actual actions logic
+          actions: 'Actions',// Replace this with actual actions logic
         }));
 
         this.dataSource = new MatTableDataSource(extractedData);
@@ -80,12 +84,12 @@ selectedStatus: any;
         console.error('Error fetching LCs:', err);
         this.snackbar.showNotification('error', 'No LCs found');
       }
-         });
+    });
   }
 
- 
 
-    
+
+
 
 
 
@@ -139,8 +143,8 @@ selectedStatus: any;
     this.router.navigate(['/lc/lcApproval'])
 
   }
- public transfer(row){
-  this.router.navigate(["/lc/transferlc"])
+  public transfer(row) {
+    this.router.navigate(["/lc/transferlc"])
   }
- 
+
 }
