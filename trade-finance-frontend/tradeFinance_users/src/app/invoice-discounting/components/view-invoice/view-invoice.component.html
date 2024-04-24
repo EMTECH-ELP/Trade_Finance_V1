@@ -5,24 +5,69 @@
             </app-breadcrumb>
         </div>
 
-        <div class="user-info">
-            <p>Logged in user: {{ loggedInUser.name }} ({{ loggedInUser.role }})</p>
-            <p>Total Invoices Issued:</p>
-            <ul>
-                <li>Created: {{ totalCreatedLetters }}</li>
-                <li>Pending: {{ totalPendingLetters }}</li>
-                <li>Approved: {{ totalApprovedLetters }}</li>
-            </ul>
-        </div>
+        <!-- Widgets -->
+<div class="row">
+  <div class="col-lg-3 col-sm-6" >
+      <div class="info-box7 bg-kingdom order-info-box7">
+          <div class="info-box7-block">
+              <h4 class="m-b-20">Created Invoice Disc.</h4>
+              <h2 class="text-end"><span class="float-start">0</span><i
+                class="fab fa-buromobelexperte"></i>
+              </h2>
+              <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+      <div class="info-box7 bg-kingdom order-info-box7">
+          <div class="info-box7-block">
+              <h4 class="m-b-20">Pending Invoice Disc.</h4>
+              <h2 class="text-end"><span class="float-start">0</span><i
+                      class="fab fa-buromobelexperte"></i></h2>
+                      <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3 col-sm-6">
+      <div class="info-box7 bg-kingdom order-info-box7">
+          <div class="info-box7-block">
+              <h4 class="m-b-20">Approved Invoice Disc.</h4>
+              <h2 class="text-end"><span class="float-start">0</span><i
+                class="fab fa-buromobelexperte"></i>
+              </h2>
+              
+               <div>
+                <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+               </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3 col-sm-6" >
+      <div class="info-box7 bg-kingdom order-info-box7">
+          <div class="info-box7-block">
+              <h4 class="m-b-20">Rejected Invoice Disc.</h4>
+              <h2 class="text-end"><span class="float-start">0</span><i
+                class="fab fa-buromobelexperte"></i></h2>
+                <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+      </div>
+  </div>
+
+</div>
+<!-- #END# Widgets -->
 
         <div class="filter-section">
-            <label for="filter-status">Filter by Status:</label>
-            <select id="filter-status" [(ngModel)]="selectedStatus">
-                <option value="all">All</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-            </select>
-        </div>
+          <label for="filter-status">Filter by Status:</label>
+          <select id="filter-status" [(ngModel)]="selectedStatus">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+          </select>
+          <button style="border-radius: 5px;background-color: maroon;color: white;">Filter</button>
+      </div>
+
 
         <div class="row">
 
@@ -48,7 +93,7 @@
       
                             <li>
                               <div class="m-l-10" matTooltip="Add">
-                                <button mat-mini-fab color="primary" (click)="add()">
+                                <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
                                   <mat-icon class="col-white">add</mat-icon>
                                 </button>
                               </div>
@@ -56,7 +101,7 @@
       
                             <li>
                               <div class="m-l-10" matTooltip="Refresh">
-                                <button mat-mini-fab color="primary" (click)="refresh()">
+                                <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
                                   <mat-icon class="col-white">refresh</mat-icon>
                                 </button>
                               </div>
@@ -80,21 +125,28 @@
                       </ng-container>
       
                       <ng-container matColumnDef="letterOfCreditNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Customer name</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Invoice Discount No.</mat-header-cell>
                         <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                           {{row.productCategory}}</mat-cell>
                       </ng-container>
       
                       <ng-container matColumnDef="applicantAccountNumber">
                         <mat-header-cell *matHeaderCellDef mat-sort-header
-                          class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
+                          class="psl-3 tbl-col-width-per-40">Account Name</mat-header-cell>
                         <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                           {{row.description}}</mat-cell>
                       </ng-container>
 
                       <ng-container matColumnDef="beneficiaryAccountNumber">
                         <mat-header-cell *matHeaderCellDef mat-sort-header
-                          class="psl-3 tbl-col-width-per-40">Description</mat-header-cell>
+                          class="psl-3 tbl-col-width-per-40">Account Number</mat-header-cell>
+                        <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
+                          {{row.description}}</mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="beneficiaryAccountNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header
+                          class="psl-3 tbl-col-width-per-40">Status</mat-header-cell>
                         <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                           {{row.description}}</mat-cell>
                       </ng-container>

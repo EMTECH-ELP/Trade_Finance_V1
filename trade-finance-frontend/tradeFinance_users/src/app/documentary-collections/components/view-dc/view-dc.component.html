@@ -1,13 +1,13 @@
 <section class="content">
     <div class="content-block">
         <div class="block-header">
-            <app-breadcrumb [title]="'Documentary Collections'" [items]="['Home']" [active_item]="'View'">
+            <app-breadcrumb [title]="'Documentary Collection'" [items]="['Home']" [active_item]="'View'">
             </app-breadcrumb>
         </div>
 
-        <div class="user-info">
+        <!-- <div class="user-info">
           <p>Logged in user: {{ loggedInUser.name }} ({{ loggedInUser.role }})</p>
-      </div>
+      </div> -->
 
         <!-- Widgets -->
 <div class="row">
@@ -69,7 +69,7 @@
                 <option value="all">All</option>
                 <option value="pending">Pending</option>
                 <option value="approved">Approved</option>
-                <option value="approved">Rejected</option>
+                <option value="rejected">Rejected</option>
             </select>
             <button style="border-radius: 5px;background-color: maroon;color: white;">Filter</button>
         </div>
@@ -98,7 +98,6 @@
       
                             <li>
                               <div class="m-l-10" matTooltip="Add">
-                                <!--<button mat-mini-fab color="primary" (click)="add()">-->
                                   <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
                                   <mat-icon class="col-white">add</mat-icon>
                                 </button>
@@ -107,7 +106,6 @@
       
                             <li>
                               <div class="m-l-10" matTooltip="Refresh">
-                                <!--<button mat-mini-fab color="primary" (click)="refresh()">-->
                                   <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
                                   <mat-icon class="col-white">refresh</mat-icon>
                                 </button>
