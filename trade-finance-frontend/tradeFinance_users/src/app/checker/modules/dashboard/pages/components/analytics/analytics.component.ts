@@ -34,7 +34,8 @@ export class AnalyticsComponent implements OnInit {
       chart: {
         width: 380,
         type: 'pie',
-        colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA'] // Fix the colors array
+        
+      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA']
       },
       title: {
         text: 'Volume average on a Monthly Basis in Millions',
