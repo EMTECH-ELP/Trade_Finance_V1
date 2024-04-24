@@ -7,7 +7,7 @@
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
       </app-breadcrumb>
     </div>
-    
+
     <mat-horizontal-stepper linear>
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
@@ -25,7 +25,7 @@
                 *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
                 *Account Number is required</small>
             </div>
-            
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Customer's CIF ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
@@ -165,7 +165,8 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Beneficiary Account Name" formControlName="beneficiaryAccountName" type="text">
+                <input matInput placeholder="Beneficiary Account Name" formControlName="beneficiaryAccountName"
+                  type="text">
               </mat-form-field>
               <small
                 *ngIf="applicationForm.get('beneficiaryAccountName'). invalid && applicationForm.get('beneficiaryAccountName').touched">
@@ -174,7 +175,8 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Beneficiary Account Number" formControlName="beneficiaryAccountNumber" type="number">
+                <input matInput placeholder="Beneficiary Account Number" formControlName="beneficiaryAccountNumber"
+                  type="number">
               </mat-form-field>
               <small
                 *ngIf="applicationForm.get('beneficiaryAccountNumber'). invalid && applicationForm.get('beneficiaryAccountNumber').touched">
@@ -285,7 +287,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label> LC Type</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <mat-select formControlName="lcType" >
+                <mat-select formControlName="lcType">
                   <mat-option value="revocable">Revocable</mat-option>
                   <mat-option value="irrevocable">Irrevocable</mat-option>
                   <mat-option value="confirmed">Confirmed</mat-option>
@@ -687,13 +689,15 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Quality Inspection Certificate</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Quality Inspection Certificate" formControlName="documentName6" type="text">
+                <input matInput placeholder="Quality Inspection Certificate" formControlName="documentName6"
+                  type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Document</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Document Description" formControlName="qualityInspectionCertificate" type="text">
+                <input matInput placeholder="Document Description" formControlName="qualityInspectionCertificate"
+                  type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -733,7 +737,7 @@
                 <button mat-raised-button type="reset" class="btn btn-secondary">Cancel</button>
                 <button mat-raised-button (click)="onSubmit()" class="btn" style="margin: 20px;">Submit</button>
 
-               
+
               </div>
             </div>
           </div>

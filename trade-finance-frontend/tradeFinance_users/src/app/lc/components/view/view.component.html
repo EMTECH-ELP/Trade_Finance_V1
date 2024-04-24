@@ -123,17 +123,30 @@
     
                     <ng-container matColumnDef="accountName">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
-                        class="psl-4 tbl-col-width-per-40">Account Name</mat-header-cell>
+                        class="psl-4 tbl-col-width-per-40">LC Type</mat-header-cell>
                       <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
-                        {{ row.accountName}}</mat-cell>
+                        {{ row.lcType}}</mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="accountNumber">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-50">Amount($)</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
+                        {{ row.amount}}</mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="accountNumber">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="psl-4 tbl-col-width-per-50">Account Name</mat-header-cell>
+                      <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
+                        {{ row.accountName}}</mat-cell>
+                    </ng-container> -->
+
+
+                    <!-- <ng-container matColumnDef="accountNumber">
                       <mat-header-cell *matHeaderCellDef mat-sort-header
                         class="psl-4 tbl-col-width-per-50">Account Number</mat-header-cell>
                       <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
                         {{ row.accountNumber}}</mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="status">
                       <mat-header-cell *matHeaderCellDef mat-sort-header

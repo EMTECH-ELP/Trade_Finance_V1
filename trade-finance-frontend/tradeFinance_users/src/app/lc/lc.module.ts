@@ -36,7 +36,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DeleteLcComponent,
     ViewComponent,
     TestComponent,
-    VerifyLcComponent
+    VerifyLcComponent,
+    ModifyLookupComponent
   ],
   imports: [
     CommonModule,
@@ -75,4 +76,5 @@ export class LcModule { } import { } from './components/create/create.component'
 import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TestComponent } from './test/test.component';
 import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
+import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-lookup.component';
 
