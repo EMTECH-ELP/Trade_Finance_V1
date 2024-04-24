@@ -4,6 +4,8 @@ export const environment = {
   // Client's test servers
 
   //Emtech test server
+
+  userUrl:  "http://192.168.91.98.8082",    
   baseUrlAdmin: "http://192.168.91.98:8082",
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",

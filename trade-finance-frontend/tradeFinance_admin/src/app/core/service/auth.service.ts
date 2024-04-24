@@ -16,6 +16,7 @@ import {
 
 import { Auth } from "../models/auth";
 import { environment } from "src/environments/environment.prod";
+
 import { Router } from "@angular/router";
 import { MockSessionService } from "src/app/authentication/signin/mock-session.service";
 
@@ -29,6 +30,12 @@ const httpOptions = {
 })
 // /auth/signin
 export class AuthService {
+
+
+  private userUrl = environment.userUrl;
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
   constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}
 
   headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -129,6 +136,9 @@ export class AuthService {
   }
 
 
+addNewUser(user: any): Observable<any> {
+    return this.http.post<any>(`${this.userUrl}/auth/admin/addNewUser`, user, this.httpOptions);
+}
 
 
 

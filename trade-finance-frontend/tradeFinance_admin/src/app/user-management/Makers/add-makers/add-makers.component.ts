@@ -38,7 +38,7 @@ export class AddMakersComponent implements OnInit {
 
   ngOnInit(): void {
     this.makerForm = this.fb.group({
-      name: ['', Validators.required],
+      fullName: ['', Validators.required],
       employeeId: ['', Validators.required],
       email: ['', Validators.required],
       branchName: ['', Validators.required],
