@@ -164,9 +164,9 @@
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Beneficiary Country</mat-label><br/>
+              <mat-label>Beneficiary Phone Number</mat-label><br/>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountry" type="text">
+                <input matInput formControlName="beneficiaryPhoneNumber" type="text">
               </mat-form-field>
             </div>
 
@@ -445,19 +445,39 @@
                 <!-- Row 1 -->
 
 
+                <!-- <tr *ngFor="let row of rows; let i = index">
+                  <td><input type="checkbox" (change)="toggleRow(i)"></td>
+                  <td>{{ row.documentType }}</td>
+                  <td><input type="text" [disabled]="!row.checked" formControlName="{{ row.formControlName }}"></td>
+                  <td><input type="text" [disabled]="!row.checked"></td>
+                  <td><input matInput type="file" [disabled]="!row.checked"></td>
+                </tr> -->
+
+
                 <tr *ngFor="let row of rows; let i = index">
                   <td><input type="checkbox" (change)="toggleRow(i)"></td>
                   <td>{{ row.documentType }}</td>
+                  <td><input type="text" [disabled]="!row.checked" ></td>
                   <td><input type="text" [disabled]="!row.checked"></td>
-                  <td><input type="text" [disabled]="!row.checked"></td>
-                  <td><input matInput type="file" formControlName="uploads" [disabled]="!row.checked"></td>
-                </tr>
+                  <td><input matInput type="file" [disabled]="!row.checked" multiple accept=".pdf" (change)="onFileSelected($event)">
+                    <div *ngFor="let file of selectedFiles">
+                      {{ file.name }}
+                      <button mat-icon-button (click)="removeFile(file)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div></td>
+              </tr> 
+
 
               </tbody>
             </table>
           </div>
 
-          
+          <!-- <button class="custom-button" mat-button (click)="addRow()">Add</button> -->
+          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRow()">
+            <mat-icon class="col-white">add</mat-icon>
+          </button>
+
         
 
 
@@ -468,7 +488,7 @@
          <div style="margin-top: 20px;">
           <button class="previousDC" mat-button matStepperPrevious>Back</button>
           <span style="margin-right: 745px;"></span>
-          <button class="nextDC" mat-button matStepperNext type="submit">Submit</button>
+          <button class="nextDC" mat-button matStepperNext type="submit" (click)="onSubmit()">Submit</button>
         </div>
 
 

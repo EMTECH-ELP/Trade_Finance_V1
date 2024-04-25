@@ -1,8 +1,8 @@
 <div class="settingSidebar" [ngClass]="isOpenSidebar ? 'showSettingPanel' : ''">
-  <a href="javascript:void(0)" class="settingPanelToggle" (click)="toggleRightSidebar()">
-    <app-feather-icons [icon]="'settings'" [class]="'setting-sidebar-icon'"></app-feather-icons>
+  <a href="javascript:void(0)" style="background-color:rgb(84, 82, 82)"class="settingPanelToggle" (click)="toggleRightSidebar()">
+    <app-feather-icons [icon]="'settings'" [class]="'setting-sidebar-icon'" ></app-feather-icons>
   </a>
-  <div class="settingSidebar-body ps-container ps-theme-default"
+  <div class="settingSidebar-body ps-container ps-theme-default" 
     [ngStyle]="{'position' : 'relative', 'max-height' : maxHeight+'px', 'max-width' : maxWidth+'px'}"
     [perfectScrollbar]>
     <div class=" fade show active">
