@@ -35,12 +35,12 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
   declarations: [
     TransferlcComponent,
     CreateComponent,
-    ModifyComponent,
+  ModifyComponent,
     DeleteLcComponent,
     ViewComponent,
     TestComponent,
     VerifyLcComponent,
-    ModifyLookupComponent
+    ModifyLookupComponent,
   ],
   imports: [
     CommonModule,
