@@ -80,7 +80,7 @@ searchForm: any;
   public onSubmit() {
 
   console.log("Form data", this.applicationForm.value);
-  this.lcService.createLc(this.applicationForm.value).subscribe({
+  this.lcService.createLc(this.applicationForm.value, this.applicationForm.get('accountNumber')).subscribe({
     next: ((response) => {
 
       console.log("Lc create response", response);

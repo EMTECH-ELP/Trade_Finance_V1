@@ -15,7 +15,7 @@ export class DcServiceService {
 
 
   public createDc(dcdata: any): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/create`;
+    const url = `${environment.dcApiUrl}/api/v1/LC/create`;
     return this.httpClient.post<any>(url, dcdata);
   }
 

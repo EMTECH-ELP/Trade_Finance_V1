@@ -5,6 +5,7 @@ import { CreateComponent } from './components/create/create.component';
 import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TransferlcComponent } from './components/transferlc/transferlc.component';
 import { ViewComponent } from './components/view/view.component';
+import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
 
 const routes: Routes = [
   {path: "create", component: CreateComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "view", component: ViewComponent},
   {path:"modify",component:ModifyComponent},
   {path: "delete", component: DeleteLcComponent},
+  {path: "verify", component: VerifyLcComponent},
 ];
 
 @NgModule({
