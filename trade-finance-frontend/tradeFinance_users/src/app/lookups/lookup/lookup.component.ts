@@ -38,20 +38,55 @@ export class LookupComponent implements OnInit {
     // Initialization code here
   }
 
-  search() {
+//    search() {
+//    this.lookupService.getFormDetailsByAccountNumber(this.accountNumber).subscribe(
+//      (data) => {
+//     // Handle successful response
+//    this.applicationForm = data;
+//          // Emit the application form event
+//          this.applicationFormEvent.emit(this.applicationForm);
+//          const result = data
+//         this.dialog.close(result)
+//        },
+//        (error) => {
+//          // Handle error
+//          console.error('Error fetching application form details:', error);
+//        }
+//      );
+//  }
+
+
+   search() {
+     // Check if the account number is empty
+    if (!this.accountNumber || this.accountNumber.trim() === '') {
+       alert('Account number is required.');
+       return;
+     }
+  
     this.lookupService.getFormDetailsByAccountNumber(this.accountNumber).subscribe(
-      (data) => {
+       (data) => {
         // Handle successful response
-        this.applicationForm = data;
-        // Emit the application form event
-        this.applicationFormEvent.emit(this.applicationForm);
-        const result = data
-        this.dialog.close(result)
-      },
-      (error) => {
-        // Handle error
-        console.error('Error fetching application form details:', error);
-      }
-    );
+         this.applicationForm = data;
+         // Emit the application form event
+         this.applicationFormEvent.emit(this.applicationForm);
+         const result = data;
+         this.dialog.close(result);
+       },
+       (error) => {
+         // Handle error
+         if (error.status === 404) {
+           alert('Account number does not exist.');
+         } else {
+           alert('Unable to fetch details. Please try again later.');
+         }
+         console.error('Error fetching application form details:', error);
+       }
+     );
+   }
+
+   closeDialog(): void {
+    this.dialog.close(); 
   }
+
+
 }

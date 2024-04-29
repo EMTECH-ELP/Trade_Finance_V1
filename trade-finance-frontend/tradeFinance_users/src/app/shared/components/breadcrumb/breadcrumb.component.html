@@ -8,8 +8,9 @@
         <div class="col-6">
             <ul class="breadcrumb-list">
                 <li class="breadcrumb-item bcrumb-1">
-                    <a [routerLink]="'/checker/dashboard'">
-                        <app-feather-icons [icon]="'home'" [class]="'breadcrumb-icon'"></app-feather-icons>
+                    <a [routerLink]="'/checker/dashboard/analytics'">
+                        <app-feather-icons [icon]="'home'" [class]="'user-menu-icons'"style="color:maroon"></app-feather-icons>
+                        <!-- <app-feather-icons [icon]="'home'" [class]="'breadcrumb-icon'"></app-feather-icons> -->
                     </a>
                 </li>
                 <li class="breadcrumb-item" *ngFor="let item of items">{{item}}</li>

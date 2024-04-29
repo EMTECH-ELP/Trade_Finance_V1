@@ -33,7 +33,7 @@
                   <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
                   <a class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{
+                    <mat-icon style="color: maroon">{{
                       hide ? "visibility_off" : "visibility"
                       }}</mat-icon>
                   </a>
@@ -59,8 +59,8 @@
                 </button>
               </div>
             </div>
-            <div class="badge badge-solid-green m-3 mt-3">
-              <a routerLink="/authentication/forgot-password" style="color: #000000">Forgot Password?</a>
+            <div class="badge badge-solid-green m-3 mt-3" style="background-color: maroon;">
+              <a routerLink="/authentication/forgot-password" style="color: white">Forgot Password?</a>
             </div>
           </form>
           <!-- <h6 class="social-login-title">OR</h6>
