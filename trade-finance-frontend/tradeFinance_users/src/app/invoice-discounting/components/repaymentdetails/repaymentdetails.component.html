@@ -1,0 +1,56 @@
+<div  class="container-fluid">
+<h2 mat-dialog-title>Re-Payment details</h2>
+
+<mat-dialog-content>
+
+    <!-- formControlName="date" 
+    formControlName="invoiceId"
+    formControlName="amount"
+    formControlName="debitAccount"  -->
+
+  <form [formGroup]="repaymentForm"   (ngSubmit)="submitForm()">
+   <div class="row">
+   <div class="col-sm-6">
+    <label for="Date" style="font-size: 16px;" >Re-payment Date</label>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput [(ngModel)]="date" name="date" formControlName="date"  type="date">
+    </mat-form-field>
+  </div>
+    <div class="col-sm-6 ">
+    <label for="Date" style="font-size: 16px;" >Invoice Id</label>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput [(ngModel)]="invoiceId"  formControlName="invoiceId" placeholder="invoiceId">
+    </mat-form-field>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6 ">
+  <label for="Date" style="font-size: 16px;" >Amount</label>
+    <mat-form-field appearance="outline">
+      <input matInput [(ngModel)]="amount"  placeholder="Amount"  formControlName="amount">
+    </mat-form-field>
+  </div>
+ 
+      <div class="col-sm-6 ">
+      <label for="currency" style="font-size: 16px;" >Currency</label>
+      <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="currency"  placeholder="Currency" formControlName="currency" >
+      </mat-form-field>
+    </div>
+   
+  </div>
+    <label for="Date" style="font-size: 16px;" >Debit Account</label>
+    <mat-form-field appearance="outline">
+      <input matInput [(ngModel)]="debitAccount"  placeholder="Debit Account" formControlName="debitAccount" >
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-button class="btn btn-primary" (click)="closeDialog()">Cancel</button>
+  <button mat-button style="background-color: #ad3b3a;" (click)="submitForm()">Save</button>
+</mat-dialog-actions>
+</div>

@@ -6,6 +6,8 @@ $MaterialIcons_FontPath: "~material-icons-font/fonts";
 @import "~material-icons-font/sass/main";
 @import "~material-icons-font/sass/Regular";
 @import "~@angular/material/theming";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 
 
@@ -272,14 +274,15 @@ label {
   display: block;
   margin-bottom: 5px; /* Adjust spacing between label and input */
 }
-input[type="text"],
-input[type="email"],
-input[ type="tel"],
-input[ type="date"],
-select,
+// input[type="text"],
+// input[type="email"],
+// input[ type="tel"],
+// input[ type="date"],
+// select,
 
 // textarea {
 //     width: 50%;
+//     padding: 8px;
 //     border: 1px solid #ccc;
 //     border-radius: 5px;
 //     box-sizing: border-box;

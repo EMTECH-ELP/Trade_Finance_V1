@@ -4,7 +4,13 @@ export const environment = {
   // Client's test servers
 
   //Emtech test server
-  baseUrlAdmin: "http://52.15.152.26:6200",
+
+  // Maker Authentication endpoints
+  authUrl: "http://192.168.91.98:8082",
+  resetUrl: "http://192.168.91.98:8082",
+  OTPUrl: "http://192.168.91.98:8082",
+
+  baseUrlAdmin: '...', 
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",
   baseUrlBudget: "http://52.15.152.26:9090",
