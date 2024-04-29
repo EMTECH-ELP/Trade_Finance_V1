@@ -99,11 +99,12 @@ export class TokenCookieService {
 
   public getUser(): any {
     const user = window.localStorage.getItem(USER_KEY);
-    if (user) {
+    if (user !== undefined) {
       return JSON.parse(user);
+    } else {
+      return null;
     }
 
-    return null;
   }
 
   clearCookies() {
