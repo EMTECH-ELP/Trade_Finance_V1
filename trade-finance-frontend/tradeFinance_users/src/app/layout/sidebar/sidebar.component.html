@@ -24,7 +24,7 @@
           <div class="header" *ngIf="sidebarItem.groupTitle === true">{{sidebarItem.title | translate}}</div>
           <a [routerLink]="sidebarItem.class === '' ? [sidebarItem.path] : null" *ngIf="!sidebarItem.groupTitle;"
             [ngClass]="[sidebarItem.class]" (click)="callLevel1Toggle($event, sidebarItem.moduleName)" class="menu-top">
-            <i-feather [name]="sidebarItem.icon" class="sidebarIcon"></i-feather>
+            <i-feather [name]="sidebarItem.icon" class="sidebarIcon" style="color: maroon"></i-feather>
             <span class="hide-menu">{{sidebarItem.title | translate}}
             </span>
             <span *ngIf="sidebarItem.badge != '' " [ngClass]="[sidebarItem.badgeClass]">{{sidebarItem.badge}}</span>
@@ -55,7 +55,7 @@
         </li>
         <li>
           <a class="" (click)="logout()" class="menu-top">
-            <i-feather name="log-out" class="sidebarIcon"></i-feather>
+            <i-feather name="log-out" class="sidebarIcon" style="color: maroon;"></i-feather>
             <span class="hide-menu">Logout
             </span>
           </a>

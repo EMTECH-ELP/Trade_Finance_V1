@@ -30,12 +30,12 @@ export class AnalyticsComponent implements OnInit {
   ngOnInit() {
 
     this.chartOptions = {
-      series: [180, 100, 120, 130, 150, 200],
+      series: [180, 100, 120, 130, 150],
       chart: {
         width: 380,
         type: 'pie',
         
-      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA']
+      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb']
       },
       title: {
         text: 'Volume average on a Monthly Basis in Millions',
@@ -47,7 +47,7 @@ export class AnalyticsComponent implements OnInit {
           return Math.round(val);
         },
       },
-      labels: ['LC', 'DC', 'GUARANTEE', 'INVOICE', 'BILLS', 'RTGS'],
+      labels: ['LCs', 'DCs', 'BGs', 'Invoice', 'Bills'],
       responsive: [
         {
           breakpoint: 480,
@@ -65,29 +65,26 @@ export class AnalyticsComponent implements OnInit {
     this.lineChartOptions = {
       series: [
         {
-          name: 'LC - 2023',
-          data: [28, 29, 33, 36, 32, 32, 33]
+          name: 'LCs - 2023',
+          data: [28, 29, 33, 36, 32, 32]
         },
         {
-          name: 'DC - 2023',
-          data: [12, 19, 24, 28, 17, 23, 30]
+          name: 'DCs - 2023',
+          data: [12, 19, 24, 28, 17, 23]
         },
         {
-          name: 'QUARANTEE - 2023',
-          data: [16, 23, 33, 16, 22, 34, 25]
+          name: 'BGs - 2023',
+          data: [16, 23, 33, 16, 22, 34]
         },
         {
-          name: 'BILLS - 2023',
-          data: [11, 19, 25, 16, 34, 32, 29]
+          name: 'Bills - 2023',
+          data: [11, 19, 25, 16, 34, 32]
         },
         {
-          name: 'INVOICE- 2023',
-          data: [12, 19, 23, 26, 17, 22, 33]
+          name: 'Invoices- 2023',
+          data: [12, 19, 23, 26, 17, 22]
         },
-        {
-          name: 'RTGS- 2023',
-          data: [15, 26, 33, 36, 20, 32, 40]
-        },
+        
       ],
       chart: {
         height: 350,
@@ -104,7 +101,7 @@ export class AnalyticsComponent implements OnInit {
           show: false
         }
       },
-      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb', '#77B6EA'],
+      colors: ['#c3002f', '#262369', '#ccb034', '#ff5722', '#e040fb'],
       dataLabels: {
         enabled: true
       },
