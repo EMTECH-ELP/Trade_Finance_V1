@@ -52,6 +52,10 @@ formData: any;
   // selectedStatus = 'all';
   // selectedFilterRadioButton: string = 'all';
 
+  totalCreatedInvoices = 0;
+  totalPendingInvoices = 0;
+  totalApprovedInvoices = 0;
+  selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantAccountName', 'applicantAccountNumber', 'status', 'actions'];
@@ -59,9 +63,10 @@ formData: any;
   @ViewChild(MatSort) sort: MatSort;
 
   isLoading = true;
-  rows: { no: string; invoiceNumber: string; applicantAccountName: string; applicantAccountNumber: string; status: string; actions: string; }[];
-  // totalItems: any;
-  InvoiceDiscountingForms: { no: string; invoiceNumber: string; applicantAccountName: string; applicantAccountNumber: string; status: string; actions: string; }[];
+  products: any;
+  lcs: any;
+totalRejectinvoices: any;
+  rows: any[];
 
  
 
@@ -88,10 +93,10 @@ formData: any;
 
     ];
   
-    console.log("list:", this.rows);
-    if (this.rows) {
-      this.isLoading = false
-    }
+    // console.log("list:", this.rows);
+    // if (this.rows) {
+    //   this.isLoading = false
+    // }
 
     
     this.dataSource = new MatTableDataSource(this.rows);

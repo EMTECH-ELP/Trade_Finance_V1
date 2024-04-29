@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ViewBillComponent } from './view-bill.component';
 
 describe('ViewBillComponent', () => {
@@ -23,3 +22,4 @@ describe('ViewBillComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

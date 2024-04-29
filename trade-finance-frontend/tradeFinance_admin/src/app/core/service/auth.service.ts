@@ -16,6 +16,7 @@ import {
 
 import { Auth } from "../models/auth";
 import { environment } from "src/environments/environment.prod";
+
 import { Router } from "@angular/router";
 import { MockSessionService } from "src/app/authentication/signin/mock-session.service";
 
@@ -29,58 +30,72 @@ const httpOptions = {
 })
 // /auth/signin
 export class AuthService {
+
+
+  private userUrl = environment.userUrl;
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
   constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}
 
   headers = new HttpHeaders().set("Content-Type", "application/json");
 
-  login(): Observable<any> {
-    return this.mockDataService.getSessionData().pipe(
-      map((sessionData: any) => {
-        // Use the session data in your authentication logic
-        const mockedResponse = {
-          body: {
-            statusCode: 200,
-            entity: sessionData.entity, // Assuming 'entity' is the key in your session data
-            message: sessionData.message || 'Mocked authentication successful'
-          }
-        };
+  // login(): Observable<any> {
+  //   return this.mockDataService.getSessionData().pipe(
+  //     map((sessionData: any) => {
+  //       // Use the session data in your authentication logic
+  //       const mockedResponse = {
+  //         body: {
+  //           statusCode: 200,
+  //           entity: sessionData.entity, // Assuming 'entity' is the key in your session data
+  //           message: sessionData.message || 'Mocked authentication successful'
+  //         }
+  //       };
 
-        return mockedResponse;
-      }),
-      catchError((error: any) => {
-        // Handle error loading session data (e.g., file not found)
-        console.error('Error loading session data:', error);
-        return of({
-          body: {
-            statusCode: 500, // Adjust the status code as needed
-            message: 'Error loading session data'
-          }
-        });
-      })
-    );
-  }
-  
-  // login(data: any): Observable<any> {
-    // let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/signin`;
-    // return this.http
-    //   .post(CREATE_URL, data, {
-    //     observe: "response",
-    //     headers: this.headers,
-    //     withCredentials: true,
-    //   })
-    //   .pipe(
-    //     map((res) => {
-    //       return res || {};
-    //     })
-    //   );
+  //       return mockedResponse;
+  //     }),
+  //     catchError((error: any) => {
+  //       // Handle error loading session data (e.g., file not found)
+  //       console.error('Error loading session data:', error);
+  //       return of({
+  //         body: {
+  //           statusCode: 500, // Adjust the status code as needed
+  //           message: 'Error loading session data'
+  //         }
+  //       });
+  //     })
+  //   );
   // }
+  
+  login(data: any): Observable<any> {
+    let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/login`;
+    return this.http
+      .post(CREATE_URL, data, {
+        observe: "response",
+        headers: this.headers,
+        withCredentials: true,
+      })
+      .pipe(
+        map((res) => {
+          console.log("service login", res)
+          return res || {};
+        })
+      );
+  }
 
-  verifyOTP(params: any): Observable<any> {
-    const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/otp/verify`;
+  validateOTP(data: any): Observable<any> {
+    const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/validateOtp`;
 
-    return this.http.get<any>(OTP_URL, {
-      params,
-    });
+    return this.http.post<any>(OTP_URL, data, {
+      observe: "response",
+      headers: this.headers,
+      withCredentials: true,
+    })
+    .pipe(
+      map((res) => {
+        console.log("otp service", res)
+        return res || {};
+      }));
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
@@ -121,6 +136,9 @@ export class AuthService {
   }
 
 
+addNewUser(user: any): Observable<any> {
+    return this.http.post<any>(`${this.userUrl}/auth/admin/addNewUser`, user, this.httpOptions);
+}
 
 
 

@@ -9,10 +9,11 @@ import { Page500Component } from "./page500/page500.component";
 import { OtpComponent } from "./otp/otp.component";
 // import { CommonDashboardComponent } from "../erp-dashboard/Pages/common-dashboard/common-dashboard.component";
 import { AuthGuard } from "../core/guard/auth.guard";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "signin",
+    path: "", 
+    redirectTo: "reset-password",
     pathMatch: "full",
   },
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: "OTP",
     component: OtpComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "signup",
@@ -37,6 +38,10 @@ const routes: Routes = [
     component: LockedComponent,
   },
   {
+    path:'reset-password',
+    component:ResetPasswordComponent
+  },
+  {
     path: "page404",
     component: Page404Component,
   },
@@ -44,6 +49,8 @@ const routes: Routes = [
     path: "page500",
     component: Page500Component,
   },
+
+  {path:'reset-password',component:ResetPasswordComponent}
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

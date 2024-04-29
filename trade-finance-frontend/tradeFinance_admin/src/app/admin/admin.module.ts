@@ -5,8 +5,11 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { MatCard, MatCardModule } from '@angular/material/card';
 
 
+
 @NgModule({
-  declarations: [],
+  declarations: [
+   
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

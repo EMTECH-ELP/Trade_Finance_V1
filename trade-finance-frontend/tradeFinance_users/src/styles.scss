@@ -302,7 +302,6 @@ label {
 }
 
 
-
 .buttonSearch-container {
   display: flex; /* Use flexbox layout */
   justify-content: space-between; /* Add space between buttons */
@@ -325,4 +324,29 @@ label {
 .stepHeading{
   color: maroon;
   font-size: 22px;
+}
+.dcTable{
+  border-radius: 5px;
+  width: 90%;
+  border-color: maroon;
+}
+
+
+.info-box7-block{
+  background-color: maroon;
+}
+
+.custom-button {
+  background-color: maroon; /* Background color */
+  color: white; /* Text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  border: none; /* Remove border */
+  cursor: pointer;
+  width:5%; /* Change cursor to pointer on hover */
+}
+
+/* CSS to target the button when hovered */
+.custom-button:hover {
+  background-color: darkred; /* Darker shade of maroon on hover */
 }
