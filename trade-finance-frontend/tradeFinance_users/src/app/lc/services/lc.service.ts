@@ -25,7 +25,7 @@ export class LcService {
     return this.httpClient.get<any>(url);
   }
   public getAllLCs(): Observable<any> {
-    const url = `${environment.getUrl}/api/v1/LC/all`;
+    const url = `${environment.getAllUrl}/api/v1/LC/all`;
     return this.httpClient.get<any>(url)
   }
   public getLcDetailsByLcNumber(): Observable<any> {
