@@ -38,7 +38,7 @@ export class OtpComponent implements OnInit {
     private authService: AuthService,
 
     private snackbar: SnackbarService
-  ) { }
+   ) { }
 
   ngOnInit(): void {
     this.getEmail();

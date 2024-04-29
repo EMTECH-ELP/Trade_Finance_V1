@@ -6,6 +6,8 @@ $MaterialIcons_FontPath: "~material-icons-font/fonts";
 @import "~material-icons-font/sass/main";
 @import "~material-icons-font/sass/Regular";
 @import "~@angular/material/theming";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 
 
@@ -272,14 +274,15 @@ label {
   display: block;
   margin-bottom: 5px; /* Adjust spacing between label and input */
 }
-input[type="text"],
-input[type="email"],
-input[ type="tel"],
-input[ type="date"],
-select,
+// input[type="text"],
+// input[type="email"],
+// input[ type="tel"],
+// input[ type="date"],
+// select,
 
 // textarea {
 //     width: 50%;
+//     padding: 8px;
 //     border: 1px solid #ccc;
 //     border-radius: 5px;
 //     box-sizing: border-box;
@@ -331,4 +334,19 @@ select,
 
 .info-box7-block{
   background-color: maroon;
+}
+
+.custom-button {
+  background-color: maroon; /* Background color */
+  color: white; /* Text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  border: none; /* Remove border */
+  cursor: pointer;
+  width:5%; /* Change cursor to pointer on hover */
+}
+
+/* CSS to target the button when hovered */
+.custom-button:hover {
+  background-color: darkred; /* Darker shade of maroon on hover */
 }

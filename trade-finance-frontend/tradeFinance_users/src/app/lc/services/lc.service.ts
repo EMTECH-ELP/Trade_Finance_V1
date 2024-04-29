@@ -11,6 +11,7 @@ export class LcService {
   searchForm: any;
   accountNumber: any;
   dialogRef: any;
+  modifyLc: any;
 
   constructor(private httpClient: HttpClient) { }
   //Creating a new LC
