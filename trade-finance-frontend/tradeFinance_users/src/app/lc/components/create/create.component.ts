@@ -101,10 +101,9 @@ export class CreateComponent implements OnInit {
 
   }
 
-  
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
-    this.lcService.createLc(this.applicationForm.value).subscribe({
+    this.lcService.createLc(this.applicationForm.value,this.applicationForm.get('accountNumber')?.value).subscribe({
       next: ((response) => {
 
         console.log("Lc create response", response);
@@ -114,10 +113,10 @@ export class CreateComponent implements OnInit {
       }),
       complete: (() => { })
     })
-    this.applicationForm.reset()
+    // this.applicationForm.reset()
     this.ngOnInit()
-    alert('Form Submitted Successfully!')
-    this.router.navigate(["/lc/view"]);
+    // alert('Form Submitted Successfully!')
+    // this.router.navigate(["/lc/view"]);
   }
   openLookup(): void {
     // Create a MatDialogConfig object

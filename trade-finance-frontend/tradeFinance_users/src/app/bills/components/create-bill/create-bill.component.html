@@ -231,7 +231,7 @@
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
             <mat-label>Country Code</mat-label>
             <mat-form-field class="full-width" appearance="outline">
-              <input matInput placeholder="SWIFT Code" formControlName="beneficiaryCountryCode" type="text">
+              <input matInput placeholder="Country Code" formControlName="beneficiaryCountryCode" type="text">
             </mat-form-field>
             <small
               *ngIf="billForm.get('beneficiaryCountryCode'). invalid && billForm.get('beneficiaryCountryCode').touched">
@@ -319,14 +319,14 @@
             <mat-form-field class="full-width" appearance="outline">
               <input matInput placeholder="Currency" formControlName="currency" type="text">
             </mat-form-field>
-            <mat-select formControlName="currency">
+            <!-- <mat-select formControlName="currency">
               <mat-option value="" disabled>Select Currency</mat-option>
               <mat-option value="usd">USD</mat-option>
               <mat-option value="gbp">GBP</mat-option>
               <mat-option value="eur">EUR</mat-option>
               <mat-option value="jpy">JPY</mat-option>
               <mat-option value="cny">CNY</mat-option>
-            </mat-select>
+            </mat-select> -->
             <!-- <small
               *ngIf="billForm.get('currency'). invalid && billForm.get('currency').touched">
               *Currency is mandatory</small> -->
@@ -468,20 +468,20 @@
           </div>
           </div>
           </mat-step>
-          <!--Step 4: GOODS Details-->
-      <mat-step label="GOODS">
-        <p style="color: maroon; font-weight: bold;">Goods Details:</p>
+          <!--Step 4: Goods and  Shipment details-->
+      <mat-step label="Goods and Shipment Details">
+        <p style="color: maroon; font-weight: bold;">Goods and  Shipment details:</p>
           <div class="row">
 
-           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+           <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Name</mat-label>
                <mat-form-field class="full-width" appearance="outline">
                  <input matInput placeholder="Name" formControlName="name" type="text">
                </mat-form-field>
-        <!-- <small
+         <small
           *ngIf="billForm.get('name'). invalid && billForm.get('name').touched">
-          *Name  is required</small> -->
-      </div>
+          *Name  is required</small> 
+      </div> -->
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
         <mat-label>Description</mat-label>
         <mat-form-field class="full-width" appearance="outline">
@@ -521,22 +521,15 @@
           *ngIf="billForm.get('hsCode'). invalid && billForm.get('hsCode').touched">
           *HS Code  is required</small> -->
       </div>
-      <div>
-        <button class="btn btn-secondary" mat-button matStepperPrevious>Back</button>
-        <button class="btn" mat-button matStepperNext style="margin: 20px;">Next</button>
-      </div>
-      </div>
-      </mat-step>
-
-<!-- Step 5: Shipment -->
-<mat-step label="Shipment">
+     
+<!-- <mat-step label="Shipment">
 <p style="color: maroon; font-weight: bold;">Shipment Section:</p>
-<div class="row">
+<div class="row"> -->
 
 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-  <mat-label>Date</mat-label>
+  <mat-label>Date Of Shipment</mat-label>
   <mat-form-field class="full-width" appearance="outline">
-    <input matInput placeholder="Date" formControlName="date" type="date">
+    <input matInput placeholder="Date Of Shipment" formControlName="dateOfShipment" type="date">
   </mat-form-field>
   <!-- <small *ngIf="billForm.get('date'). invalid && billForm.get('date').touched">
     *Date is required</small> -->
@@ -585,13 +578,12 @@
     <input matInput placeholder="Bill of Lading" formControlName="billOfLading" type="text">
   </mat-form-field>
 </div>
-<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+<!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
   <div>
     <label for="Bill Of Lading">Upload Bill of Lading:</label>
     <input type="file" id="billOfLading" name="billofLadingFile">
-  </div>
-</div>
-
+    </div>
+  </div> -->
 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
   <mat-label> Airway Bill </mat-label>
   <mat-form-field class="full-width" appearance="outline">

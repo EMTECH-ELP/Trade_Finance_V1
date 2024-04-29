@@ -6,15 +6,15 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   providedIn: 'root'
 })
 export class SnackbarService {
-  open(arg0: string, arg1: string, arg2: { panelClass: string; }) {
-    throw new Error('Method not implemented.');
-  }
+ 
 
   constructor(private snackBar: MatSnackBar) { }
 
+  
   showNotification(colorName, text) {
+    // const cleanMessage = message.replace(/\s/g, '');
     this.snackBar.open(text, "", {
-      duration: 2000,
+      duration: 3000,
       verticalPosition: "top",
       horizontalPosition: "center",
       panelClass: colorName,

@@ -159,10 +159,9 @@
                   <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
                   <mat-cell *matCellDef="let row; let i=index;" (click)="onSelect(row)">
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                      (click)="OpenDcComponent(row)" class="tbl-action-btn">
-                      <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"
-                        (click)="OnViewClicked()"></app-feather-icons>
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="verify(row)"
+                       class="tbl-action-btn">
+                      <app-feather-icons [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
 
                     <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
@@ -170,9 +169,9 @@
                       <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="verify(row)"
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="modify(row)"
                       class="tbl-action-btn">
-                      <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
 
 

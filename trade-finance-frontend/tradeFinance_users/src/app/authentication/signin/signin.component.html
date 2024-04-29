@@ -11,17 +11,17 @@
           <h5 class="mb-4">TRADE FINANCE SOLUTION</h5>
 
           <!-- <p style="color: #423f3f">Enter credentials below:</p> -->
-
-          <h4>Sign in</h4>
+        
+          <h3>Sign in</h3>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">              
-                <mat-form-field class="example-full-width" appearance="outline"> 
-                  <mat-label>Username</mat-label>                
-                  <input matInput formControlName="username" />
-                  <mat-icon matSuffix style="color: maroon;">face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username').hasError('required')">
-                    Username is required
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" />
+                  <mat-icon matSuffix>face</mat-icon>
+                  <mat-error *ngIf="authForm.get('email').hasError('required')">
+                    Email is required
                   </mat-error>
                 </mat-form-field>
               </div>

@@ -76,6 +76,7 @@ export class OtpComponent implements OnInit {
     this.error = "";
     if (this.otpForm.invalid) {
       this.error = "Invalid OTP!";
+      this.snackbar.showNotification("snackbar-danger", "Invalid OTP!");
       return;
     } else {
       const otpValue = Number(
