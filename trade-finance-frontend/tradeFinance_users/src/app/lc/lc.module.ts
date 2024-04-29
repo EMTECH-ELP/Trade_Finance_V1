@@ -10,7 +10,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../shared/components/components.module';
 import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
@@ -27,6 +26,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
+import { TestComponent } from './test/test.component';
+import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
+import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-lookup.component';
 
 @NgModule({
   declarations: [
@@ -73,8 +76,5 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   ]
 })
 export class LcModule { } import { } from './components/create/create.component';
-import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
-import { TestComponent } from './test/test.component';
-import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
-import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-lookup.component';
+
 

@@ -9,6 +9,7 @@ import { TestComponent } from '../../test/test.component';
 import { LcService } from '../../services/lc.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { ModifyComponent } from '../modify/modify.component';
+import { DeleteLcComponent } from '../delete-lc/delete-lc.component';
 
 
 
@@ -136,15 +137,30 @@ export class ViewComponent implements OnInit {
     // dialogRef.afterClosed().subscribe((result) => {
     //   console.log('closed');
     // });
-    this.router.navigate(['/lc/modify'])
+    // this.router.navigate(['/lc/modify'])
   }
-
+public modify(){
+  this.router.navigate(['/lc/modify'])
+}
   public verify() {
-    this.router.navigate(['/lc/lcApproval'])
+    this.router.navigate(['/lc/verify'])
 
   }
-  public transfer(row) {
+  public transfer() {
     this.router.navigate(["/lc/transferlc"])
   }
+public openDeleteConfirmationDialog(){
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '600px'
+    dialogConfig.data = { test: "row" }
 
+    const dialogRef = this.dialog.open(DeleteLcComponent, dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('closed');
+    });
+}
 }
