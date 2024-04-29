@@ -243,7 +243,7 @@ export class HeaderComponent
   }
 
   backToDashboard(){
-    this.router.navigate(["/erp-dashboard/main"]);
+    this.router.navigate(["/checker/dashboard/analytics"]);
   }
 
   

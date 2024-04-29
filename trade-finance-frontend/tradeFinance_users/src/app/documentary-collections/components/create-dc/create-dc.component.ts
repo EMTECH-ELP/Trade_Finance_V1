@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DcServiceService } from '../../dc-service.service';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -21,11 +22,12 @@ export class CreateDcComponent implements OnInit {
   selectedValue: string;
   applicationForm: FormGroup;
   // dialog: any;
-  router: any;
+  // router: any;
 
   constructor(private fb: FormBuilder,
     private dcservice: DcServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog, private route: ActivatedRoute,
+    private router: Router,
     // private lookupDialog: MatDialogRef<LookupComponent>
   ) { }
 
@@ -63,62 +65,71 @@ export class CreateDcComponent implements OnInit {
       beneficiaryFirstName: ['', Validators.required],
       beneficiaryMiddleName: [''],
       beneficiaryLastName: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
+      beneficiaryAddressLine1: ['', Validators.required],
       beneficiaryEmail: ['', [Validators.required, Validators.email]],
       beneficiaryPhoneNumber: ['', Validators.required],
       beneficiaryAccountName: ['', Validators.required],
       beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryBank: ['', Validators.required],
+      advisingBankCountry: ['', Validators.required],
+      advisingBankName: ['', Validators.required],
+      advisingBankBic: ['', Validators.required],
+      beneficiaryBankAddressLine2: ['', Validators.required],
+      beneficiaryIban: ['', Validators.required],
       beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
-      lcType: ['', Validators.required],
-      applicableRules: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      shipmentDate: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
+      // beneficiaryPostalCode: ['', Validators.required],
+      originCountry: ['', Validators.required],
+      loadingPort: ['', Validators.required],
+      dischargePort: ['', Validators.required],
+      goodsDescription: ['', Validators.required],
+      DCquantity: ['', Validators.required],
       portOfLoading: ['', Validators.required],
-      shipmentTerms: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      transShipment: ['', Validators.required],
-      issueDate: ['', Validators.required],
-      expiryDate: ['', Validators.required],
-      usance: ['', Validators.required],
-      transferable: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
-      chargesBorneBy: ['', Validators.required],
-      amount: ['', Validators.required],
-      amountCode: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
-      documentName1: ['', Validators.required],
-      documentDescription1: ['', Validators.required]
+      shipDateStart: ['', Validators.required],
+      shipDateEnd: ['', Validators.required],
+      DCbillOfLading: ['', Validators.required],
+      DCinvoice: ['', Validators.required],
+      dcType: ['', Validators.required],
+      dcSubType: ['', Validators.required],
+      totPayableAmount: ['', Validators.required],
+      chargeAccount: ['', Validators.required],
+      payableAmount: ['', Validators.required],
+      payingAmount: ['', Validators.required],
+      invoices: [[], [Validators.required]],
+    packingList: [[], Validators.required],
+    billOfLading: [[], Validators.required],
+    billOfExchange: [[], Validators.required],
+    insuranceCertificate: [[]],
+    inspectionCertificate: [[]],
+    originCert: [[], Validators.required]
     });
 
   }
 
+  
+
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     this.dcservice.createDc(this.applicationForm.value).subscribe({
-      next: ((response) => {
+        next: ((response) => {
+            console.log("dc create response", response);
+        }),
+        error: ((err) => {
+            console.error(err)
+        }),
+        complete: (() => { })
+    });
 
-        console.log("dc create response", response);
-      }),
-      error: ((err) => {
-        console.error(err)
-      }),
-      complete: (() => { })
-    })
-    alert('Form Submitted Successfully!')
-  }
+    this.applicationForm.reset();
+    this.ngOnInit();
+
+    // Show alert
+    alert('Form Submitted Successfully!');
+
+    // Navigate to the desired URL after the alert is dismissed
+    this.router.navigate(['/documentary-collection/viewDc']);
+}
+
+
   openLookup(): void {
     // Create a MatDialogConfig object
     const dialogConfig = new MatDialogConfig();
@@ -129,5 +140,60 @@ export class CreateDcComponent implements OnInit {
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
   }
   
+
+
+
+  
+  rows: any[] = [
+    { documentType: 'Bill of Exchange', checked: false, formControlName: 'billOfExchange' },
+    { documentType: 'Invoice', checked: false, formControlName: 'invoiceCertificate' },
+    { documentType: 'Certificate of Origin', checked: false, formControlName: 'certificateOfOrigin' },
+    { documentType: 'Insurance Certificate', checked: false, formControlName: 'insuranceCertificate' },
+    { documentType: 'Packing List', checked: false, formControlName: 'packingList' },
+    { documentType: 'Marine Bill of Lading', checked: false, formControlName: 'billOfLading' },
+    { documentType: 'CMR/Airway Bill', checked: false, formControlName: 'airwayBill' },
+    { documentType: 'Others', checked: false, formControlName: 'other1' },
+    { documentType: 'Others', checked: false, formControlName: 'other2' },
+    // Adds rows to html
+  ];
+  
+  // Function to toggle row
+  toggleRow(index: number) {
+   this.rows[index].checked = !this.rows[index].checked;
+   }
+  
+   
+
+  addRow() {
+    this.rows.push({
+      documentType: '',
+      checked: false,
+      // Add more properties as needed
+    });
+  }
+
+
+
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+
+    // Check if a file is selected
+    if (selectedFile) {
+        // Check file type
+        if (selectedFile.type !== 'application/pdf') {
+            // Display an error message or take appropriate action
+            alert('Please select a PDF file.');
+            
+            // Clear the file input and disable it
+            event.target.value = '';
+            return;
+        }
+    }
+}
+
+
+
+
+
 
 }

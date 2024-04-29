@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 // import { SearchService } from '../../services/search.service';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
+import { MatDialogConfig,MatDialog } from '@angular/material/dialog';
+import { InvoiceLookupComponent } from '../../invoice-lookup/invoice-lookup.component';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -10,7 +14,7 @@ import { InvDiscountingService } from '../../services/inv-discounting.service';
   styleUrls: ['./create-invoice.component.sass']
 })
 export class CreateInvoiceComponent implements OnInit {
-
+  ShowLookupComponent: boolean = false;
 
   selectedValue: string;
   invoiceDiscountingForm: FormGroup;
@@ -18,8 +22,9 @@ export class CreateInvoiceComponent implements OnInit {
   isLinear: true;
    query: string = '';
    searchData: any;
-
+  
    selected = 'created';
+  
 // invoiceStatus: any;
   
  
@@ -30,44 +35,53 @@ export class CreateInvoiceComponent implements OnInit {
  
   constructor(private builder: FormBuilder,
     private invDiscountingService: InvDiscountingService,
+    private dialog:MatDialog,
+    
     //private searchService: SearchService
     ) { }
 
   ngOnInit(): void {
     this.invoiceDiscountingForm = this.builder.group({
-      cifId:['', Validators.required],
-      accountNumber:['', Validators.required],
-      accountName:['', Validators.required],
-      email: new FormControl(null, [Validators.required,]),
-      businessNo: new FormControl(null, [Validators.required,]),
-      businessName: new FormControl(null, [Validators.required,]),
-      businessType: new FormControl(null, [Validators.required,]),
-      industrySector: new FormControl(null, [Validators.required,]),
-      phoneNumber: new FormControl(null, [Validators.required,]),
-      alternativePhoneNumber: new FormControl(null, [Validators.required,]),
-      address: new FormControl(null, [Validators.required,]),
-      country: new FormControl(null, [Validators.required,]),
-      postalCode: new FormControl(null, [Validators.required,]),
-      city: new FormControl(null, [Validators.required,]),
-      branchName: new FormControl(null, [Validators.required,]),
-      branchCode: new FormControl(null, [Validators.required,]),
-      // Invoice
-     invoiceDate: new FormControl(null, [Validators.required,]),
-     invoiceNumber: new FormControl(null, [Validators.required,]),
-     invoiceAmount: new FormControl(null, [Validators.required,]),
-     dueDate: new FormControl(null, [Validators.required,]),
-     status: new FormControl(null, [Validators.required,]),
-     invoices: new FormControl(null, [Validators.required,]),
-    //  Funding 
-     fundingAmount: new FormControl(null, [Validators.required,]),
-     disbursalDate: new FormControl(null, [Validators.required,]),
-     repaymentDate: new FormControl(null, [Validators.required,]),
-    //  Repayment
-    paymentTerms: new FormControl(null, [Validators.required,]),
-    amount: new FormControl(null, [Validators.required,]),
-    paymentDate: new FormControl(null, [Validators.required,]),
-    
-    
+      accountNumber: ['', Validators.required],
+      cifId: ['', Validators.required],
+      nationalId: ['', Validators.required],
+      accountName: ['', Validators.required],
+      currency: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      country: ['', Validators.required],
+// invoice details
+     invoiceDate: ['', Validators.required],
+     invoiceNumber: ['', Validators.required],
+     invoiceAmount: ['', Validators.required],
+     businessName:['', Validators.required],
+     businessAddress: ['', Validators.required],
+     dueDate: ['', Validators.required],
+     taxIdentificationNumber:['', Validators.required],
+   
+    //  Funding details
+     fundingAmount: ['', Validators.required],
+     disbursalDate: ['', Validators.required],
+     repaymentDate:['', Validators.required],
+     creditAccount: ['', Validators.required],
+     creditLimit: ['', Validators.required],
+    //  importer details
+    buyerName: ['', Validators.required],
+    buyerEmail: ['', [Validators.required, Validators.email]],
+    buyerCountry: ['', Validators.required],
+    buyerCity: ['', Validators.required],
+
+  //  referee details 
+  refereeFullName:['', Validators.required],
+  refereeEmail:  ['', [Validators.required, Validators.email]],
+  refereeBusinessNumber: ['', Validators.required],
+  refereeBusinessName: ['', Validators.required,],
+
+  
   });
 
   }
@@ -77,15 +91,27 @@ export class CreateInvoiceComponent implements OnInit {
     //     this.searchData = data;
     //   });
   }
+  openLookup(): void {
+  
+    // Create a MatDialogConfig object
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '500px';
+    dialogConfig.data = { accountNumber: this.invoiceDiscountingForm.get('accountNumber').value };
+  
+    // Open the LookupComponent dialog with the dialog config
+    const dialogRef = this.dialog.open(InvoiceLookupComponent, dialogConfig);
 
-    // Searching by CIF
-  onSearch(){
+    dialogRef.afterClosed().subscribe({
+      next: (res: any) => {
+        console.log("received data", res),
 
+        console.log("passed email", res.data[0].email)
+        
+        this.patchinvoiceDiscountingForm(res.data[0])
+      }
+    })
   }
- //Searching by A/C No.
-  onRetrieve(){
-
-  }
+ 
   onSubmit() {
      console.log(this.invoiceDiscountingForm.value)
      this. invDiscountingService.postData(this.invoiceDiscountingForm.value).subscribe({
@@ -97,8 +123,26 @@ export class CreateInvoiceComponent implements OnInit {
         console.error(err)
       }),
       complete: (() => { })
+      
     })
-  }
+  } public patchinvoiceDiscountingForm(data: any): void {
+    this.invoiceDiscountingForm.patchValue({
+    accountNumber: data.accountNumber,
+    cifId: data.cifId,
+    nationalId: data.nationalId,
+    accountName: data.accountName,
+    currency: data.currency,
+    email: data.email,
+    phoneNumber: data.phoneNumber,
+    address: data.address,
+    city: data.city,
+    postalCode: data.postalCode,
+    countryCode: data.countryCode ? data.countryCode : 'NAN', 
+    country: data.country
+ });
+}
+  
+
 }
  
 

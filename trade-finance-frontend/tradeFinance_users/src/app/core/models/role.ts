@@ -1,7 +1,7 @@
 export enum Role {
   Admin = "ROLE_ADMIN",
-  User = "ROLE_USER",
-  Superuser = "ROLE_SUPERUSER"
+  User = "ROLE_USER",    //Maker
+  Superuser = "ROLE_SUPERUSER"    //checker
 }
 
 // Clerk = "ROLE_CLERK",
