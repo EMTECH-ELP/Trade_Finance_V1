@@ -111,7 +111,9 @@ export class CreateInvoiceComponent implements OnInit {
       }
     })
   }
- 
+  addRow(){
+    
+  }
   onSubmit() {
      console.log(this.invoiceDiscountingForm.value)
      this. invDiscountingService.postData(this.invoiceDiscountingForm.value).subscribe({
