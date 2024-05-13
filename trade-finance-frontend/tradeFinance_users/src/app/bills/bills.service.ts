@@ -14,7 +14,7 @@ export class BillsService {
 
  
   public postData(data: any): Observable<any> {
-    const url = `${environment.apiUrl}/endpoint`;
+    const url = `${environment.invUrl}/endpoint`;
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
 

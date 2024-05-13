@@ -10,6 +10,6 @@ export class Page404Component implements OnInit {
   ngOnInit() {}
 
   dashboard(){
- this.router.navigate(["/checker/dashboard"]);
+ this.router.navigate(["/checker/dashboard/analytics"]);
   }
 }

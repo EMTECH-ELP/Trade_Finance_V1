@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { SharedModule } from '../shared/shared.module';
+import {  MatDialogModule } from '@angular/material/dialog';
+import { RepaymentdetailsComponent } from './components/repaymentdetails/repaymentdetails.component';
+import { ViewpopUpComponent } from './components/viewpop-up/viewpop-up.component';
 import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.component';
 
 
@@ -26,7 +30,9 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
     ModifyInvoiceComponent,
     CreateInvoiceComponent,
     ViewInvoiceComponent,
-    InvoiceLookupComponent,
+    RepaymentdetailsComponent,
+    ViewpopUpComponent,
+ InvoiceLookupComponent,
    
   
   ],
@@ -46,6 +52,10 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
     MatButtonModule,
     MatSelectModule,
     HttpClientModule,
+    SharedModule,
+    MatDialogModule,
+  
+  
   // AppRoutingModule,
   ],
 

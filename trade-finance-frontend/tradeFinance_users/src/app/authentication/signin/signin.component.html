@@ -11,17 +11,17 @@
           <h5 class="mb-4">TRADE FINANCE SOLUTION</h5>
 
           <!-- <p style="color: #423f3f">Enter credentials below:</p> -->
-
-          <h4>Sign in</h4>
+        
+          <h3>Sign in</h3>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
-                  <input matInput formControlName="username" />
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" />
                   <mat-icon matSuffix>face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username').hasError('required')">
-                    Username is required
+                  <mat-error *ngIf="authForm.get('email').hasError('required')">
+                    Email is required
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -33,7 +33,7 @@
                   <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
                   <a class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{
+                    <mat-icon style="color: maroon">{{
                       hide ? "visibility_off" : "visibility"
                       }}</mat-icon>
                   </a>
@@ -59,8 +59,8 @@
                 </button>
               </div>
             </div>
-            <div class="badge badge-solid-green m-3 mt-3">
-              <a routerLink="/authentication/forgot-password" style="color: #000000">Forgot Password?</a>
+            <div class="badge badge-solid-green m-3 mt-3" style="background-color: maroon;">
+              <a routerLink="/authentication/forgot-password" style="color: white">Forgot Password?</a>
             </div>
           </form>
           <!-- <h6 class="social-login-title">OR</h6>

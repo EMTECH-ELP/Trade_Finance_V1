@@ -8,15 +8,18 @@ import {
   Renderer2,
   HostListener,
   OnDestroy,
+  ViewChild,
 } from "@angular/core";
-// import { ROUTES } from "./sidebar-items";
+import { ROUTES } from "./sidebar-items";
 import { AuthService } from "src/app/core/service/auth.service";
 import { Role } from "src/app/core/models/role";
 
 import { TokenCookieService } from "src/app/core/service/token-storage-cookies.service";
 // import { NotificationService } from "src/app/erp-procurement/data/services/notification.service";
-import {
-  AdminModule,
+
+//   import {
+  
+//     AdminModule,
   // BudgetModule,
   // FinanceModule,
   // FixedAssetsModule,
@@ -26,7 +29,9 @@ import {
   // PrepaymentModule,
   // ProcurementModule,
   // SuppliersManagementModule,
-} from "./sidebar-items";
+
+// } from "./sidebar-items";
+// import { AppModule } from "src/app/app.module";
 
 @Component({
   selector: "app-sidebar",
@@ -53,6 +58,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   userName = "";
   userRole = "";
+  tokenStorageService: any;
 
   // private myPrivileges = privileges;
 
@@ -70,7 +76,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // logic for select active menu in dropdown
-        const role = ["ROLE_ADMIN", "ROLE_CLERK", "ROLE_SUPERUSER"];
+        const role = ["ROLE_ADMIN", "ROLE_USER", "ROLE_SUPERUSER"];
         const currenturl = event.url.split("?")[0];
         const firstString = currenturl.split("/").slice(1)[0];
 
@@ -127,62 +133,73 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   privileges: any[] = [];
-  
+
 
   ngOnInit() {
 
     this.currentUser = this.tokenCookieService.getUser();
+    const role = this.currentUser.role
+
+
     if (this.currentUser) {
-      console.log("this.currentUser:::: ", this.currentUser);
-      this.userName = this.currentUser.username;
-      this.userRole = this.currentUser.role.name;
+
+      let userRole = this.currentUser.role;
+      console.log("role", userRole)
+
+      // console.log("this.currentUser:::: ", this.currentUser);
+      // this.userName = this.currentUser.username;
+      // this.userRole = this.currentUser.role.name;
+
       this.userFullName = this.currentUser.username;
       this.userImg = "assets/images/user/profile_img.png";
 
-      console.log("this.currentUser : ", this.currentUser);
+      // console.log("this.currentUser : ", this.currentUser);
+
+      // const userId = this.currentUser.id;
+      // const module = JSON.parse(
+      //   localStorage.getItem(`selectedModule_${userId}`) || "{}"
+      // );
+      // const myPrivileges = JSON.parse(
+      //   localStorage.getItem(`userPrivileges_${userId}`) || "{}"
+      // );
+
+      // console.log("module ::: ", module);
+      // console.log("myPrivileges :::: ", myPrivileges);
+
+      // const moduleMapping = {
+      //   AdminModule: AdminModule
       
-      const userId = this.currentUser.id;
-      const module = JSON.parse(
-        localStorage.getItem(`selectedModule_${userId}`) || "{}"
-      );
-      const myPrivileges = JSON.parse(
-        localStorage.getItem(`userPrivileges_${userId}`) || "{}"
-      );
+      // };
 
-      console.log("module ::: ", module);
-      console.log("myPrivileges :::: ", myPrivileges);
+      // if (module in moduleMapping) {
+      //   this.sidebarItems = moduleMapping[module].filter((route) => {
+      //     const isRouteVisible = route.privilege.some((privilege) =>
+      //       myPrivileges.includes(privilege)
+      //     );
+      //     if (!isRouteVisible) {
+      //       return false;
+      //     }
+      //     if (route.submenu.length === 0) {
+      //       return true;
+      //     }
+      //     route.submenu = route.submenu.filter((submenu) =>
+      //       submenu.privilege.some((privilege) =>
+      //         myPrivileges.includes(privilege)
+      //       )
+      //     );
+      //     return route.submenu.length > 0;
+      //   });
+      //   console.log("myPrivileges: ", myPrivileges);
+      // } else {
+      //   // this.notificationService.alertWarning(
+      //   //   "No sidebar items available for this module...!!"
+      //   // );
+      // }
 
-      const moduleMapping = {
-        AdminModule: AdminModule
-      };
+      this.sidebarItems = ROUTES.filter((x) => x.role.indexOf(userRole) !== -1);
+      console.log(userRole);
 
-      if (module in moduleMapping) {
-        this.sidebarItems = moduleMapping[module].filter((route) => {
-          const isRouteVisible = route.privilege.some((privilege) =>
-            myPrivileges.includes(privilege)
-          );
-          if (!isRouteVisible) {
-            return false;
-          }
-          if (route.submenu.length === 0) {
-            return true;
-          }
-          route.submenu = route.submenu.filter((submenu) =>
-            submenu.privilege.some((privilege) =>
-              myPrivileges.includes(privilege)
-            )
-          );
-          return route.submenu.length > 0;
-        });
-        console.log("myPrivileges: ", myPrivileges);
-      } else {
-        // this.notificationService.alertWarning(
-        //   "No sidebar items available for this module...!!"
-        // );
-      }
-
-      this.sidebarItems = AdminModule.filter((x) => x.role.indexOf(this.userRole) !== -1);
-      if (this.userRole === Role.User) {
+      if (userRole === Role.User) {
         this.userType = Role.User;
       }
     }
@@ -231,7 +248,29 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-  logout(): void {
+  logout() {
+    this.tokenStorageService.signOut();
     this.router.navigate(["/authentication/signin"]);
   }
+  showDropdown = false;
+
+  @ViewChild('dropdownContent', { static: false }) dropdownContent: ElementRef;
+  @ViewChild('dropdownButton', { static: false }) dropdownButton: ElementRef;
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+
+    if (this.showDropdown) {
+      // Position the dropdown content below the button
+      const buttonRect = this.dropdownButton.nativeElement.getBoundingClientRect();
+      this.dropdownContent.nativeElement.style.top = `${buttonRect.bottom}px`;
+      this.dropdownContent.nativeElement.style.left = `${buttonRect.left}px`;
+    }
+  }
+
+  // Optional: Programmatic navigation using Router (can be triggered elsewhere)
+  navigateToComponent(componentName: string) {
+    this.router.navigate([`/bonds/${componentName}`]);
+  }
 }
+

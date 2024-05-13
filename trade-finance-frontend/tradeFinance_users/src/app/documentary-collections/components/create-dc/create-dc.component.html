@@ -144,7 +144,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Middle Name" formControlName="beneficiaryMiddleName" type="text">
+                <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
             </div>
 
@@ -429,6 +429,7 @@
             </div>
 
 
+<<<<<<< HEAD
             <p class="stepHeading"> Documents Attached</p>
             <div>
               <table border="1" class="dcTable">
@@ -443,6 +444,21 @@
                 </thead>
                 <tbody>
                   <!-- Row 1 -->
+=======
+         <p class="stepHeading"> Documents Attached</p>
+          <div>
+            <table border="1" class="dcTable">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Document Type</th>
+                  <th>Original Document</th>
+                  <th>Copies Documents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+>>>>>>> 7d8aa54d4a6d9605989d9a74bb993de387085e8b
 
 
                   <!-- <tr *ngFor="let row of rows; let i = index">
@@ -454,6 +470,7 @@
                 </tr> -->
 
 
+<<<<<<< HEAD
                   <tr *ngFor="let row of rows; let i = index">
                     <td><input type="checkbox" (change)="toggleRow(i)"></td>
                     <td>{{ row.documentType }}</td>
@@ -469,6 +486,39 @@
                       </div>
                     </td>
                   </tr>
+=======
+                <tr *ngFor="let row of rows; let i = index">
+                  <td><input type="checkbox" (change)="toggleRow(i)"></td>
+                  <td>{{ row.documentType }}</td>
+                  <td><input type="text" [disabled]="!row.checked" ></td>
+                  <td><input type="text" [disabled]="!row.checked"></td>
+                  
+              </tr> 
+
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Add rows from button below -->
+          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRow()">
+            <mat-icon class="col-white">add</mat-icon>
+          </button>
+
+        
+
+
+
+        
+
+         
+         <div style="margin-top: 20px;">
+          <button class="previousDC" mat-button matStepperPrevious>Back</button>
+          <span style="margin-right: 745px;"></span>
+          <button class="nextDC" mat-button matStepperNext>Next</button>
+        </div>
+
+>>>>>>> 7d8aa54d4a6d9605989d9a74bb993de387085e8b
 
 
                 </tbody>
@@ -497,7 +547,137 @@
           </div>
 
 
-        </mat-step>
+          
+          
+
+
+          </mat-step>
+
+
+
+
+          <!-- Step 4: Document Upload Section -->
+         <mat-step label="Document Upload Section">
+          <p class="stepHeading"> Document Upload Section</p>
+          <div class="row">
+            <!-- <mat-label>Bill of Exchange</mat-label>
+            <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)"> -->
+                <!-- <div>
+                   <button mat-icon-button >
+                    <mat-icon>delete</mat-icon>
+                  </button> 
+                 </div> -->
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Application Form</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Bill of Exchange</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Invoice</mat-label><br/>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Certificate of Origin</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Insurance Certificate</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Packing List</mat-label><br/>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload Marine Bill of Lading</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+
+                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <mat-label for="invoiceDocument"> Upload CMR/Airway Bill</mat-label><br/>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <input matInput type="file"  formControlName="invoices[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+                 </div>
+
+
+
+                 <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addFileUpload()">
+                  <mat-icon class="col-white">add</mat-icon>
+                </button>
+
+
+
+                
+
+
+
+
+                 <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                  <button mat-button color="primary" (click)="addFileUpload()">Add Another File Upload</button>
+              </div> -->
+              <p class="stepHeading"> Additional Documents</p>
+              <!-- New file upload section (will be dynamically added) -->
+              <div *ngFor="let row of additionalFileUploads">
+                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 file-upload">
+                      <mat-label for="newFileUpload">Upload {{ row.label }}</mat-label>
+                      <mat-form-field class="full-width" appearance="outline">
+                          <input matInput type="file" formControlName="additionalFiles" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                      </mat-form-field>
+                  </div>
+              </div>
+              
+              <!-- Buttons for navigation -->
+              <div>
+                  <button class="previousDC" mat-button matStepperPrevious>Back</button>
+                  <span style="margin-right: 700px;"></span>
+                  <button class="nextDC" mat-button matStepperNext type="submit" (click)="onSubmit()">Submit</button>
+              </div>
+                
+                
+                
+                
+                
+
+
+          </div>
+          </mat-step>
+
+        
 
 
 
