@@ -14,7 +14,8 @@ getlcNoUrl: 'http://192.168.137.1: 8085',    //fetch Lc details by lcNumber     
   dcApiUrl: "http://192.168.0.1:9090",
 
 
-
+//bills
+billApiUrl: 'http://192.168.137.1:8085', 
 
 
 

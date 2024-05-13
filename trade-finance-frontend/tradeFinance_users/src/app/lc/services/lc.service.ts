@@ -16,12 +16,12 @@ export class LcService {
   constructor(private httpClient: HttpClient) { }
 //Creating a new LC
   public createLc(lcData: any): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/create`;
+    const url = `${environment.createApiUrl}/api/v1/LC/create`;
     return this.httpClient.post<any>(url, lcData, { headers: { 'Content-Type': 'application/json'}});
   }
 
   public transferLc(): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/LC/transfer`;
+    const url = `${environment.createApiUrl}/api/v1/LC/transfer`;
     return this.httpClient.get<any>(url);
   }
   public getAllLCs(): Observable<any> {

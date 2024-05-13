@@ -15,12 +15,12 @@ export class BillsService {
   constructor(private httpClient: HttpClient) { }
 
   public createBill(billData: any): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/bill/create`;
+    const url = `${environment.billApiUrl}/api/v1/bill/create`;
     return this.httpClient.post<any>(url, billData);
   }
 
   public viewbill(): Observable<any>{
-    const url = `${environment.apiUrl}/api/v1/bill/view`;
+    const url = `${environment.billApiUrl}/api/v1/bill/view`;
     return this.httpClient.get<any>(url);
   }
  }
