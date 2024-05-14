@@ -32,7 +32,7 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
     ViewInvoiceComponent,
     RepaymentdetailsComponent,
     ViewpopUpComponent,
- InvoiceLookupComponent,
+    InvoiceLookupComponent,
    
   
   ],

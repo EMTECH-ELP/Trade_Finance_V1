@@ -22,5 +22,12 @@ export const environment = {
   clientUrlHR: "http://52.15.152.26:6301/administration",
   selfServiceUrlHR: "http://52.15.152.26:6301/portal",
 
+
+
+  // invoice discounting
+ invUrl: 'http://192.168.90.44:9000' ,     //post invoice discounting forms. Createform url
+ saveUrl: 'http://192.168.91.141:9000',     // save repayment details form
+ getUrl: 'http://192.168.91.96:9000',              // Fetch forms
+
   //Localhost
 };
