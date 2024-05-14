@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-view-checkers',
@@ -17,31 +18,13 @@ export class ViewCheckersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isLoading = true;
-  rows: any;
+  users: any;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private authservice: AuthService) { }
   ngOnInit(): void {
-    this.getRows();
+    this.getAllUsers();
   }
 
-  public getRows() {
-    this.rows = [
-      { name: 'Mercy Awiti', employeeId: '12345', email: 'mercy@equity.co.ke', branchName: 'Westlands', branchCode: 'A001', status: 'Active' },
-      { name: 'Anne Wairimu', employeeId: '6578', email: 'anne@equitybank.co.ke', branchName: 'Tom Mboya', branchCode: 'A001', status: 'Active' },
-      { name: ' Becky  Atieono', employeeId: '17654', email: 'becky@equitybank.co.ke', branchName: 'Githurai', branchCode: 'A001', status: 'Flagged' },
-      { name: 'Moses West', employeeId: '65677', email: 'moses@equitybank.co.ke', branchName: 'Changamwe', branchCode: 'A001', status: 'Active' },
-      { name: 'Mark Carl', employeeId: '1876', email: 'mark@equitybank.co.ke', branchName: 'Ruiru', branchCode: 'A001', status: 'Active' },
-      { name: 'James Maina', employeeId: '18945', email: 'james@equitybank.co.ke', branchName: 'Moyale', branchCode: 'A001', status: 'Active' },
-    ];
-
-    console.log("list:", this.rows);
-    if (this.rows) {
-      this.isLoading = false
-    }
-    this.dataSource = new MatTableDataSource(this.rows);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -52,7 +35,22 @@ export class ViewCheckersComponent implements OnInit {
   }
 
   public refresh() {
-    this.getRows();
+    this.getAllUsers();
+    }
+
+  getAllUsers(): void {
+    this.authservice.getAllUsers().subscribe({
+      next: (result: any) => {
+        if (result.statusCode === 302) {
+          this.isLoading = false
+        
+          this.dataSource = new MatTableDataSource(result.entity);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      },
+      error: (error) => {}
+    })
   }
 
   public add(){
