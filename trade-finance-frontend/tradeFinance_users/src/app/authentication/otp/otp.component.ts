@@ -23,7 +23,9 @@ export class OtpComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
   otpForm: FormGroup;
-  currentEmail: any;
+  otpBody: FormGroup
+  otpValue: any
+  currentEmail: string=""
   maskedEmail: any;
   currentUser: any;
 
@@ -40,12 +42,19 @@ export class OtpComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmail();
-
+    this.initOtpBody()
     this.otpForm = this.fb.group({
-      first: ["", Validators.required],
-      second: ["", Validators.required],
-      third: ["", Validators.required],
-      fourth: ["", Validators.required],
+      first: ["", [Validators.required]],
+      second: ["", [Validators.required]],
+      third: ["", [Validators.required]],
+      fourth: ["", [Validators.required]],
+    });
+  }
+
+  initOtpBody() {
+    this.otpBody = this.fb.group({
+      otp: [this.otpValue, [Validators.required]],
+      email: [this.currentEmail, [Validators.required]]
     });
   }
 
@@ -66,7 +75,7 @@ export class OtpComponent implements OnInit {
       username.charAt(username.length - 1);
     const maskedEmail = maskedUsername + domain;
     this.maskedEmail = maskedEmail;
-    console.log("The masked email is", maskedEmail); // Output: s********n@gmail.com
+    console.log("The masked email is", maskedEmail); // Output: mailto:s********n@gmail.com
   }
 
   loading: boolean = false;
@@ -74,24 +83,28 @@ export class OtpComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.error = "";
+    console.log("at this stage 1")
+
     if (this.otpForm.invalid) {
       this.error = "Invalid OTP!";
-      this.snackbar.showNotification("snackbar-danger", "Invalid OTP!");
       return;
     } else {
-      const otpValue = Number(
+      console.log("at this stage")
+      this.otpValue = Number(
         this.otpForm.controls.first.value +
         this.otpForm.controls.second.value +
         this.otpForm.controls.third.value +
         this.otpForm.controls.fourth.value
       );
 
-      console.log(otpValue);
+      this.initOtpBody()
+
+      console.log("value", this.otpValue);
 
       const params = new HttpParams()
         // .set("format", type)
         .set("username", this.currentUser)
-        .set("otpCode", otpValue);
+        .set("otpCode", this.otpValue);
 
       console.log("params: ", params);
 
@@ -100,46 +113,39 @@ export class OtpComponent implements OnInit {
       //this.router.navigate(["/admin/dashboard"]);
 
 
-      this.tokenCookieService.clearSharedTokenOrCookie();
+      // this.tokenCookieService.clearSharedTokenOrCookie();
 
+      this.authService.validateOTP(this.otpBody.value).subscribe({
+        next: (res: any) => {
+            console.log("res: ", res);
 
-      // this.authService
-      //   .verifyOTP(params)
-      //   .pipe(takeUntil(this.destroy$))
-      //   .subscribe({
-      //     next: (res) => {
-      //       console.log("res: ", res);
+            if (res.body.statusCode === 200) {
+              this.tokenCookieService.saveUser(res.body.entity);
+              console.log("res.entity: ", res.body.entity);
+              this.tokenCookieService.setSharedRefreshTokenToCookie(res.body.entity.accessToken);
+              console.log("set refreshToken: ", res.body.entity.accessToken)
 
-      //       if (res.statusCode == 200) {
-      //         this.tokenCookieService.saveUser(res.entity);
-      //         console.log("res.entity: ", res.entity)
-      //         this.tokenCookieService.setSharedRefreshTokenToCookie(res.entity.refreshToken);
-      //         console.log("set refreshToken: ", res.entity.refreshToken)
+              this.snackbar.showNotification(
+                "snackbar-success",
+                res.body.message
+              );
 
-      //         this.snackbar.showNotification(
-      //           "snackbar-success",
-      //           "Login Successful"
-      //         );
+          this.router.navigateByUrl("/checker/dashboard/analytics");
+          } else {
+            this.snackbar.showNotification("snackbar-danger", res.body.message);
+          }
 
-              this.router.navigateByUrl("/checker/dashboard/analytics");
-              // this.router.navigateByUrl("/checker/dashboard/analytics");
-
-            // } else {
-            //   this.snackbar.showNotification("snackbar-danger", res.message);
-            // }
-
-        //     this.loading = false;
-        //   },
-        //   error: (err) => {
-        //     this.snackbar.showNotification(
-        //       "snackbar-danger",
-        //       "Server Error: !!"
-        //     );
-        //     this.loading = false;
-        //   },
-        //   complete: () => { },
-        // }),
-        // Subscription;
+          this.loading = false;
+          },
+        error: (error) => {
+          console.log("Error:  ", error)
+          this.snackbar.showNotification(
+              "snackbar-danger",
+              error.message
+            );
+            this.loading = false;
+        }
+      })
     }
   }
 

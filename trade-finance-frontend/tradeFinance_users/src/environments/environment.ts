@@ -3,7 +3,7 @@ export const environment = {
 
 //LCs
   createApiUrl: 'http://192.168.137.1:8085',    //create LC
-  getApiUrl: `http://192.168.137.1:8187`, //fetch applicant details
+  getApiUrl: `http://192.168.88.107:8187`, //fetch applicant details
   getAllUrl: `http://192.168.137.1:8085`,      //get all LCs details
 getlcNoUrl: 'http://192.168.137.1:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
 putUrl: 'http://192.168.137.1:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
@@ -11,7 +11,7 @@ transferApiUrl: 'http://192.168.137.1:8085', //Transfer LC
 
 
 
-  authUrl: 'http://192.168.91.98:8082',
+authUrl: "http://192.168.88.141:8082",
   resetUrl: '',
 
   // apiUrl: 'http://192.168.137.1:8085',
@@ -36,7 +36,8 @@ transferApiUrl: 'http://192.168.137.1:8085', //Transfer LC
 
 
 // invoice discounting
- invUrl: 'http://192.168.91.141:9000' ,     //post invoice discounting forms. Createform url
- saveUrl: 'http://192.168.91.141:9000',  
+ invUrl: 'http://192.168.90.44:9000' ,     //post invoice discounting forms. Createform url
+ saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
+ getUrl: 'http://192.168.91.96:9000',         // Fetch forms
 
 };

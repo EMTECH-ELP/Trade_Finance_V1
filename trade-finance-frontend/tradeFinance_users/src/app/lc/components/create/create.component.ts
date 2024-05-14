@@ -100,7 +100,7 @@ export class CreateComponent implements OnInit {
     });
 
   }
-
+K
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     this.lcService.createLc(this.applicationForm.value,this.applicationForm.get('accountNumber')?.value).subscribe({
