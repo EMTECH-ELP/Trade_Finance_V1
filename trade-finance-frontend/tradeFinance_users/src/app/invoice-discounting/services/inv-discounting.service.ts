@@ -32,7 +32,7 @@ export class InvDiscountingService {
   }
 
   public getAllForms(): Observable<any> {
-    const url = `${environment.getUrl}/invoices/list`;     //FETCH FORMS
+    const url = `${environment.getInvUrl}/invoices/list`;     //FETCH FORMS
     return this.http.get<any>(url)
   }
 

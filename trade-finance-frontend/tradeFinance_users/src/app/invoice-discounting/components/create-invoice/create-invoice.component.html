@@ -18,7 +18,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Account Number" formControlName="accountNumber" type="text">
+                <input matInput  formControlName="accountNumber" type="text">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
 
@@ -30,7 +30,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Customer's CIF ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="CIF ID" formControlName="cifId" type="string">
+                <input matInput formControlName="cifId" type="string">
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
               <small
@@ -40,7 +40,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>National ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Enter customer's ID" formControlName="nationalId" type="string">
+                <input matInput  formControlName="nationalId" type="text">
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
               <small *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
@@ -50,7 +50,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Account Name" formControlName="accountName" type="text">
+                <input matInput  formControlName="accountName" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('accountName'). invalid && applicationForm.get('accountName').touched">
                 *Account Name is required</small>
@@ -58,7 +58,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Currency</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Currency" formControlName="currency" type="text">
+                <input matInput  formControlName="currency" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('currency').invalid && applicationForm.get('currency').touched">
                 *Please specify the currency</small>
@@ -66,7 +66,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Email</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Email" formControlName="email" type="email">
+                <input matInput  formControlName="email" type="email">
               </mat-form-field>
               <small *ngIf="applicationForm.get('email').invalid && applicationForm.get('email').touched">
                 *Enter valid email address</small>
@@ -74,7 +74,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Phone Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Phone Number" formControlName="phoneNumber" type="tel">
+                <input matInput  formControlName="phoneNumber" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('phoneNumber').invalid && applicationForm.get('phoneNumber').touched">
                 *Phone Number is required</small>
@@ -82,7 +82,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Address" formControlName="address" type="text">
+                <input matInput formControlName="address" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('address').invalid && applicationForm.get('address').touched">
                 *Address is mandatory</small>
@@ -90,7 +90,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="City" formControlName="city" type="text">
+                <input matInput  formControlName="city" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
                 *City is required</small>
@@ -98,7 +98,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Postal Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Postal Code" formControlName="postalCode" type="text">
+                <input matInput  formControlName="postalCode" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('postalCode').invalid && applicationForm.get('postalCode').touched">
                 *Postal code is required</small>
@@ -106,7 +106,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Country Code" formControlName="countryCode" type="text">
+                <input matInput  formControlName="countryCode" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('countryCode').invalid && applicationForm.get('countryCode').touched">
                 *Country code is required</small>
@@ -114,7 +114,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput placeholder="Country" formControlName="country" type="text">
+                <input matInput  formControlName="country" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('country').invalid && applicationForm.get('country').touched">
                 *Applicant's country is required</small>
@@ -170,6 +170,7 @@
               *Enter Business Address</small>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label style="font-size:16px;"> Invoice Date </mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label> Invoice Date <span class="required">*</span></mat-label>
                 <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
