@@ -15,6 +15,7 @@ export class CreateComponent implements OnInit {
   ShowLookupComponent: boolean = false;
   selectedValue: string;
   applicationForm: FormGroup;
+  additionalFileUploads: any;
   // dialog: any;
  // router: any;
 
@@ -100,83 +101,7 @@ export class CreateComponent implements OnInit {
     });
 
   }
-<<<<<<< HEAD
 K
-=======
-
-  createLOC(data: any) {
-    const body = {
-      "accountNumber": data.accountNumber,
-      "cifId": data.cifId,
-      "nationalId": data.nationalId,
-      "accountName": data.accountName,
-      "currency": data.currency,
-      "email": data.email,
-      "phoneNumber":data.phoneNumber,
-      "address": data.address,
-      "city": data.city,
-      "postalCode":data.postalCode,
-      "countryCode":data.countryCode,
-      "country": data.country,
-      "lcNumber": "",
-      "lcType": data.lcType,
-      "applicableRules": data.applicableRules,
-      "shipmentDate": data.shipmentDate,
-      "portOfDischarge": data.portOfDischarge,
-      "portOfLoading": data.portOfLoading,
-      "shipmentTerms": data.shipmentTerms,
-      "partialShipment": data.partialShipment,
-      "transShipment": data.transShipment,
-      "issueDate": data.issueDate,
-      "expiryDate": data.expiryDate,
-      "tenor": data.tenor,
-      "transferable": data.transferable,
-      "negotiationPeriod": data.negotiationPeriod,
-      "commodityCode": data.commodityCode,
-      "goodsQuantity": data.goodsQuantity,
-      "pricePerUnit": data.pricePerUnit,
-      "countyOfOrigin":data.countyOfOrigin,
-      "chargesBorneBy":data.chargesBorneBy,
-      "amount": data.amount,
-      "transferAmount":data.transferAmount,
-      "transferCurrencyCode":data.transferCurrencyCode,
-      "newExpiryDate": data.newExpiryDate,
-      "currencyCode": data.currencyCode,
-      "collateralType": data.collateralType,
-      "collateralId": data.collateralId,
-      "collateralValue":data.collateralValue,
-      "guarantorName": data.guarantorName,
-      "guarantorAddress": data.guarantorAddress,
-      "guarantorEmail": data.guarantorEmail,
-      "guarantorPhoneNumber": data.guarantorPhoneNumber,
-      "documentName1": data.documentName1,
-      "documentDescription1": data.documentDescription1,
-  "beneficiaryDto": {
-  "beneficiaryFirstName": data.beneficiaryFirstName,
-      "beneficiaryMiddleName": data.beneficiaryMiddleName,
-      "beneficiaryLastName": data.beneficiaryLastName,
-      "beneficiaryAccountNumber": data.beneficiaryAccountNumber,
-      "beneficiaryAccountName": data.beneficiaryAccountName,
-      "beneficiaryEmail": data.beneficiaryEmail,
-      "beneficiaryIban": data.beneficiaryIban,
-      "beneficiaryAddressLine1": data.beneficiaryAddressLine1,
-      "beneficiaryAddressLine2": data.beneficiaryAddressLine2,
-      "beneficiaryCity": data.beneficiaryCity,
-      "beneficiaryPostalCode": data.beneficiaryPostalCode,
-      "beneficiaryCountryCode": data.beneficiaryCountryCode,
-      "beneficiaryCountry": data.beneficiaryCountry,
-      "advisingBankName": data.advisingBankName,
-      "advisingBankCountry": data.advisingBankCountry,
-      "advisingBankBic":data.advisingBankBic
-  },
-  "documentsRequiredDto": {},
-  "shipmentAndGoodsDto": {},
-  "paymentSecurityDto": {}
-  };
-    return body;
-  }
-
->>>>>>> 5ccec5fe38abc5cacefa1b274bbd3d60b24a5a55
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     const data = this.createLOC(this.applicationForm.value)
@@ -194,6 +119,9 @@ K
     this.ngOnInit()
     alert('Form Submitted Successfully!')
      this.router.navigate(["/lc/view"]);
+  }
+  createLOC(value: any) {
+    throw new Error('Method not implemented.');
   }
   openLookup(): void {
     const dialogConfig = new MatDialogConfig();
@@ -229,6 +157,43 @@ K
       country: data.country
     });
    }
+   onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
 
+    // Check if a file is selected
+    if (selectedFile) {
+      // Check file type
+      if (selectedFile.type !== 'application/pdf') {
+        // Display an error message or take appropriate action
+        alert('Please select a PDF file.');
+        // Clear the file input and disable it
+        event.target.value = '';
+        return;
+      }
 
+      // If the selected file is a PDF, read it as a data URL using FileReader
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        // Convert the PDF file content to a string
+        const pdfString = fileReader.result as string;
+
+        // Now you have the PDF content as a string (pdfString)
+        // You can assign it to a form control or store it as needed
+        // For example, you can store it in a form control named 'pdfContent'
+        this.applicationForm.get('pdfContent')?.setValue(pdfString);
+      };
+      fileReader.readAsDataURL(selectedFile);
+    }
+  }
+  addFileUpload() {
+    const newLabel = prompt('Enter Document Name for the New File Upload:'); // Prompts the user to enter the label
+  
+    if (newLabel) { // Check if the user entered a label
+      // Add the new file upload section with the specified label
+      const newRow = {
+        label: newLabel.trim(), // Trim to remove leading/trailing spaces
+      };
+      this.additionalFileUploads.push(newRow);
+    }
+  }
 }

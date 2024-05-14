@@ -24,7 +24,7 @@ deleteLcApiUrl: 'http://192.168.88.107:8085',  //delete an already created LC
 
 
 
-authUrl: "http://192.168.88.141:8082",
+  authUrl: 'http://192.168.88.141:8082',
   resetUrl: '',
 
   // apiUrl: 'http://192.168.88.107:8085',

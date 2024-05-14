@@ -139,12 +139,12 @@
                 *Beneficiary First Name is required</small>
             </div>
 
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
-            </div>
+            </div> -->
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Last Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
@@ -273,7 +273,7 @@
               </mat-form-field>
               <small
                 *ngIf="applicationForm.get('advisingBankBic'). invalid && applicationForm.get('advisingBankBic').touched">
-                *Advising Bank Country is required</small>
+                *Advising Bank SWIFT Code is required</small>
             </div>
             <div>
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
@@ -290,15 +290,15 @@
               <mat-label> LC Type</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="lcType">
-                  <mat-option value="revocable">Revocable</mat-option>
-                  <mat-option value="irrevocable">Irrevocable</mat-option>
-                  <mat-option value="confirmed">Confirmed</mat-option>
-                  <mat-option value="unconfirmed">Unconfirmed</mat-option>
-                  <mat-option value="transferable">Transferable</mat-option>
-                  <mat-option value="backtoback">Back-to-Back</mat-option>
-                  <mat-option value="sight">Sight</mat-option>
-                  <mat-option value="deferred">Deferred</mat-option>
-                  <mat-option value="standby">Standby</mat-option>
+                  <mat-option value="Revocable">Revocable</mat-option>
+                  <mat-option value="Irrevocable">Irrevocable</mat-option>
+                  <mat-option value="Cancel">Confirmed</mat-option>
+                  <mat-option value="Unconfirmed">Unconfirmed</mat-option>
+                  <mat-option value="Transferable">Transferable</mat-option>
+                  <mat-option value="Backtoback">Back-to-Back</mat-option>
+                  <mat-option value="Sight">Sight</mat-option>
+                  <mat-option value="Deferred">Deferred</mat-option>
+                  <mat-option value="Standby">Standby</mat-option>
                 </mat-select>
               </mat-form-field>
               <small *ngIf="applicationForm.get('lcType'). invalid && applicationForm.get('lcType').touched">
@@ -603,7 +603,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Commercial Invoice</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="documentName1" type="text">
+                <input matInput  formControlName="documentName1" type="text"  multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -710,6 +710,19 @@
                 <input type="file" id="qualityInspectionCertificate" name="qualityInspectionCertificateFile">
               </div>
             </div>
+          </div>
+          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addFileUpload()">
+            <mat-icon class="col-white">add</mat-icon>
+          </button>
+          <p class="stepHeading"> Additional Documents</p>
+          <!-- New file upload section (will be dynamically added) -->
+          <div *ngFor="let row of additionalFileUploads">
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 file-upload">
+                  <mat-label for="newFileUpload">Upload {{ row.label }}</mat-label>
+                  <mat-form-field class="full-width" appearance="outline">
+                      <input matInput type="file" formControlName="additionalFiles" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
+                  </mat-form-field>
+              </div>
           </div>
           <div>
             <button class="previousDC" mat-button matStepperPrevious>Back</button>

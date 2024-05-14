@@ -72,7 +72,6 @@ ngOnInit() {
         // If reset-password is not required, handle role-based navigation for second,third etc time users
         if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
                   this.tokenCookieService.saveUser(res.body.entity)
-
           this.router.navigate(["/admin/dashboard/view"]);
         } else if (res.body.entity && (res.body.entity.role === "MAKER" || res.body.entity.role === "USER")) {
           if ( res.body.entity.firstLogin === 'Y') {
