@@ -31,8 +31,8 @@ interface LetterOfCredit {
 export class ViewComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters: number = 10;
-  totalPendingLetters: number = 10;
+  totalCreatedLetters: number = 5;
+  totalPendingLetters: number = 5;
   totalApprovedLetters: number = 0;
   totalRejectedLetters: number = 0;
   selectedactions = 'all';
@@ -87,14 +87,6 @@ export class ViewComponent implements OnInit {
       }
     });
   }
-
-
-
-
-
-
-
-
 
 
   public applyFilter(event: Event) {

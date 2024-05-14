@@ -17,8 +17,9 @@ import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-
 interface InvoiceDiscounting {
   name: string;
   invoiceNumber: string;
-  applicantAccountName: string;
-  applicaAccountNumber: string;
+ businessName: string;
+  buyerName: string;
+  invoiceAmount: string;
   status: string;
   branchCode: string;
   actions: string;
@@ -31,6 +32,9 @@ interface InvoiceDiscounting {
 
 export class ViewInvoiceComponent implements OnInit {
   
+ geturl = `http://192.168.90.44:9000/invoices/list`;
+ rows: any[]; // Define invoices array to hold the invoice objects
+
   all: number = 0;
   pending: number = 0;
   approved: number = 0;
@@ -41,9 +45,10 @@ export class ViewInvoiceComponent implements OnInit {
     // Defining the pageEvent property
     pageEvent: PageEvent;
 formData: any;
+data = []; 
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  // totalCreatedInvoiceDiscountingForms = 0;
+  // totainvoiceFormsreatedInvoiceDiscountingForms = 0;
   // totalItems: number = 0;
   //  all: number = 0;
   // pending = 0;
@@ -52,21 +57,21 @@ formData: any;
   // selectedStatus = 'all';
   // selectedFilterRadioButton: string = 'all';
 
-  totalCreatedInvoices = 0;
+  totainvoiceFormsreatedInvoices = 0;
   totalPendingInvoices = 0;
   totalApprovedInvoices = 0;
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantAccountName', 'applicantAccountNumber', 'status', 'actions'];
+  displayedColumns: string[] = ['no', 'invoiceNumber', 'businessName', 'buyerName', 'invoiceAmount','status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   isLoading = true;
   products: any;
-  lcs: any;
+ invForms: any;
 totalRejectinvoices: any;
-  rows: any[];
+
 
  
 
@@ -77,32 +82,37 @@ totalRejectinvoices: any;
     private snackbar: SnackbarService) { }
 
 
-  ngOnInit(): void {
-    this.getrows();
-    // this.getFormData();
-  }
+    ngOnInit(): void {
+      this.getAllForms();
+    }
 
+    getAllForms(): void {
+      console.log('Fetching invoice forms...');
+      this.invDiscountingService.getAllForms().subscribe({
+      next: (res: any) => {  
+        console.log('Response:', res); 
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+          const extractedData = res.data.map((invoiceForms: any, index: number) => ({     
+          no: index + 1,
+         invoiceNumber: invoiceForms.invoiceNumber,           
+         businessName: invoiceForms.businessName, 
+          buyerName: invoiceForms.buyerName,
+          invoiceAmount:  invoiceForms.invoiceAmount,
+          status:invoiceForms.status,
+          actions: 'Actions',// Replace this with actual actions logic
+        }));
 
-  public getrows()  {
-   this.rows = [
-      { no: '1', invoiceNumber: 'ML_183', applicantAccountName: 'Kings Fashion Limited', applicantAccountNumber: '03321445518', status: 'Pending', actions: 'Active' },
-      { no: '2', invoiceNumber: 'KM_652', applicantAccountName: 'R & X Electronics', applicantAccountNumber: '03825432905', status: 'Approved', actions: 'Active' },
-      { no: '3', invoiceNumber: 'SL_876', applicantAccountName: 'Hasenye Shipping Co.Ltd', applicantAccountNumber: '03590835214', status: 'Approved', actions: 'Flagged' },
-      { no: '4', invoiceNumber: 'ABC_656', applicantAccountName: 'JK Cement Manufacturers Ltd', applicantAccountNumber: '03676502126', status: 'Pending', actions: 'Active' },
-      { no: '5', invoiceNumber: 'XYZ_187', applicantAccountName: 'Joshua Cheese & Milk Distributers', applicantAccountNumber: '03765432901', status: 'Pending', actions: 'Active' },
+        // error: (err) => {
+        //   console.error('Error fetching invoiceForms:', Error);
+        //   this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
+        // }
 
-    ];
+    },
   
-    // console.log("list:", this.rows);
-    // if (this.rows) {
-    //   this.isLoading = false
-    // }
-
-    
-    this.dataSource = new MatTableDataSource(this.rows);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  });
+}
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -119,10 +129,10 @@ totalRejectinvoices: any;
 
   // }
   public add() {
-    this.router.navigate(["/invoice-discounting/createInvoice"])
+    this.router.navigate(["invoice-discounting/createInvoice"])
   }
 
-  public openViewLcComponent(row) {
+  public openViewinvoiceFormsComponent(row) {
 
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
@@ -140,20 +150,20 @@ totalRejectinvoices: any;
 
  
   
-  public refresh() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
-    dialogConfig.data = { test: "row" }
+  // public refresh() {
+  //   const dialogConfig = new MatDialogConfig()
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true
+  //   dialogConfig.width = '600px'
+  //   dialogConfig.data = { test: "row" }
 
-    const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
+  //   const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
 
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('closed');
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log('closed');
+  //   });
+  // }
 
   // public edit() {
   //   this.router.navigate(["/invoice-discounting/modifyInvoice"])
@@ -174,18 +184,9 @@ totalRejectinvoices: any;
   //   // this.totalItems = this.rows.length; 
  
   // }
- 
-  totalRowsCount = this.getrows.length;
-  // totalPendingForms = this.getrows( s => s.created === true ).length;
-  // totalApprovedForms = this.getrows.( s => s.approved === false).length;
+
   
-  getFormData(): void {
-    this.invDiscountingService.getFormData()
-      .subscribe(data => {
-        this.formData = data;
-        console.log(this.formData); // Handle the retrieved form data here
-      });
-  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(RepaymentdetailsComponent, {
       width: '600px', 

@@ -19,10 +19,9 @@ export class LcService {
     const url = `${environment.createApiUrl}/api/v1/LC/create?accountNumber=${accountNumber}`;
     return this.httpClient.post<any>(url, lcData, { headers: { 'Content-Type': 'application/json' } });
   }
-
-  public transferLc(): Observable<any> {
-    const url = `${environment.transferApiUrl}/api/v1/LC/transfer`;
-    return this.httpClient.get<any>(url);
+  public transferLc(data: any): Observable<any> {
+    const url = `${environment.transferApiUrl}/api/v1/LC/transfer/{lcNumber}`;
+    return this.httpClient.put<any>(url, data);
   }
   public getAllLCs(): Observable<any> {
     const url = `${environment.getUrl}/api/v1/LC/all`;
@@ -35,6 +34,14 @@ export class LcService {
   public ModifyLc(lcData: any): Observable<any> {
     const url = `${environment.putUrl}/api/v1/LC/lcNumber/{lcNumber}`;         //put method to modify Lc details
     return this.httpClient.put<any>(url, lcData)
+  }
+  public approveLc(lcData: any): Observable<any> {
+    const url= '${environment.approveLcApiUrl}/api/v1/LC/approve';
+    return this.httpClient.put<any>(url, lcData)
+  }
+  public deleteLC(lcData: any): Observable<any> {
+    const url = '${environment.deleteLcApiUrl}/api/v1/LC/letterOfCredit/{lcNumber}';
+    return this.httpClient.delete<any>(url, lcData)
   }
 
   public patchSearchForm(data: any): void {

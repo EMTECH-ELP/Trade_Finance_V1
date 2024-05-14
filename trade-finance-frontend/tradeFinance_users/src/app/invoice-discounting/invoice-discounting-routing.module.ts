@@ -5,9 +5,9 @@ import { CreateInvoiceComponent } from './components/create-invoice/create-invoi
 import { ModifyInvoiceComponent } from './components/modify-invoice/modify-invoice.component';
 
 const routes: Routes = [
-  {path:'viewInvoice',component:ViewInvoiceComponent},
-  {path:'createInvoice',component:CreateInvoiceComponent},
-  {path:'modifyInvoice',component:ModifyInvoiceComponent},
+  {path:"viewInvoice",component:ViewInvoiceComponent},
+  {path:"createInvoice",component:CreateInvoiceComponent},
+  {path: "modifyInvoice",component:ModifyInvoiceComponent},
 
 ];
 
