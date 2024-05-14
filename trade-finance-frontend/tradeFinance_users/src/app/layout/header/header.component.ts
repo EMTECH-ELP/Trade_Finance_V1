@@ -34,6 +34,7 @@ export class HeaderComponent
   defaultFlag: string;
   isOpenSidebar: boolean;
   userName: string;
+  email:string;
 
   currentUrl = window.location.href;
   
