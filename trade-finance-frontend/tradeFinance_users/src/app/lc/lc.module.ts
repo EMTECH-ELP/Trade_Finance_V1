@@ -4,7 +4,7 @@ import { TransferlcComponent } from './components/transferlc/transferlc.componen
 import { HttpClientModule } from '@angular/common/http';
 import { LcRoutingModule } from './lc-routing.module';
 import {MatStepperModule} from '@angular/material/stepper';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -62,7 +62,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatTabsModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    FormsModule
   ]
 })
 export class LcModule { }import { } from './components/create/create.component';
