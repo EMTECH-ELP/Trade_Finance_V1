@@ -6,6 +6,8 @@ $MaterialIcons_FontPath: "~material-icons-font/fonts";
 @import "~material-icons-font/sass/main";
 @import "~material-icons-font/sass/Regular";
 @import "~@angular/material/theming";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 
 
@@ -268,10 +270,10 @@ $remark-text-color: #757575; // Grey for remark text
     vertical-align: top; /* Align elements to the top */
 }
 
-// label {
-//   display: block;
-//   margin-bottom: 5px; /* Adjust spacing between label and input */
-// }
+label {
+  display: block;
+  margin-bottom: 5px; /* Adjust spacing between label and input */
+}
 // input[type="text"],
 // input[type="email"],
 // input[ type="tel"],
@@ -300,7 +302,6 @@ $remark-text-color: #757575; // Grey for remark text
 }
 
 
-
 .buttonSearch-container {
   display: flex; /* Use flexbox layout */
   justify-content: space-between; /* Add space between buttons */
@@ -324,3 +325,29 @@ $remark-text-color: #757575; // Grey for remark text
   color: maroon;
   font-size: 22px;
 }
+.dcTable{
+  border-radius: 5px;
+  width: 90%;
+  border-color: maroon;
+}
+
+
+.info-box7-block{
+  background-color: maroon;
+}
+
+.custom-button {
+  background-color: maroon; /* Background color */
+  color: white; /* Text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  border: none; /* Remove border */
+  cursor: pointer;
+  width:5%; /* Change cursor to pointer on hover */
+}
+
+/* CSS to target the button when hovered */
+.custom-button:hover {
+  background-color: darkred; /* Darker shade of maroon on hover */
+}
+

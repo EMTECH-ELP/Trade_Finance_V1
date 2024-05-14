@@ -1,43 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl, Form } from '@angular/forms';
 // import { SearchService } from '../../services/search.service';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-create-invoice',
+  selector: 'create-invoice',
   templateUrl: './create-invoice.component.html',
   styleUrls: ['./create-invoice.component.sass']
 })
 export class CreateInvoiceComponent implements OnInit {
+ 
   ShowLookupComponent: boolean = false;
-
   selectedValue: string;
-  invoiceDiscountingForm: FormGroup;
- 
-  isLinear: true;
-   query: string = '';
-   searchData: any;
+  applicationForm: FormGroup;
+  additionalInvoices: FormArray;
 
-   selected = 'created';
-  dialog: any;
-// invoiceStatus: any;
-  
- 
-   onOptionChange() {
+  isLinear: true;
+  query: string = '';
+  searchData: any;
+
+  selected = 'pending';
+  selectedFiles: any;
+  // formdata: any = {};
+
+  // rows: any;
+
+  // invoiceStatus: any;
+
+
+  onOptionChange() {
     //  console.log('Selected option:', this.selectedOption);
-     // You can perform any actions based on the selected option here
-   }
- 
+    // You can perform any actions based on the selected option here
+  }
+
   constructor(private builder: FormBuilder,
     private invDiscountingService: InvDiscountingService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+
     //private searchService: SearchService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.invoiceDiscountingForm = this.builder.group({
+    this.applicationForm = this.builder.group({
       accountNumber: ['', Validators.required],
       cifId: ['', Validators.required],
       nationalId: ['', Validators.required],
@@ -50,51 +60,145 @@ export class CreateInvoiceComponent implements OnInit {
       postalCode: ['', Validators.required],
       countryCode: ['', Validators.required],
       country: ['', Validators.required],
-// invoice details
-     invoiceDate: new FormControl(null, [Validators.required,]),
-     invoiceNumber: new FormControl(null, [Validators.required,]),
-     invoiceAmount: new FormControl(null, [Validators.required,]),
-     companyName:new FormControl(null,[Validators.required,]),
-     companyAddress: new FormControl(null, [Validators.required,]),
-     dueDate: new FormControl(null, [Validators.required,]),
-     status: new FormControl(null, [Validators.required,]),
-     invoices: new FormControl(null, [Validators.required,]),
 
-    //  Funding details
-     fundingAmount: new FormControl(null, [Validators.required,]),
-     disbursalDate: new FormControl(null, [Validators.required,]),
-     repaymentDate: new FormControl(null, [Validators.required,]),
-     creditAccount: new FormControl(null, [Validators.required,]),
-     creditLimit: new FormControl(null, [Validators.required,]),
-    //  importer details
-    buyerFullname: new FormControl(null, [Validators.required,]),
-    buyerEmailaddres: new FormControl(null, [Validators.required,]),
-    buyerCountry: new FormControl(null, [Validators.required,]),
-    buyerCity: new FormControl(null, [Validators.required,]),
+      // invoice details
 
-  //  referee details 
-  refereeEmail: new FormControl(null, [Validators.required,]),
-  refereeBussinessno: new FormControl(null, [Validators.required,]),
-  refereePhoneno: new FormControl(null, [Validators.required,]),
-  refereeBusinessname: new FormControl(null, [Validators.required,]),
+      invoiceDate: ['', Validators.required],
+      invoiceNumber: ['', Validators.required],
+      invoiceAmount: ['', Validators.required],
+      applicantBusinessName: ['', Validators.required],
+      applicantBusinessAddress: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      invoices: ['', Validators.required],    //file upload
+      applicationForm: ['', Validators.required],       //file upload
 
-    
-    
-  });
+      //  importer details
+      buyerName: ['', Validators.required],
+      buyerBusinessName: ['', Validators.required],
+      buyerCity: ['', Validators.required],
+      buyerCountry: ['', Validators.required],
+      buyerEmailAddress: ['', [Validators.required, Validators.email]],
+      terms_and_condition: ['', Validators.required],
 
+      //  Funding details
+      fundingAmount: ['', Validators.required],
+      disbursalDate: ['', Validators.required],
+      repaymentDate: ['', Validators.required],
+      creditAccount: ['', Validators.required],
+      creditLimit: ['', Validators.required],
+      creditAppraisalForm: ['', Validators.required],   //file upload
+ 
+      additionalInvoices: new FormArray ([
+        new FormGroup({
+           invoiceNo: new FormControl(''),
+           invoiceAmount: new FormControl(''),
+           applicantCompanyName: new FormControl(''),
+           businessAddress: new FormControl(''),
+           invoiceDate: new FormControl(''),
+           due: new FormControl(''),
+           files: new FormControl(''),
+        })
+    ]),
+     importerDetails: new FormArray ([
+        new FormGroup({
+           fullName: new FormControl(''),
+           email: new FormControl(''),
+           buyerBusinessName: new FormControl(''),
+           importerCountry: new FormControl(''),
+           importerCity: new FormControl(''),
+        })
+    ]),
+  })
   }
-  search(): void {
+
+  addRowbtn1(){
+    const formgroup = new FormGroup({
+      invoiceNo: new FormControl(''),
+      invoiceAmount: new FormControl(''),
+      applicantCompanyName: new FormControl(''),
+      businessAddress: new FormControl(''),
+      invoiceDate: new FormControl(''),
+      due: new FormControl(''),
+      files: new FormControl(''),
+    });
+    (<FormArray>this.applicationForm.get('additionalInvoices')).push(formgroup);
+  }
+  addRowbtn2(){
+    const formgroup = new FormGroup({
+      fullName: new FormControl(''),
+           email: new FormControl(''),
+           buyerBusinessName: new FormControl(''),
+           importerCountry: new FormControl(''),
+           importerCity: new FormControl(''),
+    });
+    (<FormArray>this.applicationForm.get('importerDetails')).push(formgroup);
+  }
+  // search(): void {
     // this.searchService.search(this.query)
     //   .subscribe(data => {
     //     this.searchData = data;
     //   });
+  // }
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+
+    // Check if a file is selected
+    if (selectedFile) {
+      // Check file type
+      if (selectedFile.type !== 'application/pdf') {
+        // Display an error message or take appropriate action
+        alert('Please select a PDF file.');
+
+        // Clear the file input and disable it
+        event.target.value = '';
+        return;
+      }
+    }
   }
+
+
+  onSubmit() {
+    console.log("Form data", this.applicationForm.value);
+    // this.row = this.applicationForm.value;
+    this.invDiscountingService.postData(this.applicationForm.value).subscribe({
+      next: ((response) => {
+        console.log("Invoice Form response", response);
+        alert('Form Submitted Successfully!')
+      }),
+      error: ((err) => {
+        console.error(err);
+        alert('An error occurred while submitting the form. Please try again later.');
+
+      }),
+      complete: (() => { })
+    })
+    // this.applicationForm.reset()
+    this.ngOnInit()
+    this.router.navigate(["/invoice-discounting/viewInvoice"]);
+  }
+
+ 
+  // rows: any [] = [
+  //   {  formControlName: 'invoiceNumber' },
+  //   {  formControlName: '"invoiceAmount' },
+  //   {  formControlName: 'businessName' },
+  //   {  formControlName: 'businessAddress' },
+  //   {  formControlName: 'dueDate' },
+  //   {  formControlName: 'invoices' },
+  // {  formControlName: '  buyerName' },
+  //   {  formControlName: 'buyerEmail' },
+  //   {  formControlName: ' buyerCity' },
+  //   {formControlName: 'buyerCountry' },
+
+  //   // Adds rows to html
+  // ];
+
   openLookup(): void {
     // Create a MatDialogConfig object
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
-    dialogConfig.data = { accountNumber: this.invoiceDiscountingForm.get('accountNumber').value };
-  
+    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+
     // Open the LookupComponent dialog with the dialog config
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
 
@@ -102,58 +206,31 @@ export class CreateInvoiceComponent implements OnInit {
       next: (res: any) => {
         console.log("received data", res),
 
-        console.log("passed email", res.data[0].email)
-        
-        this.patchinvoiceDiscountingForm(res.data[0])
+          console.log("passed email", res.data[0].email)
+
+        this.patchApplicationForm(res.data[0])
       }
     })
   }
- 
-  onSubmit() {
-     console.log(this.invoiceDiscountingForm.value)
-     this. invDiscountingService.postData(this.invoiceDiscountingForm.value).subscribe({
-      next: ((response) => {
 
-        console.log("Invoice Form response", response);
-      }),
-      error: ((err) => {
-        console.error(err)
-      }),
-      complete: (() => { })
-    })
-  } public patchinvoiceDiscountingForm(data: any): void {
-    this.invoiceDiscountingForm.patchValue({
-    accountNumber: data.accountNumber,
-    cifId: data.cifId,
-    nationalId: data.nationalId,
-    accountName: data.accountName,
-    currency: data.currency,
-    email: data.email,
-    phoneNumber: data.phoneNumber,
-    address: data.address,
-    city: data.city,
-    postalCode: data.postalCode,
-    countryCode: data.countryCode ? data.countryCode : 'NAN', 
-    country: data.country
- });
-}
-  
+  public patchApplicationForm(data: any): void {
+    this.applicationForm.patchValue({
+      accountNumber: data.accountNumber,
+      cifId: data.cifId,
+      nationalId: data.nationalId,
+      accountName: data.accountName,
+      currency: data.currency,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      address: data.address,
+      city: data.city,
+      postalCode: data.postalCode,
+      countryCode: data.countryCode ? data.countryCode : 'NAN',
+      country: data.country
+    });
+  }
 
 }
- 
 
-// getBeneficiaryDetails(){
-//   return this.invoiceDiscountingForm.get("beneficiaryDetails") as FormGroup
-// }
-// getBankDetails(){
-//   return this.invoiceDiscountingForm.get("bankDetails") as FormGroup
-// }
-// getContactDetails(){
-//   return this.invoiceDiscountingForm.get("contact") as FormGroup
-// }
-// onSubmit(){
-//   if(this.invoiceDiscountingForm.valid){
-//     console.log(this.invoiceDiscountingForm.value);
-//   }
-// }
+
 

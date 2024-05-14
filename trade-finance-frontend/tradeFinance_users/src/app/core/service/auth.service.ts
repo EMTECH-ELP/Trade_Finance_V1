@@ -29,66 +29,91 @@ const httpOptions = {
 })
 // /auth/signin
 export class AuthService {
+
+  private authUrl = 'http://192.168.91.98:8082';
+  resetUrl: any;
+  hasLoggedIn: any;
+ 
   constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}
 
   headers = new HttpHeaders().set("Content-Type", "application/json");
-
-  login(): Observable<any> {
-    return this.mockDataService.getSessionData().pipe(
-      map((sessionData: any) => {
-        // Use the session data in your authentication logic
-        const mockedResponse = {
-          body: {
-            statusCode: 200,
-            entity: sessionData.entity, // Assuming 'entity' is the key in your session data
-            message: sessionData.message || 'Mocked authentication successful'
-          }
-        };
-
-        return mockedResponse;
-      }),
-      catchError((error: any) => {
-        // Handle error loading session data (e.g., file not found)
-        console.error('Error loading session data:', error);
-        return of({
-          body: {
-            statusCode: 500, // Adjust the status code as needed
-            message: 'Error loading session data'
-          }
-        });
-      })
-    );
+  isFirstLogin(): boolean {
+    if (!this.hasLoggedIn) {
+      this.hasLoggedIn = true;
+      return true;
+    }
+    return false;
   }
+
+  // login(): Observable<any> {
+  //   return this.mockDataService.getSessionData().pipe(
+  //     map((sessionData: any) => {
+
+        // Use the session data in your authentication logic
+
+      //   const mockedResponse = {
+      //     body: {
+      //       statusCode: 200,
+      //       entity: sessionData.entity, // Assuming 'entity' is the key in your session data
+      //       message: sessionData.message || 'Mocked authentication successful'
+      //     }
+      //   };
+
+      //   return mockedResponse;
+      // }),
+      // catchError((error: any) => {
+        // Handle error loading session data (e.g., file not found)
+  //       console.error('Error loading session data:', error);
+  //       return of({
+  //         body: {
+  //           statusCode: 500, // Adjust the status code as needed
+  //           message: 'Error loading session data'
+  //         }
+  //       });
+  //     })
+  //   );
+  // }
   
 
 // Uncomment the code below when consuming endpoints. Then comment out the above,from login to catch error
   
-  // login(data: any): Observable<any> {
-  //   let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/signin`;
-  //   return this.http
-  //     .post(CREATE_URL, data, {
-  //       observe: "response",
-  //       headers: this.headers,
-  //       withCredentials: true,
-  //     })
-  //     .pipe(
-  //       map((res) => {
+  login(data: any): Observable<any> {
+    // const url = `${this.authUrl}/login`;
+    // const data = { email, password };
+    // const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  //         return res || {};
-  //       })
-  //     );
-  // }
+    let CREATE_URL = `${environment.authUrl}/api/v1/auth/login`;
+    return this.http
+      .post(CREATE_URL, data, {
+        observe: "response",
+        headers: this.headers,
+        withCredentials: true,
+      })
+      .pipe(
+        map((res) => {
 
-  verifyOTP(params: any): Observable<any> {
-    const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/otp/verify`;
+          return res || {};
+        })
+      );
+  }
 
-    return this.http.get<any>(OTP_URL, {
-      params,
-    });
+  validateOTP(data: any): Observable<any> {
+    const OTP_URL = `${environment.OTPUrl}/api/v1/auth/validateOtp`;
+
+    return this.http.post<any>(OTP_URL, data, {
+      observe: "response",
+      headers: this.headers,
+      withCredentials: true,
+    })
+    .pipe(
+      map((res) => {
+        console.log("otp service", res)
+        return res || {};
+      }));
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
-    const resetPasswordUrl = `${environment.baseUrlAdmin}/api/v1/auth/reset-password`;
+    const resetPasswordUrl = `${environment.resetUrl}/auth/resetPassword`;
 
     return this.http.post<{ message: string }>(
       resetPasswordUrl,
@@ -96,8 +121,23 @@ export class AuthService {
     );
   }
 
+
+
+  // public  resetPassword(resetPasswordDetails: any): Observable< {
+  //   entity: boolean;
+  //   statusCode: number;
+  //   body: any; message: string }>  {
+  //   const resetPasswordUrl = `${environment.resetUrl}/auth/resetPassword`;
+
+  //   return this.http.post<any>{ entity: boolean; statusCode: number; body: any; message: string;}>(
+  //     resetPasswordUrl,
+  //     resetPasswordDetails
+  //   );
+  //   } 
+    
+  
   forgotPassword(email): Observable<any> {
-    const resetPasswordUrl = `${environment.baseUrlAdmin}/soa/users/forgot-password`;
+    const resetPasswordUrl = `${environment.authUrl}/soa/users/forgot-password`;
 
     return this.http.post<any>(resetPasswordUrl, email);
   }
@@ -105,7 +145,7 @@ export class AuthService {
 
   refreshAccessToken(refreshToken: string): Observable<any> {
     // Endpoint URL for refreshing the access token
-    const REFRESH_URL = `${environment.baseUrlAdmin}/api/v1/auth/refreshtoken`;
+    const REFRESH_URL = `${environment.authUrl}/api/v1/auth/refreshtoken`;
 
     console.log("Checking for: ", refreshToken)
 
@@ -115,7 +155,7 @@ export class AuthService {
   }
 
   logout(refreshToken: string): Observable<any> {
-    const LOGOUT_URL = `${environment.baseUrlAdmin}/api/v1/auth/logout`;
+    const LOGOUT_URL = `${environment.authUrl}/api/v1/auth/logout`;
 
     // Define request parameters including the refresh token
     const requestParams = new HttpParams().set('refreshToken', refreshToken);

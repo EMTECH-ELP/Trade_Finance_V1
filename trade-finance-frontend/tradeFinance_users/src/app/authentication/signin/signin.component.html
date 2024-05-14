@@ -4,24 +4,24 @@
       <div class="form-section" >
         <div class="auth-wrapper" >
           <div class="text-center">
-            <img src="assets/images/equity_logo-removebg-preview.png" width="150px" height="100px" class="px-2 mx-2" alt="" />
+            <img src="assets/images/equity_logo.jpg" width="150px" height="100px" class="px-2 mx-2" alt="" />
           </div>
 
           <!-- <h2 class="mb-4">Welcome to Kingdom Bank</h2> -->
           <h5 class="mb-4">TRADE FINANCE SOLUTION</h5>
 
           <!-- <p style="color: #423f3f">Enter credentials below:</p> -->
-
-          <h4>Sign in</h4>
+        
+          <h3>Sign in</h3>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
-                  <input matInput formControlName="username" />
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" />
                   <mat-icon matSuffix>face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username').hasError('required')">
-                    Username is required
+                  <mat-error *ngIf="authForm.get('email').hasError('required')">
+                    Email is required
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -40,6 +40,7 @@
                   <mat-error *ngIf="authForm.get('password').hasError('required')">
                     Password is required
                   </mat-error>
+               
                 </mat-form-field>
               </div>
             </div>

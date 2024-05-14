@@ -4,7 +4,13 @@ export const environment = {
   // Client's test servers
 
   //Emtech test server
-  baseUrlAdmin: "http://52.15.152.26:6200",
+
+  // Maker Authentication endpoints
+  authUrl: "http://192.168.88.141:8082",
+  resetUrl: "http://192.168.88.141:8082",
+  OTPUrl: "http://192.168.88.141:8082",
+
+  baseUrlAdmin: '...', 
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",
   baseUrlBudget: "http://52.15.152.26:9090",
@@ -15,6 +21,13 @@ export const environment = {
 
   clientUrlHR: "http://52.15.152.26:6301/administration",
   selfServiceUrlHR: "http://52.15.152.26:6301/portal",
+
+
+
+  // invoice discounting
+ invUrl: 'http://192.168.90.44:9000' ,     //post invoice discounting forms. Createform url
+ saveUrl: 'http://192.168.91.141:9000',     // save repayment details form
+ getUrl: 'http://192.168.91.96:9000',              // Fetch forms
 
   //Localhost
 };

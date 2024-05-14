@@ -23,11 +23,13 @@ const routes: Routes = [
         path: "maker",
         loadChildren: () =>
           import("./maker/maker.module").then((m) => m.MakerModule),
+        
       },
       {
         path: "lc",
         loadChildren: () =>
           import("./lc/lc.module").then((m) => m.LcModule),
+        canActivate:[]
       },
       {
         path: "bank-guarantee",

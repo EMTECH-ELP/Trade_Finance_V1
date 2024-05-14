@@ -5,7 +5,7 @@
         (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
       <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
       <a class="navbar-brand" routerLink={{homePage}}>
-        <!-- <img src="assets/images/equity_logo.jpg" width="35px" height="45px" alt="" /> -->
+        <img src="assets/images/equity_logo.jpg" style="margin-left: 0;margin-top: none;" width="70px" height="45px" alt="Equity Logo" />
         <span class="logo-name" style="font-size: 20px;"><b>Equity Bank</b></span>
 
       </a>
@@ -14,7 +14,7 @@
       <ul class="float-start collapse-menu-icon">
         <li>
           <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
-            <app-feather-icons [icon]="'menu'" [class]="'header-icon'"></app-feather-icons>
+            <app-feather-icons [icon]="'menu'" [class]="'header-icon'"style="color:maroon"></app-feather-icons>
           </button>
         </li>
       </ul>
@@ -22,7 +22,7 @@
         <!-- Full Screen Button -->
         <li class="fullscreen">
           <button mat-icon-button (click)="callFullscreen()" class=" nav-notification-icons">
-            <app-feather-icons [icon]="'maximize'" [class]="'header-icon'"></app-feather-icons>
+            <app-feather-icons [icon]="'maximize'" [class]="'header-icon'"style="color:maroon"></app-feather-icons>
           </button>
         </li>
         <!-- #END# Full Screen Button -->
@@ -38,9 +38,9 @@
               <img src="{{item.flag}}" class="flag-img" height="12"> <span class="align-middle">{{item.text}}</span>
             </a>
           </div>
-        </li> -->
+        </li>-->
         <!-- #START# Notifications-->
-        <!-- <li class="nav-item btnNotification" ngbDropdown>
+         <!--<li class="nav-item btnNotification" ngbDropdown>
           <button mat-icon-button ngbDropdownToggle class="nav-notification-icons">
             <app-feather-icons [icon]="'bell'" [class]="'header-icon'"></app-feather-icons>
             <span class="label-count bg-orange"></span>
@@ -79,7 +79,7 @@
         <li class="nav-item user_profile btnUserDropdown" ngbDropdown>
           <div class="chip dropdown-toggle" ngbDropdownToggle class="nav-notification-icons pt-0">
             <img src="{{userImg}}" class="user_img" width="32" height="32" alt="User">
-            <span>{{ userName }}</span>
+            <span>{{ email }}</span>
           </div>
           <div ngbDropdownMenu class="notification-dropdown pullDown">
             <div class="noti-list" style="position: relative; max-width: 600px; max-height: 300px;" [perfectScrollbar]>
@@ -88,7 +88,7 @@
                   <ul class="user_dw_menu">
                     <li>
                       <a routerLink="/account/update-profile" onClick="return false;">
-                        <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Account
+                        <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"style="color:maroon"></app-feather-icons>Account
                       </a>
                     </li>
                     <!-- <li>
@@ -102,22 +102,17 @@
                       </a>
                     </li> -->
 
-                    <!-- <li>
-                      <a href="javascript:void(0);" (click)="backToDashboard()">
-                        <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Back to Dashboard
-                      </a>
-                    </li> -->
 
                     <li>
                       <a href="javascript:void(0);" (click)="backToDashboard()">
-                        <app-feather-icons [icon]="'home'" [class]="'user-menu-icons'"></app-feather-icons>Back to
+                        <app-feather-icons [icon]="'home'" [class]="'user-menu-icons'"style="color:maroon"></app-feather-icons>Back to
                         Dashboard
                       </a>
                     </li>
 
                     <li>
                       <a href="javascript:void(0);" (click)="logout()">
-                        <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Logout
+                        <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"style="color:maroon"></app-feather-icons>Logout
                       </a>
                     </li>
 

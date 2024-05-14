@@ -7,143 +7,130 @@
     </div>
 
 
-<section class="container ">
-  <!-- <header>Transfer of Documentary Credit</header> -->
-  <!-- Section 1: Beneficiary Details -->
-  <form class="form" [formGroup]="transferForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <h4>Secondary Beneficiary & Transfer Details</h4>
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box">
-      
-          <mat-label for="first name">First Name</mat-label>
-          <input type="text" formControlName="secondaryBeneficiaryFirstName" />
-          <!-- <small  [class.is-invalid]="transferForm.get('BeneficiaryId')?.invalid && transferForm.get('BeneficiaryId')?.touched" class="text-danger">Beneficiary ID is required</small> -->
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
-
-          <mat-label for="phone number">Phone Number</mat-label>
-          <input type="number" id="secondaryBeneficiaryPhoneNumber" formControlName="secondaryBeneficiaryPhoneNumber" />
-        </div>
-
-
-
-      </div>
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
-
-          <mat-label for="middle name">Middle Name</mat-label>
-          <input type="text" id=" secondaryBeneficiaryMiddleName" formControlName="secondaryBeneficiaryMiddleName" />
-        </div>
-
-        <div class="input-box ">
-          <mat-label for="address">Country</mat-label>
-          <input type="text" value="secondaryBeneficiaryCountry" id="secondaryBeneficiaryCountry" formControlName="secondaryBeneficiaryCountry" />
-        </div>
-
-
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box">
-          <mat-label for="Last Name">Last Name</mat-label>
-          <input type="text" id="secondaryBeneficiaryLastName" formControlName="secondaryBeneficiaryLastName" />
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
-          <mat-label for="city">City</mat-label>
-          <input type="text" id=" secondaryBeneficiaryCity" formControlName="secondaryBeneficiaryCity" />
-        </div>
-        <!-- <div class="col-md-3 input-box">
-         <> for="phone number">Phone Number</mat-label>
-          <input type="number" id="secondaryBeneficiaryPhoneNumber" formControlName="secondaryBeneficiaryPhoneNumber" />
-        </div> -->
-
-      </div>
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box">
-          <mat-label for="email"> Email</mat-label>
-          <input type="email" formControlName="secondaryBeneficiaryEmail" />
-          <!-- <div  *ngIf="transferForm.get('secondaryBeneficiaryAccount')?.invalid && transferForm.get('secondaryBeneficiaryAccount')?.touched">
-            <small  [*ngIf= "transferForm.get('secondaryBeneficiaryAccount').errors?.required"]class="text-danger">Account No. is required</small>
-            <small  [*ngIf= "transferForm.get('secondaryBeneficiaryAccount').errors?.minlength" ]class="text-danger">Account No. must be atleast 15 characters.</small>
-            </div> -->
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
-          <mat-label for="address">P.O.Box</mat-label>
-          <input type="text"
-            formControlName=" secondaryBeneficiaryAddress" />
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box">
-          <mat-label for="accountName">Account Name</mat-label>
-          <input type="text" formControlName="secondaryBeneficiaryAccountName">
-        </div>
-
-        <!-- <small *ngIf="reactiveForm.get('address.country').invalid && reactiveForm.get('address.country').touched">
-            *Country is a required field.
-          </small> -->
-          <div class="col-md-3 input-box">
-            <mat-label for="Bank">Bank Name</mat-label>
-            <input type="text" formControlName="secondaryBeneficiaryBank" />
+    <section class="container ">
+      <!-- <header>Transfer of Documentary Credit</header> -->
+      <!-- Section 1: Beneficiary Details -->
+      <form class="form" [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+        <p style="color: maroon; font-weight: bold;">Secondary Beneficiary Details:</p>
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label for="first name">First Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput type="text" formControlName="secondaryBeneficiaryFirstName" />
+            </mat-form-field>
           </div>
-      
-      </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Middle Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryMiddleName" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Last Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryLastName" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Phone Number</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryPhoneNumber" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Email</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryEmail" type="text" />
+            </mat-form-field>
+          </div>
 
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box">
-          <mat-label for="account">Account Number</mat-label>
-          <input type="number" formControlName="secondaryBeneficiaryAccountNumber">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Address</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryAddress" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>City</mat-label>
+            <br>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryCity" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Country</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryCountry" type="text" />
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Account Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryAccountName" type="text" />
+            </mat-form-field>
+          </div> -->
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Account Number</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryAccountNumber" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Account Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryAccountName" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Bank Name</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiaryBank" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Amount to Transfer:</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="transferAmount" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>SWIFT Code:</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="secondaryBeneficiarySwiftCode" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Transfer Date:</mat-label>
+            <br>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="transferDate" type="date" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Latest Shipment Date:</mat-label>
+            <br>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="latestShipmentDate" type="date" />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <mat-label>Expiry Date:</mat-label>
+            <br>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput formControlName="newExpiryDate" type="date" />
+            </mat-form-field>
+          </div>
+
         </div>
-         <div class="input-box">
-          <mat-label for="SwiftCode">Swift Code</mat-label>
-          <input type="number" formControlName="secondaryBeneficiarySwiftCode" />
+
+        <div class="clearfix">
+          <button type="submit" class="submit-btn">Submit</button>
+          <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
+
+
         </div>
 
-       
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="input-box ">
-          <mat-label for="transferAmount">Amount to transfer</mat-label>
-          <input type="number" formControlName="transferAmount" />
-        </div>
-        <div class="input-box">
-          <mat-label for="transfer date">Transfer Date</mat-label>
-          <input type="date" placeholder="transferDate" formControlName="transferDate" />
-        </div>
-        
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2 input-box">
-          <mat-label for="latestShipmentDate">Latest Shipment Date</mat-label>
-          <input type="date" placeholder="latestShipmentDate" formControlName="latestShipmentDate" />
-        </div>
-       
-        <div class="input-box">
-          <mat-label for="expiry date">Expiry Date</mat-label>
-          <input type="date" placeholder="Expiry Date" formControlName="newExpiryDate" />
-        </div>
-      </div>
-    </div>
-   
-    <br>
-    <div class="clearfix">
-      <button [disabled]="!transferForm.valid"  (click)="onSubmit()" type="submit" class="submit-btn">Submit</button>
-      <!-- <button type="button" class="modify-btn">Modify</button> -->
-      <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
-     
-      <!-- <input type="submit" value="Submit" class="submit-btn"> -->
-    </div>
-    <!-- [disabled]="!reactiveForm.valid" -->
-  </form>
-  <!-- {{transferForm.value | json}} -->
+      </form>
 
 
 
@@ -154,7 +141,8 @@
 
 
 
-  <!-- <mat-form-field hintLabel="beneficiary ID">
+
+      <!-- <mat-form-field hintLabel="beneficiary ID">
     <mat-label>Enter some input</mat-label>
     <input matInput #input maxlength="10" placeholder="Ex. Nougat">
     <mat-hint align="end">{{input.value.length}}/10</mat-hint>

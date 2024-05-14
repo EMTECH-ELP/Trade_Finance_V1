@@ -42,17 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService
   ) {
     this.snackBar.dismiss();
-    this.currentUser = this.tokenCookieService.getUser();
-    if (this.currentUser !== null && this.currentUser !== undefined) {
-      this.idleTimer.start({
-        timeout: 60 * 5, // Set the timeout to 5 minutes
-        onTimeout: () => {
-          // Perform the action to be executed on timeout
-          this.logout();
-        },
-      });
-      this.startTokenRefresh(); // Start token refresh
-    }
+
     this.routerEventsSubscription = this.router.events.subscribe(
       (routerEvent: Event) => {
         if (routerEvent instanceof NavigationStart) {
@@ -64,7 +54,21 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentUser = this.tokenCookieService.getUser();
+
+
+    if (this.currentUser) {
+      this.idleTimer.start({
+        timeout: 60 * 5, // Set the timeout to 5 minutes
+        onTimeout: () => {
+          // Perform the action to be executed on timeout
+          this.logout();
+        },
+      });
+      this.startTokenRefresh(); // Start token refresh
+    }
+  }
 
   private startTokenRefresh(): void {
     const REFRESH_INTERVAL = 30 * 60 * 1000; // Refresh token every 30 minutes

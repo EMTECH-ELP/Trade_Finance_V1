@@ -8,21 +8,40 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InvDiscountingService {
+
   invUrl: any;
 
- 
- 
 
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private http: HttpClient) { }
 
   
+  //   public create invoicediscounting(invoicediscountinData: any): Observable<any>{
+  //   const url = `${environment.apiUrl}/create invoice discounting`;
+  //   return this.httpClient.post<any>(invUr, invoicediscountinData);
+  // }
    
- 
-  public postData(data: any): Observable<any> {
-    const url = `${environment.apiUrl}/endpoint`;
+
+
+
+
+  public postData(data: any): Observable<any> {      //Creating Invoice discounting form
+    const url = `${environment.invUrl}/invoices/create`;
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
 
-  // Implement other methods for other endpoints...
+  public getAllForms(): Observable<any> {
+    const url = `${environment.getInvUrl}/invoices/list`;     //FETCH FORMS
+    return this.http.get<any>(url)
+  }
+
+  public submitForm(data: any): Observable<any> {
+    const url = `${environment.saveUrl}/repayment`;
+    return this.http.post<any>(url, data);               //Saving repayment details
+  }
+
 }
+
+
 

@@ -34,6 +34,7 @@ export class HeaderComponent
   defaultFlag: string;
   isOpenSidebar: boolean;
   userName: string;
+  email:string;
 
   currentUrl = window.location.href;
   
@@ -243,7 +244,7 @@ export class HeaderComponent
   }
 
   backToDashboard(){
-    this.router.navigate(["/erp-dashboard/main"]);
+    this.router.navigate(["/checker/dashboard/analytics"]);
   }
 
   

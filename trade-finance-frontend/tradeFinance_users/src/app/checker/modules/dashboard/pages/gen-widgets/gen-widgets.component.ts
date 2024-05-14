@@ -8,7 +8,10 @@ import { Router } from "@angular/router";
   styleUrls: ["./gen-widgets.component.scss"],
 })
 export class GenWidgetsComponent implements OnInit {
-  suppliersCount: number = 0;
+  totalCreatedLetters : number = 10;
+  totalCreatedGuarantees : number= 0;
+  totalCreatedInvoices: number = 0;
+  totalCreatedBills: number= 0;
   expenseCount: number = 0;
   costCentersCount: number = 0;
   usersCount: number = 0;

@@ -52,7 +52,7 @@ export class ViewCheckersComponent implements OnInit {
       error: (error) => {}
     })
   }
-
+ 
   public add(){
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true

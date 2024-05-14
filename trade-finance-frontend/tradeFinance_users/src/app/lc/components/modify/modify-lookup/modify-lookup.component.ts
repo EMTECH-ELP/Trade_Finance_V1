@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LcService } from 'src/app/lc/services/lc.service';
@@ -15,6 +15,10 @@ lcNumber: any;
   modificationForm: any;
   modificationFormEvent: any;
 
+
+  @Output() applicationFormEvent = new EventEmitter<any>();
+  dialogRef: any;
+  
 constructor(private http: HttpClient, private formBuilder: FormBuilder, private modifyLookupService: LcService, private dialog: MatDialogRef<ModifyLookupComponent>) { 
   this.searchForm = this.formBuilder.group({
     lcNumber: [''],

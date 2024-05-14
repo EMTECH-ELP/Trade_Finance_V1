@@ -1,7 +1,7 @@
 import { Sidebar } from "angular-feather/icons";
 import { RouteInfo } from "./sidebar.metadata";
 
-export const AdminModule: RouteInfo[] = [
+export const ROUTES: RouteInfo[] = [
 
   // Checker Sidebar Items
 //   {
@@ -189,7 +189,7 @@ export const AdminModule: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["ROLE_SUPERUSER"],
+    role: ["MAKER"],
     // privilege: ["All Roles", "Manage Role"],
     submenu: []
   },
@@ -203,7 +203,7 @@ export const AdminModule: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["ROLE_SUPERUSER"],
+    role: ["MAKER"],
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
@@ -216,7 +216,7 @@ export const AdminModule: RouteInfo[] = [
         groupTitle: false,
         badge: "",
         badgeClass: "",
-        role: ["ROLE_SUPERUSER"],
+        role: ["MAKER"],
         // privilege: ["All Roles"],
         submenu: [],
       },
@@ -231,7 +231,7 @@ export const AdminModule: RouteInfo[] = [
         groupTitle: false,
         badge: "",
         badgeClass: "",
-        role: ["ROLE_SUPERUSER"],
+        role: ["MAKER"],
         // privilege: ["Manage Role"],
         submenu: [],
       },
@@ -245,7 +245,7 @@ export const AdminModule: RouteInfo[] = [
         groupTitle: false,
         badge: "",
         badgeClass: "",
-        role: ["ROLE_SUPERUSER"],
+        role: ["MAKER"],
         // privilege: ["Manage Role"],
         submenu: [],
       },
@@ -259,7 +259,7 @@ export const AdminModule: RouteInfo[] = [
         groupTitle: false,
         badge: "",
         badgeClass: "",
-        role: ["ROLE_SUPERUSER"],
+        role: ["MAKER"],
         // privilege: ["Manage Role"],
         submenu: [],
       },
@@ -273,7 +273,7 @@ export const AdminModule: RouteInfo[] = [
         groupTitle: false,
         badge: "",
         badgeClass: "",
-        role: ["ROLE_SUPERUSER"],
+        role: ["MAKER"],
         // privilege: ["Manage Role"],
         submenu: [],
       },
@@ -292,7 +292,7 @@ export const AdminModule: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["ROLE_SUPERUSER"],
+    role: ["MAKER"],
     // privilege: ["Dashboard"],
     submenu: [],
   },
@@ -306,7 +306,7 @@ export const AdminModule: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["ROLE_SUPERUSER"],
+    role: ["MAKER"],
         // privilege: ["Dashboard"],
      submenu: [],
    },

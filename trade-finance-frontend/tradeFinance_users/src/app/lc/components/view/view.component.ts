@@ -9,6 +9,7 @@ import { TestComponent } from '../../test/test.component';
 import { LcService } from '../../services/lc.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { ModifyComponent } from '../modify/modify.component';
+import { DeleteLcComponent } from '../delete-lc/delete-lc.component';
 
 
 
@@ -30,15 +31,17 @@ interface LetterOfCredit {
 export class ViewComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  totalCreatedLetters : number = 0;
-  totalPendingLetters : number = 0;
-  totalApprovedLetters : number = 0;
+  totalCreatedLetters: number = 5;
+  totalPendingLetters: number = 5;
+  totalApprovedLetters: number = 0;
   totalRejectedLetters: number = 0;
   selectedactions = 'all';
-  
+  count = 0;
+  lcCount = 0;
+
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'lcNumber','accountName', 'accountNumber','status' ,'actions'];
+  displayedColumns: string[] = ['no', 'lcNumber', 'accountName', 'accountNumber', 'status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -46,30 +49,32 @@ export class ViewComponent implements OnInit {
   products: any;
   lcs: any;
   rows: any;
-selectedStatus: any;
+  selectedStatus: any;
 
 
   constructor(private dialog: MatDialog,
     private router: Router,
     private lcService: LcService,
     private snackbar: SnackbarService
-    ) { }
+  ) { }
 
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getAllLCs();
-   }
+  }
 
- public getAllLCs() {
+  public getAllLCs() {
     this.lcService.getAllLCs().subscribe({
       next: (res: any) => {
         const extractedData = res.data.map((lc: any, index: number) => ({
           no: index + 1,
           lcNumber: lc.lcNumber,
+          lcType: lc.lcType,
+          amount: lc.amount,
           accountName: lc.accountName ? 'Account Name' : '', // Replace this with actual account name retrieval logic
           accountNumber: lc.accountNumber ? lc.accountNumber : '',
           status: lc.status,
-          actions: 'Actions' // Replace this with actual actions logic
+          actions: 'Actions',// Replace this with actual actions logic
         }));
 
         this.dataSource = new MatTableDataSource(extractedData);
@@ -80,16 +85,8 @@ selectedStatus: any;
         console.error('Error fetching LCs:', err);
         this.snackbar.showNotification('error', 'No LCs found');
       }
-         });
+    });
   }
-
- 
-
-    
-
-
-
-
 
 
   public applyFilter(event: Event) {
@@ -132,15 +129,30 @@ selectedStatus: any;
     // dialogRef.afterClosed().subscribe((result) => {
     //   console.log('closed');
     // });
-    this.router.navigate(['/lc/modify'])
+    // this.router.navigate(['/lc/modify'])
   }
-
+public modify(){
+  this.router.navigate(['/lc/modify'])
+}
   public verify() {
-    this.router.navigate(['/lc/lcApproval'])
+    this.router.navigate(['/lc/verify'])
 
   }
- public transfer(row){
-  this.router.navigate(["/lc/transferlc"])
+  public transfer() {
+    this.router.navigate(["/lc/transferlc"])
   }
- 
+public openDeleteConfirmationDialog(){
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '600px'
+    dialogConfig.data = { test: "row" }
+
+    const dialogRef = this.dialog.open(DeleteLcComponent, dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('closed');
+    });
+}
 }
