@@ -9,8 +9,8 @@
       </app-breadcrumb>
     </div>
 
- <mat-horizontal-stepper linear>
-      <form [formGroup]="invoiceDiscountingForm" (ngSubmit)="onSubmit()">
+    <mat-horizontal-stepper linear>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
         <!-- Applicant's Details -->
         <mat-step label="Applicant Details">
           <p style="color: maroon; font-weight: bold;">Applicant Details:</p>
@@ -24,7 +24,7 @@
 
               <br>
               <small
-                *ngIf="invoiceDiscountingForm.get('accountNumber').invalid && invoiceDiscountingForm.get('accountNumber').touched">
+                *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
                 *Account Number is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -34,7 +34,7 @@
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
               <small
-                *ngIf="invoiceDiscountingForm.get('accountNumber').invalid && invoiceDiscountingForm.get('accountNumber').touched">
+                *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
                 *CIF ID is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -43,7 +43,7 @@
                 <input matInput  formControlName="nationalId" type="text">
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('nationalId').invalid && invoiceDiscountingForm.get('nationalId').touched">
+              <small *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
                 *Customer's national ID is required</small>
             </div>
 
@@ -52,7 +52,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="accountName" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('accountName'). invalid && invoiceDiscountingForm.get('accountName').touched">
+              <small *ngIf="applicationForm.get('accountName'). invalid && applicationForm.get('accountName').touched">
                 *Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -60,7 +60,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="currency" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('currency').invalid && invoiceDiscountingForm.get('currency').touched">
+              <small *ngIf="applicationForm.get('currency').invalid && applicationForm.get('currency').touched">
                 *Please specify the currency</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -68,7 +68,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="email" type="email">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('email').invalid && invoiceDiscountingForm.get('email').touched">
+              <small *ngIf="applicationForm.get('email').invalid && applicationForm.get('email').touched">
                 *Enter valid email address</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -76,7 +76,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="phoneNumber" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('phoneNumber').invalid && invoiceDiscountingForm.get('phoneNumber').touched">
+              <small *ngIf="applicationForm.get('phoneNumber').invalid && applicationForm.get('phoneNumber').touched">
                 *Phone Number is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -84,7 +84,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="address" type="text">
               </mat-form-field>
-                <small *ngIf="invoiceDiscountingForm.get('address').invalid && invoiceDiscountingForm.get('address').touched">
+              <small *ngIf="applicationForm.get('address').invalid && applicationForm.get('address').touched">
                 *Address is mandatory</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -92,7 +92,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="city" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('city').invalid && invoiceDiscountingForm.get('city').touched">
+              <small *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
                 *City is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -100,7 +100,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="postalCode" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('postalCode').invalid && invoiceDiscountingForm.get('postalCode').touched">
+              <small *ngIf="applicationForm.get('postalCode').invalid && applicationForm.get('postalCode').touched">
                 *Postal code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -108,7 +108,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="countryCode" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('countryCode').invalid && invoiceDiscountingForm.get('countryCode').touched">
+              <small *ngIf="applicationForm.get('countryCode').invalid && applicationForm.get('countryCode').touched">
                 *Country code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -116,114 +116,171 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="country" type="text">
               </mat-form-field>
-              <small *ngIf="invoiceDiscountingForm.get('country').invalid && invoiceDiscountingForm.get('country').touched">
+              <small *ngIf="applicationForm.get('country').invalid && applicationForm.get('country').touched">
                 *Applicant's country is required</small>
             </div>
             <div>
-              <button class="btn" mat-button matStepperNext style="margin: 20px;background-color: maroon;">Next</button>
-
-              
+              <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
             </div>
           </div>
         </mat-step>
 
-
-        <!-- importers details -->
-      <!-- <mat-step label="Importer Details">
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-            <mat-label style="font-size:16px;"> Buyers Full Name </mat-label>
-            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline"> 
-              <input matInput  formControlName="buyerName" type="text">
-            </mat-form-field>
-            </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-            <mat-label style="font-size:16px;"> Buyer Email Address </mat-label>
-            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <input matInput  formControlName="buyerEmailAddress"  type="string">
-            </mat-form-field>
-            </div>
-
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-            <mat-label style="font-size:16px;"> Buyer Country </mat-label>
-            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <input matInput  formControlName="buyerCountry" type="string">
-            </mat-form-field>
-            </div>
-
-           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-            <mat-label style="font-size:16px;"> Buyer City </mat-label>
-            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <input matInput  formControlName="buyerCity" type="string">
-            </mat-form-field>
-            </div>
-            <div>
-
-              <button class="previousDC" mat-button matStepperPrevious>Back</button>
-              <span style="margin-right: 745px;"></span>
-              <button class="nextDC" mat-button matStepperNext>Next</button>
-            </div>
-          </div>
-
-      </mat-step> -->
-      
-        
-<!-- //invoice details -->
-        <!-- <mat-step label="Invoice Details & Document Upload-">
+        <!-- 2.invoice details -->
+        <mat-step label="Invoice Details">
+          <p  style="color: maroon; font-weight: bold;">Invoice Details:</p>  
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;"> Invoice Number </mat-label>
+              <mat-label>Invoice Number <span class="required">*</span></mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput  formControlName="invoiceNumber" type="text" >
-              </mat-form-field>
-               </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;"> Invoice Amount</mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput  formControlName="invoiceAmount" type="number">
-              </mat-form-field>
+                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="text" >
+             </mat-form-field>
+               <small
+               *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
+               *Invoice No. is required</small>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;">Company name</mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline"> 
-                <input matInput  formControlName="companyName" type="text">
+              <mat-label> Invoice Amount <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="invoiceAmount" type="number">
               </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
+              *Invoice Amount  required</small>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;">Company address</mat-label>
+              <mat-label>Company Name <span class="required">*</span></mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput  formControlName="companyAddress" type="number">
+                <input matInput formControlName="applicantBusinessName" type="text">
               </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
+              *Company name is a required field</small>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label>Company Address <span class="required">*</span></mat-label>
+              <mat-form-field class="full-width" style=" display:flex; flex-direction:row;white-space:nowrap;"
+                appearance="outline">
+                <input matInput formControlName="applicantBusinessAddress" type="text">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('applicantBusinessAddress').invalid && applicationForm.get('applicantBusinessAddress').touched">
+              *Enter Business Address</small>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-label style="font-size:16px;"> Invoice Date </mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput   formControlName="invoiceDate" type="date">
-              </mat-form-field>  
+                <mat-label> Invoice Date <span class="required">*</span></mat-label>
+                <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('invoiceDate').invalid && applicationForm.get('invoiceDate').touched">
+              *Select the Invoice date</small>
             </div><br>
-           <br>
-           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-            <mat-label style="font-size:16px;"> Due Date</mat-label>
+            <br>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-label> Due Date <span class="required">*</span></mat-label>
                 <input matInput formControlName="dueDate" type="date">
               </mat-form-field>
-             </div>
+              <small
+              *ngIf="applicationForm.get('dueDate').invalid && applicationForm.get('dueDate').touched">
+              *Select the due date</small>
+            </div>
             <br>
-
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;"> Tax Identification Number</mat-label>
+              <label for="Upload invoices">Upload Invoices <span class="required">*</span></label>
+              <input type="file" formControlName="invoices">
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <label for="application form">Upload Application Form <span class="required">*</span></label>
+              <input type="file" formControlName="invoices">
+            </div>
+
+            <div  formArrayName="additionalInvoices">
+              <p style="color: maroon; font-weight: bold;">For Additional Invoices:</p>
+              <div *ngFor="let inv of applicationForm.get('additionalInvoices')['controls']; let i = index"
+                [formGroupName]="i">             
+                <div>
+                  <label style="color: black;font-weight: bold;">Invoice {{i + 2}}</label>
+                  <table border="1" class="invTable" style="width: 100%;">
+                    <thead>
+                      <tr *ngFor="let row of [1, ]; let i = index">
+                        <th>Invoice No.</th>
+                        <th>Invoice Amount</th>
+                        <th>Company Name</th>
+                        <th>Business Address</th>
+                        <th>Upload Invoices</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Row 1 -->
+                      <tr *ngFor="let row of  [1, ];">
+                        <td><input type="text" formControlName="{{ row.formControlName }}"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+                          <div *ngFor="let file of selectedFiles">
+                            {{ file.name }}
+                          </div>
+                        </td>
+                    
+                      </tr>
+                    </tbody>
+                    <thead>
+                      <tr>
+                      <tr *ngFor="let row of [1 ]; let i = index">
+                        <th>Invoice Date</th>
+                        <th>Due Date</th>
+                    
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Row 1 -->
+                      <tr *ngFor="let row of  [1,   ];">
+                        <!-- <td><input type="text" formControlName="{{ row.formControlName }}"></td> -->
+                        <td><input type="date"></td>
+                        <td><input type="date"></td>
+                     
+  
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+  
+     
+                  <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn1()">
+                    <mat-icon class="col-white">add</mat-icon>
+                  </button>
+  
+                  <br>
+  
+  
+                </div>
+  
+  
+              </div>
+            </div>
+
+
+
+            <!-- Importer details -->
+         
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label > KRA Number</mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                 <input matInput formControlName="taxIdentificationNumber" type="number">
+            
+                <input matInput formControlName="taxIdentificationNumber" type="number">
               </mat-form-field>
-             </div>
+             </div> -->
             <br>
 
 
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label style="font-size:16px;">Invoice status</mat-label>
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label >Invoice status</mat-label>
               <mat-form-field appearance="outline">
                 <mat-select [(value)]="selected">
                   <mat-option value="created" formControlName="status">Created</mat-option>
@@ -232,365 +289,189 @@
                   <mat-option value="paid" formControlName="status">Paid</mat-option>
                 </mat-select>
               </mat-form-field>
-            </div>
+            </div> -->
           </div>
+
+
+
+
+
+          <div>
+            <button class="btn btn-primary" mat-button matStepperPrevious >Back</button>
+            <span style="margin-right: 745px;"></span>
+            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+
+        <!--3. Importer Details -->
+        <mat-step label="Importer Details" >
+        
+          <p style="color: maroon; font-weight: bold;">Importer / Buyer's Details:</p>
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label>Full Name <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerName" type="text">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('buyerName').invalid && applicationForm.get('buyerName').touched">
+              *Enter the Importer's name</small>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label>Business Name <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerBusinessName" type="text">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('buyerBusinessName').invalid && applicationForm.get('buyerBusinessName').touched">
+              *Business name required</small>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label> Email Address<span class="required">*</span> </mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerEmailAddress" type="email">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('buyerEmailAddress').invalid && applicationForm.get('buyerEmailAddress').touched">
+              *Email required</small>
+            </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <label for="Upload invoices">Upload Invoices</label>
-              <input matInput  type="file" formControlName="invoices">
+              <mat-label> Country<span class="required">*</span> </mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerCountry" type="email">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('buyerCountry').invalid && applicationForm.get('buyerCountry').touched">
+              *Country is required</small>
             </div>
-            <div>
-              <button class="previousDC" mat-button matStepperPrevious>Back</button>
-              <span style="margin-right: 745px;"></span>
-              <button class="nextDC" mat-button matStepperNext>Next</button>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <mat-label>City <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerCity" type="text">
+              </mat-form-field>
+              <small
+              *ngIf="applicationForm.get('buyerCity').invalid && applicationForm.get('buyerCity').touched">
+              *City required</small>
             </div>
-          </mat-step> -->
-         
- <!-- 3.Funding Details -->
-        <!-- <mat-step label="Funding Details">
+            <div style="display: flex;" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <input type="checkbox" style="margin-right: 10px;" formControlName="terms_and_condition">
+              <div>
+                <label style="margin-top: 5px;">I agree to terms & conditions<span class="required">*</span></label>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+
+          <div *ngFor="let inv of applicationForm.get('importerDetails')['controls']; let i = index"
+            [formGroupName]="i">
+            <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
+            <label style="color: black;font-weight: bold;">Importer {{i + 2}}</label>
+            <table border="1" class="invTable" >
+              <thead>
+                <tr>
+
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Business Name</th>
+                  <th>Country</th>
+                  <th>City</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+                <tr *ngFor="let row of  [1, ];">
+                  <td><input type="text" formControlName="{{ row.formControlName }}"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+
+                </tr>
+                <br>
+
+              </tbody>
+            </table>
+          </div>
+          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
+            <mat-icon class="col-white">add</mat-icon>
+          </button>
+          <br>
+          <div>
+            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+            <span style="margin-right: 745px;"></span>
+            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+          </div>
+
+
+        </mat-step>
+        <!-- 4.Funding Details -->
+        <mat-step label="funding details">
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label style="font-size:16px;"> Funding Amount </mat-label>
+              <mat-label>Proposed Funding Amount <span class="required">*</span> </mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput formControlName="fundingAmount" type="number" >
+                <input matInput formControlName="fundingAmount" type="number">
               </mat-form-field>
-              </div>
+            </div>
 
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                <mat-label style="font-size:16px;"> credit limit</mat-label>
-                <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                  <input matInput  formControlName="creditLimit"  type="number">
-                </mat-form-field>
-                </div>
- 
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                  <mat-label style="font-size:16px;"> Credit Account </mat-label>
-                  <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline"> 
-                    <input matInput formControlName="creditAccount"  type="number">
-                  </mat-form-field>
-                  </div>
-                </div>
-
-                <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label style="font-size:16px;"> Disbursal Date</mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput  formControlName="disbursalDate"type="date">
+              <mat-label> Credit limit <span class="required">*</span></mat-label>
+              <mat-form-field class="full-width" style=" display:flex; flex-direction:row;white-space:nowrap;"
+                appearance="outline">
+                <input matInput formControlName="creditLimit" type="number">
               </mat-form-field>
-              </div>
-           
-              
+            </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label style="font-size:16px;"> Re-Payment Date</mat-label>
+              <mat-label> Credit Account <span class="required">*</span></mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput  formControlName="repaymentDate" type="date">
+                <input matInput formControlName="creditAccount" type="number">
               </mat-form-field>
-              </div>
-            
+            </div>
 
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-                <mat-label style="font-size:16px;">funding status</mat-label>
-                <mat-form-field appearance="outline">
-                  <mat-select [(value)]="selected">
-                    <mat-option value="created" formControlName="status">Await funding approvel</mat-option>
-                    <mat-option value="approved" formControlName="status">Approved for funding</mat-option>
-                    <mat-option value="funded" formControlName="status">Funded</mat-option>
-                   </mat-select>
-                </mat-form-field>
-              </div> 
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Proposed Disbursal Date <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="disbursalDate" type="date">
+              </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label> Re-Payment Date <span class="required">*</span></mat-label>
+              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="repaymentDate" type="date">
+              </mat-form-field>
+            </div>
 
-               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                  <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                   <a href="">Terms and Conditions</a>
-                    <input matInput formControlName="fundingTerms" type="text" >
-                  </mat-form-field>
-                  </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+              <label for="Upload invoices">Upload Credit Appraisal Form <span class="required">*</span></label>
+              <input type="file" formControlName="creditAppraisalForm">
+            </div>
 
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                    <mat-label style="font-size:16px;"> Credit check informaton </mat-label>
-                    <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                      <input matInput  type="string" >
-                    </mat-form-field>
-                    </div>
-                  </div>
+          </div>
           <div>
-            <button class="previousDC" mat-button matStepperPrevious>Back</button>
+            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <span style="margin-right: 745px;"></span>
-            <button class="nextDC" mat-button matStepperNext>Next</button>
+            <button style="background-color: #ad3b3a;" mat-button (click)="onSubmit()" matStepperSubmit>Submit</button>
           </div>
-        </mat-step> -->
-      
+        </mat-step>
 
-                
-<!-- 2.invoice details -->
-<mat-step label="Invoice Details & Document Upload-">
-  <p style="color: maroon; font-weight: bold;">Invoice Details:</p>
-  <div class="row">
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label >Invoice Number</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">         
-        <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="string" >
-      </mat-form-field>
-       </div>
-
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label > Invoice Amount</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">            
-        <input matInput formControlName="invoiceAmount" type="number">
-      </mat-form-field>
-    </div>
-
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label >Company name</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="businessName" type="string">
-      </mat-form-field>
-    </div>
-
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label >Company address</mat-label>
-      <mat-form-field class="full-width" style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="businessAddress" type="number">
-      </mat-form-field>
-    </div>
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <mat-label > Invoice Date </mat-label>
-        <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
-      </mat-form-field>  
-    </div><br>
-   <br>
-   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <mat-label > Due Date</mat-label>
-        <input matInput formControlName="dueDate" type="date">
-      </mat-form-field>
-     </div>
-    <br>
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <label for="Upload invoices">Upload Invoices</label>
-      <input type="file" formControlName="invoices">
-    </div>
-
-    <p style="color: maroon; font-weight: bold;">Importer / Buyer's Details:</p>
-    <div class="row">
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <mat-label >Full Name </mat-label>
-        <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">          
-          <input matInput formControlName="buyerName" type="text">
-        </mat-form-field>
-        </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <mat-label > Email Address </mat-label>
-        <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-          <input matInput formControlName="buyerEmail" type="string">
-        </mat-form-field>
-        </div>
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <mat-label >Country </mat-label>
-        <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-          <input matInput formControlName="buyerCountry " type="string">
-        </mat-form-field>
-        </div>
-
-       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <mat-label >City </mat-label>
-     <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">        
-          <input matInput formControlName="buyerCity" type="string">
-        </mat-form-field>
-        </div>
-      
-      </div>
-    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label > KRA Number</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-    
-        <input matInput formControlName="taxIdentificationNumber" type="number">
-      </mat-form-field>
-     </div> -->
-    <br>
-
-
-    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <mat-label >Invoice status</mat-label>
-      <mat-form-field appearance="outline">
-        <mat-select [(value)]="selected">
-          <mat-option value="created" formControlName="status">Created</mat-option>
-          <mat-option value="approved" formControlName="status">Approved</mat-option>
-          <mat-option value="funded" formControlName="status">Funded</mat-option>
-          <mat-option value="paid" formControlName="status">Paid</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div> -->
-  </div>
-
- 
-
-
-  
-    <div>
-      <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-      <span style="margin-right: 745px;"></span>
-      <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-
-  
-       <!--3. Incase of multiple invoices from different buyers -->
-<mat-step label="Additional Invoices & Importers" >
-    <div>
-      <p style="color: maroon; font-weight: bold;">For Additional Invoices:</p>
-      <table border="1" style="width:80%"class="invTable">
-        <thead>
-          <tr>
-      
-            <th>Invoice No.</th>
-            <th>Invoice Amount</th>
-            <th>Business Name</th>
-            <th>Business Address</th>
-            <!-- <th>Invoice Date</th> -->
-            <th>Due Date</th>
-            <th>Upload Invoices</th>
        
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Row 1 -->
-    <tr *ngFor="let row of [1, 2, 3, ]; let i = index">
-            <td><input type="text" formControlName="{{ row.formControlName }}"></td>
-            <td><input type="text"></td>
-            <td><input type="text" ></td>
-            <td><input type="text" ></td>
-            <td><input type="date" ></td>
-         
-            <td><input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
-              <div *ngFor="let file of selectedFiles"> 
-                {{ file.name }}
-                <button mat-icon-button (click)="removeFile(file)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div></td>
-        </tr> 
-<br>
-
-        </tbody>
-      </table>
-
-  
-    <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRow()">
-      <mat-icon class="col-white">add</mat-icon>
-    </button>
-      </div>
-    <br> 
-    <div>
-      <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
-      <table border="1" style="width:80%" class="invTable">
-        <thead>
-          <tr>
-       
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Country</th>          
-            <th>City</th>
-          
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Row 1 -->
-    <tr *ngFor="let row of  [1, 2, 3, ];">
-            <td><input type="text" formControlName="{{ row.formControlName }}"></td>
-            <td><input type="text"></td>
-            <td><input type="text" ></td>
-            <td><input type="text" ></td>
-         
-        </tr> 
-<br>
-
-        </tbody>
-      </table>
-    </div>
-    <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRow()">
-      <mat-icon class="col-white">add</mat-icon>
-    </button>
-    <br>
-    <div>
-      <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-      <span style="margin-right: 745px;"></span>
-      <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
-    </div>
-
-
-</mat-step>
-<!-- 4.Funding Details -->
-<mat-step label="funding details">
-  <div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label > Funding Amount </mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">        
-        <input matInput formControlName="fundingAmount" type="number" >
-      </mat-form-field>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-        <mat-label > credit limit</mat-label>
-        <mat-form-field class="full-width" style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-          <input matInput formControlName="creditLimit" type="number">
-        </mat-form-field>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-          <mat-label > Credit Account </mat-label>
-          <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-            <input matInput formControlName="creditAccount" type="number">
-          </mat-form-field>
-          </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label > Disbursal Date</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">        
-        <input matInput formControlName="disbursalDate" type="date">
-      </mat-form-field>
-      </div>
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label > Re-Payment Date</mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">     
-        <input matInput formControlName="repaymentDate" type="date">
-      </mat-form-field>
-      </div>
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-        <label for="Upload invoices">Upload Credit Appraisal Form</label>
-        <input type="file" formControlName="creditAppraisalForm">
-      </div>
-
-       <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-          <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-           <a href="">Terms and Conditions</a>
-            <input matInput formControlName="fundingTerms" >
-          </mat-form-field>
-          </div>
-
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-            <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-              <mat-label > Credit check informaton </mat-label>
-              <input matInput formControlName="creditCheckInformation" type="string" >
-            </mat-form-field>
-            </div> -->
-
-  </div>
-  <div>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <span style="margin-right: 745px;"></span>
-    <button style="background-color: #ad3b3a;" mat-button (click)="onSubmit()" matStepperSubmit>Submit</button>
-  </div>
-</mat-step>
-   
-      
-</form>
+      </form>
     </mat-horizontal-stepper>
   </div>
 </section>
+   
+
+  
 
 
 
@@ -598,7 +479,7 @@
 
 <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2" appearance="outline">
   <mat-form-field style="display:flex; flex-direction:row;" appearance="outline">
-    <mat-label style="font-size:16px;">Country</mat-label>
+    <mat-label >Country</mat-label>
     <mat-select formControlName="country">
       <mat-option value="Afghanistan">Afghanistan</mat-option>
       <mat-option value="Albania">Albania</mat-option>

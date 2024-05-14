@@ -133,6 +133,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryFirstName" type="text">
               </mat-form-field>
+              
               <small
                 *ngIf="applicationForm.get('beneficiaryFirstName'). invalid && applicationForm.get('beneficiaryFirstName').touched">
                 *Beneficiary First Name is required</small>

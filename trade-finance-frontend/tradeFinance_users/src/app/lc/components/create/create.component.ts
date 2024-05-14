@@ -100,6 +100,9 @@ export class CreateComponent implements OnInit {
     });
 
   }
+<<<<<<< HEAD
+K
+=======
 
   createLOC(data: any) {
     const body = {
@@ -173,6 +176,7 @@ export class CreateComponent implements OnInit {
     return body;
   }
 
+>>>>>>> 5ccec5fe38abc5cacefa1b274bbd3d60b24a5a55
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     const data = this.createLOC(this.applicationForm.value)

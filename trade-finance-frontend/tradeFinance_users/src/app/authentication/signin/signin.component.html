@@ -4,7 +4,7 @@
       <div class="form-section" >
         <div class="auth-wrapper" >
           <div class="text-center">
-            <img src="assets/images/equity_logo-removebg-preview.png" width="150px" height="100px" class="px-2 mx-2" alt="" />
+            <img src="assets/images/equity_logo.jpg" width="150px" height="100px" class="px-2 mx-2" alt="" />
           </div>
 
           <!-- <h2 class="mb-4">Welcome to Kingdom Bank</h2> -->
@@ -33,13 +33,14 @@
                   <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
                   <a class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon style="color: maroon">{{
+                    <mat-icon>{{
                       hide ? "visibility_off" : "visibility"
                       }}</mat-icon>
                   </a>
                   <mat-error *ngIf="authForm.get('password').hasError('required')">
                     Password is required
                   </mat-error>
+               
                 </mat-form-field>
               </div>
             </div>
@@ -59,8 +60,8 @@
                 </button>
               </div>
             </div>
-            <div class="badge badge-solid-green m-3 mt-3" style="background-color: maroon;">
-              <a routerLink="/authentication/forgot-password" style="color: white">Forgot Password?</a>
+            <div class="badge badge-solid-green m-3 mt-3">
+              <a routerLink="/authentication/forgot-password" style="color: #000000">Forgot Password?</a>
             </div>
           </form>
           <!-- <h6 class="social-login-title">OR</h6>
