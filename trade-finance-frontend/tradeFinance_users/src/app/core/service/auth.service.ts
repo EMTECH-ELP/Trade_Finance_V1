@@ -30,7 +30,7 @@ const httpOptions = {
 // /auth/signin
 export class AuthService {
 
-  private authUrl = 'http://192.168.91.98:8082';
+  private authUrl = environment.authUrl;
   resetUrl: any;
   hasLoggedIn: any;
  

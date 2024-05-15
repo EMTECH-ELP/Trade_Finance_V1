@@ -11,7 +11,7 @@ transferApiUrl: 'http://192.168.137.1:8085', //Transfer LC
 
 
 
-  authUrl: 'http://192.168.91.98:8082',
+  authUrl: 'http://192.168.88.141:8082',
   resetUrl: '',
 
   // apiUrl: 'http://192.168.137.1:8085',
@@ -39,4 +39,6 @@ transferApiUrl: 'http://192.168.137.1:8085', //Transfer LC
  invUrl: 'http://192.168.91.141:9000' ,     //post invoice discounting forms. Createform url
  saveUrl: 'http://192.168.91.141:9000',  
 
+ //bank gurantee url
+bgUrl: 'http://192.168.91.61:8085',
 };
