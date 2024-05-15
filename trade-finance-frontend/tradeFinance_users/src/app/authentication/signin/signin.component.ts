@@ -72,7 +72,6 @@ ngOnInit() {
         // If reset-password is not required, handle role-based navigation for second,third etc time users
         if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
                   this.tokenCookieService.saveUser(res.body.entity)
-
           this.router.navigate(["/admin/dashboard/view"]);
         } else if (res.body.entity && (res.body.entity.role === "CHECKER" || res.body.entity.role === "USER")) {
           if ( res.body.entity.firstLogin === 'Y') {
@@ -90,116 +89,40 @@ ngOnInit() {
             return;
           }
         }
+        // if (this.authForm.invalid) {
+        //   this.error = "Email/password  not valid!";
+        //   this.snackbar.showNotification(
+        //     "snackbar-success",
+        //   "Email/Password not valid")
+        //   return;
+        // } else {
+        //   console.log(this.authForm.value);
+    
+        // }
       },
       (err) => {
         console.log(err);
-        this.snackbar.showNotification("snackbar-danger", "Email or Password is incorrect!");
+        this.snackbar.showNotification("snackbar-danger", "Server Error");
         // this.error = err.message;
         this.submitted = false;
         this.loading = false;
       }
+    
     );
   }
   
   
 }
 
-
-
-// res.entity.firstLogin === 'Y'
-
-
-// onSubmit() {
-//   if (this.authForm.invalid) {
-//     return;
-//   }
-
-//   this.loading = true;
-
-//   this.authService
-//     .login(this.authForm.value)
-//     .subscribe({
-//       next: (response: any) => {
-//         console.log(response);
-//         if (response.entity && response.statusCode === 200) {
-//           const accessToken = response.entity.accessToken;
-//           localStorage.setItem("token", accessToken);
-//           this.tokenCookieService.saveUser(response.entity);
-
-//           if (response.entity.role === "SUPER_ADMIN") {
-//             this.router.navigate(["/dashboard/dashboard"]);
-//           } else if (response.entity.role != "SUPER_ADMIN") {
-//             if (response.entity.firstLogin === "Y") {
-//               console.log("reached");
-//               this.router.navigate([
-//                 "/supplier-authentication/reset-password",
-//               ]);
-//             } else {
-//               this.router.navigate(["/supplier-authentication/otp"]);
-//             }
-//           }
-//         } else {
-//           console.error("Invalid response from server");
-//           this.error = "Invalid email or password";
-//           this.loading = false;
-//         }
-//       },
-//       error: (error) => {
-//         console.error("Error:", error);
-//         this.error = "Invalid email or password";
-//         this.loading = false;
-//       },
-    // })
-
-
-
-  // console.log("Res: ", res);
-        // console.log(res.statusCode);
-        // Check if it's a first login
-
-
-
-
-//     this.authService.login(this.authForm.value).subscribe(
-//       (res) => {
-//         console.log("Res: ", res);
-  
-//         if (res.body.statusCode === 207) {
-//           this.tokenCookieService.saveUser(res.body.entity)
-//           console.log("routing to otp")
-//           this.router.navigate(["/authentication/OTP"]);
-//           return; // Exit the function to prevent further navigation
-//         }
-  
-//         // If OTP is not required, handle role-based navigation
-//         if (res.entity && res.entity.role === "SUPER_ADMIN") {
-//           this.router.navigate(["/checker/dashboard/analytics"]);
-//         } else if (res.entity && (res.entity.role === "MAKER" || res.entity.role === "USER")) {
-//           if (res.entity.isFirstTimeLogin) {
-//             this.router.navigate(["/authentication/reset-password"]);
-//           } else {
-//             this.router.navigate(["/authentication/OTP"]);
-//           }
-//         }
-//       },
 //       (err) => {
-//         console.log(err);
-//         this.error = err.message;
-//         this.submitted = false;
-//         this.loading = false;
+//         console.error(err);
+//         // if (err.status === 401) {
+//           // this.snackbar.showNotification("snackbar-danger", "An error occurred. Please try again later.");
+//         } else {
+//           // this.snackbar.showNotification("snackbar-danger", "Invalid email or password");
+//         }
 //       }
 //     );
-//   }
-  
   
 // }
 
-
-
-
-
-
-
-
-
-   

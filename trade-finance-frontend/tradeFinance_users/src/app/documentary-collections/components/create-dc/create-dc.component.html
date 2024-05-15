@@ -3,124 +3,124 @@
     <div class="block-header">
       <app-breadcrumb [title]="'Documentary Collections'" [items]="['Home']" [active_item]="'New DC'">
       </app-breadcrumb>
-    </div> 
-   
+    </div>
 
-    <mat-horizontal-stepper linear >
+
+    <mat-horizontal-stepper linear>
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
           <p class="stepHeading">Applicant details</p>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Number</mat-label><br/>
+              <mat-label>Account Number</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountNumber" type="text">
                 <mat-icon matSuffix (click)="openLookup()" id="searchIcon">search</mat-icon>
               </mat-form-field>
 
-              
-            </div>
-            
 
-            
+            </div>
+
+
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Customer's CIF ID</mat-label><br/>
+              <mat-label>Customer's CIF ID</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="cifId" type="string">
                 <mat-icon matSuffix id="searchIcon">search</mat-icon>
               </mat-form-field>
-              
+
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>National ID</mat-label><br/>
+              <mat-label>National ID</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="nationalId" type="string">
                 <mat-icon matSuffix id="searchIcon">search</mat-icon>
               </mat-form-field>
-              
+
             </div>
-            
+
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Name</mat-label><br/>
+              <mat-label>Account Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="accountName" type="text">
+                <input matInput formControlName="accountName" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Currency</mat-label><br/>
+              <mat-label>Currency</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="currency" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Email</mat-label><br/>
+              <mat-label>Email</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="email" type="email">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Phone Number</mat-label><br/>
+              <mat-label>Phone Number</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="phoneNumber" type="tel">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Address</mat-label><br/>
+              <mat-label>Address</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="address" type="text">
               </mat-form-field>
-             
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>City</mat-label><br/>
+              <mat-label>City</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="city" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Postal Code</mat-label><br/>
+              <mat-label>Postal Code</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="postalCode" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Country Code</mat-label><br/>
+              <mat-label>Country Code</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="countryCode" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Country</mat-label><br/>
+              <mat-label>Country</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="country" type="text">
               </mat-form-field>
-              
+
             </div>
 
 
@@ -135,43 +135,43 @@
           <p class="stepHeading">Beneficiary Details</p>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>First Name</mat-label><br/>
+              <mat-label>First Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryFirstName" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Middle Name</mat-label><br/>
+              <mat-label>Middle Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
             </div>
 
-            
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Last Name</mat-label><br/>
+              <mat-label>Last Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryLastName" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Email</mat-label><br/>
+              <mat-label>Email</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryEmail" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Beneficiary Phone Number</mat-label><br/>
+              <mat-label>Beneficiary Phone Number</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryPhoneNumber" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Beneficiary Address</mat-label><br/>
+              <mat-label>Beneficiary Address</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAddressLine1" type="tel">
               </mat-form-field>
@@ -189,7 +189,7 @@
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bank Name</mat-label><br/>
+              <mat-label>Bank Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankName" type="text">
               </mat-form-field>
@@ -197,35 +197,35 @@
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Country Code</mat-label><br/>
+              <mat-label>Country Code</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryCountryCode" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bank Country</mat-label><br/>
+              <mat-label>Bank Country</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankCountry" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bank City</mat-label><br/>
+              <mat-label>Bank City</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryCity" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bank Address</mat-label><br/>
+              <mat-label>Bank Address</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryBankAddressLine2" type="text">
               </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>IBAN</mat-label><br/>
+              <mat-label>IBAN</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryIban" type="text">
               </mat-form-field>
@@ -234,7 +234,7 @@
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>SWIFT Code</mat-label><br/>
+              <mat-label>SWIFT Code</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBic" type="text">
               </mat-form-field>
@@ -242,7 +242,7 @@
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Name</mat-label><br/>
+              <mat-label>Account Name</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAccountName" type="text">
               </mat-form-field>
@@ -250,7 +250,7 @@
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Number</mat-label><br/>
+              <mat-label>Account Number</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAccountNumber" type="text">
               </mat-form-field>
@@ -270,107 +270,107 @@
 
 
 
-                <!-- Step 3: Goods and Shipment Details -->
-                <mat-step label=" Goods and Shipment Details">
-                  <p class="stepHeading">Goods and Shipment Details</p>
-                  <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label> Country of Origin</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput="text" formControlName="originCountry">
-                      </mat-form-field>
-                      
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Port of Loading</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text" formControlName="loadingPort">
-                      </mat-form-field>
-                    </div>
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Port of Discharge</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text" formControlName="dischargePort">
-                      </mat-form-field>
-                    </div>
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Goods Description</mat-label>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text"  formControlName="goodsDescription">
-                      </mat-form-field>
-                      
-                    </div>
-        
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Quantity</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text"  formControlName="DCquantity">
-                      </mat-form-field>
-                      
-                    </div>
-        
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Value</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput formControlName="portOfLoading" type="text">
-                      </mat-form-field>
-                     
-                    </div>
-        
-        
-                    
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Date of Shipment</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="date" formControlName="shipDateStart">
-                      </mat-form-field><br/>
-                    
-        
-                    
-                      
-                        <mat-label>Date of Arrival</mat-label><br/>
-                        <mat-form-field class="full-width" appearance="outline">
-                          <input matInput type="date" formControlName="shipDateEnd">
-                        </mat-form-field>
-                      
-                    </div>
-        
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Bill of Lading No.</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text" formControlName="DCbillOfLading">
-                      </mat-form-field>
-                     
-                    </div>
-        
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                      <mat-label>Invoice No.</mat-label><br/>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <input matInput type="text" formControlName="DCinvoice">
-                      </mat-form-field>
-                     
-                    </div>
-        
-                 
-        
-                
-                <div>
-                  <button class="previousDC" mat-button matStepperPrevious>Back</button>
-                  <span style="margin-right: 745px;"></span>
-                  <button class="nextDC" mat-button matStepperNext>Next</button>
-                </div>
-              </div>
-            </mat-step>
+        <!-- Step 3: Goods and Shipment Details -->
+        <mat-step label=" Goods and Shipment Details">
+          <p class="stepHeading">Goods and Shipment Details</p>
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label> Country of Origin</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput="text" formControlName="originCountry">
+              </mat-form-field>
+
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Port of Loading</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="loadingPort">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Port of Discharge</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="dischargePort">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Goods Description</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="goodsDescription">
+              </mat-form-field>
+
+            </div>
 
 
-            <!-- Step 4: Documentary Collection Details -->
-         <mat-step label="Documentary Collection Details">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Quantity</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="DCquantity">
+              </mat-form-field>
+
+            </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Value</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="portOfLoading" type="text">
+              </mat-form-field>
+
+            </div>
+
+
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Date of Shipment</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="date" formControlName="shipDateStart">
+              </mat-form-field><br />
+
+
+
+
+              <mat-label>Date of Arrival</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="date" formControlName="shipDateEnd">
+              </mat-form-field>
+
+            </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Bill of Lading No.</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="DCbillOfLading">
+              </mat-form-field>
+
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Invoice No.</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="DCinvoice">
+              </mat-form-field>
+
+            </div>
+
+
+
+
+            <div>
+              <button class="previousDC" mat-button matStepperPrevious>Back</button>
+              <span style="margin-right: 745px;"></span>
+              <button class="nextDC" mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </mat-step>
+
+
+        <!-- Step 4: Documentary Collection Details -->
+        <mat-step label="Documentary Collection Details">
           <p class="stepHeading"> Documentary Collection Details</p>
           <div class="row">
 
@@ -380,55 +380,71 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label for="dcType"> Documentery Collection Type:</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-              <mat-select id="dcType" formControlName="dcType">
-               <mat-option value="incomingDc">Incoming Documentary Collection</mat-option>
-               <mat-option value="outgoingDc">Outgoing Documentary Collection</mat-option>
-             </mat-select>
-            </mat-form-field>
+                <mat-select id="dcType" formControlName="dcType">
+                  <mat-option value="incomingDc">Incoming Documentary Collection</mat-option>
+                  <mat-option value="outgoingDc">Outgoing Documentary Collection</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label for="dcSubType"> Documentery Collection Sub-type:</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-              <mat-select formControlName="dcType">
-               <mat-option value="sight">Sight Documentary Collection</mat-option>
-               <mat-option value="time">Time Documentary Collection</mat-option>
-               <mat-option value="partial">Sight Documentary Collection (partial payment)</mat-option>
-             </mat-select>
-            </mat-form-field>
+                <mat-select formControlName="dcType">
+                  <mat-option value="sight">Sight Documentary Collection</mat-option>
+                  <mat-option value="time">Time Documentary Collection</mat-option>
+                  <mat-option value="partial">Sight Documentary Collection (partial payment)</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
 
-            
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label for="chargeAccount"> Total Amount Payable:</mat-label><br/>
+              <mat-label for="chargeAccount"> Total Amount Payable:</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
-               <input matInput type="text"  formControlName="totPayableAmount">
+                <input matInput type="text" formControlName="totPayableAmount">
               </mat-form-field>
-           </div>
+            </div>
 
 
-           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-            <mat-label for="chargeAccount"> Charge Account:</mat-label><br>
-            <mat-form-field class="full-width" appearance="outline">
-             <input matInput type="text"  formControlName="chargeAccount">
-            </mat-form-field>
-         </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label for="chargeAccount"> Charge Account:</mat-label><br>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="chargeAccount">
+              </mat-form-field>
+            </div>
 
-         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-          <mat-label for="curr"> Currency:</mat-label><br/>
-          <mat-form-field class="full-width" appearance="outline">
-           <input matInput type="text"  formControlName="payableAmount">
-          </mat-form-field>
-         </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label for="curr"> Currency:</mat-label><br />
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="payableAmount">
+              </mat-form-field>
+            </div>
 
-         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-          <mat-label for="payingAmount"> Amount to Pay:</mat-label><br>
-          <mat-form-field class="full-width" appearance="outline">
-           <input matInput type="text"  formControlName="payingAmount">
-          </mat-form-field>
-         </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label for="payingAmount"> Amount to Pay:</mat-label><br>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="text" formControlName="payingAmount">
+              </mat-form-field>
+            </div>
 
 
+<<<<<<< HEAD
+            <p class="stepHeading"> Documents Attached</p>
+            <div>
+              <table border="1" class="dcTable">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Document Type</th>
+                    <th>Original Document</th>
+                    <th>Copies Documents</th>
+                    <th>Upload</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1 -->
+=======
          <p class="stepHeading"> Documents Attached</p>
           <div>
             <table border="1" class="dcTable">
@@ -442,9 +458,10 @@
               </thead>
               <tbody>
                 <!-- Row 1 -->
+>>>>>>> 7d8aa54d4a6d9605989d9a74bb993de387085e8b
 
 
-                <!-- <tr *ngFor="let row of rows; let i = index">
+                  <!-- <tr *ngFor="let row of rows; let i = index">
                   <td><input type="checkbox" (change)="toggleRow(i)"></td>
                   <td>{{ row.documentType }}</td>
                   <td><input type="text" [disabled]="!row.checked" formControlName="{{ row.formControlName }}"></td>
@@ -453,6 +470,23 @@
                 </tr> -->
 
 
+<<<<<<< HEAD
+                  <tr *ngFor="let row of rows; let i = index">
+                    <td><input type="checkbox" (change)="toggleRow(i)"></td>
+                    <td>{{ row.documentType }}</td>
+                    <td><input type="text" [disabled]="!row.checked"></td>
+                    <td><input type="text" [disabled]="!row.checked"></td>
+                    <td><input matInput type="file" [disabled]="!row.checked" multiple accept=".pdf"
+                        (change)="onFileSelected($event)">
+                      <div *ngFor="let file of selectedFiles">
+                        {{ file.name }}
+                        <button mat-icon-button (click)="removeFile(file)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+=======
                 <tr *ngFor="let row of rows; let i = index">
                   <td><input type="checkbox" (change)="toggleRow(i)"></td>
                   <td>{{ row.documentType }}</td>
@@ -484,6 +518,17 @@
           <button class="nextDC" mat-button matStepperNext>Next</button>
         </div>
 
+>>>>>>> 7d8aa54d4a6d9605989d9a74bb993de387085e8b
+
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- <button class="custom-button" mat-button (click)="addRow()">Add</button> -->
+            <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRow()">
+              <mat-icon class="col-white">add</mat-icon>
+            </button>
 
 
 
@@ -492,9 +537,11 @@
 
 
 
-
-
-
+            <div style="margin-top: 20px;">
+              <button class="previousDC" mat-button matStepperPrevious>Back</button>
+              <span style="margin-right: 745px;"></span>
+              <button class="nextDC" mat-button matStepperNext type="submit" (click)="onSubmit()">Submit</button>
+            </div>
 
 
           </div>
@@ -634,18 +681,8 @@
 
 
 
-                
 
-
-                  
-                      
-        
-                 
-        
-
-
-
-          </form>
-         </mat-horizontal-stepper>
-        </div>
-      </section>
+      </form>
+    </mat-horizontal-stepper>
+  </div>
+</section>
