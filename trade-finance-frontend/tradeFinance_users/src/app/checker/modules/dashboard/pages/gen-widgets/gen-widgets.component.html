@@ -1,10 +1,10 @@
 <!-- Widgets -->
 <div class="row">
     <div class="col-lg-4 col-sm-4" (click)="suppliers()">
-        <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+        <div class="info-box7 bg-kingdom order-info-box7" >
+            <div class="info-box7-block" style="border-radius: 5px;">
                 <h6 class="m-b-20">Letter of Credit</h6>
-                <h2 class="text-end"><span class="float-start">{{suppliersCount}}</span><i
+                <h2 class="text-end"><span class="float-start">{{totalCreatedLetters }}</span><i
                     class="fab fa-buromobelexperte"></i>
                 </h2>
                 <a href="/#/lc/view" class="m-b-0" style="color:white">Click for more details!</a>
@@ -13,7 +13,7 @@
     </div>
     <div class="col-lg-4 col-sm-6" (click)="expenses()">
         <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+            <div class="info-box7-block" style="border-radius: 5px;">
                 <h6 class="m-b-20">Documentary Collection</h6>
                 <h2 class="text-end"><span class="float-start">{{expenseCount}}</span><i
                         class="fab fa-buromobelexperte"></i></h2>
@@ -23,9 +23,9 @@
     </div>
     <div class="col-lg-4 col-sm-4" (click)="suppliers()">
         <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+            <div class="info-box7-block" style="border-radius: 5px;">
                 <h6 class="m-b-20">Bank Guarantee</h6>
-                <h2 class="text-end"><span class="float-start">{{suppliersCount}}</span><i
+                <h2 class="text-end"><span class="float-start">{{totalCreatedGuarantees }}</span><i
                     class="fab fa-buromobelexperte"></i>
                 </h2>
                 <a href="/#/bank-guarantee/viewbg" class="m-b-0" style="color:white">Click for more details!</a>
@@ -34,19 +34,19 @@
     </div>
     <div class="col-lg-4 col-sm-4" (click)="expenses()">
         <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+            <div class="info-box7-block"style="border-radius: 5px;">
                 <h6 class="m-b-20">Invoice Discounting</h6>
-                <h2 class="text-end"><span class="float-start">{{expenseCount}}</span><i
+                <h2 class="text-end"><span class="float-start">{{totalCreatedInvoices }}</span><i
                         class="fab fa-buromobelexperte"></i></h2>
                         <a href="/#/invoice-discounting/viewInvoice" class="m-b-0" style="color:white">Click for more details!</a>
             </div>
         </div>
     </div>
     <div class="col-lg-4 col-sm-4" (click)="expenses()">
-        <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+        <div class="info-box7 bg-kingdom order-info-box7"style="border-radius: 10px;">
+            <div class="info-box7-block"style="border-radius: 5px;">
                 <h6 class="m-b-20">Bills</h6>
-                <h2 class="text-end"><span class="float-start">{{expenseCount}}</span><i
+                <h2 class="text-end"><span class="float-start">{{totalCreatedBills}}</span><i
                         class="fab fa-buromobelexperte"></i></h2>
                         <a href="/#/bills/viewbill" class="m-b-0" style="color:white">Click for more details!</a>
             </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="col-lg-4 col-sm-4" (click)="expenses()">
         <div class="info-box7 bg-kingdom order-info-box7">
-            <div class="info-box7-block">
+            <div class="info-box7-block"style="border-radius: 5px;">
                 <h6 class="m-b-20">Reports</h6>
                 <h2 class="text-end"><span class="float-start">{{expenseCount}}</span><i
                         class="fab fa-buromobelexperte"></i></h2>

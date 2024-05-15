@@ -6,7 +6,7 @@
       </div>
       <!-- Widgets -->
 <div class="row">
-  <div class="col-lg-3 col-sm-6" >
+  <div class="col-lg-3 col-sm-6"  >
       <div class="info-box7 bg-kingdom order-info-box7">
           <div class="info-box7-block">
               <h4 class="m-b-20">Created Invoices</h4>
@@ -42,7 +42,7 @@
           </div>
       </div>
   </div>
-  <div class="col-lg-3 col-sm-6" >
+  <div class="col-lg-3 col-sm-6">
       <div class="info-box7 bg-kingdom order-info-box7">
           <div class="info-box7-block">
               <h4 class="m-b-20">Rejected Invoices</h4>
@@ -94,14 +94,14 @@
                           <li>
                             <div class="m-l-10" matTooltip="Add">
                               <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
-                              <mat-icon class="col-white">add</mat-icon>
-                            </button>
-                          </div>
+                                <mat-icon class="col-white">add</mat-icon>
+                              </button>
+                            </div>
                         </li>
-  
+                      
                         <li>
-                          <div class="m-l-10" matTooltip="Refresh">
-                              <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
+                          <div class="m-l-10" matTooltip="Refresh">  
+                              <button mat-mini-fab style="background-color: maroon; color: white;"  (click)="getAllForms()" >
                               <mat-icon class="col-white">refresh</mat-icon>
                             </button>
                           </div>
@@ -117,32 +117,32 @@
                 #exporter="matTableExporter" table-responsive>
 
                 <!-- ID Column -->
-                <ng-container matColumnDef="no">
+               <ng-container matColumnDef="no">
                   <mat-header-cell *matHeaderCellDef mat-sort-header
                     class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
-                  <mat-cell *matCellDef="let element; let i = index" class="psl-2 tbl-col-width-per-10">{{i +
+                  <mat-cell *matCellDef="let element;  let i = index" class="psl-3 tbl-col-width-per-10">{{i +
                     1}}</mat-cell>
                 </ng-container>
+
 
                 <ng-container matColumnDef="invoiceNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-40">Invoice
                     Number</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
                     {{row.invoiceNumber}}</mat-cell>
-                </ng-container>
+                  </ng-container> 
 
-                <ng-container matColumnDef="applicantAccountName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-20">Applicant
-                    Account Name</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-20">
-                    {{row.applicantAccountName}}</mat-cell>
-                </ng-container>
+                  <ng-container matColumnDef="businessName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-20">Applicant's
+                      Company Name</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-20">
+                      {{row.businessName}}</mat-cell>
+                  </ng-container>
 
-                <ng-container matColumnDef="applicantAccountNumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-40">Applicant
-                    Account Number</mat-header-cell>
+                <ng-container matColumnDef="buyerName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-40">Importer's Name</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                    {{row.applicantAccountNumber}}</mat-cell>
+                    {{row.buyerName}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="invoiceAmount">
@@ -176,10 +176,10 @@
                       <app-feather-icons aria-label="Delete" [icon]="'trash-2'"  matTooltip="Delete"  [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="(row)"
+                    <!-- <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="(row)"
                       class="tbl-action-btn">
                       <app-feather-icons [icon]="'check'" [class]="'tbl-fav-delete blue-icon'" matTooltip="Approve" aria-label="Approve"></app-feather-icons>
-                    </button>
+                    </button> -->
 
 
                     
@@ -193,8 +193,8 @@
                     </button>
                     <mat-menu #menu="matMenu">
                       <button mat-menu-item  mat-icon-button   color="blue" (click)="$event.stopPropagation()"  (click)="openDialog()"  mat-icon-button
-                      class="tbl-action-btn">
-                      <i class='fas fa-money-bill-1-wave' style="color:black;padding-right: 10px;" matTooltip="Repayment Details"
+                      class="tbl-action-btn"> 
+                   <i class='fas fa-money-bill-1-wave' style="color:black;padding-right: 10px;" matTooltip="Repayment Details"
                      ></i>Repayment details </button>
 
                       <button mat-menu-item ><app-feather-icons  style="color:black; padding-right: 10px;" [icon]="'download'" [class]="'tbl-fav-delete'" matTooltip="Download" aria-label="Download"></app-feather-icons> Download documents</button>
@@ -234,7 +234,7 @@
                       <mat-icon>delete</mat-icon>
                       <span>Delete Record</span>
                     </button>
-                    <button mat-menu-item (click)="refresh()">
+                    <button mat-menu-item (click)="getAllForms()" >
                       <mat-icon>refresh</mat-icon>
                       <span>Refresh Record</span>
                     </button>

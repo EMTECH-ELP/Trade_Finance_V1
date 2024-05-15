@@ -33,7 +33,7 @@ export class TestComponent implements OnInit {
 
   public submit(){
     
-    this.lcService.createLc(this.testForm.value).subscribe({
+    this.lcService.createLc(this.testForm.value, 546789).subscribe({
       next: ((res) => {
 
         console.log("Response", res);

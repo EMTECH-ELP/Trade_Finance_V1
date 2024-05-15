@@ -1,18 +1,32 @@
-
-<mat-list>
-    <mat-list-item><h2>Customer Details</h2></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><h2>Beneficiary Details</h2></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><h2>Goods and Shipment Details</h2></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><h2>Guarantee Details</h2></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><h2>Security Details</h2></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><h2>Supporting Documents</h2></mat-list-item>
-  </mat-list>
-  <div class="actions">
-    <button mat-button color="warn" (click)="reject()">Reject</button>
-    <button mat-button color="primary" (click)="approve()">Approve</button>
-  </div>
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb [title]="'Letter of Credit'" [items]="['Home']" [active_item]="'Verify'">
+      </app-breadcrumb>
+    </div>
+    <mat-list>
+      <mat-list-item>
+        <h2>Applicant Details</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h2>Beneficiary Details</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h2>LC Details</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h2>Collateral and Guarantee Details</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h2>Supporting Documents</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <div class="actions">
+      <button mat-button color="warn" (click)="reject()">Reject</button>
+      <button mat-button color="primary" (click)="approve()">Approve</button>
+    </div>

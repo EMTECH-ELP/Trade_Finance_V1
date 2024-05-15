@@ -152,8 +152,6 @@ export class CreateDcComponent implements OnInit {
     { documentType: 'Packing List', checked: false, formControlName: 'packingList' },
     { documentType: 'Marine Bill of Lading', checked: false, formControlName: 'billOfLading' },
     { documentType: 'CMR/Airway Bill', checked: false, formControlName: 'airwayBill' },
-    { documentType: 'Others', checked: false, formControlName: 'other1' },
-    { documentType: 'Others', checked: false, formControlName: 'other2' },
     // Adds rows to html
   ];
   
@@ -161,16 +159,19 @@ export class CreateDcComponent implements OnInit {
   toggleRow(index: number) {
    this.rows[index].checked = !this.rows[index].checked;
    }
-  
+   addRow() {
+    const documentType = prompt("Enter document type:");
+    if (documentType) {
+      this.rows.push({
+        documentType: documentType,
+        checked: false,
+        // Add more properties as needed
+      });
+    }
+  }
    
 
-  addRow() {
-    this.rows.push({
-      documentType: '',
-      checked: false,
-      // Add more properties as needed
-    });
-  }
+
 
 
 
@@ -179,21 +180,65 @@ export class CreateDcComponent implements OnInit {
 
     // Check if a file is selected
     if (selectedFile) {
-        // Check file type
-        if (selectedFile.type !== 'application/pdf') {
-            // Display an error message or take appropriate action
-            alert('Please select a PDF file.');
-            
-            // Clear the file input and disable it
-            event.target.value = '';
-            return;
-        }
+      // Check file type
+      if (selectedFile.type !== 'application/pdf') {
+        // Display an error message or take appropriate action
+        alert('Please select a PDF file.');
+        // Clear the file input and disable it
+        event.target.value = '';
+        return;
+      }
+
+      // If the selected file is a PDF, read it as a data URL using FileReader
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        // Convert the PDF file content to a string
+        const pdfString = fileReader.result as string;
+
+        // Now you have the PDF content as a string (pdfString)
+        // You can assign it to a form control or store it as needed
+        // For example, you can store it in a form control named 'pdfContent'
+        this.applicationForm.get('pdfContent')?.setValue(pdfString);
+      };
+      fileReader.readAsDataURL(selectedFile);
     }
+  }
+  
+
+
+//    onFileSelected(event: any) {
+//      const selectedFile = event.target.files[0];
+
+//     // Check if a file is selected
+//   if (selectedFile) {
+//         // Check file type
+//         if (selectedFile.type !== 'application/pdf') {
+//            // Display an error message or take appropriate action
+//             alert('Please select a PDF file.');
+            
+//              // Clear the file input and disable it
+//             event.target.value = '';
+//            return;
+//         }
+//     }
+//  }
+
+
+
+
+additionalFileUploads: { label: string }[] = [];
+
+addFileUpload() {
+  const newLabel = prompt('Enter Document Name for the New File Upload:'); // Prompts the user to enter the label
+
+  if (newLabel) { // Check if the user entered a label
+    // Add the new file upload section with the specified label
+    const newRow = {
+      label: newLabel.trim(), // Trim to remove leading/trailing spaces
+    };
+    this.additionalFileUploads.push(newRow);
+  }
 }
-
-
-
-
 
 
 }

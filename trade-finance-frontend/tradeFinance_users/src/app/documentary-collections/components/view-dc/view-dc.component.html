@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-lg-3 col-sm-6" >
       <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
+          <div class="info-box7-block"style="border-radius: 5px;">
               <h4 class="m-b-20">Created DCs</h4>
               <h2 class="text-end"><span class="float-start">0</span><i
                 class="fab fa-buromobelexperte"></i>
@@ -25,7 +25,7 @@
 
   <div class="col-lg-3 col-sm-6">
       <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
+          <div class="info-box7-block"style="border-radius: 5px;">
               <h4 class="m-b-20">Pending DCs</h4>
               <h2 class="text-end"><span class="float-start">0</span><i
                       class="fab fa-buromobelexperte"></i></h2>
@@ -35,7 +35,7 @@
   </div>
   <div class="col-lg-3 col-sm-6">
       <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
+          <div class="info-box7-block"style="border-radius: 5px;">
               <h4 class="m-b-20">Approved DCs</h4>
               <h2 class="text-end"><span class="float-start">0</span><i
                 class="fab fa-buromobelexperte"></i>
@@ -49,7 +49,7 @@
   </div>
   <div class="col-lg-3 col-sm-6" >
       <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
+          <div class="info-box7-block"style="border-radius: 5px;">
               <h4 class="m-b-20">Rejected DCs</h4>
               <h2 class="text-end"><span class="float-start">0</span><i
                 class="fab fa-buromobelexperte"></i></h2>
@@ -63,17 +63,7 @@
 
         
 
-        <div class="filter-section">
-            <label for="filter-status">Filter by Status:</label>
-            <select id="filter-status" [(ngModel)]="selectedStatus">
-                <option value="all">All</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-            </select>
-            <button style="border-radius: 5px;background-color: maroon;color: white;">Filter</button>
-        </div>
-
+      
         <div class="row">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -117,6 +107,18 @@
       
                       </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
       
                     <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
                       #exporter="matTableExporter">
@@ -194,6 +196,18 @@
                       <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
       
                     </mat-table>
+
+
+
+
+
+
+
+
+
+
+
+                    
       
                     <!-- Loading spinner -->
                     <div *ngIf="isLoading" class="tbl-spinner">
