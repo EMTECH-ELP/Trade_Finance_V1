@@ -15,7 +15,7 @@ export class CreateComponent implements OnInit {
   ShowLookupComponent: boolean = false;
   selectedValue: string;
   applicationForm: FormGroup;
-  additionalFileUploads: any;
+  additionalFileUploads:{label: string}[]=[];
   // dialog: any;
  // router: any;
 
@@ -101,7 +101,79 @@ export class CreateComponent implements OnInit {
     });
 
   }
-K
+
+  createLOC(data: any) {
+    const body = {
+      "accountNumber": data.accountNumber,
+      "cifId": data.cifId,
+      "nationalId": data.nationalId,
+      "accountName": data.accountName,
+      "currency": data.currency,
+      "email": data.email,
+      "phoneNumber":data.phoneNumber,
+      "address": data.address,
+      "city": data.city,
+      "postalCode":data.postalCode,
+      "countryCode":data.countryCode,
+      "country": data.country,
+      "lcNumber": "",
+      "lcType": data.lcType,
+      "applicableRules": data.applicableRules,
+      "shipmentDate": data.shipmentDate,
+      "portOfDischarge": data.portOfDischarge,
+      "portOfLoading": data.portOfLoading,
+      "shipmentTerms": data.shipmentTerms,
+      "partialShipment": data.partialShipment,
+      "transShipment": data.transShipment,
+      "issueDate": data.issueDate,
+      "expiryDate": data.expiryDate,
+      "tenor": data.tenor,
+      "transferable": data.transferable,
+      "negotiationPeriod": data.negotiationPeriod,
+      "commodityCode": data.commodityCode,
+      "goodsQuantity": data.goodsQuantity,
+      "pricePerUnit": data.pricePerUnit,
+      "countyOfOrigin":data.countyOfOrigin,
+      "chargesBorneBy":data.chargesBorneBy,
+      "amount": data.amount,
+      "transferAmount":data.transferAmount,
+      "transferCurrencyCode":data.transferCurrencyCode,
+      "newExpiryDate": data.newExpiryDate,
+      "currencyCode": data.currencyCode,
+      "collateralType": data.collateralType,
+      "collateralId": data.collateralId,
+      "collateralValue":data.collateralValue,
+      "guarantorName": data.guarantorName,
+      "guarantorAddress": data.guarantorAddress,
+      "guarantorEmail": data.guarantorEmail,
+      "guarantorPhoneNumber": data.guarantorPhoneNumber,
+      "documentName1": data.documentName1,
+      "documentDescription1": data.documentDescription1,
+  "beneficiaryDto": {
+  "beneficiaryFirstName": data.beneficiaryFirstName,
+      "beneficiaryMiddleName": data.beneficiaryMiddleName,
+      "beneficiaryLastName": data.beneficiaryLastName,
+      "beneficiaryAccountNumber": data.beneficiaryAccountNumber,
+      "beneficiaryAccountName": data.beneficiaryAccountName,
+      "beneficiaryEmail": data.beneficiaryEmail,
+      "beneficiaryIban": data.beneficiaryIban,
+      "beneficiaryAddressLine1": data.beneficiaryAddressLine1,
+      "beneficiaryAddressLine2": data.beneficiaryAddressLine2,
+      "beneficiaryCity": data.beneficiaryCity,
+      "beneficiaryPostalCode": data.beneficiaryPostalCode,
+      "beneficiaryCountryCode": data.beneficiaryCountryCode,
+      "beneficiaryCountry": data.beneficiaryCountry,
+      "advisingBankName": data.advisingBankName,
+      "advisingBankCountry": data.advisingBankCountry,
+      "advisingBankBic":data.advisingBankBic
+  },
+  "documentsRequiredDto": {},
+  "shipmentAndGoodsDto": {},
+  "paymentSecurityDto": {}
+  };
+    return body;
+  }
+
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     const data = this.createLOC(this.applicationForm.value)
@@ -119,9 +191,6 @@ K
     this.ngOnInit()
     alert('Form Submitted Successfully!')
      this.router.navigate(["/lc/view"]);
-  }
-  createLOC(value: any) {
-    throw new Error('Method not implemented.');
   }
   openLookup(): void {
     const dialogConfig = new MatDialogConfig();
@@ -185,6 +254,7 @@ K
       fileReader.readAsDataURL(selectedFile);
     }
   }
+  
   addFileUpload() {
     const newLabel = prompt('Enter Document Name for the New File Upload:'); // Prompts the user to enter the label
   

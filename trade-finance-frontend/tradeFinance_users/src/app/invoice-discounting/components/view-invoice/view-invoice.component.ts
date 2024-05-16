@@ -17,7 +17,7 @@ import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-
 interface InvoiceDiscounting {
   name: string;
   invoiceNumber: string;
- businessName: string;
+ applicantBusinessName: string;
   buyerName: string;
   invoiceAmount: string;
   status: string;
@@ -63,7 +63,7 @@ data = [];
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'invoiceNumber', 'businessName', 'buyerName', 'invoiceAmount','status', 'actions'];
+  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantBusinessName', 'buyerName', 'invoiceAmount','status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -97,7 +97,7 @@ totalRejectinvoices: any;
           const extractedData = res.data.map((invoiceForms: any, index: number) => ({     
           no: index + 1,
          invoiceNumber: invoiceForms.invoiceNumber,           
-         businessName: invoiceForms.businessName, 
+         applicantBusinessName: invoiceForms.applicantBusinessName, 
           buyerName: invoiceForms.buyerName,
           invoiceAmount:  invoiceForms.invoiceAmount,
           status:invoiceForms.status,
