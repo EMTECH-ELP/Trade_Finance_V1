@@ -3,13 +3,13 @@
   <input type="search">
 </div>
 <section class="content">
-  <div class="content-block">
-    <div class="block-header">
+  <div class="content-block" style="background-color: maroon;" >
+    <div class="block-header" style="background-color: white;">
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'Modify LC'">
       </app-breadcrumb>
     </div>
-    <form [formGroup]="modificationForm">
-      <p style="color: maroon; font-weight: bold;">LC Details:</p>
+    <form [formGroup]="modificationForm" style="background-color: white;">
+      <p class="stepHeading" >LC Details:</p>
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
           <mat-label>LC Number:</mat-label>
@@ -106,9 +106,12 @@
         </div>
 
         <div>
-          <button mat-raised-button type="reset" class="btn btn-secondary">Cancel</button>
-          <button mat-raised-button (click)="onModify()" class="btn" style="margin: 20px;">Submit</button>
+          <button mat-raised-button type="reset" class="nextDC" >Cancel</button>
+          <span style="margin-right: 745px;"></span>
+          <button mat-raised-button (click)="onModify()" class="nextDC" >Submit</button>
 
         </div>
       </div>
     </form>
+    </div>
+  </section>
