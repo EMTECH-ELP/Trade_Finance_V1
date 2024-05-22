@@ -5,8 +5,8 @@ export const environment = {
 
   //Emtech test server
 
-  userUrl:  "http://192.168.88.137.8082",    
-  baseUrlAdmin: "http://192.168.88.137:8082",
+  userUrl:  "http://192.168.88.141:8082",    
+  baseUrlAdmin: "http://192.168.89.183:8082",
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",
   baseUrlBudget: "http://52.15.152.26:9090",
