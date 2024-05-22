@@ -31,7 +31,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: "/users/viewcheckers",
-        title: "Checkers",
+        title: "Roles",
         moduleName: "dashboard",
         iconType: "feather",
         icon: "user-check",
@@ -45,7 +45,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: "/users/view",
-        title: "Makers",
+        title: "Users",
         moduleName: "dashboard",
         iconType: "feather",
         icon: "user-check",
