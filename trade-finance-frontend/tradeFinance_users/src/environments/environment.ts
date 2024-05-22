@@ -30,8 +30,7 @@ billApiUrl: 'http://192.168.88.246:8085',
 approveLcApiUrl: 'http://192.168.88.246:8085' ,// Approval of a created LC
 deleteLcApiUrl: 'http://192.168.88.246:8085',  //delete an already created LC
 
-  authUrl: 'http://192.168.88.137:8082',
-  resetUrl: '',
+
 
 
   // apiUrl: 'http://192.168.88.246:8085',
