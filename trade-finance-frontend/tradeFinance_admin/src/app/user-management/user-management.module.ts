@@ -27,6 +27,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { LookupComponent } from './lookup/lookup.component';
+import { AddUsersComponent } from './Users/add-users/add-users.component';
+import { ViewUsersComponent } from './Users/view-users/view-users.component';
+import { AddRolesComponent } from './Roles/add-roles/add-roles.component';
+import { ViewRolesComponent } from './Roles/view-roles/view-roles.component';
 
 
 @NgModule({
@@ -37,7 +41,12 @@ import { LookupComponent } from './lookup/lookup.component';
            AddMakersComponent,
            ViewCheckersComponent,
            AddCheckersComponent,
-           LookupComponent
+           LookupComponent,
+           AddUsersComponent,
+           ViewUsersComponent,
+           AddRolesComponent,
+           ViewRolesComponent,
+    
   ],
   imports: [
     CommonModule,
