@@ -6,13 +6,13 @@ export const environment = {
   //Emtech test server
 
   // Maker Authentication endpoints
-  authUrl: "http://192.168.88.137:8082",
-  resetUrl: "http://192.168.88.137:8082",
-  OTPUrl: "http://192.168.88.137:8082",
+  authUrl: "http://192.168.89.183:8082",
+  resetUrl: "http://192.168.89.183:8082",
+  OTPUrl: "http://192.168.89.183:8082",
 
   baseUrlAdmin: '...', 
   baseUrlHR: "http://52.15.152.26:6300",
-  baseUrlProcurement: "http://52.15.152.26:9090",
+  baseUrlProcurement: "http://52.15.152.26:9090", 
   baseUrlBudget: "http://52.15.152.26:9090",
   baseUrlSupplierManagement: "http://52.15.152.26:9099",
   baseUrlFixedAssets: "http://52.15.152.26:9090",
