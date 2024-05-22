@@ -7,10 +7,13 @@ import { ViewCheckersComponent } from './Checkers/view-checkers/view-checkers.co
 
 
 const routes: Routes = [
-{path:'view',component:ViewMakersComponent},
-{path:'add',component:AddMakersComponent},
-{path:'viewcheckers', component:ViewCheckersComponent},
-{path:'addcheckers', component:AddCheckersComponent}
+  { path: 'view', component: ViewMakersComponent },
+  { path: 'add', component: AddMakersComponent },
+  { path: 'viewcheckers', component: ViewCheckersComponent },
+  { path: 'add-roles', component: AddCheckersComponent },
+  { path: 'view-roles', component: AddCheckersComponent },
+  { path: 'add-users', component: AddCheckersComponent },
+  { path: 'view-users', component: AddCheckersComponent },
 ];
 
 @NgModule({
