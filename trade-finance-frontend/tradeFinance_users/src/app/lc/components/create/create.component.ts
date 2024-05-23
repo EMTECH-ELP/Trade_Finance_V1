@@ -61,15 +61,9 @@ export class CreateComponent implements OnInit {
       beneficiaryPostalCode: ['', Validators.required],
       beneficiaryCountryCode: ['', Validators.required],
       beneficiaryCountry: ['', Validators.required],
-<<<<<<< HEAD
-      advisingBankName: ['', Validators.required],
-      advisingBankBranch: [''],
-      advisingBankCountry: ['', Validators.required],
-=======
       advisingBankName: ['', Validators.required],                                    //add advisingBankCountry
       advisingBankBranch: ['', Validators.required],                                  //add this                    //add this
       advisingBankBranchCode: ['', Validators.required],                             //add this
->>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
       advisingBankBic: ['', Validators.required],     //For SWIFT CODE
       advisingBankCountry: [''],
       //beneficiaryPhoneNumber: ['', Validators.required],
