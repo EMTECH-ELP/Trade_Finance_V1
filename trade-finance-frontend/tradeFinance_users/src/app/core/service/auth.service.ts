@@ -30,8 +30,8 @@ const httpOptions = {
 // /auth/signin
 export class AuthService {
 
-  // private authUrl = 'http://192.168.89.57:8082';
-  // authUrl: any;
+  private authUrl = environment.authUrl;
+  resetUrl: any;
   hasLoggedIn: any;
  
   constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}

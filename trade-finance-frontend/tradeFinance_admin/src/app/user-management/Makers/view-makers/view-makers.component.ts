@@ -4,43 +4,25 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/core/service/auth.service';
 @Component({
   selector: 'app-view-makers',
   templateUrl: './view-makers.component.html',
   styleUrls: ['./view-makers.component.scss']
 })
 export class ViewMakersComponent implements OnInit {
- 
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['no', 'name', 'employeeId', 'email', 'branchName', 'branchCode','status'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isLoading = true;
-  rows: any;
+  users: any;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private authservice: AuthService) { }
   ngOnInit(): void {
-    this.getRows();
+    this.getAllUsers();
   }
 
-  public getRows() {
-    this.rows = [
-      { name: 'Anne Wairimu', employeeId: '12345', email: 'ann@equitybank.co.ke', branchName: 'Kasarani', branchCode: '054', status: 'Active' },
-      { name: 'Fridah Atieno', employeeId: '6578', email: 'fridah@equitybank.co.ke', branchName: 'Limuru', branchCode: '032', status: 'Active' },
-      { name: 'Alex James', employeeId: '17654', email: 'alex@equitybank.co.ke', branchName: 'Eldoret', branchCode: '122', status: 'Flagged' },
-      { name: 'Zippy West', employeeId: '65677', email: 'zippy@equitybank.co.ke', branchName: 'Nakuru', branchCode: '078', status: 'Active' },
-      { name: 'Mark Carl', employeeId: '1876', email: 'mark@equitybank.co.ke', branchName: 'Kisii', branchCode: '098', status: 'Active' },
-      { name: 'Regina Maina', employeeId: '18945', email: 'regina@equitybank.co.ke', branchName: 'Nyali', branchCode: '101', status: 'Active' },
-    ];
-
-    console.log("list:", this.rows);
-    if (this.rows) {
-      this.isLoading = false
-    }
-    this.dataSource = new MatTableDataSource(this.rows);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -51,7 +33,22 @@ export class ViewMakersComponent implements OnInit {
   }
 
   public refresh() {
-    this.getRows();
+    this.getAllUsers();
+    }
+
+  getAllUsers(): void {
+    this.authservice.getAllUsers().subscribe({
+      next: (result: any) => {
+        if (result.statusCode === 302) {
+          this.isLoading = false
+        
+          this.dataSource = new MatTableDataSource(result.entity);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      },
+      error: (error) => {}
+    })
   }
 
   public add(){
@@ -91,5 +88,4 @@ export class ViewMakersComponent implements OnInit {
     });
 
   }
-
-    }
+}

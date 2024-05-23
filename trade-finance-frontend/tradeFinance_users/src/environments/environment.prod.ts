@@ -12,7 +12,7 @@ export const environment = {
 
   baseUrlAdmin: '...', 
   baseUrlHR: "http://52.15.152.26:6300",
-  baseUrlProcurement: "http://52.15.152.26:9090",
+  baseUrlProcurement: "http://52.15.152.26:9090", 
   baseUrlBudget: "http://52.15.152.26:9090",
   baseUrlSupplierManagement: "http://52.15.152.26:9099",
   baseUrlFixedAssets: "http://52.15.152.26:9090",

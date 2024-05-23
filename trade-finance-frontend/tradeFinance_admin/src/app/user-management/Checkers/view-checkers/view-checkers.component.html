@@ -61,16 +61,16 @@
 
                 <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header
-                    class="psl-3 tbl-col-width-per-40">Name</mat-header-cell>
+                    class="psl-3 tbl-col-width-per-40">Full Name</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                    {{row.name}}</mat-cell>
+                    {{row.fullName}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="employeeId">
                   <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">Employee
                     Id</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-40">
-                    {{row.employeeId}}</mat-cell>
+                    {{row.employeeID}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="email">
