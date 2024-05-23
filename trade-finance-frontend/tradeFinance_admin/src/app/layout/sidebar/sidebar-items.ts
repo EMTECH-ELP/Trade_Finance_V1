@@ -103,7 +103,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/dashboard",
+        path: "/system/user-activities",
         title: "Workflows Management",
         moduleName: "dashboard",
         iconType: "feather",

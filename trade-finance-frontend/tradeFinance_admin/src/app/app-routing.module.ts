@@ -24,6 +24,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./user-management/user-management.module").then((m) => m.UserManagementModule),
       },
+      {
+        path: "system",
+        loadChildren: () =>
+          import ("./system-manangement/system-manangement.module").then((m)=> m.SystemManangementModule),
+      },
       
     ],
   },
