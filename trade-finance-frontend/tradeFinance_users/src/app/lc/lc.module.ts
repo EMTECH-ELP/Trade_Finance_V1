@@ -40,7 +40,7 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
     ViewComponent,
     TestComponent,
     VerifyLcComponent,
-    ModifyLookupComponent,
+    
   ],
   imports: [
     CommonModule,

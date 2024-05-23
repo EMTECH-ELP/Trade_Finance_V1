@@ -12,13 +12,12 @@
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
-          <p style="color: maroon; font-weight: bold;">Applicant Details:</p>
+          <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p>
           <div class="row" #applicationDetails>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountNumber" type="number">
-                <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
 
               <small
@@ -30,7 +29,7 @@
               <mat-label>Customer's CIF ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="cifId" type="number">
-                <mat-icon matSuffix>search</mat-icon>
+                <!-- <mat-icon matSuffix>search</mat-icon> -->
               </mat-form-field>
               <small
                 *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
@@ -40,7 +39,7 @@
               <mat-label>National ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="nationalId" type="number">
-                <mat-icon matSuffix>search</mat-icon>
+                <!-- <mat-icon matSuffix>search</mat-icon> -->
               </mat-form-field>
               <small *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
                 *Customer's national ID is required</small>
@@ -139,12 +138,12 @@
                 *Beneficiary First Name is required</small>
             </div>
 
-            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
-            </div> -->
+            </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Last Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
@@ -254,6 +253,15 @@
               <small
                 *ngIf="applicationForm.get('advisingBankName'). invalid && applicationForm.get('advisingBankName').touched">
                 *Advising Bank is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Branch</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="advisingBankBranch" type="text">
+              </mat-form-field>
+              <!-- <small
+                *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
+                *Advising Bank Branch is required</small> -->
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Country</mat-label>
@@ -459,7 +467,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="portOfDischarge" type="text">
+                <input matInput formControlName="portOfDischarge" type="text">
               </mat-form-field>
               <small
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">

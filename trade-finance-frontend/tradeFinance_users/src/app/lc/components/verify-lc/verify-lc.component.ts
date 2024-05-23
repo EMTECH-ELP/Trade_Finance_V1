@@ -1,31 +1,54 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LcService } from '../../services/lc.service';
 
 @Component({
-  selector: 'app-verify-lc',
+  selector: 'app-verify',
   templateUrl: './verify-lc.component.html',
   styleUrls: ['./verify-lc.component.sass']
 })
-export class VerifyLcComponent implements OnInit {
+export class verifyComponent implements OnInit {
+  
+  verifyForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
 
-  ngOnInit(): void {
+    private lcService: LcService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+    this.verifyForm = this.fb.group({
+      lcNumber: ['', Validators.required]
+    });
   }
 
-  reject(): void {
-    const reason = prompt('Please insert reason for rejection:');
-    if (reason) {
-      // Logic to send back LC to maker for approval with reason
-      // Example: this.letterOfCreditService.rejectLetterOfCredit(this.data.id, reason);
-      // this.dialogRef.close();
-    }
+  public onApprove() {
+    const data = { ...this.verifyForm.value, status: 'Approved' };
+    this.processAction(data);
   }
 
-  approve(): void {
-    // Logic to generate MT798
-    alert('MT798 has successfully been generated.');
-    // this.dialogRef.close();
+  public onReject() {
+    const data = { ...this.verifyForm.value, status: 'Rejected' };
+    this.processAction(data);
   }
 
-
+  private processAction(data: any) {
+    console.log("Form data", data);
+    this.lcService.approveLc(data).subscribe({
+      next: (response) => {
+        console.log("LC approval/rejection response", response);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        alert('Action completed successfully and records updated!');
+        this.router.navigate(["view"]);
+      }
+    });
+    this.verifyForm.reset();
+  }
 }
