@@ -66,8 +66,8 @@ registerChecker(): void {
   }
 
   const userData = {
-    fullName: this.checkerForm.get('name')?.value,
-    employeeId: this.checkerForm.get('employeeId')?.value,
+    fullName: this.checkerForm.get('fullName')?.value,
+    employeeId: this.checkerForm.get('employeeID')?.value,
     email: this.checkerForm.get('email')?.value,
     branchName: this.checkerForm.get('branchName')?.value,
     branchCode: this.checkerForm.get('branchCode')?.value,
@@ -81,8 +81,7 @@ registerChecker(): void {
       this.checkerForm.reset(); // Reset the form to its initial state
       this.hide = false;
       this.openSnackBar('Registration successful'); // Call openSnackBar method
-      
-      this.router.navigate(["/users/users"]);
+      this.dialogRef.close()
     },
     error: (error) => {
       console.log("Error:", error);
@@ -93,6 +92,7 @@ registerChecker(): void {
     }
   });
 }
+
 
 // onSumbit(){
 //   console.log(this.checkerForm.value);

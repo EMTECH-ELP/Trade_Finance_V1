@@ -16,6 +16,8 @@ export class CreateComponent implements OnInit {
   selectedValue: string;
   applicationForm: FormGroup;
   additionalFileUploads:{label: string}[]=[];
+  uploadedFile: File | null = null;
+  fileUrl: string | null = null;
   // dialog: any;
  // router: any;
 
@@ -59,10 +61,17 @@ export class CreateComponent implements OnInit {
       beneficiaryPostalCode: ['', Validators.required],
       beneficiaryCountryCode: ['', Validators.required],
       beneficiaryCountry: ['', Validators.required],
+<<<<<<< HEAD
       advisingBankName: ['', Validators.required],
       advisingBankBranch: [''],
       advisingBankCountry: ['', Validators.required],
+=======
+      advisingBankName: ['', Validators.required],                                    //add advisingBankCountry
+      advisingBankBranch: ['', Validators.required],                                  //add this                    //add this
+      advisingBankBranchCode: ['', Validators.required],                             //add this
+>>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
       advisingBankBic: ['', Validators.required],     //For SWIFT CODE
+      advisingBankCountry: [''],
       //beneficiaryPhoneNumber: ['', Validators.required],
 
       //Step 3: LC details 
@@ -96,9 +105,18 @@ export class CreateComponent implements OnInit {
       guarantorName: ['', Validators.required],
       guarantorAddress: ['', Validators.required],
       guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
+      guarantorPhoneNumber: ['', [Validators.required,Validators.pattern(/^\+?[1-9]\d{1,14}$/)] ],
       documentName1: ['', Validators.required],                   //one to nine
-      documentDescription1: ['', Validators.required]
+      documentDescription1: ['', Validators.required],
+      commercialInvoiceFile: [''],
+      documentName2: ['', Validators.required],                   //one to nine
+      documentDescription2: ['', Validators.required],
+      billOfLadingFile: [''],
+      documentName3: ['', Validators.required],                   //one to nine
+      documentDescription3: ['', Validators.required],
+      packingListFile: [''],
+      confirm: [''],
+      advise: ['']
     });
 
   }
@@ -148,8 +166,17 @@ export class CreateComponent implements OnInit {
       "guarantorAddress": data.guarantorAddress,
       "guarantorEmail": data.guarantorEmail,
       "guarantorPhoneNumber": data.guarantorPhoneNumber,
-      "documentName1": data.documentName1,
+      "documentName1":  data.documentName1,                
       "documentDescription1": data.documentDescription1,
+      "commercialInvoiceFile": data.commercialInvoiceFile,
+      "documentName2": data.documentName2,              
+      "documentDescription2": data.documentDescription2,
+      "billOfLadingFile": data.billOfLadingFile,
+      "documentName3": data.documentName3,                  
+      "documentDescription3": data.documentDescription3,
+      "packingListFile": data.packingListFile,
+      "confirm": data.confirm,
+      "advise": data.advise,
   "beneficiaryDto": {
   "beneficiaryFirstName": data.beneficiaryFirstName,
       "beneficiaryMiddleName": data.beneficiaryMiddleName,
@@ -165,6 +192,8 @@ export class CreateComponent implements OnInit {
       "beneficiaryCountryCode": data.beneficiaryCountryCode,
       "beneficiaryCountry": data.beneficiaryCountry,
       "advisingBankName": data.advisingBankName,
+     "advisingBankBranch": data.advisingBankBranch,                                //add this                    //add this
+      "advisingBankBranchCode": data.advisingBankBranchCode,
       "advisingBankCountry": data.advisingBankCountry,
       "advisingBankBic":data.advisingBankBic
   },
@@ -190,8 +219,17 @@ export class CreateComponent implements OnInit {
     })
     this.applicationForm.reset()
     this.ngOnInit()
-    alert('Form Submitted Successfully!')
-     this.router.navigate(["/lc/view"]);
+    //alert('Form Submitted Successfully!')
+    let result = window.confirm('Click OK to submit. Click Cancel to abort');
+    if (result) {
+        alert('Form Submitted Successfully!');
+        this.router.navigate(["/lc/view"]);
+    } else {
+        alert('Application Cancelled');
+        this.router.navigate(["/lc/create"]);
+    }
+  
+     
   }
   openLookup(): void {
     const dialogConfig = new MatDialogConfig();
@@ -223,11 +261,11 @@ export class CreateComponent implements OnInit {
       address: data.address,
       city: data.city,
       postalCode: data.postalCode,
-      countryCode: data.countryCode ? data.countryCode : 'NAN',
+      countryCode: data.countryCode? data.countryCode : 'NAN',
       country: data.country
     });
    }
-   onFileSelected(event: any) {
+   OnFileSelected(event: any) {
     const selectedFile = event.target.files[0];
 
     // Check if a file is selected
@@ -265,6 +303,62 @@ export class CreateComponent implements OnInit {
         label: newLabel.trim(), // Trim to remove leading/trailing spaces
       };
       this.additionalFileUploads.push(newRow);
+    }
+  }
+  //Calculate the total amount under LC Details section:
+  updateAmount() {
+    const quantity = this.applicationForm.get('goodsQuantity').value;
+    const price = this.applicationForm.get('pricePerUnit').value;
+    const amount = quantity * price;
+    this.applicationForm.get('amount').setValue(amount);
+  }
+
+  calculateAmount() {
+    const quantity = this.applicationForm.get('goodsQuantity').value;
+    const price = this.applicationForm.get('pricePerUnit').value;
+    return quantity * price;
+  }
+
+  //INPUT FIELDS LOOKUPS
+  //Beneficiary Details:
+  getIban(){}
+  getCity(){}
+  getCountryandCode(){}
+  getBankDetails(){}
+
+
+
+
+
+  //Method to handle file download action
+  // downloadFile() {
+  //   const fileUrl = this.applicationForm.value.billOfLadingFile;
+  //   const link = document.createElement('a');
+  //   link.href = fileUrl;
+  //   link.download = fileUrl.split('/').pop(); // Extract the file name
+  //   link.click();
+  // }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.uploadedFile = input.files[0];
+      this.generateFileUrl();
+    }
+  }
+
+  generateFileUrl(): void {
+    if (this.uploadedFile) {
+      this.fileUrl = URL.createObjectURL(this.uploadedFile);
+      this.applicationForm.patchValue({ billOfLadingFile: this.fileUrl });
+    }
+  }
+
+  downloadFile(): void {
+    if (this.fileUrl) {
+      const link = document.createElement('a');
+      link.href = this.fileUrl;
+      link.download = this.uploadedFile?.name ?? 'download';
+      link.click();
     }
   }
 }

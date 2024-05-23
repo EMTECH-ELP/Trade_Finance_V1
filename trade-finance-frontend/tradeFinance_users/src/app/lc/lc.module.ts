@@ -40,7 +40,12 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
     ViewComponent,
     TestComponent,
     VerifyLcComponent,
+<<<<<<< HEAD
     
+=======
+    ModifyLookupComponent,
+    ConfirmDeletionDialogComponent,
+>>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
   ],
   imports: [
     CommonModule,
@@ -76,5 +81,6 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
   ]
 })
 export class LcModule { } import { } from './components/create/create.component';
+import { ConfirmDeletionDialogComponent } from './components/delete-lc/confirm-deletion-dialog/confirm-deletion-dialog.component';
 
 
