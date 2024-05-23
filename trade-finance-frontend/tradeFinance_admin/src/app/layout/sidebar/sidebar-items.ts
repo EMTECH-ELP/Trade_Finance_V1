@@ -31,7 +31,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: "/users/viewcheckers",
-        title: "Checkers",
+        title: "Roles",
         moduleName: "dashboard",
         iconType: "feather",
         icon: "user-check",
@@ -45,7 +45,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: "/users/view",
-        title: "Makers",
+        title: "Users",
         moduleName: "dashboard",
         iconType: "feather",
         icon: "user-check",
@@ -61,22 +61,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "/admin/dashboard",
-    title: "Security Management",
-    moduleName: "dashboard",
-    iconType: "feather",
-    icon: "key",
-    class: "",
-    groupTitle: false,
-    badge: "",
-    badgeClass: "",
-    role: ["ADMIN"],
-    // privilege: ["Dashboard"],
-    submenu: [],
-  },
-
-  {
-    path: "/admin/dashboard",
+    path: "/system",
     title: "System management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -89,7 +74,7 @@ export const ROUTES: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "/admin/dashboard",
+        path: "/system",
         title: "Master data",
         moduleName: "dashboard",
         iconType: "feather",
@@ -100,8 +85,24 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: "",
         role: ["ADMIN"],
         // privilege: ["Dashboard"],
-        submenu: [],
+        submenu: [
+          {
+            path: "/system/banks",
+            title: "Bank list management",
+            moduleName: "dashboard",
+            iconType: "feather",
+            icon: "setting",
+            class: "",
+            groupTitle: false,
+            badge: "",
+            badgeClass: "",
+            role: ["ADMIN"],
+            // privilege: ["Dashboard"],
+            submenu: [] ,
+          },
+        ],
       },
+
       {
         path: "/system/user-activities",
         title: "Workflows Management",
@@ -118,6 +119,8 @@ export const ROUTES: RouteInfo[] = [
       }
     ],
   },
+
+ 
   {
     path: "/admin/dashboard",
     title: "Report and Analytics",

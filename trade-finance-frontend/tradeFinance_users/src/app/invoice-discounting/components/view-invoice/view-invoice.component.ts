@@ -9,17 +9,17 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { PageEvent } from '@angular/material/paginator';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
-import { ViewpopUpComponent } from '../viewpop-up/viewpop-up.component';
+import { CreatedformComponent } from '../createdform/createdform.component';
 import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-upload.component';
-import { DeleteInvoiceComponent } from '../delete-invoice/delete-invoice.component';
 
 
 
 interface InvoiceDiscounting {
-  name: string;
+  no:number;
   invoiceNumber: string;
-  applicantAccountName: string;
-  applicaAccountNumber: string;
+ applicantBusinessName: string;
+  buyerName: string;
+  invoiceAmount: string;
   status: string;
   branchCode: string;
   actions: string;
@@ -31,7 +31,11 @@ interface InvoiceDiscounting {
 })
 
 export class ViewInvoiceComponent implements OnInit {
+
   
+ geturl = `http://192.168.91.96:9000/invoices/list`;
+ rows: any[]; // Define invoices array to hold the invoice objects
+
   all: number = 0;
   pending: number = 0;
   approved: number = 0;
@@ -42,9 +46,20 @@ export class ViewInvoiceComponent implements OnInit {
     // Defining the pageEvent property
     pageEvent: PageEvent;
 formData: any;
+data = []; 
+
+
+// Mock data for testing
+ mockData: InvoiceDiscounting[] = [
+  { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: '$5000', status: 'Pending', branchCode: 'BC001', actions: 'Actions' },
+  { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: '$15000', status: 'Approved', branchCode: 'BC002', actions: 'Actions' },
+  { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: '$2500', status: 'Rejected', branchCode: 'BC003', actions: 'Actions' },
+  { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: '$7500', status: 'Pending', branchCode: 'BC004', actions: 'Actions' },
+  { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: '$12500', status: 'Approved', branchCode: 'BC005', actions: 'Actions' }
+];
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  // totalCreatedInvoiceDiscountingForms = 0;
+  // totainvoiceFormsreatedInvoiceDiscountingForms = 0;
   // totalItems: number = 0;
   //  all: number = 0;
   // pending = 0;
@@ -53,21 +68,22 @@ formData: any;
   // selectedStatus = 'all';
   // selectedFilterRadioButton: string = 'all';
 
-  totalCreatedInvoices = 0;
+  totainvoiceFormsreatedInvoices = 0;
   totalPendingInvoices = 0;
   totalApprovedInvoices = 0;
   selectedStatus = 'all';
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantAccountName', 'applicantAccountNumber', 'status', 'actions'];
+  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantBusinessName', 'buyerName', 'invoiceAmount','status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   isLoading = true;
   products: any;
-  lcs: any;
+ invForms: any;
 totalRejectinvoices: any;
-  rows: any[];
+row: any;
+
 
  
 
@@ -78,32 +94,44 @@ totalRejectinvoices: any;
     private snackbar: SnackbarService) { }
 
 
-  ngOnInit(): void {
-    this.getrows();
-    // this.getFormData();
-  }
+    ngOnInit(): void {
+      this.getAllForms();
+      // this.initializeMockData(); // Add this line to initialize mock data
 
-
-  public getrows()  {
-   this.rows = [
-      { no: '1', invoiceNumber: 'ML_183', applicantAccountName: 'Kings Fashion Limited', applicantAccountNumber: '03321445518', status: 'Pending', actions: 'Active' },
-      { no: '2', invoiceNumber: 'KM_652', applicantAccountName: 'R & X Electronics', applicantAccountNumber: '03825432905', status: 'Approved', actions: 'Active' },
-      { no: '3', invoiceNumber: 'SL_876', applicantAccountName: 'Hasenye Shipping Co.Ltd', applicantAccountNumber: '03590835214', status: 'Approved', actions: 'Flagged' },
-      { no: '4', invoiceNumber: 'ABC_656', applicantAccountName: 'JK Cement Manufacturers Ltd', applicantAccountNumber: '03676502126', status: 'Pending', actions: 'Active' },
-      { no: '5', invoiceNumber: 'XYZ_187', applicantAccountName: 'Joshua Cheese & Milk Distributers', applicantAccountNumber: '03765432901', status: 'Pending', actions: 'Active' },
-
-    ];
-  
-    // console.log("list:", this.rows);
-    // if (this.rows) {
-    //   this.isLoading = false
+    }
+    // initializeMockData(): void {
+    //   this.dataSource = new MatTableDataSource(this.mockData);
+    //   this.dataSource.sort = this.sort;
+    //   this.dataSource.paginator = this.paginator;
+    //   this.isLoading = false; // Set loading to false as we are using static data
     // }
+    getAllForms(): void {
+      console.log('Fetching invoice forms...');
+      this.invDiscountingService.getAllForms().subscribe({
+      next: (res: any) => {  
+        console.log('Response:', res); 
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+          const extractedData = res.data.map((invoiceForms: any, index: number) => ({     
+          no: index + 1,
+         invoiceNumber: invoiceForms.invoiceNumber,           
+         applicantBusinessName: invoiceForms.applicantBusinessName, 
+          buyerName: invoiceForms.buyerName,
+          invoiceAmount:  invoiceForms.invoiceAmount,
+          status:invoiceForms.status,
+          actions: 'Actions',// Replace this with actual actions logic
+        }));
 
-    
-    this.dataSource = new MatTableDataSource(this.rows);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+        // error: (err) => {
+        //   console.error('Error fetching invoiceForms:', Error);
+        //   this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
+        // }
+
+    },
+  
+  });
+}
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -112,25 +140,20 @@ totalRejectinvoices: any;
       this.dataSource.paginator.firstPage();
     }
   }
- 
-  // onFilterChanged(value: string){
-  //   console.log(value);
-  //   this.selectedFilterRadioButton = value;
 
 
-  // }
   public add() {
-    this.router.navigate(["/invoice-discounting/createInvoice"])
+    this.router.navigate(["invoice-discounting/createInvoice"])
   }
 
-  public openViewLcComponent(row) {
-
+  public openViewinvoiceFormsComponent(row) {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
+    dialogConfig.width = '1000px';
+    dialogConfig.height= '1000px';
+
     dialogConfig.data = { rowData: row }
-
     const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
 
 
@@ -140,53 +163,12 @@ totalRejectinvoices: any;
   }
 
  
+
+
+
+
   
-  public refresh() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
-    dialogConfig.data = { test: "row" }
 
-    const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
-
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('closed');
-    });
-  }
-
-  // public edit() {
-  //   this.router.navigate(["/invoice-discounting/modifyInvoice"])
-  // }
-  
-  // pageSize = 10;
-  // pageSizeOptions = ["[2,5,10,20, 30, 40, 50, 100]"];
-  // totalItems = 5;
-
-
-
-  // onPageChange(event: PageEvent) {
-  //   // Extracting relevant information from the event
-  //   const pageIndex = event.pageIndex;
-  //   const pageSize = event.pageSize;
-  //   const previousPageIndex = event.previousPageIndex;
-  //   const length = event.length;
-  //   // this.totalItems = this.rows.length; 
- 
-  // }
- 
-  totalRowsCount = this.getrows.length;
-  // totalPendingForms = this.getrows( s => s.created === true ).length;
-  // totalApprovedForms = this.getrows.( s => s.approved === false).length;
-  
-  // getFormData(): void {
-  //   this.invDiscountingService.getFormData()
-  //     .subscribe(data => {
-  //       this.formData = data;
-  //       console.log(this.formData); // Handle the retrieved form data here
-  //     });
-  // }
   openDialog(): void {
     const dialogRef = this.dialog.open(RepaymentdetailsComponent, {
       width: '600px', 
@@ -199,17 +181,38 @@ totalRejectinvoices: any;
       // Handle dialog close if needed
     });
   }
- viewDialog(): void{
- const dialogRef = this.dialog.open(ViewpopUpComponent,{
-  width: '600px',
- });
- } 
+//  viewDialog(): void{
+//  const dialogRef = this.dialog.open(ViewinvFormComponent,{
+//   width: '800px',
+//  });
+//  } 
 
- deleteDialog(): void{
-  const dialogRef = this.dialog.open(DeleteInvoiceComponent,{
-   width: '600px',
+// viewform(): void {
+//   console.log('Navigating to viewInvForm with data:');
+//   // this.router.navigate(['viewInvForm'])
+//    this.router.navigate(["/invoice-discounting/createdform"]); 
+// }
+// { queryParams: { data: JSON.stringify() } };
+// }
+openFormDialog(invoice): void {
+  console.log('Navigating to viewInvForm with data:');
+  const dialogRef = this.dialog.open(CreatedformComponent, {
+    width: '95%', 
+    height:'90%',
+    data: {
+      data: invoice
+    }
+    // Adjust width as needed
+    // Other configuration options if needed
   });
-  } 
 
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    // Handle dialog close if needed
+  });
+}
+
+// 
 
 }
+

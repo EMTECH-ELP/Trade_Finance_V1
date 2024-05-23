@@ -3,8 +3,8 @@
       <div class="block-header">
           <app-breadcrumb [title]="'Invoice Discounting'" [items]="['Home']" [active_item]="'View'">
           </app-breadcrumb>
-      </div>
-      <!-- Widgets -->
+      </div> 
+       
 <div class="row">
   <div class="col-lg-3 col-sm-6" >
       <div class="info-box7 bg-kingdom order-info-box7">
@@ -57,6 +57,9 @@
 <!-- #END# Widgets -->
 
       
+      
+
+
       <div class="row">
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -86,13 +89,14 @@
                             </button>
                           </div>
                         </li>
-  
-                        <li>
-                          <div class="m-l-10" matTooltip="Refresh">
-                              <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
+                        <li> 
+                     <div class="m-l-10" matTooltip="Refresh">
+                            <button>
                               <mat-icon class="col-white">refresh</mat-icon>
                             </button>
+
                           </div>
+                        
                         </li>
   
                       </ul>
@@ -119,12 +123,12 @@
                     {{row.invoiceNumber}}</mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="applicantAccountName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-20">Applicant
-                    Account Name</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-20">
-                    {{row.applicantAccountName}}</mat-cell>
-                </ng-container>
+                  <ng-container matColumnDef="applicantBusinessName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-20">Applicant's
+                      Company</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-20">
+                      {{row.applicantBusinessName}}</mat-cell>
+                  </ng-container>
 
                 <ng-container matColumnDef="applicantAccountNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-40">Applicant
@@ -148,12 +152,13 @@
 
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef class="psl-2 tbl-col-width-per-20">Actions</mat-header-cell>
-                  <mat-cell *matCellDef="let row; let i=index;" (click)="onSelect(row)">
-
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-                      (click)="OpenInvoiceComponent(row)" (click)="viewDialog()"  class="tbl-action-btn">
-                      <app-feather-icons  aria-label="View" [icon]="'eye'"   matTooltip="View"  [class]="'tbl-fav-edit'"></app-feather-icons>
-                    </button>
+                  <mat-cell *matCellDef="let row; let i=index;" >
+<!--  (click)="openViewinvoiceFormsComponent(row)" -- (click)="onSelect(row)" -->
+                  <button mat-icon-button color="accent" (click)="openFormDialog(row)"
+                    class="tbl-action-btn">
+                    <app-feather-icons  aria-label="View" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
+                  </button>
+                
                     <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
                       (click)="OpenInvoiceComponent(row)" class="tbl-action-btn" >
                       <app-feather-icons  aria-label="edit" [icon]="'edit'"  matTooltip="Edit"  (click)="edit(row)" [class]="'tbl-fav-edit'"></app-feather-icons>
@@ -174,15 +179,15 @@
                       <!-- <i class="material-icons" aria-label="Repayment Details" matTooltip="Repayment Details">attach_money</i> -->
                   
 
-                    <button mat-icon-button (click)="$event.stopPropagation()" (click)="RepaymentDetails(row)" mat-icon-button [matMenuTriggerFor]="menu"
+                    <button mat-icon-button (click)="$event.stopPropagation()" (click)="RepaymentDetails(row)" [matMenuTriggerFor]="menu"
                       class="tbl-action-btn">
                       <app-feather-icons  style="color: black;" [icon]="'more-vertical'" [class]="'tbl-fav-delete'" matTooltip="More" aria-label="More"></app-feather-icons>
 
                     </button>
                     <mat-menu #menu="matMenu">
-                      <button mat-menu-item  mat-icon-button   color="blue" (click)="$event.stopPropagation()"  (click)="openDialog()"  mat-icon-button
-                      class="tbl-action-btn">
-                      <i class='fas fa-money-bill-1-wave' style="color:black;padding-right: 10px;" matTooltip="Repayment Details"
+                      <button mat-menu-item  mat-icon-button   color="blue" (click)="$event.stopPropagation()"  (click)="openDialog()" 
+                      class="tbl-action-btn"> 
+                   <i class='fas fa-money-bill-1-wave' style="color:black;padding-right: 10px;" matTooltip="Repayment Details"
                      ></i>Repayment details </button>
 
                       <button mat-menu-item ><app-feather-icons  style="color:black; padding-right: 10px;" [icon]="'download'" [class]="'tbl-fav-delete'" matTooltip="Download" aria-label="Download"></app-feather-icons> Download documents</button>
@@ -194,7 +199,7 @@
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
+                <mat-row *matRowDef="let row; columns: displayedColumns;"
                   [style.cursor]="'pointer'" matRipple>
                 </mat-row>
 
@@ -265,3 +270,13 @@
 </div>
 </section>
 
+<!-- <div class="filter-section">
+  <label for="filter-status">Filter by Status:</label>
+  <select id="filter-status" [(ngModel)]="selectedStatus">
+      <option value="all">All</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+  </select>
+  <button style="border-radius: 5px;background-color: maroon;color: white;">Filter</button>
+</div> -->

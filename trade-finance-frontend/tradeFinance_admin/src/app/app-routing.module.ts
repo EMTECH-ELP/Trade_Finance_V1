@@ -27,7 +27,7 @@ const routes: Routes = [
       {
         path: "system",
         loadChildren: () =>
-          import ("./system-manangement/system-manangement.module").then((m)=> m.SystemManangementModule),
+          import("./system-management/system-management.module").then((m) => m.SystemManagementModule),
       },
       
     ],
