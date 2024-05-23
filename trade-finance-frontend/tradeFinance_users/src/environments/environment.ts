@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.88.141:8082',
+authUrl: 'http://192.168.89.183:8082',
 resetUrl: '',
 
 
@@ -47,6 +47,7 @@ deleteLcApiUrl: 'http://192.168.88.246:8085',  //delete an already created LC
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
  getInvUrl: 'http://192.168.91.96:9000',         // Fetch forms
 
+ deleteurl:'http://192.168.90.44:9000', 
  //bank gurantee url
 bgUrl: 'http://192.168.91.61:8085',
 };

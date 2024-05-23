@@ -23,7 +23,7 @@ import {  MatDialogModule } from '@angular/material/dialog';
 import { RepaymentdetailsComponent } from './components/repaymentdetails/repaymentdetails.component';
 import { ViewpopUpComponent } from './components/viewpop-up/viewpop-up.component';
 import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.component';
-
+import { DeleteInvoiceComponent } from './components/delete-invoice/delete-invoice.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
     RepaymentdetailsComponent,
     ViewpopUpComponent,
     InvoiceLookupComponent,
+    DeleteInvoiceComponent,
    
   
   ],
