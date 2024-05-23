@@ -104,7 +104,7 @@ export const ROUTES: RouteInfo[] = [
       },
 
       {
-        path: "/admin/dashboard/view",
+        path: "/system/user-activities",
         title: "Workflows Management",
         moduleName: "dashboard",
         iconType: "feather",

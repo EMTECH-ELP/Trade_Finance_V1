@@ -55,6 +55,7 @@ deleteLcApiUrl: 'http://192.168.56.1:8085',  //delete an already created LC
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
  getInvUrl: 'http://192.168.91.96:9000',         // Fetch forms
 
+ deleteurl:'http://192.168.90.44:9000', 
  //bank gurantee url
 bgUrl: 'http://192.168.91.61:8085',
 };

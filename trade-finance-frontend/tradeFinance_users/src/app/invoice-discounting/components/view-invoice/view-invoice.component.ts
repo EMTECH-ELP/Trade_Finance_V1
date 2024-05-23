@@ -33,7 +33,7 @@ interface InvoiceDiscounting {
 export class ViewInvoiceComponent implements OnInit {
 
   
- geturl = `http://192.168.90.44:9000/invoices/list`;
+ geturl = `http://192.168.91.96:9000/invoices/list`;
  rows: any[]; // Define invoices array to hold the invoice objects
 
   all: number = 0;
@@ -215,5 +215,4 @@ openFormDialog(invoice): void {
 // 
 
 }
-
 

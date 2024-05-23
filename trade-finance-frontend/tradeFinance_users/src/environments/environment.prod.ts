@@ -7,7 +7,9 @@ export const environment = {
 
   // Maker Authentication endpoints
   authUrl: "http://192.168.89.183:8082",
+  resetUrl: "http://192.168.89.57:8082",
   OTPUrl: "http://192.168.89.183:8082",
+  
 
 
   baseUrlAdmin: '...', 
@@ -29,5 +31,6 @@ export const environment = {
  saveUrl: 'http://192.168.91.141:9000',     // save repayment details form
  getUrl: 'http://192.168.91.96:9000',              // Fetch forms
 
+ deleteurl:'http://192.168.90.44:9000',
   //Localhost
 };
