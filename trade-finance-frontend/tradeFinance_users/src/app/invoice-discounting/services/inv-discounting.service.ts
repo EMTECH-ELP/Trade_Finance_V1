@@ -10,7 +10,16 @@ import { environment } from 'src/environments/environment';
 export class InvDiscountingService {
 
   invUrl: any;
+  private formData: any;
+  forms: any;
 
+  setFormData(data: any) {
+    this.formData = data;
+  }
+
+  getFormData() {
+    return this.formData;
+  }
 
 
   constructor(
@@ -32,13 +41,17 @@ export class InvDiscountingService {
   }
 
   public getAllForms(): Observable<any> {
-    const url = `${environment.getInvUrl}/invoices/list`;     //FETCH FORMS
+    const url = `${environment.invUrl}/invoices/list`;     //FETCH FORMS
     return this.http.get<any>(url)
   }
 
   public submitForm(data: any): Observable<any> {
     const url = `${environment.saveUrl}/repayment`;
     return this.http.post<any>(url, data);               //Saving repayment details
+  }
+
+  getData(url:string):Observable<any>{
+    return this.http.get(url)
   }
 
 }
