@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewpopUpComponent } from './viewpop-up.component';
+import { CreatedformComponent } from './createdform.component';
 
-describe('ViewpopUpComponent', () => {
-  let component: ViewpopUpComponent;
-  let fixture: ComponentFixture<ViewpopUpComponent>;
+describe('CreatedformComponent', () => {
+  let component: CreatedformComponent;
+  let fixture: ComponentFixture<CreatedformComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewpopUpComponent ]
+      declarations: [ CreatedformComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewpopUpComponent);
+    fixture = TestBed.createComponent(CreatedformComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

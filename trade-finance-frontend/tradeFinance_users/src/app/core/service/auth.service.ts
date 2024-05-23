@@ -30,8 +30,8 @@ const httpOptions = {
 // /auth/signin
 export class AuthService {
 
-  private authUrl = 'http://192.168.91.98:8082';
-  resetUrl: any;
+  // private authUrl = 'http://192.168.89.57:8082';
+  // authUrl: any;
   hasLoggedIn: any;
  
   constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}
@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
-    const resetPasswordUrl = `${environment.resetUrl}/auth/resetPassword`;
+    const resetPasswordUrl = `${environment.authUrl}/auth/resetPassword`;
 
     return this.http.post<{ message: string }>(
       resetPasswordUrl,
@@ -137,7 +137,7 @@ export class AuthService {
     
   
   forgotPassword(email): Observable<any> {
-    const resetPasswordUrl = `${environment.authUrl}/soa/users/forgot-password`;
+    const resetPasswordUrl = `${environment.authUrl}/api/v1/auth/forgot/Password`;
 
     return this.http.post<any>(resetPasswordUrl, email);
   }
