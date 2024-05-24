@@ -6,9 +6,12 @@ export const environment = {
   //Emtech test server
 
   // Maker Authentication endpoints
-  authUrl: "http://192.168.89.57:8082",
-  resetUrl: "http://192.168.89.57:8082",
-  OTPUrl: "http://192.168.89.57:8082",
+  authUrl: 'http://192.168.89.183:8082',
+  resetUrl: 'http://192.168.89.183:8082',
+  OTPUrl:'http://192.168.89.183:8082',
+  // authUrl: "http://192.168.89.57:8082",
+  // resetUrl: "http://192.168.89.57:8082",
+  // OTPUrl: "http://192.168.89.57:8082",
  
   
 

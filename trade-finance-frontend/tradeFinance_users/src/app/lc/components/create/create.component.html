@@ -301,6 +301,15 @@
                 *Advising Bank Branch is required</small> -->
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Branch</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="advisingBankBranch" type="text">
+              </mat-form-field>
+              <!-- <small
+                *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
+                *Advising Bank Branch is required</small> -->
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
@@ -573,6 +582,9 @@
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
 <<<<<<< HEAD
+                <input matInput formControlName="portOfDischarge" type="text">
+=======
+<<<<<<< HEAD
                 <mat-select formControlName="portOfDischarge">
                   <mat-option value="Mombasa">Mombasa</mat-option>
                   <mat-option value="Kisumu">Kisumu</mat-option>
@@ -593,6 +605,7 @@
 >>>>>>> e347454898a2352b5506003d3fb17d7ba7b71ec8
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
 >>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
+>>>>>>> 1e0cb8dba4fb970f96b37bc4aabb5f95a2d6f9ed
               </mat-form-field>
               <mat-hint style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
