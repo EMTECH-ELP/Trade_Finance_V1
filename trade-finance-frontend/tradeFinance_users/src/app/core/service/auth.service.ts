@@ -30,7 +30,7 @@ const httpOptions = {
 // /auth/signin
 export class AuthService {
 
-  private authUrl = 'http://192.168.91.98:8082';
+  private authUrl = environment.authUrl;
   resetUrl: any;
   hasLoggedIn: any;
  
@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
-    const resetPasswordUrl = `${environment.resetUrl}/auth/resetPassword`;
+    const resetPasswordUrl = `${environment.authUrl}/auth/resetPassword`;
 
     return this.http.post<{ message: string }>(
       resetPasswordUrl,

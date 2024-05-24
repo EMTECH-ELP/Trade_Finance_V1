@@ -1,6 +1,4 @@
-<div class="top-bar">
-  <input type="search">
-</div>
+
 <section class="content">
   <div class="content-block">
     <div class="block-header">
@@ -16,7 +14,11 @@
           <p style="color: maroon; font-weight: bold;">Applicant Details:</p>
           <div class="row" #applicationDetails>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Account Number</mat-label>
+              <!-- <mat-label>Account Number</mat-label> -->
+              <mat-select>Search by</mat-select>
+              <mat-option>Account Number</mat-option>
+              <mat-option>CIF ID</mat-option>
+              <mat-option>National ID</mat-option>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="accountNumber" type="text">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
@@ -27,25 +29,7 @@
                 *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
                 *Account Number is required</small>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Customer's CIF ID</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="cifId" type="string">
-                <mat-icon matSuffix>search</mat-icon>
-              </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
-                *CIF ID is required</small>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>National ID</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="nationalId" type="text">
-                <mat-icon matSuffix>search</mat-icon>
-              </mat-form-field>
-              <small *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
-                *Customer's national ID is required</small>
-            </div>
+          
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Name</mat-label>

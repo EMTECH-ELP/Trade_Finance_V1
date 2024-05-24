@@ -39,7 +39,6 @@ export class ModifyComponent implements OnInit {
       advise: ['']
     });
   }
-
   public onModify() {
     console.log("Form data", this.modificationForm.value);
     this.lcService.modifyLc(this.modificationForm.value).subscribe({

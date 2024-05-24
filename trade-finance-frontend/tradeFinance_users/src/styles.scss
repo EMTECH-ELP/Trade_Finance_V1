@@ -6,7 +6,11 @@ $MaterialIcons_FontPath: "~material-icons-font/fonts";
 @import "~material-icons-font/sass/main";
 @import "~material-icons-font/sass/Regular";
 @import "~@angular/material/theming";
+<<<<<<< HEAD
 
+=======
+// @import '~@fortawesome/fontawesome-free/css/all.css';
+>>>>>>> 1e0cb8dba4fb970f96b37bc4aabb5f95a2d6f9ed
 
 
 
@@ -350,4 +354,7 @@ label {
 .custom-button:hover {
   background-color: darkred; /* Darker shade of maroon on hover */
 }
-
+// .mat-step-icon-content{
+//   color:white;
+//   background-color: maroon;
+// }
