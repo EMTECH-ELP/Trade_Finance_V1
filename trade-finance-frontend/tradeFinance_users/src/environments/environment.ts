@@ -8,6 +8,17 @@ resetUrl: '',
 
 
 //LCs
+<<<<<<< HEAD
+<<<<<<< HEAD
+  createApiUrl: 'http://192.168.56.1:8085',    //create LC
+  getApiUrl: `http://192.168.56.1:8187`, //fetch applicant details
+  getAllUrl: `http://192.168.56.1:8085`,      //get all LCs details
+getlcNoUrl: 'http://192.168.56.1:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
+putUrl: 'http://192.168.56.1:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
+transferApiUrl: 'http://192.168.56.1:8085', //Transfer LC
+getUrl: ` http://192.168.56.1:8085`,      //get all LCs details
+=======
+=======
 //   createApiUrl: 'http://192.168.56.1:8085',    //create LC
 //   getApiUrl: `http://192.168.56.1:8187`, //fetch applicant details
 //   getAllUrl: `http://192.168.56.1:8085`,      //get all LCs details
@@ -15,6 +26,7 @@ resetUrl: '',
 // putUrl: 'http://192.168.56.1:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 // transferApiUrl: 'http://192.168.56.1:8085', //Transfer LC
 // getUrl: ` http://192.168.56.1:8085`,      //get all LCs details
+>>>>>>> 49909b0eecb8f4dbfa4a98b56a197a29dab5d113
 
   createApiUrl: 'http://192.168.88.246:8085',    //create LC
   getApiUrl: `http://192.168.88.246:8187`, //fetch applicant details
@@ -24,6 +36,7 @@ putUrl: 'http://192.168.88.246:8085',        // Modify LC details fetched by LcN
 transferApiUrl: 'http://192.168.88.246:8085', //Transfer LC
 getUrl: ` http://192.168.88.246:8085`,      //get all LCs details
 
+>>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
  
 
  //Documentary collections
@@ -39,7 +52,15 @@ deleteLcApiUrl: 'http://192.168.56.1:8085',  //delete an already created LC
 
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  authUrl: 'http://192.168.89.57:8082',
+  resetUrl: '',
+=======
+>>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
+=======
  
+>>>>>>> 49909b0eecb8f4dbfa4a98b56a197a29dab5d113
 
   // apiUrl: 'http://192.168.56.1:8085',
   // getApiUrl: 'http://192.168.91.98:8082',
