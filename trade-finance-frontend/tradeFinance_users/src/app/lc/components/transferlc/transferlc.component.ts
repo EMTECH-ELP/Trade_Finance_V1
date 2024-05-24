@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transferlc',
-  templateUrl: './transferlc.component.html',
+  templateUrl:'./transferlc.component.html',
   styleUrls: ['./transferlc.component.sass'],
 })
 export class TransferlcComponent implements OnInit {

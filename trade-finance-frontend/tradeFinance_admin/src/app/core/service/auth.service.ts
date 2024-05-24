@@ -137,7 +137,11 @@ export class AuthService {
 
 
 addNewUser(user: any): Observable<any> {
-    return this.http.post<any>(`${this.userUrl}/auth/admin/addNewUser`, user, this.httpOptions);
+    return this.http.post<any>(`${environment.userUrl}/auth/admin/addNewUser`, user, this.httpOptions);
+}
+
+getAllUsers(): Observable<any> {
+  return this.http.get<any>(`${environment.userUrl}/auth/admin/getAllUsers`);
 }
 
 

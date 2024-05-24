@@ -1,0 +1,61 @@
+<div  class="container-fluid">
+    <h2 mat-dialog-title>Invoice Discounting form</h2>
+    <mat-dialog-content>
+      <div class="container">
+<div class="row">
+
+<div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <p  style="color: maroon;font-size: 18px; font-weight: bold;">Applicant Details:</p> 
+        <label >Account Number: </label> <p>{{rowData?.accountNumber}}</p> 
+<strong><label >Account Name: </label></strong> <p>{{rowData.accountName}}</p>
+<label >Currency </label> <p>{{rowData?.currency}}</p>
+<label >Phone Number: </label> <p>{{rowData?.phoneNumber}}</p> 
+<label >Email: </label> <p>{{rowData?.email}}</p> 
+<label >City: </label> <p>{{rowData?.pcity}}</p> 
+<label >Address: </label> <p>{{rowData?.address}}</p> 
+<label >Postal Code: </label> <p>{{rowData?.postalCode}}</p> 
+<label >Country: </label> <p>{{rowData?.country}}</p> 
+<label >Country Code: </label> <p>{{rowData?.countryCode}}</p> 
+</div>
+<div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+<p  style="color: maroon;font-size: 18px; font-weight: bold;">Invoice Details:</p>  
+<label style="font-weight: bold;">Invoice Date: </label> <p>{{rowData?.invoiceDate}}</p>
+<label style="font-weight: bold;">Invoice Number: </label> <p>{{rowData?.invoiceNumber}}</p>
+<label style="font-weight: bold;">Invoice Amount: </label> <p>{{rowData?.invoiceAmount}}</p>
+<label >Applicant's Company Name: </label> <p>{{rowData?.applicantBusinessName}}</p>
+<label >Applicant's Business Address: </label> <p>{{rowData?.applicantBusinessAddress}}</p>
+<label >Due date: </label> <p>{{rowData?.dueDate}}</p>
+<label >Invoices: </label> <p>{{rowData?.invoices}}</p>
+<label >Application Form: </label> <p>{{rowData?.applicationForm}}</p>
+</div>
+<div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+  <p  style="color: maroon;font-size: 18px; font-weight: bold;">Importer Details:</p> 
+  <label >Buyer's Name: </label> <p>{{rowData?.buyerName}}</p>
+  <label >Buyer's Email: </label> <p>{{rowData?.buyerEmailAddress}}</p>
+  <label >Business Name: </label> <p>{{rowData?.buyerBusinessName}}</p>
+  <label >City: </label> <p>{{rowData?.buyerCity}}</p>
+  <label >Country: </label> <p>{{rowData?.buyerCountry}}</p>
+</div>
+<div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+  <p  style="color: maroon;font-size: 18px; font-weight: bold;">Funding Details:</p> 
+  <label >Disbursal Date: </label> <p>{{rowData?.disbursalDate}}</p>
+  <label >Funding Amount: </label> <p>{{rowData?.fundingAmount}}</p>
+  <label >Repayment Date: </label> <p>{{rowData?.repaymentDate}}</p>
+  <label >Credit Account: </label> <p>{{rowData?.creditAccount}}</p>
+  <label >Credit Limit: </label> <p>{{rowData?.creditLimit}}</p>
+  <label >Credit Appraisal Form: </label> <p>{{rowData?.creditAppraisalForm}}</p>
+</div>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+  <div class="example-button-row" align="end">
+    <button  type="submit" class="btn btn-primary" >Approve</button>
+    <button mat-flat-button mat-button color="warn"
+     tabindex="-1">Reject</button>
+     
+    <button class="btn btn-secondary" (click)="onClose()"
+     tabindex="-1">Close</button>
+  </div>
+</div>
+      </div>
+    </div>
+    </mat-dialog-content>
+    </div>

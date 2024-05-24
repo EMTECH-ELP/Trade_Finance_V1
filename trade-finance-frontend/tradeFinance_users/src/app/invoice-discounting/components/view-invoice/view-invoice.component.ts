@@ -9,13 +9,13 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { PageEvent } from '@angular/material/paginator';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
-import { ViewpopUpComponent } from '../viewpop-up/viewpop-up.component';
+import { CreatedformComponent } from '../createdform/createdform.component';
 import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-upload.component';
 
 
 
 interface InvoiceDiscounting {
-  name: string;
+  no:number;
   invoiceNumber: string;
  applicantBusinessName: string;
   buyerName: string;
@@ -31,8 +31,9 @@ interface InvoiceDiscounting {
 })
 
 export class ViewInvoiceComponent implements OnInit {
+
   
- geturl = `http://192.168.90.44:9000/invoices/list`;
+ geturl = `http://192.168.91.96:9000/invoices/list`;
  rows: any[]; // Define invoices array to hold the invoice objects
 
   all: number = 0;
@@ -46,6 +47,16 @@ export class ViewInvoiceComponent implements OnInit {
     pageEvent: PageEvent;
 formData: any;
 data = []; 
+
+
+// Mock data for testing
+ mockData: InvoiceDiscounting[] = [
+  { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: '$5000', status: 'Pending', branchCode: 'BC001', actions: 'Actions' },
+  { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: '$15000', status: 'Approved', branchCode: 'BC002', actions: 'Actions' },
+  { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: '$2500', status: 'Rejected', branchCode: 'BC003', actions: 'Actions' },
+  { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: '$7500', status: 'Pending', branchCode: 'BC004', actions: 'Actions' },
+  { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: '$12500', status: 'Approved', branchCode: 'BC005', actions: 'Actions' }
+];
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
   // totainvoiceFormsreatedInvoiceDiscountingForms = 0;
@@ -71,6 +82,7 @@ data = [];
   products: any;
  invForms: any;
 totalRejectinvoices: any;
+row: any;
 
 
  
@@ -84,8 +96,15 @@ totalRejectinvoices: any;
 
     ngOnInit(): void {
       this.getAllForms();
-    }
+      // this.initializeMockData(); // Add this line to initialize mock data
 
+    }
+    // initializeMockData(): void {
+    //   this.dataSource = new MatTableDataSource(this.mockData);
+    //   this.dataSource.sort = this.sort;
+    //   this.dataSource.paginator = this.paginator;
+    //   this.isLoading = false; // Set loading to false as we are using static data
+    // }
     getAllForms(): void {
       console.log('Fetching invoice forms...');
       this.invDiscountingService.getAllForms().subscribe({
@@ -121,25 +140,20 @@ totalRejectinvoices: any;
       this.dataSource.paginator.firstPage();
     }
   }
- 
-  // onFilterChanged(value: string){
-  //   console.log(value);
-  //   this.selectedFilterRadioButton = value;
 
 
-  // }
   public add() {
     this.router.navigate(["invoice-discounting/createInvoice"])
   }
 
   public openViewinvoiceFormsComponent(row) {
-
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '600px'
-    dialogConfig.data = { rowData: row }
+    dialogConfig.width = '1000px';
+    dialogConfig.height= '1000px';
 
+    dialogConfig.data = { rowData: row }
     const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
 
 
@@ -149,41 +163,9 @@ totalRejectinvoices: any;
   }
 
  
-  
-  // public refresh() {
-  //   const dialogConfig = new MatDialogConfig()
-  //   dialogConfig.disableClose = true
-  //   dialogConfig.autoFocus = true
-  //   dialogConfig.width = '600px'
-  //   dialogConfig.data = { test: "row" }
-
-  //   const dialogRef = this.dialog.open(CreateInvoiceComponent, dialogConfig);
-
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log('closed');
-  //   });
-  // }
-
-  // public edit() {
-  //   this.router.navigate(["/invoice-discounting/modifyInvoice"])
-  // }
-  
-  // pageSize = 10;
-  // pageSizeOptions = ["[2,5,10,20, 30, 40, 50, 100]"];
-  // totalItems = 5;
 
 
 
-  // onPageChange(event: PageEvent) {
-  //   // Extracting relevant information from the event
-  //   const pageIndex = event.pageIndex;
-  //   const pageSize = event.pageSize;
-  //   const previousPageIndex = event.previousPageIndex;
-  //   const length = event.length;
-  //   // this.totalItems = this.rows.length; 
- 
-  // }
 
   
 
@@ -199,9 +181,38 @@ totalRejectinvoices: any;
       // Handle dialog close if needed
     });
   }
- viewDialog(): void{
- const dialogRef = this.dialog.open(ViewpopUpComponent,{
-  width: '600px',
- });
- } 
+//  viewDialog(): void{
+//  const dialogRef = this.dialog.open(ViewinvFormComponent,{
+//   width: '800px',
+//  });
+//  } 
+
+// viewform(): void {
+//   console.log('Navigating to viewInvForm with data:');
+//   // this.router.navigate(['viewInvForm'])
+//    this.router.navigate(["/invoice-discounting/createdform"]); 
+// }
+// { queryParams: { data: JSON.stringify() } };
+// }
+openFormDialog(invoice): void {
+  console.log('Navigating to viewInvForm with data:');
+  const dialogRef = this.dialog.open(CreatedformComponent, {
+    width: '95%', 
+    height:'90%',
+    data: {
+      data: invoice
+    }
+    // Adjust width as needed
+    // Other configuration options if needed
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    // Handle dialog close if needed
+  });
 }
+
+// 
+
+}
+

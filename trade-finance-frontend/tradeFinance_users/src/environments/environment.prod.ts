@@ -9,10 +9,16 @@ export const environment = {
   authUrl: 'http://192.168.89.183:8082',
   resetUrl: 'http://192.168.89.183:8082',
   OTPUrl:'http://192.168.89.183:8082',
+  // authUrl: "http://192.168.89.57:8082",
+  // resetUrl: "http://192.168.89.57:8082",
+  // OTPUrl: "http://192.168.89.57:8082",
+ 
+  
+
 
   baseUrlAdmin: '...', 
   baseUrlHR: "http://52.15.152.26:6300",
-  baseUrlProcurement: "http://52.15.152.26:9090",
+  baseUrlProcurement: "http://52.15.152.26:9090", 
   baseUrlBudget: "http://52.15.152.26:9090",
   baseUrlSupplierManagement: "http://52.15.152.26:9099",
   baseUrlFixedAssets: "http://52.15.152.26:9090",
@@ -29,5 +35,6 @@ export const environment = {
  saveUrl: 'http://192.168.91.141:9000',     // save repayment details form
  getUrl: 'http://192.168.91.96:9000',              // Fetch forms
 
+ deleteurl:'http://192.168.90.44:9000',
   //Localhost
 };

@@ -1,0 +1,63 @@
+<!-- 
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2 d-flex justify-content-center align-items-center">
+      <span style="font-weight: bold; font-size: 16px;">Add Banks</span>
+    </div> -->
+    <div >
+    <div class="d-flex justify-content-center align-items-center">
+      <span style="font-weight: bold; font-size: 16px;">Add Banks</span>
+    </div>
+  
+  
+  </div>
+  <!-- Check this below -->
+  <form #addBankForm="ngForm" (ngSubmit)="postBank(addBankForm)" >  
+    <div class="row">
+      <mat-label>Bank Name</mat-label>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder= "Bank Name" name="bankName"  required ngModel >
+        </mat-form-field>
+      </div>
+
+      <mat-label>Bank Country</mat-label>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Country" name="bankCountry"  required ngModel >
+        </mat-form-field>
+      </div>
+  
+      <mat-label >Branch Name:</mat-label>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Branch Name" name="branchName" required  ngModel>
+        </mat-form-field>
+      </div>
+    </div>
+ <div class="col">
+      <mat-label >Branch Code:</mat-label>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Branch Code" name="branchCode"required ngModel >
+        </mat-form-field>
+      </div>
+      <mat-label>Swift Code</mat-label>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Swift Code" name="bankSwiftCode"required ngModel >
+        </mat-form-field>
+      </div>
+     
+     
+  
+    </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <div class="example-button-row">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button  class="btn btn-secondary" (click)="onClose
+          ()" tabindex="-1">Cancel</button>
+        </div>
+      </div>
+  
+  </form>
+  

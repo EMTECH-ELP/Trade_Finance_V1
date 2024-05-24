@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
-
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
@@ -68,6 +68,7 @@ export function createTranslateLoader(http: HttpClient): any {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatButtonModule,
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
