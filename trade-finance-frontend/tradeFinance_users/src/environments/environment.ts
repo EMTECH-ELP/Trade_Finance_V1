@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.88.141:8082',
+authUrl: 'http://192.168.89.141:8082',
 resetUrl: '',
 
 
@@ -10,7 +10,7 @@ resetUrl: '',
 //LCs
 
   createApiUrl: 'http://192.168.88.246:8085',    //create LC
-  getApiUrl: `http://192.168.88.246:8187`, //fetch applicant details
+  getApiUrl: `http://192.168.91.24:8187`, //fetch applicant details
   getAllUrl: `http://192.168.88.246:8085`,      //get all LCs details
 getlcNoUrl: 'http://192.168.88.246:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
 putUrl: 'http://192.168.88.246:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
