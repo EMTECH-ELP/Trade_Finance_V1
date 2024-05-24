@@ -137,7 +137,7 @@ export class AuthService {
     
   
   forgotPassword(email): Observable<any> {
-    const resetPasswordUrl = `${environment.authUrl}/soa/users/forgot-password`;
+    const resetPasswordUrl = `${environment.authUrl}/api/v1/auth/forgot/Password`;
 
     return this.http.post<any>(resetPasswordUrl, email);
   }
