@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
-    const resetPasswordUrl = `${environment.resetUrl}/auth/resetPassword`;
+    const resetPasswordUrl = `${environment.authUrl}/auth/resetPassword`;
 
     return this.http.post<{ message: string }>(
       resetPasswordUrl,

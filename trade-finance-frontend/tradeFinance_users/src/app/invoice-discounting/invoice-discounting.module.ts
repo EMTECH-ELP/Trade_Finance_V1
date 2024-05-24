@@ -21,8 +21,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from '../shared/shared.module';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { RepaymentdetailsComponent } from './components/repaymentdetails/repaymentdetails.component';
-import { ViewpopUpComponent } from './components/viewpop-up/viewpop-up.component';
 import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.component';
+import { DeleteInvoiceComponent } from './components/delete-invoice/delete-invoice.component';
+
+import { CreatedformComponent } from './components/createdform/createdform.component';
 
 
 @NgModule({
@@ -31,9 +33,10 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
     CreateInvoiceComponent,
     ViewInvoiceComponent,
     RepaymentdetailsComponent,
-    ViewpopUpComponent,
+
     InvoiceLookupComponent,
-   
+    DeleteInvoiceComponent, 
+    CreatedformComponent
   
   ],
   imports: [

@@ -12,6 +12,7 @@
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
+          <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p>
           <!-- Lookup details -->
           <div class="row" style="background-color: maroon; color: white;">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
@@ -169,12 +170,12 @@
                 *Beneficiary First Name is required</mat-hint>
             </div>
 
-            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
-            </div> -->
+            </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Last Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
@@ -292,6 +293,15 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="advisingBankBranch" type="text">
+              </mat-form-field>
+              <!-- <small
+                *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
+                *Advising Bank Branch is required</small> -->
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Bank Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
               </mat-form-field>
@@ -562,6 +572,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
+<<<<<<< HEAD
                 <mat-select formControlName="portOfDischarge">
                   <mat-option value="Mombasa">Mombasa</mat-option>
                   <mat-option value="Kisumu">Kisumu</mat-option>
@@ -575,7 +586,13 @@
                   <mat-option value="Houston">Houston</mat-option>
                   <mat-option value="Virginia">Virginia</mat-option>
                 </mat-select>
+=======
+                <input matInput formControlName="portOfDischarge" type="text">
+<<<<<<< HEAD
+=======
+>>>>>>> e347454898a2352b5506003d3fb17d7ba7b71ec8
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
+>>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
               </mat-form-field>
               <mat-hint style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
