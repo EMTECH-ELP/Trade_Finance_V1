@@ -8,9 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InvDiscountingService {
-  getFormData() {
-    throw new Error('Method not implemented.');
-  }
+
 
   invUrl: any;
   private formData: any;

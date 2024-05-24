@@ -8,8 +8,7 @@ import { LcService } from '../../services/lc.service';
   templateUrl: './verify-lc.component.html',
   styleUrls: ['./verify-lc.component.sass']
 })
-export class verifyComponent implements OnInit {
-  
+export class VerifylcComponent  implements OnInit {
   verifyForm: FormGroup;
 
   constructor(
