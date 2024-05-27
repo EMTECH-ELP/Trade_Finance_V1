@@ -61,7 +61,6 @@ ngOnInit() {
     this.authService.login(this.authForm.value).subscribe(
       (res) => {
         console.log("Res: ", res);
-   
   
   
         // If reset-password is not required, handle role-based navigation for second,third etc time users

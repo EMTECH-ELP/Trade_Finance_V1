@@ -77,9 +77,10 @@
                           </li>
     
                           <li class="dropdown m-l-20">
-                            <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                            <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
-                              class="browser-default search-field" aria-label="Search box">
+                            <mat-form-field>
+                              <mat-label>Filter</mat-label>
+                              <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                            </mat-form-field>
                           </li>
     
                           <li>
@@ -270,13 +271,3 @@
 </div>
 </section>
 
-<!-- <div class="filter-section">
-  <label for="filter-status">Filter by Status:</label>
-  <select id="filter-status" [(ngModel)]="selectedStatus">
-      <option value="all">All</option>
-      <option value="pending">Pending</option>
-      <option value="approved">Approved</option>
-      <option value="rejected">Rejected</option>
-  </select>
-  <button style="border-radius: 5px;background-color: maroon;color: white;">Filter</button>
-</div> -->
