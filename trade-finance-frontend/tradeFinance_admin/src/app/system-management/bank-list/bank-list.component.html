@@ -51,7 +51,8 @@
 
               </ul>
             </div>
-
+         
+              
           </div>
         </div>
         <!-- [dataSource]="banks" -->
@@ -107,7 +108,7 @@
               </button>
 
               <button mat-icon-button color="accent" (click)="$event.stopPropagation()"
-              (click)="deletebank(bank.id)" class="tbl-action-btn">
+              (click)="onDeletebank($event, row.id)" class="tbl-action-btn">
                 <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
               </button>
 
@@ -133,7 +134,12 @@
             </td>
           </ng-container> -->
   
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr *ngIf="banks.length <1 && !isFetching"></tr>
+            <td colspan="5"> No Products Available!</td> 
+            <tr *ngIf="isFetching"></tr>
+              <td colspan="5">Loading....</td>
+              
         </mat-table>
         <div *ngIf="isLoading" class="tbl-spinner">
           <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
