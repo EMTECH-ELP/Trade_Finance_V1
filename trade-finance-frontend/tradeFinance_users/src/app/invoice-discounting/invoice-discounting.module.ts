@@ -27,6 +27,7 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
 import { CreatedformComponent } from './components/createdform/createdform.component';
 
 
+
 @NgModule({
   declarations: [
     ModifyInvoiceComponent,
@@ -34,7 +35,7 @@ import { CreatedformComponent } from './components/createdform/createdform.compo
     ViewInvoiceComponent,
     RepaymentdetailsComponent,
     InvoiceLookupComponent, 
-    CreatedformComponent
+    CreatedformComponent, 
   
   ],
   imports: [
