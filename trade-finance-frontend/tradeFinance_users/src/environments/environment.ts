@@ -28,7 +28,11 @@ shipmentTermsApi: 'http://192.168.89.92:8085',      //fetch all shipment terms
 
 
 //bills
-billApiUrl: 'http://192.168.56.1:8085', 
+billApiUrl: 'http://192.168.89.241:8181', 
+
+
+
+
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 
