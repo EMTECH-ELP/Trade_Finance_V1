@@ -105,16 +105,17 @@
         
           <p><strong>Business Name:</strong> {{rowData?.buyerBusinessName}}</p>
       </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <mat-label style="font-weight: bold;">Approved by:</mat-label>
-          <input type="text" placeholder="Full name" required> 
-       <mat-label style="font-weight: bold;" >Email:</mat-label>
-          <input type="email" placeholder="Email" required>
-        <br>  <mat-label style="font-weight: bold;">Date:</mat-label>
-          <input type="datetime-local" placeholder="DD/MM/YY" >
-        
- 
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+        <mat-label style="font-weight: bold; display: block; margin-bottom: 5px;">Approved by:</mat-label>
+        <input type="text" placeholder="Full name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+      
+        <mat-label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Email:</mat-label>
+        <input type="email" placeholder="Email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+      
+        <mat-label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Date:</mat-label>
+        <input type="datetime-local" placeholder="DD/MM/YY" [(ngModel)]="currentDate" [disabled]="true" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
       </div>
+      
      
     </div>
    

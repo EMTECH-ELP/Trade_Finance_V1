@@ -25,6 +25,7 @@ export class CreatedformComponent implements OnInit {
   rowData: any;
   invoiceId:number
   invoiceData: any;
+  currentDate:string;
 
     // applicationForm!: applicationFormDetails: 
     constructor(
@@ -39,6 +40,9 @@ export class CreatedformComponent implements OnInit {
        }
   
     ngOnInit(): void {
+      const now = new Date();
+      // Format the date and time as required by datetime-local input
+      this.currentDate = this.formatDateTime(now); 
       console.log("Data received:", this.data);
       const data = this.data.rowData
       if (data) {
@@ -49,12 +53,25 @@ export class CreatedformComponent implements OnInit {
       if (invoiceId) {
         this.rowData = invoiceId
         console.log("data", invoiceId);
-       
       }
 
       
     }
+// Function to format date and time
+private formatDateTime(date: Date): string {
+  const year = date.getFullYear();
+  const month = this.padZero(date.getMonth() + 1);
+  const day = this.padZero(date.getDate());
+  const hours = this.padZero(date.getHours());
+  const minutes = this.padZero(date.getMinutes());
+  // Combine date and time in the required format: YYYY-MM-DDTHH:mm
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
 
+// Function to pad single-digit numbers with leading zero
+private padZero(num: number): string {
+  return num < 10 ? '0' + num : num.toString();
+}
     downloadFile(): void {
       if (this.fileUrl) {
         const link = document.createElement('a');
