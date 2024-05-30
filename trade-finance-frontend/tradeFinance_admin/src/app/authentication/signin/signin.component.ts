@@ -62,33 +62,48 @@ export class SigninComponent
       (res) => {
         console.log("Res: ", res);
   
-        if (res.body.statusCode === 207) {
-          this.tokenCookieService.saveUser(res.body.entity)
-          console.log("routing to otp")
-          this.router.navigate(["/authentication/OTP"]);
-          return; // Exit the function to prevent further navigation
-        }
   
-        // If OTP is not required, handle role-based navigation
-        if (res.entity && res.entity.role === "SUPER_ADMIN") {
+        // If reset-password is not required, handle role-based navigation for second,third etc time users
+        if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
+                  this.tokenCookieService.saveUser(res.body.entity)
           this.router.navigate(["/admin/dashboard/view"]);
-        } else if (res.entity && (res.entity.role === "ADMIN" || res.entity.role === "USER")) {
-          if (res.entity.isFirstTimeLogin) {
+        } else if (res.body.entity && (res.body.entity.role === "ADMIN" || res.body.entity.role === "USER")) {
+          if ( res.body.entity.firstLogin === 'Y') {
+            this.tokenCookieService.saveUser(res.body.entity)
+            this.snackbar.showNotification(
+              "snackbar-success",
+            "Login Successful, Kindly reset your password")
             this.router.navigate(["/authentication/reset-password"]);
           } else {
+            this.tokenCookieService.saveUser(res.body.entity)
+            this.snackbar.showNotification(
+              "snackbar-success",
+            " Kindly enter the OTP sent to your email")
             this.router.navigate(["/authentication/OTP"]);
+            return;
           }
         }
+        // if (this.authForm.invalid) {
+        //   this.error = "Email/password  not valid!";
+        //   this.snackbar.showNotification(
+        //     "snackbar-success",
+        //   "Email/Password not valid")
+        //   return;
+        // } else {
+        //   console.log(this.authForm.value);
+    
+        // }
       },
       (err) => {
         console.log(err);
-        this.error = err.message;
+        this.snackbar.showNotification("snackbar-danger", "Server Error");
+        // this.error = err.message;
         this.submitted = false;
         this.loading = false;
       }
+    
     );
   }
-  
   
 }
 

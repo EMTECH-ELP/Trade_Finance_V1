@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvDiscountingService {
+
 
   invUrl: any;
   private formData: any;
@@ -34,9 +36,18 @@ export class InvDiscountingService {
 
 
 
-
-  public postData(data: any): Observable<any> {      //Creating Invoice discounting form
+  public  postapplicantDetails(data: any): Observable<any> {      //Creating Invoice discounting form
+    const url = `${environment.invUrl}/applicants/create`;
+    return this.http.post<any>(url, data);   //Replace with correct endpoint
+  }
+  public   postinvoiceDetails(data: any): Observable<any> {      //Creating Invoice discounting form
     const url = `${environment.invUrl}/invoices/create`;
+    return this.http.post<any>(url, data);   //Replace with correct endpoint
+  }
+
+ 
+  public postData(data: any): Observable<any> {      //Creating Invoice discounting form
+    const url = `${environment.invUrl}/fundings/create`;
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
 
@@ -51,7 +62,7 @@ export class InvDiscountingService {
   }
 
   getData(url:string):Observable<any>{
-    return this.http.get(url)
+      return this.http.get(url)               //View invoice by Id
   }
 
 }

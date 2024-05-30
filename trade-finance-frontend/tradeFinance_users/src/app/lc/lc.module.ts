@@ -28,8 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TestComponent } from './test/test.component';
-import { VerifyLcComponent } from './components/verify-lc/verify-lc.component';
 import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-lookup.component';
+import { ConfirmDeletionDialogComponent } from './components/delete-lc/confirm-deletion-dialog/confirm-deletion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +39,11 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
     DeleteLcComponent,
     ViewComponent,
     TestComponent,
-    VerifyLcComponent,
-<<<<<<< HEAD
-    
-=======
+    VerifylcComponent,
     ModifyLookupComponent,
-    ConfirmDeletionDialogComponent,
->>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
+    ConfirmDeletionDialogComponent
+
+    
   ],
   imports: [
     CommonModule,
@@ -81,6 +79,8 @@ import { ModifyLookupComponent } from './components/modify/modify-lookup/modify-
   ]
 })
 export class LcModule { } import { } from './components/create/create.component';
-import { ConfirmDeletionDialogComponent } from './components/delete-lc/confirm-deletion-dialog/confirm-deletion-dialog.component';
+
+import { VerifylcComponent } from './components/verify-lc/verify-lc.component';
+
 
 
