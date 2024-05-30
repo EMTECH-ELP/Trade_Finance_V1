@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewInvoiceComponent } from './view-invoice.component';
+import { DiscountBillComponent } from './discount-bill.component';
 
-describe('ViewInvoiceComponent', () => {
-  let component: ViewInvoiceComponent;
-  let fixture: ComponentFixture<ViewInvoiceComponent>;
+describe('DiscountBillComponent', () => {
+  let component: DiscountBillComponent;
+  let fixture: ComponentFixture<DiscountBillComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewInvoiceComponent ]
+      declarations: [ DiscountBillComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewInvoiceComponent);
+    fixture = TestBed.createComponent(DiscountBillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

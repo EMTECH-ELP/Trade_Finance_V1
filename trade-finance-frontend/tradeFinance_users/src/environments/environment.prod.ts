@@ -5,10 +5,12 @@ export const environment = {
 
   //Emtech test server
 
+  
   // Maker Authentication endpoints
-  authUrl: "http://192.168.89.57:8082",
-  resetUrl: "http://192.168.89.57:8082",
-  OTPUrl: "http://192.168.89.57:8082",
+  authUrl: 'http://192.168.90.59:8082',
+  // resetUrl: 'http://192.168.90.59:8082',
+  // OTPUrl:'http://192.168.90.59:8082',
+
  
   
 
@@ -27,10 +29,7 @@ export const environment = {
 
 
 
-  // invoice discounting
- invUrl: 'http://192.168.90.44:9000' ,     //post invoice discounting forms. Createform url
- saveUrl: 'http://192.168.91.141:9000',     // save repayment details form
- getUrl: 'http://192.168.91.96:9000',              // Fetch forms
+
 
  deleteurl:'http://192.168.90.44:9000',
   //Localhost

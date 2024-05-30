@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.89.141:8082',
+authUrl: 'http://192.168.90.59:8082',
 resetUrl: '',
 
 
@@ -32,17 +32,12 @@ billApiUrl: 'http://192.168.56.1:8085',
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 
-
-
-
-
-
-
-
 // invoice discounting
- invUrl: 'http://192.168.201.219:9000' ,     //post invoice discounting forms. Createform url
- saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
- getInvUrl: 'http://192.168.91.96:9000',         // Fetch forms
+ invUrl: 'http://192.168.89.247:9001' ,     //post invoice discounting forms. Createform url
+ saveUrl: 'http://192.168.89.247:9001',    // save repayment details form
+//  getInvUrl: 'http://192.168.88.109:9000',         // Fetch forms
+//  getformUrl: 'http://192.168.88.109:9000',
+ 
 
  deleteurl:'http://192.168.90.44:9000', 
  //bank gurantee url

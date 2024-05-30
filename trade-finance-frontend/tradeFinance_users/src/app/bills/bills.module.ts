@@ -22,13 +22,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from "../app-routing.module";
+import { VerifyBillComponent } from './components/verify-bill/verify-bill.component';
+import { ModifyBillComponent } from './components/modify-bill/modify-bill.component';
+import { DeleteBillComponent } from './components/delete-bill/delete-bill.component';
+import { DiscountBillComponent } from './components/discount-bill/discount-bill.component';
 
 
 @NgModule({
   declarations: [
     RecoveryBillComponent,
     CreateBillComponent,
-    ViewBillComponent],
+    ViewBillComponent,
+    VerifyBillComponent,
+    ModifyBillComponent,
+    DeleteBillComponent,
+    DiscountBillComponent],
   imports: [
     CommonModule,
     BillsRoutingModule,

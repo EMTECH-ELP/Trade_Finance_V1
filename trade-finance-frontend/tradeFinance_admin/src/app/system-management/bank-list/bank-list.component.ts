@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-bank-list',
@@ -15,14 +16,10 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./bank-list.component.scss']
 })
 export class BankListComponent implements OnInit{
+  id:Number;
 isLoading: any;
+isFetching:boolean = false;
 
-refresh() {
-throw new Error('Method not implemented.');
-}
-add() {
-throw new Error('Method not implemented.');
-}
 
 
 banks: any[] = []; // Initialize banks array here
@@ -36,6 +33,7 @@ searchText: string;
 
   constructor(
     private bankService: MasterdataService,
+    private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
@@ -59,7 +57,7 @@ searchText: string;
     });
     dialogRef.afterClosed().subscribe(
       ((res) => {
-        //this.getBanks()
+        this.getBanks()
       })
     )
     
@@ -76,12 +74,14 @@ searchText: string;
   }
 
   getBanks(): void {
+    this.isFetching = true
     console.log('Fetching Bank List...');
     this.bankService.getBanks().subscribe({
       next: (res: any) => {  
         console.log('Response:', res); 
         const banks = res.map((banklist: any, index: number) => ({     
           no: index + 1,
+          id:banklist.bankId,
           bankName: banklist.bankName,  
           bankCountry: banklist.bankCountry,        
           branchName: banklist.branchName, 
@@ -91,125 +91,35 @@ searchText: string;
         }));
         
         this.dataSource = new MatTableDataSource(banks);
+        console.log("banks", banks);
+        
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
       error: (err: any) => {
         console.error('Error fetching bank list:', err);
-      }
+      },
+     complete:() => {
+      this.isFetching = false;
+     },
+    
     });
   }
-}
-
-  // goToCreateBank() {
-  //   this.router.navigate(['/system/createBank']);
-  // }
-
-  // editBank: number | null = null; // Initialize it as null or any default value
-
-
-
-  // saveBank(index: number) {
-  //   console.log('Save Bank:', this.banks[index]);
-  //   this.bankService.updateBank
-  //   // Implement save logic
-  //   this.editBank = null;
-  // }
-
-  // openUpdateBankDialog(bank: any): void {
-  //   const dialogRef = this.dialog.open(AddbankPopupComponent, {
-  //     width: '300px',
-  //     data: { bank } // Pass bank data to the dialog
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     // Optionally handle dialog close event
-  //   });
-  // }
-  // addBank(newBank: any): void {
-  //   this.banks.push(newBank);
-  //   this.snackBar.open("Bank added successfully", "Close", {
-  //     duration: 5000,
-  //     horizontalPosition: 'end',
-  //     verticalPosition: 'top',
-  //     panelClass: 'notify-success'
-  //   });
-  // }
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(AddbankPopupComponent , {
-  //     width: '600px',
-  //     // height: '300px'
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.addBank(result);
-  //     }
-  //   });
-  // }
-// }
-  // deletebank(id: number) {
-  //   this.bankService.deleteBank(id).subscribe(
-  //     (res: any) => {
-  //       console.log(res);
-  //       this.getBanks(); // Update the list of banks after successful deletion
-  //       this.snackBar.open("Successfully deleted bank", "Close", {
-  //         duration: 5000,
-  //         horizontalPosition: 'end',
-  //         verticalPosition: 'top',
-  //         panelClass: 'notify-success'
-  //       });
-  //     },
-  //     (error: any) => {
-  //       console.error('Error deleting bank:', error);
-  //       this.snackBar.open("Error deleting bank. Please try again later.", "Close", {
-  //         duration: 5000,
-  //         horizontalPosition: 'end',
-  //         verticalPosition: 'top',
-  //         panelClass: 'notify-error'
-  //       });
-  //     }
-  //   );
-  // }
-
-// export class BankListComponent implements OnInit {
-//   searchText: string = '';
-//   banks: Bank[] = [];
-
-//   constructor(public dialog: MatDialog, private route: ActivatedRoute,
-//     private router: Router,private bankService: MasterdataService) { }
-
-
-
+onDeletebank(event:any, Id:number){
+  console.log(Id);
   
-//     ngOnInit(): void {
-//       // this.banks = this.bankService.getBanks();
-//     }
-  
-//     filteredBanks(): Bank[] {
-//       if (!this.searchText) {
-//         return this.banks;
-//       }
-//       return this.banks.filter(bank =>
-//         bank.bankName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-//         bank.branchName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-//         bank.branchCode.includes(this.searchText) ||
-//         bank.swiftCode.includes(this.searchText) ||
-//         bank.country.toLowerCase().includes(this.searchText.toLowerCase())
-//       );
-//     }
-  
-//     editBank(index: number): void {
-//       // Handle edit logic here
-//     }
-  
-//     deleteBank(index: number): void {
-//       this. bankService.deleteBank(index);
-//       this.banks = this. bankService.getBanks();
-//     }
-  
-   
+  // this.http.delete.('url ' +id+.'.json').subscribe();
+    if(confirm('Are you sure you want to delete?'))
+    { event.target.innerText = "Deleting...";
+    this.bankService.onDeleteBank(Id).subscribe((res:any) => {
+    this.getBanks();
+    alert(res.message);
+    });
+    }
+    }
+   }
+    
     
 
 
+  
