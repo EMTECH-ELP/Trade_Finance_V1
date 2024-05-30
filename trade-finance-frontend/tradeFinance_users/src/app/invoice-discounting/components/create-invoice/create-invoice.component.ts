@@ -130,12 +130,7 @@ export class CreateInvoiceComponent implements OnInit {
     });
     (<FormArray>this.applicationForm.get('importerDetails')).push(formgroup);
   }
-  // search(): void {
-    // this.searchService.search(this.query)
-    //   .subscribe(data => {
-    //     this.searchData = data;
-    //   });
-  // }
+  
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
 
@@ -206,22 +201,6 @@ export class CreateInvoiceComponent implements OnInit {
     this.router.navigate(["/invoice-discounting/viewInvoice"]);
   }
  
-
- 
-  // rows: any [] = [
-  //   {  formControlName: 'invoiceNumber' },
-  //   {  formControlName: '"invoiceAmount' },
-  //   {  formControlName: 'businessName' },
-  //   {  formControlName: 'businessAddress' },
-  //   {  formControlName: 'dueDate' },
-  //   {  formControlName: 'invoices' },
-  // {  formControlName: '  buyerName' },
-  //   {  formControlName: 'buyerEmail' },
-  //   {  formControlName: ' buyerCity' },
-  //   {formControlName: 'buyerCountry' },
-
-  //   // Adds rows to html
-  // ];
 
   openLookup(): void {
     // Create a MatDialogConfig object
