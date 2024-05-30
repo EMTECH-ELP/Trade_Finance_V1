@@ -105,6 +105,7 @@ searchText: string;
     
     });
   }
+ 
 onDeletebank(event:any, Id:number){
   console.log(Id);
   
