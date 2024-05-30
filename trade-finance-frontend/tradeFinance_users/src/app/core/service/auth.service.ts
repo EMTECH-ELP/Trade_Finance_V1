@@ -98,9 +98,9 @@ export class AuthService {
   }
 
   validateOTP(data: any): Observable<any> {
-    const OTP_URL = `${environment.OTPUrl}/api/v1/auth/validateOtp`;
+    const auth_URL = `${environment.authUrl}/api/v1/auth/validateOtp`;
 
-    return this.http.post<any>(OTP_URL, data, {
+    return this.http.post<any>(auth_URL, data, {
       observe: "response",
       headers: this.headers,
       withCredentials: true,
