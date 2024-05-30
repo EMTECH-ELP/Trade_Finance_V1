@@ -23,8 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from "../app-routing.module";
 import { VerifyBillComponent } from './components/verify-bill/verify-bill.component';
-import { ModifyBillComponent } from './components/modify-bill/modify-bill.component';
 import { DeleteBillComponent } from './components/delete-bill/delete-bill.component';
+import { ModifyBillComponent } from './components/modify-bill/modify-bill.component';
 import { DiscountBillComponent } from './components/discount-bill/discount-bill.component';
 
 
@@ -34,8 +34,8 @@ import { DiscountBillComponent } from './components/discount-bill/discount-bill.
     CreateBillComponent,
     ViewBillComponent,
     VerifyBillComponent,
-    ModifyBillComponent,
     DeleteBillComponent,
+    ModifyBillComponent,
     DiscountBillComponent],
   imports: [
     CommonModule,
