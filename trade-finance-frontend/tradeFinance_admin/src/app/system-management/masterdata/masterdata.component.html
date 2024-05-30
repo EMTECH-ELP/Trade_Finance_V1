@@ -1,0 +1,77 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Master Data'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+      </div>
+<!-- Widgets -->
+ <div class="row">
+    <div class="col-lg-4 col-sm-4" (click)="Banks()">
+        <div class="info-box7 bg-kingdom order-info-box7" >
+            <div class="info-box7-block" style="border-radius: 5px;">
+                <h6 class="m-b-20">Banks</h6>
+               <h2 class="text-end"><span class="float-start">{{ totalBanks}}</span><i
+                    class="fab fa-buromobelexperte"></i>
+                </h2> 
+             <a href="/#/system/banks" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6" (click)="Countries()">
+        <div class="info-box7 bg-kingdom order-info-box7">
+            <div class="info-box7-block" style="border-radius: 5px;">
+                <h6 class="m-b-20">Countries </h6>
+                <h2 class="text-end"><span class="float-start">{{countriesList}}</span><i
+                        class="fab fa-buromobelexperte"></i></h2>
+                        <a href="/#/system/countries" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-4" (click)="Cities()">
+        <div class="info-box7 bg-kingdom order-info-box7">
+            <div class="info-box7-block" style="border-radius: 5px;">
+                <h6 class="m-b-20">Cities</h6>
+                <h2 class="text-end"><span class="float-start">{{citiesList}}</span><i
+                    class="fab fa-buromobelexperte"></i>
+                </h2>
+                <a href="/#/system/cities" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-4" (click)="Ports()">
+        <div class="info-box7 bg-kingdom order-info-box7">
+            <div class="info-box7-block"style="border-radius: 5px;">
+                <h6 class="m-b-20">Ports</h6>
+                <h2 class="text-end"><span class="float-start">{{totalPorts}}</span><i
+                        class="fab fa-buromobelexperte"></i></h2>
+                        <a href="/#/system/ports" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-4" (click)="Currency()">
+        <div class="info-box7 bg-kingdom order-info-box7"style="border-radius: 10px;">
+            <div class="info-box7-block"style="border-radius: 5px;">
+                <h6 class="m-b-20">Currency</h6>
+                <h2 class="text-end"><span class="float-start">{{totalCurrencies}}</span><i
+                        class="fab fa-buromobelexperte"></i></h2>
+                        <a href="/#/system/currency" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-4" (click)="Others()">
+        <div class="info-box7 bg-kingdom order-info-box7">
+            <div class="info-box7-block"style="border-radius: 5px;">
+                <h6 class="m-b-20">Others</h6>
+                <h2 class="text-end"><span class="float-start">{{others}}</span><i
+                        class="fab fa-buromobelexperte"></i></h2>
+                        <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+            </div>
+    
+        </div>
+    </div>
+
+</div> 
+</div> 
+</section>
+<!-- #END# Widgets-->
