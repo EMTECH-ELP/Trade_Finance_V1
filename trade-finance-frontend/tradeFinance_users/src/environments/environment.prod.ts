@@ -7,12 +7,13 @@ export const environment = {
 
   
   // Maker Authentication endpoints
+
   authUrl: 'http://192.168.90.59:8082',
-  // resetUrl: 'http://192.168.90.59:8082',
-  // OTPUrl:'http://192.168.90.59:8082',
+ 
 
  
   
+
 
 
   baseUrlAdmin: '...', 
