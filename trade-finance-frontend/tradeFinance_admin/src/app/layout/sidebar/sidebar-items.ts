@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "view",
+    path: "/users",
     title: "User Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -30,7 +30,7 @@ export const ROUTES: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/users/viewcheckers",
+        path: "/users/view-roles",
         title: "Roles",
         moduleName: "dashboard",
         iconType: "feather",
@@ -44,7 +44,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/users/view",
+        path: "/users/view-users",
         title: "Users",
         moduleName: "dashboard",
         iconType: "feather",

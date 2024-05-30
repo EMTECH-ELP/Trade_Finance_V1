@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
   // apiUrl: "http://52.15.152.26:9051",
-  baseUrlAdmin: "http://192.168.89.183:8082",
+  baseUrlAdmin: "http://192.168.90.59:8082",
   // serverAPI: "http://52.15.152.26:9051",
   // AUTH_URL: "http://52.15.152.26:9051",
   // uraUrl: "http://52.15.152.26:9051",
@@ -16,11 +16,12 @@ export const environment = {
   
 
 
-  apiUrl: 'http://192.168.137.1:8085',
-  getBranchApiUrl: 'http://192.168.88.137:8082',
+  apiUrl: 'http://192.90.59.1:8085',
+  getBranchApiUrl: 'http://192.168.90.59:8082',
   dcApiUrl: "http://192.168.0.1:9090",
+  
 
- userUrl:"http://192.168.88.137.8082",    
+ userUrl:"http://192.168.90.59.8082",    
 
 
  invUrl: 'https://your-backend-api.com/api'      //Replace with Inv.discounting Createform url
