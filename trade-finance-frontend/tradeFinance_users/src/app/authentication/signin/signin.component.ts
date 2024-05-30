@@ -61,6 +61,13 @@ ngOnInit() {
     this.authService.login(this.authForm.value).subscribe(
       (res) => {
         console.log("Res: ", res);
+   
+        if (res.body.statusCode === 207) {
+          this.tokenCookieService.saveUser(res.body.entity)
+          console.log("routing to otp")
+          this.router.navigate(["/authentication/OTP"]);
+          return; // Exit the function to prevent further navigation
+        }
   
   
         // If reset-password is not required, handle role-based navigation for second,third etc time users
