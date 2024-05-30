@@ -62,18 +62,19 @@ ngOnInit() {
       (res) => {
         console.log("Res: ", res);
    
-        // if (res.body.statusCode === 207 ) {
-        //   this.tokenCookieService.saveUser(res.body.entity)
-        //   console.log("routing to reset-password")
-        //   // this.router.navigate(["/authentication/reset-password"]);
-        //  // Exit the function to prevent further navigation
-        // }
+        if (res.body.statusCode === 207) {
+          this.tokenCookieService.saveUser(res.body.entity)
+          console.log("routing to otp")
+          this.router.navigate(["/authentication/OTP"]);
+          return; // Exit the function to prevent further navigation
+        }
+  
   
         // If reset-password is not required, handle role-based navigation for second,third etc time users
         if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
                   this.tokenCookieService.saveUser(res.body.entity)
           this.router.navigate(["/admin/dashboard/view"]);
-        } else if (res.body.entity && (res.body.entity.role === "CHECKER" || res.body.entity.role === "USER")) {
+        } else if (res.body.entity && (res.body.entity.role === "MAKER" || res.body.entity.role === "USER")) {
           if ( res.body.entity.firstLogin === 'Y') {
             this.tokenCookieService.saveUser(res.body.entity)
             this.snackbar.showNotification(
