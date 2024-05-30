@@ -32,16 +32,13 @@ export class CreateInvoiceComponent implements OnInit {
   // invoiceStatus: any;
 
 
-  onOptionChange() {
-    //  console.log('Selected option:', this.selectedOption);
-    // You can perform any actions based on the selected option here
-  }
 
   constructor(private builder: FormBuilder,
     private invDiscountingService: InvDiscountingService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+
 
     //private searchService: SearchService
   ) { }
@@ -155,6 +152,38 @@ export class CreateInvoiceComponent implements OnInit {
       }
     }
   }
+  postapplicant() {
+    console.log("Form data", this.applicationForm.value);
+    // this.row = this.applicationForm.value;
+    this.invDiscountingService.postapplicantDetails(this.applicationForm.value).subscribe({
+      next: ((response) => {
+        console.log("Invoice Form response", response);
+      }),
+      error: ((err) => {
+        console.error(err);
+        alert('An error occurred while submitting the form. Please try again later.');
+      }),
+      complete: (() => {})
+    })
+    // this.applicationForm.reset()
+
+  }
+  postInvoices() {
+    console.log("Form data", this.applicationForm.value);
+    // this.row = this.applicationForm.value;
+    this.invDiscountingService.postinvoiceDetails(this.applicationForm.value).subscribe({
+      next: ((response) => {
+        console.log("Invoice Form response", response);
+      }),
+      error: ((err) => {
+        console.error(err);
+        alert('An error occurred while submitting the form. Please try again later.');
+      }),
+      complete: (() => {})
+    })
+    // this.applicationForm.reset()
+
+  }
 
 
   onSubmit() {
@@ -170,12 +199,13 @@ export class CreateInvoiceComponent implements OnInit {
         alert('An error occurred while submitting the form. Please try again later.');
 
       }),
-      complete: (() => { })
+      complete: (() => {})
     })
     // this.applicationForm.reset()
     this.ngOnInit()
     this.router.navigate(["/invoice-discounting/viewInvoice"]);
   }
+ 
 
  
   // rows: any [] = [

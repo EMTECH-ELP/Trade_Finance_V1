@@ -50,23 +50,16 @@ data = [];
 
 
 // Mock data for testing
- mockData: InvoiceDiscounting[] = [
-  { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: '$5000', status: 'Pending', branchCode: 'BC001', actions: 'Actions' },
-  { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: '$15000', status: 'Approved', branchCode: 'BC002', actions: 'Actions' },
-  { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: '$2500', status: 'Rejected', branchCode: 'BC003', actions: 'Actions' },
-  { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: '$7500', status: 'Pending', branchCode: 'BC004', actions: 'Actions' },
-  { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: '$12500', status: 'Approved', branchCode: 'BC005', actions: 'Actions' }
-];
+//  mockData: InvoiceDiscounting[] = [
+//   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: '$5000', status: 'Pending', branchCode: 'BC001', actions: 'Actions' },
+//   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: '$15000', status: 'Approved', branchCode: 'BC002', actions: 'Actions' },
+//   { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: '$2500', status: 'Rejected', branchCode: 'BC003', actions: 'Actions' },
+//   { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: '$7500', status: 'Pending', branchCode: 'BC004', actions: 'Actions' },
+//   { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: '$12500', status: 'Approved', branchCode: 'BC005', actions: 'Actions' }
+// ];
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
-  // totainvoiceFormsreatedInvoiceDiscountingForms = 0;
-  // totalItems: number = 0;
-  //  all: number = 0;
-  // pending = 0;
-  // approved = 0;
-  // totalRejectedForms = 0;
-  // selectedStatus = 'all';
-  // selectedFilterRadioButton: string = 'all';
+
 
   totainvoiceFormsreatedInvoices = 0;
   totalPendingInvoices = 0;
@@ -87,7 +80,7 @@ row: any;
 
  
 
-  constructor(private dialog: MatDialog,
+  constructor(public dialog: MatDialog,
     private router: Router,
     private invDiscountingService: InvDiscountingService,
 
@@ -133,17 +126,18 @@ row: any;
   });
 }
 
-  public applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
   }
+}
 
 
   public add() {
-    this.router.navigate(["invoice-discounting/createInvoice"])
+    this.router.navigate(["/invoice-discounting/createInvoice"])
   }
 
   public openViewinvoiceFormsComponent(row) {
@@ -181,38 +175,40 @@ row: any;
       // Handle dialog close if needed
     });
   }
-//  viewDialog(): void{
-//  const dialogRef = this.dialog.open(ViewinvFormComponent,{
-//   width: '800px',
-//  });
-//  } 
+  openFormDialog(rowData: any): void {
+    const dialogRef = this.dialog.open(CreatedformComponent, {
+      width: '100%',
 
-// viewform(): void {
-//   console.log('Navigating to viewInvForm with data:');
-//   // this.router.navigate(['viewInvForm'])
-//    this.router.navigate(["/invoice-discounting/createdform"]); 
-// }
-// { queryParams: { data: JSON.stringify() } };
-// }
-openFormDialog(invoice): void {
-  console.log('Navigating to viewInvForm with data:');
-  const dialogRef = this.dialog.open(CreatedformComponent, {
-    width: '95%', 
-    height:'90%',
-    data: {
-      data: invoice
-    }
-    // Adjust width as needed
-    // Other configuration options if needed
-  });
+      position:{
+        right:"2em"
+      },
+      data: { rowData: rowData }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    // Handle dialog close if needed
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle any actions after the dialog is closed if necessary
+    });
+  }
+// openFormDialog(invoice): void {
+//   console.log('Opening dialog with invoice:', invoice); 
+
+//   const dialogRef = this.dialog.open(CreatedformComponent, {
+//     width: '95%', 
+//     height:'90%',
+//     data: {
+//       data: invoice
+//     }
+//     // Adjust width as needed
+//     // Other configuration options if needed
+//   });
+
+//   dialogRef.afterClosed().subscribe(result => {
+//     console.log('The dialog was closed');
+//     // Handle dialog close if needed
+//   });
+// }
 
 // 
 
 }
-

@@ -29,36 +29,21 @@ export class MasterdataService {
   // bankUrl: any;
   constructor(private http: HttpClient) {}
 
-  // public register(user: any): Observable<any> {
-  //   return this.http.post<any>(`${this.baseUrl}/api/v1/auth/signup`, user, this.httpOptions);
-  // }
-  // public addBank(user: any): Observable<any> {
-  //   return this.http.post<any>(`${this.addBankUrl}/api/v1/auth/signup`, user, this.httpOptions);
-  // }
-  // public getAllForms(): Observable<any> {
-  //   const url = `${environment.invUrl}/invoices/list`;     //FETCH FORMS
-  //   return this.http.get<any>(url)
-  // }
+
   public getBanks(): Observable<any> {
-    const url = `${environment.bankUrl}/api/banks`;  
+    const url = `${environment.bankUrl}/api/banks`;     //Fetching banks
     return this.http.get<any>(url)
     // return this.http.get<any>(`${this.bankUrl}api/banks`, this.httpOptions);
   }
-  public postbank(data: any): Observable<any> {      //Creating Invoice discounting form
+  public postbank(data: any): Observable<any> {      //Adding Banks
     const url = `${environment.bankUrl}/api/banks`;
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
  
-  // getBanks(): Bank[] {
-  //   return this.banks;
-  // }
-
-  // addBank(bank: any): void {
-  //     const banks = this.getBanks();
-  //     bank.id = this.idCounter++;
-  //     banks.push(bank);
-  //     this.banksSubject.next(banks);
-  //   }
+  onDeleteBank(Id:Number):Observable<any>{
+    const url = `${environment.bankUrl}/api/banks/${Id}`
+    return this.http.delete(url);
+  }
    
     deleteBank(index: number): void {
       this.banks.splice(index, 1);

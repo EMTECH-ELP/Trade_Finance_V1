@@ -27,16 +27,18 @@ import { DeleteInvoiceComponent } from './components/delete-invoice/delete-invoi
 import { CreatedformComponent } from './components/createdform/createdform.component';
 
 
+
 @NgModule({
   declarations: [
     ModifyInvoiceComponent,
     CreateInvoiceComponent,
     ViewInvoiceComponent,
     RepaymentdetailsComponent,
-
+    InvoiceLookupComponent, 
+    CreatedformComponent, 
     InvoiceLookupComponent,
     DeleteInvoiceComponent, 
-    CreatedformComponent
+  
   
   ],
   imports: [
