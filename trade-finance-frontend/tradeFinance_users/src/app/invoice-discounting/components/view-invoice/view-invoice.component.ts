@@ -49,7 +49,7 @@ formData: any;
 data = []; 
 
 
-// Mock data for testing
+//Mock data for testing
 //  mockData: InvoiceDiscounting[] = [
 //   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: 5000, status: 'Pending',  actions: 'Actions' },
 //   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
@@ -100,7 +100,7 @@ row: any;
     //   this.dataSource.paginator = this.paginator;
     //   this.isLoading = false; // Set loading to false as we are using static data
     // }
-    getAllForms(): void {
+ getAllForms(): void {
       this.isLoading = true;
       console.log('Fetching invoice forms...');
       this.invDiscountingService.getAllForms().subscribe({

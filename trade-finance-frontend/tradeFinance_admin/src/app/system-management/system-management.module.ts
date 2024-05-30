@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
+import { MasterdataComponent } from './masterdata/masterdata.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PortsComponent } from './ports/ports.component';
 
@@ -31,6 +32,7 @@ import { PortsComponent } from './ports/ports.component';
   declarations: [
     BankListComponent,
     AddbankPopupComponent,
+    MasterdataComponent,
     CurrencyComponent,
     PortsComponent
    
