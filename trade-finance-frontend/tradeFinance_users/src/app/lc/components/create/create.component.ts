@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
   additionalFileUploads:{label: string}[]=[];
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
+  shipmentTerms: Array<{ value: string, viewValue: string }> = [];
   // dialog: any;
  // router: any;
 
@@ -319,6 +320,19 @@ export class CreateComponent implements OnInit {
   getCity(){}
   getCountryandCode(){}
   getBankDetails(){}
+  getShipmentTerm(){
+    this.lcService.getAllShipmentTerms().subscribe({
+      next: (response) => {
+        console.log("Get shipment terms response", response);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        alert('Shipment terms retrieved successfully');
+      }
+    });
+  }
 
 
 

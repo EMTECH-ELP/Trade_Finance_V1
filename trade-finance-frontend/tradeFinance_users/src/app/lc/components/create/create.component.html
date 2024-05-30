@@ -533,20 +533,17 @@
               <mat-label>Shipment Terms</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="shipmentTerms">
-                  <mat-option value="exw">EXW</mat-option>
-                  <mat-option value="fca">FCA</mat-option>
-                  <mat-option value="cpt">CPT</mat-option>
-                  <mat-option value="cip">CIP</mat-option>
-                  <mat-option value="dap">DAP</mat-option>
-                  <mat-option value="dpu">DPU</mat-option>
-                  <mat-option value="ddp">DDP</mat-option>
+                  <!-- The options will be dynamically loaded from the backend -->
+                  <mat-option *ngFor="let term of shipmentTerms" [value]="term.value">{{ term.viewValue }}</mat-option>
                 </mat-select>
-                <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
+                <mat-icon matSuffix (click)="getShipmentTerm()">search</mat-icon>
               </mat-form-field>
               <mat-hint style="color: red;"
-                *ngIf="applicationForm.get('shipmentTerms'). invalid && applicationForm.get('shipmentTerms').touched">
-                *Specify shipment Terms</mat-hint>
+                *ngIf="applicationForm.get('shipmentTerms').invalid && applicationForm.get('shipmentTerms').touched">
+                *Specify shipment Terms
+              </mat-hint>
             </div>
+            
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Partial Shipment</mat-label>
@@ -582,9 +579,15 @@
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
 <<<<<<< HEAD
+
+                <input matInput formControlName="portOfDischarge" type="text">
+
+=======
+<<<<<<< HEAD
                 <input matInput formControlName="portOfDischarge" type="text">
 =======
 <<<<<<< HEAD
+>>>>>>> 500e2b77d4685850aafcf6b548ef0ddf7b8cbd20
                 <mat-select formControlName="portOfDischarge">
                   <mat-option value="Mombasa">Mombasa</mat-option>
                   <mat-option value="Kisumu">Kisumu</mat-option>
@@ -598,14 +601,14 @@
                   <mat-option value="Houston">Houston</mat-option>
                   <mat-option value="Virginia">Virginia</mat-option>
                 </mat-select>
-=======
+
                 <input matInput formControlName="portOfDischarge" type="text">
+                <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
 <<<<<<< HEAD
 =======
->>>>>>> e347454898a2352b5506003d3fb17d7ba7b71ec8
-                <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
 >>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
 >>>>>>> 1e0cb8dba4fb970f96b37bc4aabb5f95a2d6f9ed
+>>>>>>> 500e2b77d4685850aafcf6b548ef0ddf7b8cbd20
               </mat-form-field>
               <mat-hint style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
