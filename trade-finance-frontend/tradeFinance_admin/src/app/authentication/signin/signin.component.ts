@@ -62,12 +62,6 @@ export class SigninComponent
       (res) => {
         console.log("Res: ", res);
   
-        if (res.body.statusCode === 207) {
-          this.tokenCookieService.saveUser(res.body.entity)
-          console.log("routing to otp")
-          this.router.navigate(["/authentication/OTP"]);
-          return; // Exit the function to prevent further navigation
-        }
   
         // If OTP is not required, handle role-based navigation
         if (res.entity && res.entity.role === "SUPER_ADMIN") {

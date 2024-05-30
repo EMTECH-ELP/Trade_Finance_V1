@@ -17,6 +17,8 @@ export interface Bank {
   providedIn: 'root'
 })
 export class MasterdataService {
+
+  private apiUrl = 'http://localhost:3000/users';
   private banksSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public banks$: Observable<any[]> = this.banksSubject.asObservable();
   updatebankUrl: any;
@@ -25,6 +27,8 @@ export class MasterdataService {
   private banks: Bank[] = [];
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+
+    
   };
   // bankUrl: any;
   constructor(private http: HttpClient) {}
@@ -63,7 +67,16 @@ export class MasterdataService {
     deleteBank(index: number): void {
       this.banks.splice(index, 1);
     }
+
+
+    //Workflow
+    
+  getUsers(): Observable<any[]> {
+    // Replace with actual HTTP request in a real-world application
+    return this.http.get<any[]>(this.apiUrl);
   }
+}
+  
 
   // updateBank(index: number, bank: Bank): void {
   //   this.banks[index] = bank;

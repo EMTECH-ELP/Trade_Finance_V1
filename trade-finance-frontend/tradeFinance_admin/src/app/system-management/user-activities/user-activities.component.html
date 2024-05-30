@@ -30,8 +30,14 @@
       </tbody>
     </table>
   </div> -->
-
-  <!-- src/app/user-management/user-management.component.html -->
+  <section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Work Flow'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+      </div>
+  
 <div class="user-management">
   <h2>User Activities</h2>
   <button mat-raised-button color="primary" (click)="loadUsers()">Display User Activities</button>
@@ -84,5 +90,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
-
-  
+</div>
+</section>

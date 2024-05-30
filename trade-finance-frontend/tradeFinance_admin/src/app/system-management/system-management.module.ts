@@ -5,7 +5,7 @@ import { ComponentsModule } from '../shared/components/components.module';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { SystemManagementRoutingModule } from './system-management-routing.module';
 import { SharedModule } from '../shared/shared.module';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -21,14 +21,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-
+import { UserActivitiesComponent } from './user-activities/user-activities.component';
 import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
 
 
 @NgModule({
   declarations: [
     BankListComponent,
-    AddbankPopupComponent
+    AddbankPopupComponent,
+    UserActivitiesComponent
+  
    
   ],
   imports: [
@@ -54,6 +56,7 @@ import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
     MatDialogModule,
     MatTabsModule,
     MatButtonToggleModule,
+    BrowserModule,
   ],
 })
 export class SystemManagementModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersactService } from '../../usersact.service';
+import { MasterdataService } from '../masterdata.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-activities',
   templateUrl: './user-activities.component.html',
@@ -8,10 +10,13 @@ import { UsersactService } from '../../usersact.service';
 export class UserActivitiesComponent implements OnInit {
 
   users: any[] = [];
-  showUsers: boolean = false;
+  showUsers: boolean = true;
   displayedColumns: string[] = ['id', 'username', 'email', 'role', 'productType', 'loginStatus', 'action'];
 
-  constructor(private UsersactService: UsersactService) {}
+  constructor
+  (private UsersactService: MasterdataService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {}
 

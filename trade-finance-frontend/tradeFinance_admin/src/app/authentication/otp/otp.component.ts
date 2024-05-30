@@ -118,6 +118,7 @@ export class OtpComponent implements OnInit {
       this.authService.validateOTP(this.otpBody.value).subscribe({
         next: (res: any) => {
             console.log("res: ", res);
+            
 
             if (res.body.statusCode === 200) {
               this.tokenCookieService.saveUser(res.body.entity);
