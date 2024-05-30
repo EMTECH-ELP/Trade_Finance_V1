@@ -25,7 +25,11 @@ deleteLcApiUrl: 'http://192.168.56.1:8085',  //delete an already created LC
 
 
 //bills
-billApiUrl: 'http://192.168.56.1:8085', 
+billApiUrl: 'http://192.168.89.241:8181', 
+
+
+
+
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 

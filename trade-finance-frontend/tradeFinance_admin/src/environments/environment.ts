@@ -20,13 +20,17 @@ export const environment = {
   apiUrl: 'http://192.168.137.1:8085',
 
   getBranchApiUrl: 'http://192.168.88.141:8082',
-  dcApiUrl: "http://192.168.0.1:9090",
+ // dcApiUrl: "http://192.168.0.1:9090",
 
 
      //Replace with Inv.discounting Createform url
 
   // getBranchApiUrl: 'http://192.168.88.141:8082',
 
+ invUrl: 'https://your-backend-api.com/api',      //Replace with Inv.discounting Createform url
+
+//  getBranchApiUrl: 'http://192.168.88.141:8082',
+  dcApiUrl: "http://192.168.0.1:9090",
 
  userUrl:"http://192.168.88.141.8082",    
 
@@ -36,4 +40,7 @@ export const environment = {
  bankUrl: 'http://192.168.89.245:8187',    //fetchbanks
 // addBankUrl: '',   //post
 
+//Currency & Ports
+currencyUrl:'http://192.168.88.109:9000'
+// (this.http://192.168.88.109:9000/api/currencies) 
 };

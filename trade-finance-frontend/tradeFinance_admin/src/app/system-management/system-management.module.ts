@@ -24,13 +24,17 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
 import { MasterdataComponent } from './masterdata/masterdata.component';
+import { CurrencyComponent } from './currency/currency.component';
+import { PortsComponent } from './ports/ports.component';
 
 
 @NgModule({
   declarations: [
     BankListComponent,
     AddbankPopupComponent,
-    MasterdataComponent
+    MasterdataComponent,
+    CurrencyComponent,
+    PortsComponent
    
   ],
   imports: [

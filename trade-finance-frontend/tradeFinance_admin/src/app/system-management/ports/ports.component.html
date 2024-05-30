@@ -1,0 +1,70 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <app-breadcrumb [title]="'Ports'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+      </div>
+  
+      <div class="content-block">
+  
+        <div class="table-header">
+          <h6>Available Ports</h6>
+  
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+          </mat-form-field>
+  
+          <li class="ms-0">
+            <div class="m-l-10" matTooltip="Refresh">
+              <button mat-mini-fab color="primary" (click)="getPorts()">
+                <mat-icon class="col-white">refresh</mat-icon>
+              </button>
+            </div>
+          </li>
+        </div>
+  
+        <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell">
+  
+          <ng-container matColumnDef="port">  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-33">
+              Port
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="psl-3 tbl-col-width-per-33">
+              {{ element.port }}  </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-33">
+              City
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="psl-3 tbl-col-width-per-33">
+              {{ element.city }}
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-33">
+              Country
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="psl-3 tbl-col-width-per-33">
+              {{ element.country }}
+            </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
+                   [style.cursor]="'pointer'" matRipple>
+          </mat-row>
+  
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                         aria-label="Select page of ports"></mat-paginator>
+        </mat-table>
+  
+        <div *ngIf="isLoading" class="tbl-spinner">
+          <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+          </mat-progress-spinner>
+        </div>
+      </div>
+    </div>
+  </section>
+  
