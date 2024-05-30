@@ -30,4 +30,9 @@ bankUrl: 'http://192.168.89.133:8187',    //fetchbanks
 // addBankUrl: '',   //post
 
 
+//Currency & Ports
+currencyUrl:'http://192.168.88.109:9000'
+// (this.http://192.168.88.109:9000/api/currencies) 
+
+
 };

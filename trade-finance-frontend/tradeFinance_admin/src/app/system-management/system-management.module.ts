@@ -23,12 +23,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
+import { CurrencyComponent } from './currency/currency.component';
+import { PortsComponent } from './ports/ports.component';
 
 
 @NgModule({
   declarations: [
     BankListComponent,
-    AddbankPopupComponent
+    AddbankPopupComponent,
+    CurrencyComponent,
+    PortsComponent
    
   ],
   imports: [

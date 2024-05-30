@@ -49,21 +49,22 @@ export class MasterdataService {
     return this.http.post<any>(url, data);   //Replace with correct endpoint
   }
  
-  // getBanks(): Bank[] {
-  //   return this.banks;
-  // }
 
-  // addBank(bank: any): void {
-  //     const banks = this.getBanks();
-  //     bank.id = this.idCounter++;
-  //     banks.push(bank);
-  //     this.banksSubject.next(banks);
-  //   }
    
     deleteBank(index: number): void {
       this.banks.splice(index, 1);
     }
-  }
+
+
+//Currency & Ports
+public getCurrency(): Observable<any> {
+  const url = `${environment.currencyUrl}/api/currencies`;  
+  return this.http.get<any>(url)
+
+}
+
+}
+
 
   // updateBank(index: number, bank: Bank): void {
   //   this.banks[index] = bank;
