@@ -48,7 +48,17 @@ export class MasterdataService {
     deleteBank(index: number): void {
       this.banks.splice(index, 1);
     }
-  }
+
+
+//Currency & Ports
+public getCurrency(): Observable<any> {
+  const url = `${environment.currencyUrl}/api/currencies`;  
+  return this.http.get<any>(url)
+
+}
+
+}
+
 
   // updateBank(index: number, bank: Bank): void {
   //   this.banks[index] = bank;
