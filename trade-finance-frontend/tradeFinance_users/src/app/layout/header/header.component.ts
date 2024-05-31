@@ -111,10 +111,12 @@ export class HeaderComponent
   ];
   ngOnInit() {
     this.config = this.configService.configData;
+    const user = this.tokenCookieService.getUser();
     // const userRole = this.tokenCookieService.getUser().roles[0];
     this.userName = this.tokenCookieService.getUser().username;
     this.userImg = "assets/images/user/profile_img.png";
-
+    this.email = user.email;
+  
     this.homePage = "checker/dashboard";
 
     

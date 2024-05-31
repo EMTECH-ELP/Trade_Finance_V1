@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewpopUpComponent } from './viewpop-up.component';
+import { ModifyBillComponent } from './modify-bill.component';
 
-describe('ViewpopUpComponent', () => {
-  let component: ViewpopUpComponent;
-  let fixture: ComponentFixture<ViewpopUpComponent>;
+describe('ModifyBillComponent', () => {
+  let component: ModifyBillComponent;
+  let fixture: ComponentFixture<ModifyBillComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewpopUpComponent ]
+      declarations: [ ModifyBillComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewpopUpComponent);
+    fixture = TestBed.createComponent(ModifyBillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

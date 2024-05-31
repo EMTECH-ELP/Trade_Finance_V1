@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmDeletionDialogComponent } from './confirm-deletion-dialog/confirm-deletion-dialog.component';
+import { LcService } from '../../services/lc.service';
 
 @Component({
   selector: 'app-delete-lc',
@@ -6,24 +11,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete-lc.component.sass']
 })
 export class DeleteLcComponent implements OnInit {
+  lcNumber: string = '';
+  comments: string = '';
   lcId: string; // Property to store the ID of the Letter of Credit
+  deletionForm: FormGroup;
 
-  constructor() { }
+  constructor(private router: Router, public dialog: MatDialog, private fb: FormBuilder, private lcService :LcService) { }
 
   ngOnInit(): void {
+    this.deletionForm = this.fb.group({
+      lcNumber: ['', Validators.required],
+      comments: ['']
+    });
   }
 
-  confirmDelete(): void {
-    // Perform deletion logic here, such as making an API call
-    console.log('Deleting Letter of Credit with ID:', this.lcId);
-    // After successful deletion, display success message and reset lcId
-    alert('Letter of Credit deleted successfully.');
-    this.lcId = ''; // Reset lcId
+  confirmDeletion() {
+    const dialogRef = this.dialog.open(ConfirmDeletionDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.deleteLC();
+      }
+    });
   }
 
-  cancelDelete(): void {
-    // Handle cancellation logic here, if needed
-    console.log('Deletion canceled');
-    // You may want to reset lcId or perform other actions here
+  deleteLC() {
+   
+    console.log('Form deletion details', this.deletionForm.value);
+    console.log('Deleting LC:', this.lcNumber);
+    console.log('Comments:', this.comments);
+
+    // After deletion, navigate to another page or show a success message.
+    this.router.navigate(['/lc/view']);
+  }
+
+  getLcNumber() {
+    console.log('Lc Number retrieved successfully!');
   }
 }

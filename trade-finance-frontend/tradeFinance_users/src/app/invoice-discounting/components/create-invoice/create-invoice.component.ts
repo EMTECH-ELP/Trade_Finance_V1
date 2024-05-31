@@ -32,16 +32,13 @@ export class CreateInvoiceComponent implements OnInit {
   // invoiceStatus: any;
 
 
-  onOptionChange() {
-    //  console.log('Selected option:', this.selectedOption);
-    // You can perform any actions based on the selected option here
-  }
 
   constructor(private builder: FormBuilder,
     private invDiscountingService: InvDiscountingService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+
 
     //private searchService: SearchService
   ) { }
@@ -133,12 +130,7 @@ export class CreateInvoiceComponent implements OnInit {
     });
     (<FormArray>this.applicationForm.get('importerDetails')).push(formgroup);
   }
-  // search(): void {
-    // this.searchService.search(this.query)
-    //   .subscribe(data => {
-    //     this.searchData = data;
-    //   });
-  // }
+  
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
 
@@ -155,43 +147,98 @@ export class CreateInvoiceComponent implements OnInit {
       }
     }
   }
-
-
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
-    // this.row = this.applicationForm.value;
-    this.invDiscountingService.postData(this.applicationForm.value).subscribe({
-      next: ((response) => {
-        console.log("Invoice Form response", response);
-        alert('Form Submitted Successfully!')
-      }),
-      error: ((err) => {
+  
+    // First, post applicant details
+    this.invDiscountingService.postApplicantDetails(this.applicationForm.value).subscribe({
+      next: (response) => {
+        console.log("Applicant Form response", response);
+  
+        // Next, post invoice details
+        this.invDiscountingService.postInvoiceDetails(this.applicationForm.value).subscribe({
+          next: (response) => {
+            console.log("Invoice Form response", response);
+  
+            // Finally, post other data or perform any other actions
+            this.invDiscountingService.postData(this.applicationForm.value).subscribe({
+              next: (response) => {
+                console.log("Other Form response", response);
+                alert('Form Submitted Successfully!');
+                this.router.navigate(["/invoice-discounting/viewInvoice"]);
+              },
+              error: (err) => {
+                console.error(err);
+                alert('An error occurred while submitting the form. Please try again later.');
+              }
+            });
+          },
+          error: (err) => {
+            console.error(err);
+            alert('An error occurred while submitting the invoice details. Please try again later.');
+          }
+        });
+      },
+      error: (err) => {
         console.error(err);
-        alert('An error occurred while submitting the form. Please try again later.');
-
-      }),
-      complete: (() => { })
-    })
-    // this.applicationForm.reset()
-    this.ngOnInit()
-    this.router.navigate(["/invoice-discounting/viewInvoice"]);
+        alert('An error occurred while submitting the applicant details. Please try again later.');
+      }
+    });
   }
+  
+  // postapplicant() {
+  //   console.log("Form data", this.applicationForm.value);
+  //   // this.row = this.applicationForm.value;
+  //   this.invDiscountingService.postapplicantDetails(this.applicationForm.value).subscribe({
+  //     next: ((response) => {
+  //       console.log("Invoice Form response", response);
+  //     }),
+  //     error: ((err) => {
+  //       console.error(err);
+  //       alert('An error occurred while submitting the form. Please try again later.');
+  //     }),
+  //     complete: (() => {})
+  //   })
+  //   // this.applicationForm.reset()
 
+  // }
+  // postInvoices() {
+  //   console.log("Form data", this.applicationForm.value);
+  //   // this.row = this.applicationForm.value;
+  //   this.invDiscountingService.postinvoiceDetails(this.applicationForm.value).subscribe({
+  //     next: ((response) => {
+  //       console.log("Invoice Form response", response);
+  //     }),
+  //     error: ((err) => {
+  //       console.error(err);
+  //       alert('An error occurred while submitting the form. Please try again later.');
+  //     }),
+  //     complete: (() => {})
+  //   })
+  //   // this.applicationForm.reset()
+
+  // }
+
+  // onSubmit() {
+  //   console.log("Form data", this.applicationForm.value);
+  //   // this.row = this.applicationForm.value;
+  //   this.invDiscountingService.postData(this.applicationForm.value).subscribe({
+  //     next: ((response) => {
+  //       console.log("Invoice Form response", response);
+  //       alert('Form Submitted Successfully!')
+  //     }),
+  //     error: ((err) => {
+  //       console.error(err);
+  //       alert('An error occurred while submitting the form. Please try again later.');
+
+  //     }),
+  //     complete: (() => {})
+  //   })
+  //   // this.applicationForm.reset()
+  //   this.ngOnInit()
+  //   this.router.navigate(["/invoice-discounting/viewInvoice"]);
+  // }
  
-  // rows: any [] = [
-  //   {  formControlName: 'invoiceNumber' },
-  //   {  formControlName: '"invoiceAmount' },
-  //   {  formControlName: 'businessName' },
-  //   {  formControlName: 'businessAddress' },
-  //   {  formControlName: 'dueDate' },
-  //   {  formControlName: 'invoices' },
-  // {  formControlName: '  buyerName' },
-  //   {  formControlName: 'buyerEmail' },
-  //   {  formControlName: ' buyerCity' },
-  //   {formControlName: 'buyerCountry' },
-
-  //   // Adds rows to html
-  // ];
 
   openLookup(): void {
     // Create a MatDialogConfig object

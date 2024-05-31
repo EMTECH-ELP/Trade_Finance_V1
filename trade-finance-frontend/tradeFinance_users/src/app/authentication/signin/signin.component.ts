@@ -73,7 +73,7 @@ ngOnInit() {
         if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
                   this.tokenCookieService.saveUser(res.body.entity)
           this.router.navigate(["/admin/dashboard/view"]);
-        } else if (res.body.entity && (res.body.entity.role === "CHECKER" || res.body.entity.role === "USER")) {
+        } else if (res.body.entity && (res.body.entity.role === "MAKER" || res.body.entity.role === "USER")) {
           if ( res.body.entity.firstLogin === 'Y') {
             this.tokenCookieService.saveUser(res.body.entity)
             this.snackbar.showNotification(

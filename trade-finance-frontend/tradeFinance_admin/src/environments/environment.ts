@@ -24,10 +24,12 @@ export const environment = {
  userUrl:"http://192.168.90.59.8082",    
 
 
- invUrl: 'https://your-backend-api.com/api'      //Replace with Inv.discounting Createform url
+ //  BanksManagement
+ updatebankUrl: '',
+ bankUrl: 'http://192.168.89.245:8187',    //fetchbanks
+// addBankUrl: '',   //post
 
-
-
-
-
+//Currency & Ports
+currencyUrl:'http://192.168.88.109:9000'
+// (this.http://192.168.88.109:9000/api/currencies) 
 };

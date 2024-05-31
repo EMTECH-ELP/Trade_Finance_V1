@@ -1,0 +1,64 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <app-breadcrumb [title]="'Currency'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+      </div>
+  
+      <div class="content-block">
+        <div class="table-header">
+          <h6>Available Currencies</h6>
+          <span style="width: 60%;"></span>
+  
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+          </mat-form-field>
+  
+          <li class="ms-0">
+            <div class="m-l-10" matTooltip="Refresh">
+              <button mat-mini-fab color="primary" (click)="getCurrencies()">
+                <mat-icon class="col-white">refresh</mat-icon>
+              </button>
+            </div>
+          </li>
+  
+       
+        </div>
+  
+        <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell">
+          <ng-container matColumnDef="currencyCode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-40">
+              Currency Code
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="psl-3 tbl-col-width-per-40">
+              {{ element.currencyCode }}
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="currencyName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-60">
+              Currency Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="psl-3 tbl-col-width-per-60">
+              {{ element.currencyName }}
+            </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
+            [style.cursor]="'pointer'" matRipple>
+          </mat-row>
+  
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+            aria-label="Select page of currencies"></mat-paginator>
+        </mat-table>
+  
+        <div *ngIf="isLoading" class="tbl-spinner">
+          <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+          </mat-progress-spinner>
+        </div>
+      </div>
+    </div>
+  </section>
+  
