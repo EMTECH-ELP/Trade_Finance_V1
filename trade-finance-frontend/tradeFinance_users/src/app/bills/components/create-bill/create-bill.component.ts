@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BillsService  } from '../../services/bills.service';
+import { BillsService } from '../../services/bills.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,9 +13,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateBillComponent implements OnInit {
   applicationForm: FormGroup;
-  additionalFileUploads: any;
+  additionalFileUploads: any[] = [];
   ShowLookupComponent: boolean = false;
-  selectedValue: string;
+  selectedValue: string = '';
+  uploadedFile: File | null = null;
+  fileUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,109 +28,120 @@ export class CreateBillComponent implements OnInit {
     private httpClient: HttpClient,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.applicationForm = this.fb.group({
-      accountName: ['', Validators.required],
+      //applicant
       accountNumber: ['', Validators.required],
+      cifId: [''],
+      nationalId: ['', Validators.required],
+      accountName: ['', Validators.required],
+      currency: ['', Validators.required],
+      email: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
-      advisingBankBic: ['', Validators.required],
-      advisingBankCountry: ['', Validators.required],
-      advisingBankName: ['', Validators.required],
-      amount: ['', Validators.required],
-      applicableRules: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      country: ['', Validators.required],
+//Account response
+      // cifId: [''],
+      // city: ['', Validators.required],
+      // currency: ['', Validators.required],
+      // nationalID: ['', Validators.required],
+      // applicantEmail: ['', [Validators.required, Validators.email]],
+      // commodityCode: ['', Validators.required],
+    
+       
+//Beneficiary       
+      beneficiaryFirstName: ['', Validators.required],
+      beneficiaryMiddleName: [''],
+      beneficiaryLastName: ['', Validators.required],
+      beneficiaryEmail: ['', [Validators.required, Validators.email]],
       beneficiaryAccountName: ['', Validators.required],
       beneficiaryAccountNumber: ['', Validators.required],
-      beneficiaryAddress: ['', Validators.required],
+      beneficiaryPhoneNumber: ['', Validators.required],
+      beneficiaryIban: ['', Validators.required],
       beneficiaryAddressLine1: ['', Validators.required],
-      beneficiaryBankAddressLine2: ['', Validators.required],
+      beneficiaryAddressLine2: [''],
       beneficiaryCity: ['', Validators.required],
+      beneficiaryPostalCode: ['', Validators.required],
       beneficiaryCountry: ['', Validators.required],
       beneficiaryCountryCode: ['', Validators.required],
-      beneficiaryEmail: ['', [Validators.required, Validators.email]],
-      beneficiaryFirstName: ['', Validators.required],
-      beneficiaryIban: ['', Validators.required],
-      beneficiaryLastName: ['', Validators.required],
-      beneficiaryMiddleName: ['', Validators.required],
-      beneficiaryPhoneNumber: ['', Validators.required],
-      beneficiaryPostalCode: ['', Validators.required],
+      advisingBankName: ['', Validators.required],
+      advisingBankCountry: ['', Validators.required],
+      advisingBankBic: ['', Validators.required],
+
+      //bill details
       billType: ['', Validators.required],
-      chargesBorneBy: ['', Validators.required],
-      cifId: ['', Validators.required],
-      city: ['', Validators.required],
-      collateralId: ['', Validators.required],
-      collateralType: ['', Validators.required],
-      collateralValue: ['', Validators.required],
-      commodityCode: ['', Validators.required],
-      country: ['', Validators.required],
-      countryCode: ['', Validators.required],
-      countyOfOrigin: ['', Validators.required],
-      currency: ['', Validators.required],
-      currencyCode: ['', Validators.required],
+      amount: ['', Validators.required],
+      issueDate: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      tenor: [''],
+      discountRate:[''],
+      acceptanceDueDate:[''],
+      acceptanceStatus: [''],
+      negotiationAmount:[''],
+      negotiationDate:[''],
+      protestDate:[''],
+      guarantor:[''],
+//Documents
       documentDescription1: ['', Validators.required],
       documentName1: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      expiryDate: ['', Validators.required],
-      goodsQuantity: ['', Validators.required],
-      guarantorAddress: ['', Validators.required],
-      guarantorEmail: ['', Validators.required],
-      guarantorName: ['', Validators.required],
-      guarantorPhoneNumber: ['', Validators.required],
-      isExpired: ['', Validators.required],
-      issueDate: ['', Validators.required],
-      nationalId: ['', Validators.required],
-      negotiationPeriod: ['', Validators.required],
-      partialShipment: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      portOfDischarge: ['', Validators.required],
-      portOfLoading: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      pricePerUnit: ['', Validators.required],
+
+//Goods
+      goodsName:[''],
+      goodsDescription:[''],
+      goodsValue:[''],
+      goodsQuantity:[''],
+      hsCode:[''],
+//Shipment Details
       shipmentDate: ['', Validators.required],
       shipmentTerms: ['', Validators.required],
-      transShipment: ['', Validators.required],
-      transferable: ['', Validators.required],
+      countryOfOrigin: ['', Validators.required],
+      portOfLoading: ['', Validators.required],
+      portOfDischarge:['', Validators.required],
+      billOfLading:[''],
+      airwayBill:[''],
+ //
+      avalisationStatus:[''],
+      avalisationDate:[''],
+      avalisationExpiryDate:['']    
+          
     });
   }
-
-
-  onSubmit() {
+  onSubmit(): void {
     console.log("Form data", this.applicationForm.value);
-    // this.row = this.applicationForm.value;
+    //const data = this.createBiLL(this.applicationForm.value);
     this.billsService.createBill(this.applicationForm.value).subscribe({
       next: ((response) => {
-        console.log("Bill Form response", response);
-        alert('Form Submitted Successfully!')
+        console.log("Bill create response", response);
       }),
       error: ((err) => {
         console.error(err);
-        alert('An error occurred while submitting the form. Please try again later.');
-
+        // alert('An error occurred while submitting the form. Please try again.');
       }),
-      complete: (() => { })
-    })
-    // this.applicationForm.reset()
-    this.ngOnInit()
-    this.router.navigate(["/bills/view-bill"]);
+      complete: (() => {})
+    });
+    this.applicationForm.reset();
+    this.ngOnInit();
+    alert('Form Submitted Successfully!');
+    this.router.navigate(["/bills/viewbill"]);
   }
-
-
-
   openLookup(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
-    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+    dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber')?.value };
 
     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe({
       next: (res: any) => {
-        console.log('received data', res);
-        console.log('passed email', res.data[0].email);
+        console.log("received data", res);
+        // console.log('passed email', res.data[0].email);
         this.patchApplicationForm(res.data[0]);
       }
     });
-  }
-
+  }       
   public patchApplicationForm(data: any): void {
     this.applicationForm.patchValue({
       accountNumber: data.accountNumber,
@@ -145,169 +158,39 @@ export class CreateBillComponent implements OnInit {
       country: data.country
     });
   }
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0]
+  
+    if (selectedFile) {
+      if (selectedFile.type !== 'application/pdf') {
+        // Display an error message 
+        alert('Please select a PDF file.');
+        // Clear the file input and disable it
+        event.target.value = '';
+        return;
+      }
+      // If the selected file is a PDF, read it as a data URL using FileReader
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        // Convert the PDF file content to a string
+        const pdfString = fileReader.result as string;
 
+        // Now you have the PDF content as a string (pdfString)
+        // You can assign it to a form control or store it as needed
+        // For example, you can store it in a form control named 'pdfContent'
+        this.applicationForm.get('pdfContent')?.setValue(pdfString);
+      };
+      fileReader.readAsDataURL(selectedFile);
+    }
+  }
   addFileUpload() {
-    throw new Error('Method not implemented.');
-  }
-
-  onFileSelected($event: any) {
-    throw new Error('Method not implemented.');
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { BillsService} from '../../services/bills.service';
-// import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-// import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { Injectable } from '@angular/core';
-// import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-// import { catchError } from 'rxjs/operators';
-// import { throwError } from 'rxjs';
-
-// @Component({
-//   selector: 'app-create',
-//   templateUrl: './create-bill.component.html',
-//   styleUrls: ['./create-bill.component.sass']
-// // })
-// // @Injectable({
-// //   providedIn: 'root'
-// // })
-// // export class BillsService {
-// //   private apiUrl = 'http://192.168.89.2:8085/api/v1/bills';
-
-// //   constructor(private http: HttpClient) { }
-
-// //   createBill(bill: any) {
-// //     return this.http.post(`${this.apiUrl}/create`, bill)
-// //       .pipe(
-// //         catchError(this.handleError)
-// //       );
-// //   }
-
-// //   private handleError(error: HttpErrorResponse) {
-// //     let errorMessage = '';
-// //     if (error.error instanceof ErrorEvent) {
-// //       // Client-side error
-// //       errorMessage = `Client-side error: ${error.error.message}`;
-// //     } else {
-// //       // Server-side error
-// //       errorMessage = `Server-side error: ${error.status} ${error.message}`;
-// //     }
-// //     console.error(errorMessage);
-// //     return throwError(errorMessage);
-// //   }
-// // }
-
-// export class CreateBillComponent implements OnInit {
-// applicationForm: FormGroup;
-// addFileUpload() {
-// throw new Error('Method not implemented.');
-// }
-// additionalFileUploads: any;
-// onFileSelected($event: any) {
-// throw new Error('Method not implemented.');
-// }
-//   ShowLookupComponent: boolean = false;
-//   selectedValue: string;
-//   // dialog: any;
-//   //router: any;
-
-
-//   constructor(private fb: FormBuilder,
-//     private billsService: BillsService,
-//     private dialog: MatDialog,
-//     private route: ActivatedRoute,
-//     private router: Router,
-//     private http: HttpClient,
-//         // private lookupDialog: MatDialogRef<LookupComponent>
-//   ) { }
-
-
-
-
-// }
-
- 
-//   onSubmit() {
-//     if (this.applicationForm.valid) {
-//       console.log('Form data', this.applicationForm.value);
-//       this.billsService.createBill(this.applicationForm.value).subscribe({
-//         next: response => {
-//           console.log('Bill create response', response);
-//         },
-//         error: err => {
-//           console.error('Error occurred:', err);
-//           alert(`Error: ${err}`);
-//         },
-//         complete: () => {
-//           console.log('Request completed');
-//         }
-//       });
-//     } else {
-//       console.log('Form is invalid');
-//     }
-//     this.applicationForm.reset()
-//     this.ngOnInit()
-//     alert('Form Submitted Successfully!')
-//     this.router.navigate(["/bills/viewbill"]);
-//   }
-//   }
-
-//   openLookup(): void {
-//     // Create a MatDialogConfig object
-//     const dialogConfig = new MatDialogConfig();
-//     dialogConfig.width = '500px';
-//     dialogConfig.data = { accountNumber: this.applicationForm.get('accountNumber').value };
+    const newLabel = prompt('Enter Document Name for the New File Upload:'); 
   
-//     // Open the LookupComponent dialog with the dialog config
-//     const dialogRef = this.dialog.open(LookupComponent, dialogConfig);
-
-//     dialogRef.afterClosed().subscribe({
-//       next: (res: any) => {
-//         console.log("received data", res),
-
-//         console.log("passed email", res.data[0].email)
-        
-//         this.patchApplicationForm(res.data[0])
-//       }
-//     })
-//   }
-
-//   public patchApplicationForm(data: any): void {
-//     this.applicationForm.patchValue({
-//     accountNumber: data.accountNumber,
-//     cifId: data.cifId,
-//     nationalId: data.nationalId,
-//     accountName: data.accountName,
-//     currency: data.currency,
-//     email: data.email,
-//     phoneNumber: data.phoneNumber,
-//     address: data.address,
-//     city: data.city,
-//     postalCode: data.postalCode,
-//     countryCode: data.countryCode ? data.countryCode : 'NAN', 
-//     country: data.country
-//  });
-// }
-  
-// function openLookup() {
-//   throw new Error('Function not implemented.');
-// }
-
-// function ngOnInit() {
-//   throw new Error('Function not implemented.');
-// }
-
+    if (newLabel) { 
+      const newRow = {
+        label: newLabel.trim(),
+      };
+      this.additionalFileUploads.push(newRow);
+    }
+  }
+  }

@@ -26,8 +26,9 @@ export class BillsService {
 
     public createBill(data: any): Observable<any> {      
       const url = `${environment.billApiUrl}/api/v1/bills/create`;
-      return this.httpClient.post<any>(url, data);   
- 
+      // console.log('submitted')
+      return this.httpClient.post<any>(url, data, { headers: { 'Content-Type': 'application/json' } });
+      // return this.httpClient.post<any>(url, data);   
   }
   public billStatus(billData: any): Observable<any>{
     const url = `${environment.billApiUrl}/api/v1/bills/status/{status}`;

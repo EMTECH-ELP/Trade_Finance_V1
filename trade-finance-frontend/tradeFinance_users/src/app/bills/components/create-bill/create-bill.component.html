@@ -7,50 +7,68 @@
       <app-breadcrumb [title]="'Bill'" [items]="['Home']" [active_item]="'New Bill'">
       </app-breadcrumb>
     </div>
-    <div class="loader"></div>
-    <mat-horizontal-stepper linear>
-      <form [formGroup]="applicationForm">
-        <!-- Step 1: Application Details -->
-        <mat-step label="Applicant Details">
-          <p style="color: maroon; font-weight: bold;">Applicant Details:</p>
-          <div class="row" #applicationDetails>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+    
+<mat-horizontal-stepper linear>
+  <form [formGroup]="applicationForm">
+ <!-- Step 1: Application Details -->
+ <mat-step label="Applicant Details">
+  <p style="color: maroon; font-weight: bold;">Applicant Details: 
+     <!-- <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p> -->
+  <!-- Lookup details -->
+  <div class="row" style="color: rgb(38, 0, 128); ">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Search By:</mat-label>
+        <mat-select formControlName="accountNumber">
+          <mat-option value="accountNumber">Account Number</mat-option>
+          <mat-option value="cifId">CIF ID</mat-option>
+          <mat-option value="nationalId">National ID</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Enter Value</mat-label>
+        <input matInput formControlName="accountNumber" type="number">
+        <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Applicant details -->
+  <!-- <p class="stepHeading">Applicant Details:</p> -->
+  <div class="row" applicationDetails>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="accountNumber" type="text">
-                <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
+                <input matInput formControlName="accountNumber" type="number">
               </mat-form-field>
-              <small
+               <small style="color: red;"
                 *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
-                *Account Number is required</small>
-            </div>
-            
+                *Account Number is required</small> 
+          </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Customer's CIF ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="cifId" type="string">
-                <mat-icon matSuffix>search</mat-icon>
-              </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
-                *CIF ID is required</small>
+                <input matInput  formControlName="cifId" type="number">
+              </mat-form-field> 
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>National ID</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="nationalId" type="string">
-                <mat-icon matSuffix>search</mat-icon>
+                <input matInput  formControlName="nationalId" type="number">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
-                *Customer's national ID is required</small>
-            </div>
-  
+              <small style="color: red;"
+              *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
+                *national ID is required</small> 
+              </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="accountName" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('accountName'). invalid && applicationForm.get('accountName').touched">
+              <small style="color: red;"
+              *ngIf="applicationForm.get('accountName'). invalid && applicationForm.get('accountName').touched">
                 *Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -58,47 +76,53 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="currency" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('currency').invalid && applicationForm.get('currency').touched">
-                *Please specify the currency</small>
+              <small style="color: red;"
+              *ngIf="applicationForm.get('currency').invalid && applicationForm.get('currency').touched">
+                *Currency is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Email</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="email" type="email">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('email').invalid && applicationForm.get('email').touched">
-                *Enter valid email address</small>
+              <small style="color: red;"
+              *ngIf="applicationForm.get('email').invalid && applicationForm.get('email').touched">
+                *Applicant Email address is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Phone Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="phoneNumber" type="tel">
-              </mat-form-field>
-              <small *ngIf="applicationForm.get('phoneNumber').invalid && applicationForm.get('phoneNumber').touched">
-                *Phone Number is required</small>
+               </mat-form-field>
+              <small style="color: red;"
+              *ngIf="applicationForm.get('phoneNumber').invalid && applicationForm.get('phoneNumber').touched">
+                *Phone Number is required</small> 
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="address" type="text">
+                <input matInput  formControlName="address" type="string">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('address').invalid && applicationForm.get('address').touched">
-                *Address is mandatory</small>
+              <small style="color: red;"
+              *ngIf="applicationForm.get('address').invalid && applicationForm.get('address').touched">
+                * Applicant Address is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="city" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
-                *City is required</small>
+               <small style="color: red;"
+              *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
+                *Applicant City is required</small> 
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Postal Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="postalCode" type="text">
+                <input matInput  formControlName="postalCode" type="string">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('postalCode').invalid && applicationForm.get('postalCode').touched">
+              <small style="color: red;"
+              *ngIf="applicationForm.get('postalCode').invalid && applicationForm.get('postalCode').touched">
                 *Postal code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -106,7 +130,8 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="countryCode" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('countryCode').invalid && applicationForm.get('countryCode').touched">
+              <small style="color: red;"
+              *ngIf="applicationForm.get('countryCode').invalid && applicationForm.get('countryCode').touched">
                 *Country code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -114,7 +139,8 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="country" type="text">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('country').invalid && applicationForm.get('country').touched">
+              <small style="color: red;"
+               *ngIf="applicationForm.get('country').invalid && applicationForm.get('country').touched">
                 *Applicant's country is required</small>
             </div>
             <div>
@@ -122,7 +148,7 @@
               <button class="nextDC" mat-button matStepperNext>Next</button>
            </div>
           </div>
-        </mat-step>
+        </mat-step> 
   
         <!--Step 2: Beneficiary Details-->
         <mat-step label="Beneficiary Details">
@@ -133,11 +159,10 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="beneficiaryFirstName" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryFirstName'). invalid && applicationForm.get('beneficiaryFirstName').touched">
                 *Beneficiary First Name is required</small>
             </div>
-  
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
@@ -149,16 +174,16 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryLastName" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryLastName'). invalid && applicationForm.get('beneficiaryLastName').touched">
                 *Beneficiary Last Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Email</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryEmail" type="text">
+                <input matInput formControlName="beneficiaryEmail" type="email">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryEmail'). invalid && applicationForm.get('beneficiaryEmail').touched">
                 *Beneficiary Email is required</small>
             </div>
@@ -167,90 +192,97 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAccountName" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryAccountName'). invalid && applicationForm.get('beneficiaryAccountName').touched">
-                *Beneficiary's Account Name is required</small>
+                *Beneficiary Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="beneficiaryAccountNumber" type="text">
+                <input matInput  formControlName="beneficiaryAccountNumber" type="number">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryAccountNumber'). invalid && applicationForm.get('beneficiaryAccountNumber').touched">
                 *Beneficiary's Account Number is required</small>
             </div>
-  
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>IBAN</mat-label>
+              <mat-label>Phone Number</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="beneficiaryIban" type="text">
+                <input matInput  formControlName="beneficiaryPhoneNumber" type="tel">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('beneficiaryIban'). invalid && applicationForm.get('beneficiaryIban').touched">
-                *Beneficiary Email is required</small>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('beneficiaryPhoneNumber'). invalid && applicationForm.get('beneficiaryPhoneNumber').touched">
+                *beneficiary Phone Number is required</small>
             </div>
-  
+            
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Iban</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput  formControlName="beneficiaryIban" type="string">
+              </mat-form-field>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('beneficiaryIban'). invalid && applicationForm.get('beneficiaryIban').touched">
+                *Beneficiary Iban is required</small>
+            </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address Line1</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="beneficiaryAddressLine1" type="tel">
+                <input matInput  formControlName="beneficiaryAddressLine1" type="string">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('beneficiaryPhoneNumber'). invalid && applicationForm.get('beneficiaryPhoneNumber').touched">
-                *Address Line1 beneficiary Phone Number is required</small>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('beneficiaryAddressLine1'). invalid && applicationForm.get('beneficiaryAddressLine1').touched">
+                *Beneficiary Address Line1 is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address Line2</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="beneficiaryBankAddressLine2" type="text">
+                <input matInput  formControlName="beneficiaryBankAddressLine2" type="string">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('beneficiaryBankAddressLine2'). invalid && applicationForm.get('beneficiaryBankAddressLine2').touched">
-                *Beneficiary Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="beneficiaryCity" type="text">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('beneficiaryAccountNumber'). invalid && applicationForm.get('beneficiaryAccountNumber').touched">
+              <small style="color: red;"
+                *ngIf="applicationForm.get('beneficiaryCity'). invalid && applicationForm.get('beneficiaryCity').touched">
                 *Beneficiary City is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Postal Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="beneficiaryPostalCode" type="text">
+                <input matInput  formControlName="beneficiaryPostalCode" type="number">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryPostalCode'). invalid && applicationForm.get('beneficiaryPostalCode').touched">
                 *Beneficiary's Postal code is required</small>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Country Code</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountryCode" type="text">
-              </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('beneficiaryCountryCode'). invalid && applicationForm.get('beneficiaryCountryCode').touched">
-                *Beneficiary Country Code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryCountry" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryCountry'). invalid && applicationForm.get('beneficiaryCountry').touched">
-                *Beneficiary City is required</small>
+                *Beneficiary Country is required</small>
             </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Country Code</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="beneficiaryCountryCode" type="text">
+              </mat-form-field>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('beneficiaryCountryCode'). invalid && applicationForm.get('beneficiaryCountryCode').touched">
+                *Beneficiary Country Code is required</small>
+            </div>
+            
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankName" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankName'). invalid && applicationForm.get('advisingBankName').touched">
                 *Advising Bank is required</small>
             </div>
@@ -259,18 +291,18 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankCountry" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankCountry'). invalid && applicationForm.get('advisingBankCountry').touched">
                 *Advising Bank Country is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>SWIFT Code</mat-label>
+              <mat-label>Bank BIC</mat-label>          
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput  formControlName="advisingBankBic" type="text">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBic'). invalid && applicationForm.get('advisingBankBic').touched">
-                *Advising Bank Country is required</small>
+                *Advising Bank Bic is required</small>
             </div>
             <div>
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
@@ -287,57 +319,38 @@
               <mat-label> Bill Type</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="billType">
-                  <mat-option value="revocable">Import Financing</mat-option>
-                  <mat-option value="irrevocable">Export Financing</mat-option>
+                  <mat-option value="import">Import Financing</mat-option>
+                  <mat-option value="export">Export Financing</mat-option>
                 </mat-select>
               </mat-form-field>
-              <!-- <small *ngIf="applicationForm.get('lcType'). invalid && applicationForm.get('billType').touched">
-                *Bill Type is required</small> -->
+              <small  style="color: red;"
+              *ngIf="applicationForm.get('billType'). invalid && applicationForm.get('billType').touched">
+                *Bill Type is required</small>
             </div>
-  
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bill Number</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput  formControlName="billNumber" type="text">
-              </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('billNumber'). invalid && applicationForm.get('billNumber').touched">
-                *Bill Number is mandatory</small> -->
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Amount</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="amount" type="text">
-              </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('Amount'). invalid && applicationForm.get('Amount').touched">
-                *Amount is mandatory</small> -->
-            </div>
-  
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Currency</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="currency" type="text">
               </mat-form-field>
-              <!-- <mat-select formControlName="currency">
-                <mat-option value="" disabled>Select Currency</mat-option>
-                <mat-option value="usd">USD</mat-option>
-                <mat-option value="gbp">GBP</mat-option>
-                <mat-option value="eur">EUR</mat-option>
-                <mat-option value="jpy">JPY</mat-option>
-                <mat-option value="cny">CNY</mat-option>
-              </mat-select> -->
-              <!-- <small
-                *ngIf="applicationForm.get('currency'). invalid && applicationForm.get('currency').touched">
-                *Currency is mandatory</small> -->
+              <small style="color: red;"
+              *ngIf="applicationForm.get('currency'). invalid && applicationForm.get('currency').touched">
+                *Currency is required</small>
             </div>
-            
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Amount</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="amount" type="number">
+              </mat-form-field>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('amount'). invalid && applicationForm.get('amount').touched">
+                *Amount is mandatory</small>
+            </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Issue Date</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="issueDate" type="date">
               </mat-form-field>
-              <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('issueDate'). invalid && applicationForm.get('issueDate').touched">
                 *Issue Date is required</small>
             </div>
@@ -347,38 +360,28 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="dueDate" type="date">
               </mat-form-field>
-              <!-- <small
+              <small style="color: red;"
                 *ngIf="applicationForm.get('dueDate'). invalid && applicationForm.get('dueDate').touched">
-                *Due Date is required</small> -->
+                *Due Date is required</small>
             </div>
-            
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Tenor/Period</mat-label>
+              <mat-label>Tenor</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="tenor" type="text">
+                <input matInput formControlName="tenor" type="number">
               </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('currency'). invalid && applicationForm.get('tenor').touched">
-                *Tenor is mandatory</small> -->
             </div>
-            
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Discount Rate</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="discountRate" type="text">
+                <input matInput formControlName="discountRate" type="number">
               </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('discountRate'). invalid && applicationForm.get('discountRate').touched">
-                *Discount Rate is mandatory</small> -->
             </div>
-            
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Acceptance Due Date</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="expiryDate" type="date">
               </mat-form-field>
-              <!-- <small *ngIf="applicationForm.get('acceptanceDueDate'). invalid && applicationForm.get('acceptanceDueDate').touched">
-                *Acceptance Due Date is required</small> -->
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Acceptance Status</mat-label>
@@ -386,70 +389,31 @@
                 <input matInput  formControlName="acceptanceStatus" type="text">
               </mat-form-field>
             </div>
-            
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Negotiation Amount</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="amount" type="number">
+              </mat-form-field>
+            </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Negotiation Date</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="negotiationDate" type="date">
               </mat-form-field>
-              <!-- <small *ngIf="applicationForm.get('negotiationDate'). invalid && applicationForm.get('negotiationDate').touched">
-                *Negotiation Date is required</small> -->
             </div>
-            
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Avalised</mat-label>
+              <mat-label>Protest Date</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <mat-select>
-                  <mat-option value="yes">Yes</mat-option>
-                  <mat-option value="no">No</mat-option>
-                </mat-select>
+                <input matInput formControlName="protestDate" type="date">
               </mat-form-field>
-            </div>
-            
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Avalisation Expiry Date</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="avalisationExpiryDate" type="date">
-              </mat-form-field>
-              <!-- <small *ngIf="applicationForm.get('avalisationExpiryDate'). invalid && applicationForm.get('avalisationExpiryDate').touched">
-                *Avalisation Expiry Date is required</small> -->
-            </div>
-            
-            
+              </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Guarantor</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                   <input matInput formControlName="guarantor" type="text">
                 </mat-form-field>
             </div>
-            
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Charges Borne By:</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Charges Borne By</mat-label>
-                <mat-select formControlName="chargesBorneBy">
-                  <mat-option value="" disabled>Select Charges Borne By</mat-option>
-                  <mat-option value="applicant">Applicant</mat-option>
-                  <mat-option value="beneficiary">Beneficiary</mat-option>
-                  <mat-option value="both">Both</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bill Status:</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Bill Status</mat-label>
-                <mat-select formControlName="billStatus">
-                  <mat-option value="" disabled>Select Bill Status</mat-option>
-                  <mat-option value="Approved">Approved</mat-option>
-                  <mat-option value="Rejected">Rejected</mat-option>
-                  <mat-option value="Pending">Pending</mat-option>
-                  <mat-option value="Returned For Review">Returned For Review</mat-option>
-                  <mat-option value="Returned For Approval">Returned For Approval</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+      
             <div>
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
               <span style="margin-right: 745px;"></span>
@@ -458,27 +422,21 @@
             </div>
             </mat-step>
             <!--Step 4: Goods and  Shipment details-->
-        <mat-step label="Goods and Shipment Details">
-          <p style="color: maroon; font-weight: bold;">Goods and  Shipment details:</p>
-            <div class="row">
-  
-             <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                <mat-label>Name</mat-label>
-                 <mat-form-field class="full-width" appearance="outline">
-                   <input matInput placeholder="Name" formControlName="name" type="text">
-                 </mat-form-field>
-           <small
-            *ngIf="applicationForm.get('name'). invalid && applicationForm.get('name').touched">
-            *Name  is required</small> 
-        </div> -->
+    <mat-step label="Goods and Shipment Details">
+    <div>
+      <p style="color: maroon; font-weight: bold;">Goods details:</p>
+       <div class="row">
+         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+          <mat-label>Name</mat-label>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput  formControlName="name" type="text">
+          </mat-form-field>
+        </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
           <mat-label>Description</mat-label>
           <mat-form-field class="full-width" appearance="outline">
             <input matInput  formControlName="description" type="text">
           </mat-form-field>
-          <!-- <small
-            *ngIf="applicationForm.get('description'). invalid && applicationForm.get('description').touched">
-            *Description  is required</small> -->
         </div>
   
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -486,42 +444,39 @@
           <mat-form-field class="full-width" appearance="outline">
             <input matInput formControlName="value" type="number">
           </mat-form-field>
-          <!-- <small
-            *ngIf="applicationForm.get('value'). invalid && applicationForm.get('value').touched">
-            * Value is required</small> -->
         </div>
-  
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
           <mat-label>Quantity</mat-label>
           <mat-form-field class="full-width" appearance="outline">
             <input matInput formControlName="quantity" type="number">
           </mat-form-field>
-          <!-- <small
-            *ngIf="applicationForm.get('quantity'). invalid && applicationForm.get('quantity').touched">
-            * Quantity is required</small> -->
         </div>
-  
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
           <mat-label>HS Code</mat-label>
           <mat-form-field class="full-width" appearance="outline">
             <input matInput formControlName="hsCode" type="text">
           </mat-form-field>
-          <!-- <small
-            *ngIf="applicationForm.get('hsCode'). invalid && applicationForm.get('hsCode').touched">
-            *HS Code  is required</small> -->
         </div>
-       
-  <!-- <mat-step label="Shipment">
-  <p style="color: maroon; font-weight: bold;">Shipment Section:</p>
-  <div class="row"> -->
-  
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <mat-label>Date Of Shipment</mat-label>
+    </div>
+ <p style="color: maroon; font-weight: bold;">Shipment details:</p>
+  <div class="row">
+   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+    <mat-label>Shipment Date</mat-label>
     <mat-form-field class="full-width" appearance="outline">
-      <input matInput  formControlName="dateOfShipment" type="date">
+      <input matInput  formControlName="shipmentDate" type="date">
     </mat-form-field>
-    <!-- <small *ngIf="applicationForm.get('date'). invalid && applicationForm.get('date').touched">
-      *Date is required</small> -->
+    <small style="color: red;"
+    *ngIf="applicationForm.get('shipmentDate'). invalid && applicationForm.get('shipmentDate').touched">
+      *Shipment Date is required</small>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+    <mat-label>Shipment Terms</mat-label>
+    <mat-form-field class="full-width" appearance="outline">
+      <input matInput  formControlName="shipmentTerms" type="text">
+    </mat-form-field>
+    <small  style="color: red;"
+    *ngIf="applicationForm.get('shipmentTerms'). invalid && applicationForm.get('shipmentTerms').touched">
+      *Shipment Terms is required</small>
   </div>
   
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -529,79 +484,77 @@
     <mat-form-field class="full-width" appearance="outline">
       <input matInput formControlName="countryOfOrigin" type="text">
     </mat-form-field>
+    <small style="color: red;"
+    *ngIf="applicationForm.get('countryOfOrigin'). invalid && applicationForm.get('countryOfOrigin').touched">
+      *Country Of Origin is required</small>
   </div>
-  
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <mat-label>Port of Loading</mat-label>
+    <mat-label>Port Of Loading</mat-label>
     <mat-form-field class="full-width" appearance="outline">
       <input matInput formControlName="portOfLoading" type="text">
     </mat-form-field>
+    <small style="color: red;"
+    *ngIf="applicationForm.get('portOfLoading'). invalid && applicationForm.get('portOfLoading').touched">
+      *Port of Loading is required</small>
   </div>
-  
-  
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <mat-label>Port of Discharge</mat-label>
+    <mat-label>Port Of Discharge</mat-label>
     <mat-form-field class="full-width" appearance="outline">
       <input matInput formControlName="portOfDischarge" type="text">
     </mat-form-field>
+    <small  style="color: red;"
+    *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
+      *Port of Discharge is required</small>
   </div>
-  
-  
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <mat-label>Incoterms</mat-label>
-    <mat-form-field class="full-width" appearance="outline">
-      <input matInput formControlName="incoterms" type="text">
-    </mat-form-field>
-  </div>
-  
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <mat-label>Incoterms Description</mat-label>
-    <mat-form-field class="full-width" appearance="outline">
-      <input matInput formControlName="invalid" type="text">
-    </mat-form-field>
-  </div>
-  
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
     <mat-label>Bill of Lading</mat-label>
     <mat-form-field class="full-width" appearance="outline">
       <input matInput formControlName="billOfLading" type="text">
     </mat-form-field>
   </div>
-  <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-    <div>
-      <label for="Bill Of Lading">Upload Bill of Lading:</label>
-      <input type="file" id="billOfLading" name="billofLadingFile">
-      </div>
-    </div> -->
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
     <mat-label> Airway Bill </mat-label>
     <mat-form-field class="full-width" appearance="outline">
       <input matInput formControlName="airwayBill" type="text">
     </mat-form-field>
-    <!-- <small
-      *ngIf="applicationForm.get('airwayBillNumber'). invalid && applicationForm.get('airwayBillNumber').touched">
-      * Airway Bill Number is required</small> -->
-     </div>
    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-label>Avalisation Status</mat-label>
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput formControlName="avalisationStatus" type="text">
+      </mat-form-field>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-label>Avalisation Date</mat-label>
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput formControlName="avalisationDate" type="date">
+      </mat-form-field>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+      <mat-label>Avalisation Expiry Date</mat-label>
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput formControlName="avalisationExpiryDate" type="date">
+      </mat-form-field>
+    </div>
+  </div>
   <div>
      <button class="previousDC" mat-button matStepperPrevious>Back</button>
      <span style="margin-right: 745px;"></span>
      <button class="nextDC" mat-button matStepperNext>Next</button>
+    </div>
   </div>
-  </mat-step>
+ </mat-step>
   
   <!-- Step 5: Document Upload Section -->
   <mat-step label="Document Upload Section">
     <p style="color: maroon; font-weight: bold;">Required Documents Section:</p>
     <div class="row">
-      
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
         <mat-label for="commercialInvoice">Upload Commercial Invoice</mat-label>
         <mat-form-field class="full-width" appearance="outline">
           <input matInput type="file"  formControlName="commercialInvoice[]" multiple accept=".pdf,application/pdf" (change)="onFileSelected($event)">
         </mat-form-field>
        </div>
-     
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
         <div>
             <mat-label for="billOfLading">Upload Bill of Lading</mat-label>
@@ -626,7 +579,6 @@
           </mat-form-field>
          </div>
       </div>
-  
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
         <div>
           <mat-label for="insuranceCertificate">Upload Insurance Certificate</mat-label>
@@ -635,8 +587,6 @@
           </mat-form-field>
          </div>
       </div>
-      
-     
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
         <div>
           <mat-label for="qualityInspectionCertificate">Upload Quality Inspection Certificate</mat-label>
@@ -663,7 +613,6 @@
       <button class="previousDC" mat-button matStepperPrevious>Back</button>
       <span style="margin-right: 745px;"></span>
        <button class="nextDC" mat-button matStepperNext type="submit" (click)="onSubmit()">Submit</button>
-  
     </div>
   </div>
   </mat-step>
