@@ -10,7 +10,7 @@
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
-          <p class="stepHeading">Applicant Details:</p>
+          <!-- <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p> -->
           <!-- Lookup details -->
           <div class="row" style=" color: white;">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
@@ -541,7 +541,7 @@
                 *Specify shipment Terms
               </mat-hint>
             </div>
-            
+
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Partial Shipment</mat-label>
@@ -576,16 +576,6 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-<<<<<<< HEAD
-
-                <input matInput formControlName="portOfDischarge" type="text">
-
-=======
-<<<<<<< HEAD
-                <input matInput formControlName="portOfDischarge" type="text">
-=======
-<<<<<<< HEAD
->>>>>>> 500e2b77d4685850aafcf6b548ef0ddf7b8cbd20
                 <mat-select formControlName="portOfDischarge">
                   <mat-option value="Mombasa">Mombasa</mat-option>
                   <mat-option value="Kisumu">Kisumu</mat-option>
@@ -602,11 +592,6 @@
 
                 <input matInput formControlName="portOfDischarge" type="text">
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
-<<<<<<< HEAD
-=======
->>>>>>> 820ff0928263a878a5766cece580ff0be7171e38
->>>>>>> 1e0cb8dba4fb970f96b37bc4aabb5f95a2d6f9ed
->>>>>>> 500e2b77d4685850aafcf6b548ef0ddf7b8cbd20
               </mat-form-field>
               <mat-hint style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
@@ -790,8 +775,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
                 <label for="Commercial Invoice">Upload Commercial Invoice:</label>
-                <input type="file" id="commercialInvoice" name="commercialInvoiceFile"
-                  (change)="OnFileSelected($event)">
+                <input type="file" id="commercialInvoice" name="commercialInvoiceFile">
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -808,7 +792,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Upload Bill Of Lading File</mat-label>
-              <input formControlName="billOfLadingFile" type="file" (change)="OnFileSelected($event)">
+              <input formControlName="billOfLadingFile" type="file">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Packing List</mat-label>
