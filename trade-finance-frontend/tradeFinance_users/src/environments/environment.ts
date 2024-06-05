@@ -17,7 +17,7 @@ transferApiUrl: 'http://192.168.90.231:8085', //Transfer LC
 getUrl: ` http://192.168.90.231:8085`,      //get all LCs details
 approveLcApiUrl: 'http://192.168.90.231:8085' ,// Approval of a created LC
 deleteLcApiUrl: 'http://192.168.90.231:8085',  //delete an already created LC
-
+generateMtUrl: 'http://192.168.90.231:8085',           //generate LC MT message
 
 //Shipment terms
 shipmentTermsApi: 'http://192.168.89.92:8085',      //fetch all shipment terms
