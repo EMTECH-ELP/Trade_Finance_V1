@@ -1,0 +1,41 @@
+
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'PRIVILEGES'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+        </div>
+
+
+        <div class="formPrivilege">
+            <form [formGroup]="privilegeForm" (ngSubmit)="onSubmit()">
+              <div class="privilegeInputs">
+                <mat-label>Privilege Name:</mat-label><br/>
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput formControlName="privilegeName">
+                </mat-form-field>
+              </div>
+          
+              <div class="privilegeInputs">
+                <mat-label>Privilege Description:</mat-label><br/>
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput formControlName="privilegeDescription">
+                </mat-form-field>
+              </div>
+          
+              <div *ngFor="let desc of privilegeDescriptions; let i = index" class="privilegeInputs">
+                <mat-label>{{desc.label}}</mat-label><br/>
+                <mat-form-field class="full-width" appearance="outline">
+                  <input matInput [formControlName]="desc.controlName">
+                </mat-form-field>
+              </div> 
+          
+              <button type="button" style="border-radius: 5px; margin-left: 760px;" (click)="addPrivilegeDescription()">Add more privilege description</button><br/><br/>
+          
+              <button type="submit" class="privilegeButton">Submit</button>
+              <span style="margin-right: 745px;"></span>
+              <button type="button" class="privilegeButton" (click)="cancel()">Cancel</button>
+            </form>
+          </div>
+  
