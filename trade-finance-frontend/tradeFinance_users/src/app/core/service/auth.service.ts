@@ -82,7 +82,8 @@ export class AuthService {
     // const data = { email, password };
     // const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    let CREATE_URL = `${environment.authUrl}/api/v1/auth/login`;
+    
+    const CREATE_URL = `${environment.authUrl}/api/v1/auth/login`;
     return this.http
       .post(CREATE_URL, data, {
         observe: "response",

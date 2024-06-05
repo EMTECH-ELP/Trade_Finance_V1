@@ -40,7 +40,7 @@ export class DeleteLcComponent implements OnInit {
     console.log('Form deletion details', this.deletionForm.value);
     console.log('Deleting LC:', this.lcNumber);
     console.log('Comments:', this.comments);
-
+   //this.lcService.deleteLC.
     // After deletion, navigate to another page or show a success message.
     this.router.navigate(['/lc/view']);
   }

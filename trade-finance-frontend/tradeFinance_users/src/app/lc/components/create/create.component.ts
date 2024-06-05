@@ -19,8 +19,7 @@ export class CreateComponent implements OnInit {
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
   shipmentTerms: Array<{ value: string, viewValue: string }> = [];
-  // dialog: any;
- // router: any;
+
 
   constructor(private fb: FormBuilder,
     private lcService: LcService,
