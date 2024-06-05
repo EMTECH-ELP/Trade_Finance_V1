@@ -26,6 +26,9 @@ import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
 import { MasterdataComponent } from './masterdata/masterdata.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PortsComponent } from './ports/ports.component';
+import { WorkflowManagementComponent } from './workflow-management/workflow-management.component';
+import { ModifyBankDialogueComponent } from './modify-bank-dialogue/modify-bank-dialogue.component';
+import { DeletebankdialogueComponent } from './deletebankdialogue/deletebankdialogue.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { PortsComponent } from './ports/ports.component';
     AddbankPopupComponent,
     MasterdataComponent,
     CurrencyComponent,
-    PortsComponent
+    PortsComponent,
+    WorkflowManagementComponent,
+    ModifyBankDialogueComponent,
+    DeletebankdialogueComponent
    
   ],
   imports: [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, Form } from '@angular/forms';
-// import { SearchService } from '../../services/search.service';
+
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
@@ -16,20 +16,22 @@ export class CreateInvoiceComponent implements OnInit {
  
   ShowLookupComponent: boolean = false;
   selectedValue: string;
+
   applicationForm: FormGroup;
   additionalInvoices: FormArray;
+applicantsForm:FormGroup;
 
+  formData: any = {}; // Initialize your form data
   isLinear: true;
   query: string = '';
   searchData: any;
 
   selected = 'pending';
   selectedFiles: any;
-  // formdata: any = {};
 
-  // rows: any;
-
-  // invoiceStatus: any;
+  applicantDetails :any;
+  invoiceDetails: any;
+  fundingDetails: any
 
 
 
@@ -40,8 +42,7 @@ export class CreateInvoiceComponent implements OnInit {
     private router: Router,
 
 
-    //private searchService: SearchService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.applicationForm = this.builder.group({
@@ -75,7 +76,7 @@ export class CreateInvoiceComponent implements OnInit {
       buyerCity: ['', Validators.required],
       buyerCountry: ['', Validators.required],
       buyerEmailAddress: ['', [Validators.required, Validators.email]],
-      terms_and_condition: ['', Validators.required],
+      // terms_and_condition: ['', Validators.required],
 
       //  Funding details
       fundingAmount: ['', Validators.required],
@@ -147,97 +148,138 @@ export class CreateInvoiceComponent implements OnInit {
       }
     }
   }
-  onSubmit() {
-    console.log("Form data", this.applicationForm.value);
-  
-    // First, post applicant details
-    this.invDiscountingService.postApplicantDetails(this.applicationForm.value).subscribe({
-      next: (response) => {
-        console.log("Applicant Form response", response);
-  
-        // Next, post invoice details
-        this.invDiscountingService.postInvoiceDetails(this.applicationForm.value).subscribe({
-          next: (response) => {
-            console.log("Invoice Form response", response);
-  
-            // Finally, post other data or perform any other actions
-            this.invDiscountingService.postData(this.applicationForm.value).subscribe({
-              next: (response) => {
-                console.log("Other Form response", response);
-                alert('Form Submitted Successfully!');
-                this.router.navigate(["/invoice-discounting/viewInvoice"]);
-              },
-              error: (err) => {
-                console.error(err);
-                alert('An error occurred while submitting the form. Please try again later.');
-              }
-            });
-          },
-          error: (err) => {
-            console.error(err);
-            alert('An error occurred while submitting the invoice details. Please try again later.');
-          }
-        });
+ 
+  processValues(){
+    const applicantDetails = {
+      "accountNumber": this.applicationForm?.get("accountNumber").value,
+      "cifId": this.applicationForm?.get("cifId").value,
+      "nationalId": this.applicationForm?.get("nationalId").value,
+      "accountName": this.applicationForm?.get("accountName").value,
+      "currency":this.applicationForm?.get("currency").value,
+      "email": this.applicationForm?.get("email").value,
+      "phoneNumber":this.applicationForm?.get("phoneNumber").value,
+      "address": this.applicationForm?.get("address").value,
+      "city": this.applicationForm?.get("city").value,
+      "postalCode": this.applicationForm?.get("postalCode").value,
+      "countryCode": this.applicationForm?.get("countryCode").value,
+      "country": this.applicationForm?.get("country").value,
+    }
+
+    const invoiceDetails = {
+      "invoiceDate": this.applicationForm?.get("invoiceDate").value,
+      "invoiceNumber": this.applicationForm?.get("invoiceNumber").value,
+      "invoiceAmount": this.applicationForm?.get("invoiceAmount").value,
+      "applicantBusinessName": this.applicationForm?.get("applicantBusinessName").value,
+      "applicantBusinessAddress": this.applicationForm?.get("applicantBusinessAddress").value,
+      "dueDate":this.applicationForm?.get("dueDate").value,
+      "invoices": this.applicationForm?.get("invoices").value,  //file upload
+      "applicationForm": this.applicationForm?.get("applicationForm").value,      //file upload
+
+      //  importer details
+      "buyerName": this.applicationForm?.get("buyerName").value,
+      "buyerBusinessName":this.applicationForm?.get("buyerBusinessName").value,
+      "buyerCity": this.applicationForm?.get("buyerCity").value,
+      "buyerCountry": this.applicationForm?.get("buyerCountry").value,
+      "buyerEmailAddress": this.applicationForm?.get("buyerEmailAddress").value,
+      // "terms_and_condition":this.applicationForm?.get("terms_and_condition").value,
+    }
+
+    const fundingDetails = {
+      "fundingAmount": this.applicationForm?.get("fundingAmount").value,
+      "disbursalDate": this.applicationForm?.get("disbursalDate").value,
+      "repaymentDate": this.applicationForm?.get("repaymentDate").value,
+      "creditAccount": this.applicationForm?.get("creditAccount").value,
+      "creditLimit": this.applicationForm?.get("creditLimit").value,
+      "creditAppraisalForm": this.applicationForm?.get("creditAppraisalForm").value,
+    }
+
+    this.applicantDetails = applicantDetails
+    this.invoiceDetails = invoiceDetails
+    this.fundingDetails = fundingDetails
+  }
+  onSubmit(): void {
+    this.processValues()
+    this.invDiscountingService.postApplicantDetails
+    this.invDiscountingService.postInvoiceDetails
+    this.invDiscountingService.postFundingDetails
+    const formData = this.applicationForm.value;
+       console.log(this.applicationForm.value);
+
+    // if (this.applicationForm.valid) {
+    //   const formData = this.applicationForm.value;
+    //   console.log(formData);
+    // } else {
+    //   console.log(this.applicationForm.value);
+    //   console.error('Form is invalid');
+    //  alert("Form is Invalid")
+    // }
+    this.SubmitApplicant()
+  }
+  SubmitApplicant() {
+    console.log(this.applicantDetails);
+    console.log(this.invoiceDetails);
+    console.log(this.fundingDetails);
+
+    console.log("Form data", this.applicantDetails);
+    this.invDiscountingService.postApplicantDetails(this.applicantDetails).subscribe({
+      next: (responses) => {
+        console.log("Invoice Form response", responses);
       },
       error: (err) => {
         console.error(err);
-        alert('An error occurred while submitting the applicant details. Please try again later.');
-      }
+      },
+      complete: () => {
+        this.submitInvoice()
+      
+          }
     });
-  }
+
+
   
-  // postapplicant() {
-  //   console.log("Form data", this.applicationForm.value);
-  //   // this.row = this.applicationForm.value;
-  //   this.invDiscountingService.postapplicantDetails(this.applicationForm.value).subscribe({
-  //     next: ((response) => {
-  //       console.log("Invoice Form response", response);
-  //     }),
-  //     error: ((err) => {
-  //       console.error(err);
-  //       alert('An error occurred while submitting the form. Please try again later.');
-  //     }),
-  //     complete: (() => {})
-  //   })
-  //   // this.applicationForm.reset()
+  }
+  submitInvoice(){
+    console.log("Form data", this.invoiceDetails);
+    this.invDiscountingService.postInvoiceDetails(this.invoiceDetails).subscribe({
+      next: (responses) => {
+        console.log("Invoice Form response", responses);
+      },
+      error: (err) => {
+        console.error(err);
+    
+      },
+      complete: () => {
+        this.submitFunding()
+      
+          }
+    })
+  }
+  submitFunding(){
 
-  // }
-  // postInvoices() {
-  //   console.log("Form data", this.applicationForm.value);
-  //   // this.row = this.applicationForm.value;
-  //   this.invDiscountingService.postinvoiceDetails(this.applicationForm.value).subscribe({
-  //     next: ((response) => {
-  //       console.log("Invoice Form response", response);
-  //     }),
-  //     error: ((err) => {
-  //       console.error(err);
-  //       alert('An error occurred while submitting the form. Please try again later.');
-  //     }),
-  //     complete: (() => {})
-  //   })
-  //   // this.applicationForm.reset()
+    console.log("Form data", this.fundingDetails);
+    this.invDiscountingService.postFundingDetails(this.fundingDetails).subscribe({
+      next: (responses) => {
+        console.log("Invoice Form response", responses);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+         this.applicationForm.reset();
+        this.ngOnInit();
+          alert('Form Submitted Successfully!')
+        let result = window.confirm('Click OK to submit. Click Cancel to abort');
+        if (result) {
+          console.log(result)
+            alert('Form Submitted Successfully!');
+        }
 
-  // }
+      
+          }
+    })
+  }
 
-  // onSubmit() {
-  //   console.log("Form data", this.applicationForm.value);
-  //   // this.row = this.applicationForm.value;
-  //   this.invDiscountingService.postData(this.applicationForm.value).subscribe({
-  //     next: ((response) => {
-  //       console.log("Invoice Form response", response);
-  //       alert('Form Submitted Successfully!')
-  //     }),
-  //     error: ((err) => {
-  //       console.error(err);
-  //       alert('An error occurred while submitting the form. Please try again later.');
+ 
 
-  //     }),
-  //     complete: (() => {})
-  //   })
-  //   // this.applicationForm.reset()
-  //   this.ngOnInit()
-  //   this.router.navigate(["/invoice-discounting/viewInvoice"]);
-  // }
  
 
   openLookup(): void {
@@ -251,14 +293,78 @@ export class CreateInvoiceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: (res: any) => {
-        console.log("received data", res),
+        console.log("passed email", res.entity[0].email)
 
-          console.log("passed email", res.data[0].email)
-
-        this.patchApplicationForm(res.data[0])
+        this.patchApplicationForm(res.entity[0])
       }
     })
   }
+
+//Full form submission
+// createInvoiceForm(data: any) {
+//   const body = {
+//     "accountNumber": data.accountNumber,
+//     "cifId": data.cifId,
+//     "nationalId": data.nationalId,
+//     "accountName": data.accountName,
+//     "currency": data.currency,
+//     "email": data.email,
+//     "phoneNumber":data.phoneNumber,
+//     "address": data.address,
+//     "city": data.city,
+//     "postalCode":data.postalCode,
+//     "countryCode":data.countryCode,
+//     "country": data.country,
+//     "invoiceDate": data.invoiceDate,
+//       "invoiceNumber":data.invoiceNumber,
+//       "invoiceAmount": data.invoiceAmount,
+//       "applicantBusinessName": data.applicantBusinessName,
+//       "applicantBusinessAddress": data.applicantBusinessAddress,
+//       "dueDate":data.dueDate,
+//       "invoices": data.invoices,                          //Doc upload
+//       "applicationForm": data.applicationForm,
+//       "buyerName":data.buyerName,
+//       "buyerBusinessName":data.buyerBusinessName,
+//       "buyerCity": data.buyerCity,
+//       "buyerCountry":data.buyerCountry,
+//       "buyerEmailAddress":data.buyerEmailAddress,
+  
+//       "fundingAmount": data.fundingAmount,
+//       "disbursalDate": data.disbursalDate,
+//       "repaymentDate": data.repaymentDate,
+//       "creditAccount": data.creditAccount,
+//       "creditLimit": data.creditLimit,
+//       "creditAppraisalForm": data.creditAppraisalForm,    //Doc upload
+// };
+//   return body;
+// }
+// onSubmit() {
+//   console.log("Form data", this.applicationForm.value);
+//   const data = this.createInvoiceForm(this.applicationForm.value)
+//   this.invDiscountingService.sendData(data,this.applicationForm.get('accountNumber')?.value).subscribe({
+//     next: ((response) => {
+//       console.log("InvoiceForm create response", response);
+//     }),
+//     error: ((err) => {
+//       console.error(err)
+//     }),
+//     complete: (() => { })
+//   })
+//   this.applicationForm.reset()
+//   this.ngOnInit()
+//   //alert('Form Submitted Successfully!')
+//   let result = window.confirm('Click OK to submit. Click Cancel to abort');
+//   if (result) {
+//       alert('Form Submitted Successfully!');
+//       this.router.navigate(["/invoice-discounting/viewInvoiceForm"]);
+//   } else {
+//       alert('Application Cancelled');
+//       this.router.navigate(["/invoice-discounting/createInvoiceForm"]);
+//   }
+
+   
+// }
+
 
   public patchApplicationForm(data: any): void {
     this.applicationForm.patchValue({
