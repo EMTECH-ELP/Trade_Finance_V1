@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot) {
     const currentUser = this.tokenCookieService.getUser();
 
-    if (!currentUser) {
+    if (currentUser) {
       return true;
     }
 
