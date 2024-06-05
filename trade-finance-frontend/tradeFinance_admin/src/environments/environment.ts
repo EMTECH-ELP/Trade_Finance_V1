@@ -36,8 +36,8 @@ export const environment = {
 
 
  //  BanksManagement
- updatebankUrl: '',
- bankUrl: 'http://192.168.89.245:8187',    //fetchbanks
+
+ bankUrl: 'http://192.168.89.76:8187',    //fetchbanks
 // addBankUrl: '',   //post
 
 //Currency & Ports
