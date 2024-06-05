@@ -42,9 +42,9 @@ export class CurrencyComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  getPorts(){
-  this.router.navigate(["system-management/ports"])
-  }
+  // getPorts(){
+  // this.router.navigate(["system-management/ports"])
+  // }
   getCurrencies(): void {
     this.isLoading = true; // Set loading state to true
     this.currencyService.getCurrency().subscribe({

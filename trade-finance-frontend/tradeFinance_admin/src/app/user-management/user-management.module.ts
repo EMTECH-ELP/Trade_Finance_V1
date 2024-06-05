@@ -31,6 +31,9 @@ import { AddUsersComponent } from './Users/add-users/add-users.component';
 import { ViewUsersComponent } from './Users/view-users/view-users.component';
 import { AddRolesComponent } from './Roles/add-roles/add-roles.component';
 import { ViewRolesComponent } from './Roles/view-roles/view-roles.component';
+import { PrivilegesComponent } from './Roles/privileges/privileges.component';
+import { CreateRoleComponent } from './Roles/add-roles/create-role/create-role.component';
+import { CreatePrivilegeComponent } from './Roles/privileges/create-privilege/create-privilege.component';
 
 
 @NgModule({
@@ -46,6 +49,9 @@ import { ViewRolesComponent } from './Roles/view-roles/view-roles.component';
            ViewUsersComponent,
            AddRolesComponent,
            ViewRolesComponent,
+           PrivilegesComponent,
+           CreateRoleComponent,
+           CreatePrivilegeComponent,
     
   ],
   imports: [

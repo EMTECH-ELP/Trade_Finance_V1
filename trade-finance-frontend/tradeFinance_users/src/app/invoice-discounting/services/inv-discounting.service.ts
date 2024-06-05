@@ -1,9 +1,10 @@
 import { Injectable,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
+import { FormGroup } from '@angular/forms';
 
 
 @Injectable({
@@ -11,91 +12,68 @@ import { environment } from 'src/environments/environment';
 })
 export class InvDiscountingService {
 
-
-  invUrl: any;
   private formData: any;
   forms: any;
 
-  // setFormData(data: any) {
-  //   this.formData = data;
+
+  private invUrl = 'http://192.168.89.247:9001';
+
+  constructor(private http: HttpClient) {}
+
+   // Method to post applicationForm details
+
+  //  public  postApplicantDetails(data: any): Observable<any> {
+  //   const url = `${environment.invUrl}/applicants/create`;
+  //   return this.http.post<any>(url, data);
   // }
-
-  // getFormData() {
-  //   return this.formData;
-  // }
-
-
-  constructor(
-    private http: HttpClient) { }
-
-  
-  //   public create invoicediscounting(invoicediscountinData: any): Observable<any>{
-  //   const url = `${environment.apiUrl}/create invoice discounting`;
-  //   return this.httpClient.post<any>(invUr, invoicediscountinData);
-  // }
-   
-
-
-  public postAllFormDetails(formData: any): Observable<any> {
-    const postApplicantDetails = this.postApplicantDetails(formData);
-    const postInvoiceDetails = this.postInvoiceDetails(formData);
-    const postData = this.postData(formData);
-
-    return forkJoin({
-      applicantResponse: postApplicantDetails,
-      invoiceResponse: postInvoiceDetails,
-      dataResponse: postData
-    }).pipe(
-      catchError(error => {
-        // Handle errors here
-        console.error('Error occurred during form submission:', error);
-        throw error;
-      })
-    );
-  }
-
-  public  postApplicantDetails(data: any): Observable<any> {
+  public postApplicantDetails(data: any): Observable<any> {
     const url = `${environment.invUrl}/applicants/create`;
     return this.http.post<any>(url, data);
   }
-
+  
+  private handleError<T>(operation = 'operation', result?: T): (error: any, caught: Observable<T>) => Observable<T> {
+    return (error: any, caught: Observable<T>): Observable<T> => {
+      console.error(`${operation}: ${error.message}`); // Log the error
+      return throwError(error);
+    };
+  }
   public  postInvoiceDetails(data: any): Observable<any> {
     const url = `${environment.invUrl}/invoices/create`;
     return this.http.post<any>(url, data);
   }
 
-  public postData(data: any): Observable<any> {
+  public postFundingDetails(data: any): Observable<any> {
     const url = `${environment.invUrl}/fundings/create`;
     return this.http.post<any>(url, data);
   }
+  
+  public postData(data: any): Observable<any> {      //Posting repayment details
+    const url = `${environment.saveUrl}/repayment`;
+    return this.http.post<any>(url, data);
+  }
 
-  // public  postapplicantDetails(data: any): Observable<any> {      //Creating Invoice discounting form
-  //   const url = `${environment.invUrl}/applicants/create`;
-  //   return this.http.post<any>(url, data);   
-  // }
-  // public   postinvoiceDetails(data: any): Observable<any> {      //Creating Invoice discounting form
-  //   const url = `${environment.invUrl}/invoices/create`;
-  //   return this.http.post<any>(url, data);   
-  // }
+  // Method to fetch all forms
 
- 
-  // public postData(data: any): Observable<any> {      //Posting funding details
-  //   const url = `${environment.invUrl}/fundings/create`;
-  //   return this.http.post<any>(url, data);
-  // }
-
-  public getAllForms(): Observable<any> {
-    const url = `${environment.invUrl}/invoices/list`;     //FETCH FORMS
+  public getAllForms(): Observable<any> {       //FETCH FORMS
+    const url = `${environment.invUrl}/invoices/list`;     
     return this.http.get<any>(url)
   }
+ // public getAllForms(): Observable<any> {
+  //   const url = `${this.invUrl}/invoices/list`;
+  //   return this.http.get<any>(url).pipe(
+  //     catchError(this.handleError('getAllForms', []))
+  //   );
+  // }
+ 
+//Full form submission.
+public sendData(invoiceData: any, accountNumber :any): Observable<any> {
+  const url = `${environment.createInvoiceForm}/api/v1/LC/create?accountNumber=${accountNumber}`;
+  return this.http.post<any>(url, invoiceData, { headers: { 'Content-Type': 'application/json' } });
+}
 
-  public submitForm(data: any): Observable<any> {
-    const url = `${environment.saveUrl}/repayment`;
-    return this.http.post<any>(url, data);               //Saving repayment details
-  }
-
+ //View invoice by Id
   getData(url:string):Observable<any>{
-      return this.http.get(url)               //View invoice by Id
+      return this.http.get(url)              
   }
 
 }

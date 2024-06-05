@@ -64,7 +64,6 @@ ngOnInit() {
         console.log("Res: ", res);
    
   
-  
         // If reset-password is not required, handle role-based navigation for second,third etc time users
         if (res.body.entity && res.body.entity.role === "SUPER_ADMIN") {
           this.tokenCookieService.saveUser(res.body.entity)

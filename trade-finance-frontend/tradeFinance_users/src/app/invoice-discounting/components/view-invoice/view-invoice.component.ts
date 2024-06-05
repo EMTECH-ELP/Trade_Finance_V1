@@ -11,6 +11,7 @@ import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
 import { CreatedformComponent } from '../createdform/createdform.component';
 import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-upload.component';
+import { DataSource } from '@angular/cdk/collections';
 
 
 
@@ -18,7 +19,7 @@ interface InvoiceDiscounting {
   no:number;
   invoiceNumber: string;
   applicantBusinessName: string;
-  buyerName: string;
+  // buyerName: string;
   invoiceAmount: number;
   status: string;
   // branchCode: string;
@@ -32,7 +33,7 @@ interface InvoiceDiscounting {
 
 export class ViewInvoiceComponent implements OnInit {
 
-  
+ 
  geturl = `http://192.168.91.96:9000/invoices/list`;
  rows: any[]; // Define invoices array to hold the invoice objects
 
@@ -50,12 +51,13 @@ data = [];
 
 
 //Mock data for testing
+
 //  mockData: InvoiceDiscounting[] = [
-//   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: 5000, status: 'Pending',  actions: 'Actions' },
-//   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
-//   { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
-//   { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: 7500, status: 'Pending',  actions: 'Actions' },
-//   { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: 12500, status: 'Approved',  actions: 'Actions' }
+//   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', invoiceAmount: 5000, status: 'Pending',  actions: 'Actions' },
+//   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.',  invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
+//   { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.',  invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
+//   { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.',  invoiceAmount: 7500, status: 'Pending',  actions: 'Actions' },
+//   { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions',  invoiceAmount: 12500, status: 'Approved',  actions: 'Actions' }
 // ];
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
@@ -94,6 +96,7 @@ row: any;
       // this.initializeMockData(); // Add this line to initialize mock data
 
     }
+    
     // initializeMockData(): void {
     //   this.dataSource = new MatTableDataSource(this.mockData);
     //   this.dataSource.sort = this.sort;
@@ -142,7 +145,7 @@ applyFilter(event: Event) {
 
 
   public add() {
-    this.router.navigate(["/invoice-discounting/createInvoice"])
+    this.router.navigate(["/invoice-discounting/createInvoiceForm"])
   }
 
   public openViewinvoiceFormsComponent(row) {
