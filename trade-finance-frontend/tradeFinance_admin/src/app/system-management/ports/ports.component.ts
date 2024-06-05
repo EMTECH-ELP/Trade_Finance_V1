@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-ports',
   templateUrl: './ports.component.html',
-  styleUrls: ['./ports.component.css']
+  styleUrls: ['./ports.component.scss']
 })
 export class PortsComponent implements OnInit {
 

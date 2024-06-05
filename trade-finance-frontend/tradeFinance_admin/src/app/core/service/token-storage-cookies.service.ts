@@ -166,6 +166,7 @@ export class TokenCookieService {
     )}; expires=${expirationDate.toUTCString()}; path=/`;
 
     // Set the cookie in the browser
+    
     document.cookie = cookieValue;
   }
 
