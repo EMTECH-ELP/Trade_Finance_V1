@@ -9,7 +9,7 @@ resetUrl: '',
 
 //LCs
   createApiUrl: 'http://192.168.88.40:8085',    //create LC
-  getApiUrl: `http://192.168.91.24:8187`, //fetch applicant details
+  getApiUrl: `http://192.168.89.67:8187`, //fetch applicant details   //By Aaron..88.208.  777355990102403   //Priscilla. 91.62
   getAllUrl: `http://192.168.88.40:8085`,      //get all LCs details
 getlcNoUrl: 'http://192.168.88.40:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
 putUrl: 'http://192.168.88.40:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
@@ -32,17 +32,13 @@ billApiUrl: 'http://192.168.56.1:8085',
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 
-
-
-
-
-
-
-
 // invoice discounting
- invUrl: 'http://192.168.201.219:9000' ,     //post invoice discounting forms. Createform url
+ invUrl: 'http://192.168.91.238:9001' ,     //post invoice discounting forms. Createform url
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
- getInvUrl: 'http://192.168.91.96:9000',         // Fetch forms
+
+ //Full invoice form submission.
+ createInvoiceForm: '',
+
 
  deleteurl:'http://192.168.90.44:9000', 
  //bank gurantee url

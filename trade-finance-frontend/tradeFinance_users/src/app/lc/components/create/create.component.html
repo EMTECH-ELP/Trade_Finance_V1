@@ -1,8 +1,6 @@
-<div class="top-bar">
-  <input type="search">
-</div>
+
 <section class="content">
-  <div class="content-block" style="background-color: maroon;">
+  <div class="content-block" >
     <div class="block-header" style="background-color: lightgrey;">
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
       </app-breadcrumb>
@@ -12,12 +10,12 @@
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
-          <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p>
+          <p class="stepHeading">Applicant Details:</p>
           <!-- Lookup details -->
-          <div class="row" style="background-color: maroon; color: white;">
+          <div class="row" style=" color: white;">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label style="color: white;">Search By:</mat-label>
+                <mat-label >Search By:</mat-label>
                 <mat-select formControlName="accountNumber">
                   <mat-option value="accountNumber">Account Number</mat-option>
                   <mat-option value="cifId">CIF ID</mat-option>
@@ -27,7 +25,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label style="color: white;">Enter Value</mat-label>
+                <mat-label >Enter Value</mat-label>
                 <input matInput formControlName="accountNumber" type="number">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
@@ -35,7 +33,7 @@
           </div>
 
           <!-- Applicant details -->
-          <p class="stepHeading">Applicant Details:</p>
+     
           <div class="row" #applicationDetails>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
