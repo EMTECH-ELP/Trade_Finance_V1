@@ -3,6 +3,6 @@
   <p>Are you sure you want to delete this Letter of Credit?</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No</button>
-  <button mat-button [mat-dialog-close]="'yes'">Yes</button>
+  <button mat-button (click)="onNoClick()" value="no" class="btn btn-secondary">No</button>
+  <button mat-button [mat-dialog-close]="'yes'" value="no" class="btn btn-primary">Yes</button>
 </div>
