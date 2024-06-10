@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   additionalFileUploads: { label: string }[] = [];
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
-  shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "CPA", viewValue: "CPPPOOO" }];
+  shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "FCP", viewValue: "FCP: Free Carrier" },{value: "CPT", viewValue:"CPT:  Carriage Paid To"},  {value: "CIP ", viewValue: "CIP: Carriage and Insurance Paid To "}, {value: "DAP", viewValue: "DAP: Delivered At Place "}, {value:"DPU", viewValue: "DPU: Delivered At Place Unloaded "}, {value: "DDP", viewValue: "DDP: Delivered Duty Paid "}, {value: "EXW", viewValue: " Ex Works"}];
 
 
   constructor(private fb: FormBuilder,
