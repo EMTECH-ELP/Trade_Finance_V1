@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 import { InvoiceDiscountingRoutingModule } from './invoice-discounting-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModifyInvoiceComponent } from './components/modify-invoice/modify-invoice.component';
@@ -25,6 +26,10 @@ import { InvoiceLookupComponent } from './invoice-lookup/invoice-lookup.componen
 import { DeleteInvoiceComponent } from './components/delete-invoice/delete-invoice.component';
 
 import { CreatedformComponent } from './components/createdform/createdform.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TransferFundsComponent } from './components/transfer-funds/transfer-funds.component';
+// import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -37,7 +42,8 @@ import { CreatedformComponent } from './components/createdform/createdform.compo
     InvoiceLookupComponent, 
     CreatedformComponent, 
     InvoiceLookupComponent,
-    DeleteInvoiceComponent, 
+    DeleteInvoiceComponent,
+    TransferFundsComponent, 
   
   
   ],
@@ -59,9 +65,10 @@ import { CreatedformComponent } from './components/createdform/createdform.compo
     HttpClientModule,
     SharedModule,
     MatDialogModule,
+    MatOptionModule,
+    MatAutocompleteModule
+
   
-  
-  // AppRoutingModule,
   ],
 
 })

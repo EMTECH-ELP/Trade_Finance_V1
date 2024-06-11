@@ -12,6 +12,7 @@ import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.
 import { CreatedformComponent } from '../createdform/createdform.component';
 import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-upload.component';
 import { DataSource } from '@angular/cdk/collections';
+import { TransferFundsComponent } from '../transfer-funds/transfer-funds.component';
 
 
 
@@ -116,20 +117,21 @@ row: any;
           no: index + 1,
          invoiceNumber: invoiceForms.invoiceNumber,           
          applicantBusinessName: invoiceForms.applicantBusinessName, 
-          buyerName: invoiceForms.buyerName,
+          // buyerName: invoiceForms.buyerName,
           invoiceAmount:  invoiceForms.invoiceAmount,
           status:invoiceForms.status,
           actions: 'Actions',// Replace this with actual actions logic
         }));
+      },
     // Set isLoading to false when fetching is completed
-    this.isLoading = false;
-        // error: (err) => {
-        //   console.error('Error fetching invoiceForms:', Error);
-        //   this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
-        //   this.isLoading = false;
-        // }
+    // this.isLoading = false;
+    error: (err) => {
+      console.error('Error fetching invoiceForms:', err.message || err.toString());
+      this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
+      this.isLoading = false;
+    }
 
-    },
+ 
   
   });
 }
@@ -145,7 +147,7 @@ applyFilter(event: Event) {
 
 
   public add() {
-    this.router.navigate(["/invoice-discounting/createInvoiceForm"])
+    this.router.navigate(["/invoice-discounting/createInvoice"])
   }
 
   public openViewinvoiceFormsComponent(row) {
@@ -164,11 +166,18 @@ applyFilter(event: Event) {
     });
   }
 
- 
-
-
-
-
+  openTransferDialog(): void {
+    const dialogRef = this.dialog.open(TransferFundsComponent, {
+      width: '600px', 
+      height:'500px',// Adjust width as needed
+      // Other configuration options if needed
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle dialog close if needed
+    });
+  }
   
 
   openDialog(): void {
@@ -183,6 +192,7 @@ applyFilter(event: Event) {
       // Handle dialog close if needed
     });
   }
+
   openFormDialog(rowData: any): void {
     const dialogRef = this.dialog.open(CreatedformComponent, {
       width: '100%',
