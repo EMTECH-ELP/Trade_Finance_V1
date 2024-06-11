@@ -8,8 +8,8 @@ import { CreatedformComponent } from './components/createdform/createdform.compo
 
 
 const routes: Routes = [
-  {path:"viewInvoiceForm",component:ViewInvoiceComponent},
-  {path:"createInvoiceForm",component:CreateInvoiceComponent},
+  {path:"viewInvoice",component:ViewInvoiceComponent},
+  {path:"createInvoice",component:CreateInvoiceComponent},
   {path: "modifyInvoice",component:ModifyInvoiceComponent},
   {path: "createdform",component:CreatedformComponent},
  

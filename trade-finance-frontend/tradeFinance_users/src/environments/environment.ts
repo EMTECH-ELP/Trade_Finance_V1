@@ -33,12 +33,14 @@ billApiUrl: 'http://192.168.56.1:8085',
 
 
 // invoice discounting
- invUrl: 'http://192.168.91.238:9001' ,     //post invoice discounting forms. Createform url
+ invUrl: 'http://192.168.89.160:9001' ,     //fETCH &  post invoice discounting forms. Createform url
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
 
  //Full invoice form submission.
+ //http://192.168.89.160:9001
  createInvoiceForm: '',
-
+//Dropdowncountries
+ getCountryByNameUrl: 'http://192.168.88.101:8187',
 
  deleteurl:'http://192.168.90.44:9000', 
  //bank gurantee url
