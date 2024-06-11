@@ -9,7 +9,6 @@ import {
 import { AuthService } from "../service/auth.service";
 import { TokenCookieService } from "../service/token-storage-cookies.service";
 
-
 @Injectable({
   providedIn: "root",
 })
@@ -26,6 +25,11 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.tokenCookieService.getUser();
 
     if (currentUser) {
+      const userRole = this.tokenCookieService.getUser().role;
+          if(route.data.role && route.data.role.indexOf(userRole)== -1){
+            this.router.navigate(['/authentication/signin']);
+            return false;
+          }
       return true;
     }
 

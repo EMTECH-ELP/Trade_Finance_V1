@@ -8,16 +8,16 @@ resetUrl: '',
 
 
 //LCs
-  createApiUrl: 'http://192.168.88.40:8085',    //create LC
-  getApiUrl: `http://192.168.89.67:8187`, //fetch applicant details   //By Aaron..88.208.  777355990102403   //Priscilla. 91.62
-  getAllUrl: `http://192.168.88.40:8085`,      //get all LCs details
-getlcNoUrl: 'http://192.168.88.40:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
-putUrl: 'http://192.168.88.40:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
-transferApiUrl: 'http://192.168.88.40:8085', //Transfer LC
-getUrl: ` http://192.168.88.40:8085`,      //get all LCs details
-approveLcApiUrl: 'http://192.168.56.1:8085' ,// Approval of a created LC
-deleteLcApiUrl: 'http://192.168.56.1:8085',  //delete an already created LC
-
+  createApiUrl: 'http://192.168.90.231:8085',    //create LC
+  getApiUrl: `http://192.168.90.231:8187`, //fetch applicant details
+  getAllUrl: `http://192.168.90.231:8085`,      //get all LCs details
+getlcNoUrl: 'http://192.168.90.231:8085',    //fetch Lc details by lcNumber            (enviroment.getlcNoUrl)/api/v1/LC/lcNumber/{lcNumber}
+putUrl: 'http://192.168.90.231:8085',        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
+transferApiUrl: 'http://192.168.90.231:8085', //Transfer LC
+getUrl: ` http://192.168.90.231:8085`,      //get all LCs details
+approveLcApiUrl: 'http://192.168.90.231:8085' ,// Approval of a created LC
+deleteLcApiUrl: 'http://192.168.90.231:8085',  //delete an already created LC
+generateMtUrl: 'http://192.168.90.231:8085',           //generate LC MT message
 
 //Shipment terms
 shipmentTermsApi: 'http://192.168.89.92:8085',      //fetch all shipment terms
@@ -28,7 +28,7 @@ shipmentTermsApi: 'http://192.168.89.92:8085',      //fetch all shipment terms
 
 
 //bills
-billApiUrl: 'http://192.168.56.1:8085', 
+billApiUrl: 'http://192.168.90.231:8085', 
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 

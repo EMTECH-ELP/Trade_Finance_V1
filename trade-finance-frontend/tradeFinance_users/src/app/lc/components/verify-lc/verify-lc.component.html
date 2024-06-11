@@ -1,23 +1,34 @@
-<div class="verify-lc-container">
-  <h2>Verify Letter of Credit</h2>
-
-  <form [formGroup]="verifyForm" >
-    <div class="form-group">
-      <label for="lcNumber">LC Number:</label>
-      <input
-        type="text"
-        id="lcNumber"
-        formControlName="lcNumber"
-        class="form-control"
-      />
-      <div *ngIf="verifyForm.get('lcNumber')?.invalid && verifyForm.get('lcNumber')?.touched" class="invalid-feedback">
-        LC Number is required.
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button type="button" class="btn btn-success" (click)="onApprove()" [disabled]="verifyForm.invalid">Approve</button>
-      <button type="button" class="btn btn-danger" (click)="onReject()" [disabled]="verifyForm.invalid">Reject</button>
-    </div>
-  </form>
+<!-- Updated HTML code -->
+<div class="top-bar">
+  <input type="search">
 </div>
+<section class="content">
+  <div class="content-block" style="background-color: maroon;">
+    <div class="block-header" style="background-color: white;">
+      <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'Verify LC'">
+      </app-breadcrumb>
+    </div>
+    <form style="background-color: white;" [formGroup]="verifyForm" >
+      <p class="stepHeading">Approve LC:</p>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="lcNumber">LC Number</label>
+          <input type="text" class="form-control" id="lcNumber" formControlName="lcNumber" placeholder="Enter LC Number">
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button class="btn btn-primary" type="reset" [disabled]="loading" (click)="onReject()">
+            Reject
+            <span *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></span>
+          </button>
+          <button class="btn btn-secondary" type="submit" [disabled]="loading" (click)="onApprove()" >
+            Approve
+            <span *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div *ngIf="verifyForm.get('lcNumber').hasError('required')" class="alert alert-danger mt-3">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
