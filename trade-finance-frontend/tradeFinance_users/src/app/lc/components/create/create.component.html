@@ -1,6 +1,5 @@
-
 <section class="content">
-  <div class="content-block" >
+  <div class="content-block">
     <div class="block-header" style="background-color: lightgrey;">
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
       </app-breadcrumb>
@@ -12,10 +11,10 @@
         <mat-step label="Applicant Details">
           <!-- <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p> -->
           <!-- Lookup details -->
-          <div class="row" style=" color: white;">
+          <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label >Search By:</mat-label>
+                <mat-label>Search By:</mat-label>
                 <mat-select formControlName="accountNumber">
                   <mat-option value="accountNumber">Account Number</mat-option>
                   <mat-option value="cifId">CIF ID</mat-option>
@@ -25,7 +24,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label >Enter Value</mat-label>
+                <mat-label>Enter Value</mat-label>
                 <input matInput formControlName="accountNumber" type="number">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
@@ -33,17 +32,18 @@
           </div>
 
           <!-- Applicant details -->
-     
+          <p class="stepHeading">Applicant Details:</p>
           <div class="row" #applicationDetails>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountNumber" type="number">
               </mat-form-field>
 
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('accountNumber').invalid && applicationForm.get('accountNumber').touched">
-                *Account Number is required</mat-hint>
+                *Account Number is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -52,19 +52,20 @@
                 <input matInput formControlName="cifId" type="number">
                 <!-- <mat-icon matSuffix>search</mat-icon> -->
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('cifId').invalid && applicationForm.get('cifId').touched">
-                *Customer CIF is required</mat-hint>
+                *Customer CIF is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>National ID</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="nationalId" type="number">
                 <!-- <mat-icon matSuffix>search</mat-icon> -->
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
-                *Customer's national ID is required</mat-hint>
+                *Customer's national ID is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -72,80 +73,88 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountName" type="name">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('accountName'). invalid && applicationForm.get('accountName').touched">
-                *Account Name is required</mat-hint>
+                *Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Currency</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="currency" type=text>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('currency').invalid && applicationForm.get('currency').touched">
-                *Please specify the currency</mat-hint>
+                *Please specify the currency</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Email</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="email" type="email">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('email').invalid && applicationForm.get('email').touched">
-                *Enter valid email address</mat-hint>
+                *Enter valid email address</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Phone Number</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="phoneNumber" type="tel">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('phoneNumber').invalid && applicationForm.get('phoneNumber').touched">
-                *Phone Number is required</mat-hint>
+                *Phone Number is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="address" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('address').invalid && applicationForm.get('address').touched">
-                *Address is mandatory</mat-hint>
+                *Address is mandatory</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="city">
               </mat-form-field>
-              <mat-hint *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
-                *City is required</mat-hint>
+              <small *ngIf="applicationForm.get('city').invalid && applicationForm.get('city').touched">
+                *City is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Postal Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="postalCode">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('postalCode').invalid && applicationForm.get('postalCode').touched">
-                *Postal code is required</mat-hint>
+                *Postal code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="countryCode" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('countryCode').invalid && applicationForm.get('countryCode').touched">
-                *Country code is required</mat-hint>
+                *Country code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="country" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('country').invalid && applicationForm.get('country').touched">
-                *Applicant's country is required</mat-hint>
+                *Applicant's country is required</small>
             </div>
             <div>
               <button class="nextDC" mat-button matStepperNext>Next</button>
@@ -159,138 +168,176 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>First Name</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryFirstName" type="text">
               </mat-form-field>
 
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryFirstName'). invalid && applicationForm.get('beneficiaryFirstName').touched">
-                *Beneficiary First Name is required</mat-hint>
+                *Beneficiary First Name is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Middle Name</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryMiddleName" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Last Name</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryLastName" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryLastName'). invalid && applicationForm.get('beneficiaryLastName').touched">
-                *Beneficiary Last Name is required</mat-hint>
+                *Beneficiary Last Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Email</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryEmail" type="email">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryEmail'). invalid && applicationForm.get('beneficiaryEmail').touched">
-                *Enter valid email address</mat-hint>
+                *Enter valid email address</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Name</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAccountName" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryAccountName'). invalid && applicationForm.get('beneficiaryAccountName').touched">
-                *Beneficiary's Account Name is required</mat-hint>
+                *Beneficiary's Account Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAccountNumber" type="number">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryAccountNumber'). invalid && applicationForm.get('beneficiaryAccountNumber').touched">
-                *Beneficiary's Account Number is required</mat-hint>
+                *Beneficiary's Account Number is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>IBAN</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryIban" type="text">
                 <mat-icon matSuffix (click)="getIban()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryIban'). invalid && applicationForm.get('beneficiaryIban').touched">
-                *Beneficiary Iban is required</mat-hint>
+                *Beneficiary Iban is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address Line1</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAddressLine1" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryAddressLine1'). invalid && applicationForm.get('beneficiaryAddressLine1').touched">
-                *Beneficiary's address Line1 is required</mat-hint>
+                *Beneficiary's address Line1 is required</small>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address Line2</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryAddressLine2" type="text">
               </mat-form-field>
-              <mat-hint
+              <small
                 *ngIf="applicationForm.get('beneficiaryAddressLine2'). invalid && applicationForm.get('beneficiaryAddressLine2').touched">
-                *Beneficiary Address is required</mat-hint>
+                *Beneficiary Address is required</small>
             </div> -->
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCity" type="text">
+                <mat-select formControlName="beneficiaryCity">
+                  <mat-option value="Nairobi">Nairobi: </mat-option>
+                  <mat-option value="Mombasa">Mombasa: </mat-option>
+                  <mat-option value="Kampala">Kampala:</mat-option>
+                  <mat-option value="Entebbe">Entebbe: </mat-option>
+                  <mat-option value="Entebbe">Entebbe: </mat-option>
+                  <mat-option value="Arusha">Arusha</mat-option>
+                </mat-select>
                 <mat-icon matSuffix (click)="getCity()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryCity'). invalid && applicationForm.get('beneficiaryCity').touched">
-                *Beneficiary City is required</mat-hint>
+                *Beneficiary City is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Postal Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryPostalCode" type="text">
               </mat-form-field>
-              <mat-hint
+              <br>
+              <small
                 *ngIf="applicationForm.get('beneficiaryPostalCode'). invalid && applicationForm.get('beneficiaryPostalCode').touched">
-                *Beneficiary's Postal code is required</mat-hint>
+                *Beneficiary's Postal code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountry" type="text">
+                <mat-select formControlName="beneficiaryCountry">
+                  <mat-option value="Uganda">Uganda</mat-option>
+                  <mat-option value="Congo">Congo: </mat-option>
+                  <mat-option value="China">China:</mat-option>
+                  <mat-option value="USA">USA: </mat-option>
+                  <mat-option value="Tanzania">Tanzania: </mat-option>
+                  <mat-option value="Japan">Japan</mat-option>
+                </mat-select>
                 <mat-icon matSuffix (click)="getCountryandCode()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryCountry'). invalid && applicationForm.get('beneficiaryCountry').touched">
-                *Beneficiary City is required</mat-hint>
+                *Beneficiary City is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountryCode" type="text">
+                <mat-select formControlName="beneficiaryCountryCode">
+                  <mat-option value="UG">UG</mat-option>
+                  <mat-option value="CG">CG: </mat-option>
+                  <mat-option value="CN">CN:</mat-option>
+                  <mat-option value="US">US </mat-option>
+                  <mat-option value="TZ">TZ: </mat-option>
+                  <mat-option value="JY">JY</mat-option>
+                </mat-select>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <br>
+              <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryCountryCode'). invalid && applicationForm.get('beneficiaryCountryCode').touched">
-                *Beneficiary Country Code is required</mat-hint>
+                *Beneficiary Country Code is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Name</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankName" type="text">
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <br>
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankName'). invalid && applicationForm.get('advisingBankName').touched">
-                *Advising Bank Name is required</mat-hint>
+                *Advising Bank Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
               </mat-form-field>
@@ -300,6 +347,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
               </mat-form-field>
@@ -309,39 +357,43 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Country</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <br>
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
-                *Advising Bank Branch is required</mat-hint>
+                *Advising Bank Branch is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranchCode" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBranchCode'). invalid && applicationForm.get('advisingBankBranchCode').touched">
-                *Advising Bank Code is required</mat-hint>
+                *Advising Bank Code is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>SWIFT Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBic" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBic'). invalid && applicationForm.get('advisingBankBic').touched">
-                *Advising Bank SWIFT Code is required</mat-hint>
+                *Advising Bank SWIFT Code is required</small>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankCountry" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankCountry'). invalid && applicationForm.get('advisingBankCountry').touched">
-                *Advising Bank Country  is required</mat-hint>
+                *Advising Bank Country  is required</small>
             </div> -->
             <div>
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
@@ -356,6 +408,7 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label> LC Type</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="lcType">
                   <mat-option value="Revocable">Revocable</mat-option>
@@ -370,13 +423,14 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('lcType'). invalid && applicationForm.get('lcType').touched">
-                *LC Type is required</mat-hint>
+                *LC Type is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Applicable Rules</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="applicableRules">
                   <mat-option value="UCP_600">UCP_600</mat-option>
@@ -385,12 +439,13 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('applicableRules'). invalid && applicationForm.get('applicableRules').touched">
-                *Please state applicable rules</mat-hint>
+                *Please state applicable rules</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Transferable</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
 
                 <mat-select formControlName="transferable">
@@ -398,13 +453,14 @@
                   <mat-option value="false">false</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('transferable'). invalid && applicationForm.get('transferable').touched">
-                *Tranferable state is mandatory</mat-hint>
+                *Tranferable state is mandatory</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Commodity Code</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
 
                 <mat-select formControlName="commodityCode">
@@ -418,9 +474,9 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('commodityCode'). invalid && applicationForm.get('commodityCode').touched">
-                *Commodity Code is mandatory</mat-hint>
+                *Commodity Code is mandatory</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Good's Description</mat-label>
@@ -430,55 +486,61 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Quantity of Goods</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="goodsQuantity" type="number" (input)="updateAmount()">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('goodsQuantity').invalid && applicationForm.get('goodsQuantity').touched">
                 *Quantity of Goods is required
-              </mat-hint>
+              </small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Unit Price</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="pricePerUnit" type="number" (input)="updateAmount()">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('pricePerUnit').invalid && applicationForm.get('pricePerUnit').touched">
                 *Unit Price is required
-              </mat-hint>
+              </small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Amount</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="amount" type="text" [value]="calculateAmount()">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('amount'). invalid && applicationForm.get('amount').touched">
-                *Amount is required</mat-hint>
+                *Amount is required</small>
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Currency:</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="currencyCode">
-                  <mat-option value="USD">USD</mat-option>
-                  <mat-option value="GBP">GBP</mat-option>
-                  <mat-option value="EUR">EUR</mat-option>
-                  <mat-option value="JPY">JPY</mat-option>
-                  <mat-option value="CNY">CNY</mat-option>
+                  <mat-option value="USD">USD: <mat-hint>US Dollar</mat-hint> </mat-option>
+                  <mat-option value="GBP">GBP: <mat-hint> Great Britain Pound </mat-hint> </mat-option>
+                  <mat-option value="EUR">EUR:<mat-hint> Euro </mat-hint></mat-option>
+                  <mat-option value="JPY">JPY: <mat-hint>Japanese Yen</mat-hint></mat-option>
+                  <mat-option value="CNY">CNY: <mat-hint>Chinese Yuan </mat-hint></mat-option>
+                  <mat-option value="Other">Other</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
-                <mat-hint style="color: red;"
+                <small style="color: red;"
                   *ngIf="applicationForm.get('currencyCode').invalid && applicationForm.get('currencyCode').touched">*Amount
-                  Code is mandatory</mat-hint>
+                  Code is mandatory</small>
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country of Origin</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="countyOfOrigin">
                   <mat-option value="China">CHINA</mat-option>
@@ -489,13 +551,14 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('countyOfOrigin'). invalid && applicationForm.get('countyOfOrigin').touched">
-                *Country of Origin is mandatory</mat-hint>
+                *Country of Origin is mandatory</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Loading</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="portOfLoading">
                   <mat-option value="Shanghai">Shanghai</mat-option>
@@ -514,21 +577,23 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('portOfLoading'). invalid && applicationForm.get('portOfLoading').touched">
-                *Port Of Loading is required</mat-hint>
+                *Port Of Loading is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Shipment Date</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="shipmentDate" type="date">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('shipmentDate'). invalid && applicationForm.get('shipmentDate').touched">
-                *Shipment Date is required</mat-hint>
+                *Shipment Date is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Shipment Terms</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="shipmentTerms">
                   <!-- The options will be dynamically loaded from the backend -->
@@ -536,15 +601,16 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getShipmentTerm()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('shipmentTerms').invalid && applicationForm.get('shipmentTerms').touched">
                 *Specify shipment Terms
-              </mat-hint>
+              </small>
             </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Partial Shipment</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
 
                 <mat-select formControlName="partialShipment">
@@ -554,13 +620,14 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('partialShipment').invalid && applicationForm.get('partialShipment').touched">*This
-                is field is required</mat-hint>
+                is field is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Trans Shipment</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="transShipment">
                   <mat-option value="allowed">ALLOWED</mat-option>
@@ -569,12 +636,13 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('transShipment').invalid && applicationForm.get('transShipment').touched">*Amount
-                *This is field is required</mat-hint>
+                *This is field is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Discharge</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
 <<<<<<< HEAD
 
@@ -603,31 +671,34 @@
 =======
 >>>>>>> 7c5ec69cf8c1a8790bf7ac25e62f415124e00450
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
-                *Port of Discharge is mandatory</mat-hint>
+                *Port of Discharge is mandatory</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Trans Shipment Date:</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
 
                 <input matInput formControlName="issueDate" type="date">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('issueDate'). invalid && applicationForm.get('issueDate').touched">
-                *Issue Date is required</mat-hint>
+                *Issue Date is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Expiry Date</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="expiryDate" type="date">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('expiryDate'). invalid && applicationForm.get('expiryDate').touched">
-                *Expiry Date is required</mat-hint>
+                *Expiry Date is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Tenor</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="tenor">
                   <mat-option value="30 days">30 days</mat-option>
@@ -635,23 +706,25 @@
                   <mat-option value="90 days">90 days</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('tenor'). invalid && applicationForm.get('tenor').touched">
-                *Tenor or usance is required</mat-hint>
+                *Tenor or usance is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Negotiation Period</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="negotiationPeriod" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('negotiationPeriod').invalid && applicationForm.get('negotiationPeriod').touched">*Amount
-                *State the agreed negotiation period</mat-hint>
+                *State the agreed negotiation period</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Charges Borne By:</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="chargesBorneBy">
                   <!-- <mat-option value="" disabled>Select Charges Borne By</mat-option> -->
@@ -660,9 +733,9 @@
                   <mat-option value="both">Both</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('chargesBorneBy').invalid && applicationForm.get('chargesBorneBy').touched">*Amount
-                *This is a required field</mat-hint>
+                *This is a required field</small>
             </div>
 
 
@@ -691,9 +764,9 @@
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('collateralType'). invalid && applicationForm.get('collateralType').touched">
-                *Collateral Type is required</mat-hint>
+                *Collateral Type is required</small>
             </div>
             <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Collateral ID</mat-label>
@@ -707,9 +780,9 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="collateralValue" type="amount">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('collateralValue'). invalid && applicationForm.get('collateralValue').touched">
-                *Collateral Value is required</mat-hint>
+                *Collateral Value is required</small>
             </div>
             <br>
             <!-- <p style="color: maroon; font-weight: bold;">Guarantor's Details:</p> -->
@@ -719,18 +792,18 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="guarantorName" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('guarantorName'). invalid && applicationForm.get('guarantorName').touched">
-                *Guarantor's Full Name is required</mat-hint>
+                *Guarantor's Full Name is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Guarantor's Address</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="guarantorAddress" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('guarantorAddress'). invalid && applicationForm.get('guarantorAddress').touched">
-                *Guarantor's Address is required</mat-hint>
+                *Guarantor's Address is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -738,9 +811,9 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="guarantorEmail" type="email">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('guarantorEmail'). invalid && applicationForm.get('guarantorEmail').touched">
-                *Enter Valid Guarantor's Email is required</mat-hint>
+                *Enter Valid Guarantor's Email is required</small>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -748,9 +821,9 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="guarantorPhoneNumber" type="tel">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('guarantorPhoneNumber'). invalid && applicationForm.get('guarantorPhoneNumber').touched">
-                *Guarantor's Phone Number is required</mat-hint>
+                *Guarantor's Phone Number is required</small>
             </div>
             <div>
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
@@ -766,21 +839,23 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Commercial Invoice</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentName1" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('documentName1'). invalid && applicationForm.get('documentName1').touched">
-                *Specify the Name of the document</mat-hint>
+                *Specify the Name of the document</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Description</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentDescription1" type="text">
               </mat-form-field>
-              <mat-hint style="color: red;"
+              <small style="color: red;"
                 *ngIf="applicationForm.get('documentDescription1'). invalid && applicationForm.get('documentDescription1').touched">
-                *Provide a description of the document</mat-hint>
+                *Provide a description of the document</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
@@ -790,18 +865,21 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bill of Lading</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentName2" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Description</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentDescription2" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Upload Bill Of Lading File</mat-label>
+              <br>
               <input formControlName="billOfLadingFile" type="file">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -812,6 +890,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Description</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentDescription3" type="text">
               </mat-form-field>
@@ -824,12 +903,14 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Certificate of Origin</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentName4" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Description</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentDescription4" type="text">
               </mat-form-field>
@@ -843,12 +924,14 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Insurance Certificate</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentName5" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Description</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentDescription5" type="text">
               </mat-form-field>
@@ -862,12 +945,14 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Quality Inspection Certificate</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="documentName6" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Document</mat-label>
+              <br>
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="qualityInspectionCertificate" type="text">
               </mat-form-field>
