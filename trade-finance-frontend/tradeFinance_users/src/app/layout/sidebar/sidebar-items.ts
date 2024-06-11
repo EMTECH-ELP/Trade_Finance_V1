@@ -265,7 +265,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/invoice-discounting/viewInvoiceForm",
+        path: "/invoice-discounting/viewInvoice",
         title: "Invoice Discounting",
         moduleName: "invoice discounting",
         iconType: "feather",

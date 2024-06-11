@@ -53,6 +53,10 @@
               (click)="selectTheme('orange')">
               <div class="orange"></div>
             </li>
+            <li data-theme="maroon" [ngClass]="{'active': selectedBgColor === 'maroon'}"
+              (click)="selectTheme('maroon')">
+              <div class="maaroon"></div>
+            </li>
             <li data-theme="cyan" [ngClass]="{'active': selectedBgColor === 'cyan'}" (click)="selectTheme('cyan')">
               <div class="cyan"></div>
             </li>

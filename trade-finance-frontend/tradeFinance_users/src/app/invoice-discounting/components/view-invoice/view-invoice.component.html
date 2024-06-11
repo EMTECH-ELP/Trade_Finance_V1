@@ -163,8 +163,10 @@
                       <app-feather-icons style="color: black;" [icon]="'more-vertical'" [class]="'tbl-fav-delete'" matTooltip="More" aria-label="More"></app-feather-icons>
                     </button>
                     <mat-menu #menu="matMenu">
-                      <button mat-menu-item mat-icon-button color="blue" (click)="$event.stopPropagation(); openDialog()" class="tbl-action-btn">Repayment details</button>
-                      <button mat-menu-item><app-feather-icons style="color:black; padding-right: 10px;" [icon]="'download'" [class]="'tbl-fav-delete'" matTooltip="Download" aria-label="Download"></app-feather-icons> Download documents</button>
+                      <button mat-menu-item mat-icon-button color="blue" (click)="$event.stopPropagation(); openDialog()" class="tbl-action-btn">Funding Details</button>
+
+                      <button mat-menu-item mat-icon-button color="blue" (click)="$event.stopPropagation(); openTransferDialog()" class="tbl-action-btn">Repayment details</button>
+
                       <button mat-menu-item (click)="option3()">Option 3</button>
                     </mat-menu>
                   </mat-cell>
