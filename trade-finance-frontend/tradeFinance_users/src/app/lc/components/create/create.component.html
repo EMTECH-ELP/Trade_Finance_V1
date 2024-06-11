@@ -1,8 +1,6 @@
-<div class="top-bar">
-  <input type="search">
-</div>
+
 <section class="content">
-  <div class="content-block" style="background-color: maroon;">
+  <div class="content-block" >
     <div class="block-header" style="background-color: lightgrey;">
       <app-breadcrumb [title]="'LC'" [items]="['Home']" [active_item]="'New LC'">
       </app-breadcrumb>
@@ -12,12 +10,12 @@
       <form [formGroup]="applicationForm">
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
-          <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p>
+          <!-- <p style="color: maroon; font-weight: bold;">Applicant Details:  <mat-icon matSuffix (click)="openLookup()">search</mat-icon></p> -->
           <!-- Lookup details -->
-          <div class="row" style="background-color: maroon; color: white;">
+          <div class="row" style=" color: white;">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label style="color: white;">Search By:</mat-label>
+                <mat-label >Search By:</mat-label>
                 <mat-select formControlName="accountNumber">
                   <mat-option value="accountNumber">Account Number</mat-option>
                   <mat-option value="cifId">CIF ID</mat-option>
@@ -27,7 +25,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label style="color: white;">Enter Value</mat-label>
+                <mat-label >Enter Value</mat-label>
                 <input matInput formControlName="accountNumber" type="number">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
@@ -35,7 +33,7 @@
           </div>
 
           <!-- Applicant details -->
-          <p class="stepHeading">Applicant Details:</p>
+     
           <div class="row" #applicationDetails>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Account Number</mat-label>
@@ -533,20 +531,17 @@
               <mat-label>Shipment Terms</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="shipmentTerms">
-                  <mat-option value="exw">EXW</mat-option>
-                  <mat-option value="fca">FCA</mat-option>
-                  <mat-option value="cpt">CPT</mat-option>
-                  <mat-option value="cip">CIP</mat-option>
-                  <mat-option value="dap">DAP</mat-option>
-                  <mat-option value="dpu">DPU</mat-option>
-                  <mat-option value="ddp">DDP</mat-option>
+                  <!-- The options will be dynamically loaded from the backend -->
+                  <mat-option *ngFor="let term of shipmentTerms" [value]="term.value">{{ term.viewValue }}</mat-option>
                 </mat-select>
-                <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
+                <mat-icon matSuffix (click)="getShipmentTerm()">search</mat-icon>
               </mat-form-field>
               <mat-hint style="color: red;"
-                *ngIf="applicationForm.get('shipmentTerms'). invalid && applicationForm.get('shipmentTerms').touched">
-                *Specify shipment Terms</mat-hint>
+                *ngIf="applicationForm.get('shipmentTerms').invalid && applicationForm.get('shipmentTerms').touched">
+                *Specify shipment Terms
+              </mat-hint>
             </div>
+
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Partial Shipment</mat-label>
@@ -581,9 +576,12 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Port of Discharge</mat-label>
               <mat-form-field class="full-width" appearance="outline">
+<<<<<<< HEAD
 
                 <input matInput formControlName="portOfDischarge" type="text">
 
+=======
+>>>>>>> 7c5ec69cf8c1a8790bf7ac25e62f415124e00450
                 <mat-select formControlName="portOfDischarge">
                   <mat-option value="Mombasa">Mombasa</mat-option>
                   <mat-option value="Kisumu">Kisumu</mat-option>
@@ -600,7 +598,10 @@
 
                 <input matInput formControlName="portOfDischarge" type="text">
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c5ec69cf8c1a8790bf7ac25e62f415124e00450
               </mat-form-field>
               <mat-hint style="color: red;"
                 *ngIf="applicationForm.get('portOfDischarge'). invalid && applicationForm.get('portOfDischarge').touched">
@@ -784,8 +785,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <div>
                 <label for="Commercial Invoice">Upload Commercial Invoice:</label>
-                <input type="file" id="commercialInvoice" name="commercialInvoiceFile"
-                  (change)="OnFileSelected($event)">
+                <input type="file" id="commercialInvoice" name="commercialInvoiceFile">
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
@@ -802,7 +802,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Upload Bill Of Lading File</mat-label>
-              <input formControlName="billOfLadingFile" type="file" (change)="OnFileSelected($event)">
+              <input formControlName="billOfLadingFile" type="file">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Packing List</mat-label>

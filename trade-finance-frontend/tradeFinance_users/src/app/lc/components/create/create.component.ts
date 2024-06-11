@@ -15,11 +15,11 @@ export class CreateComponent implements OnInit {
   ShowLookupComponent: boolean = false;
   selectedValue: string;
   applicationForm: FormGroup;
-  additionalFileUploads:{label: string}[]=[];
+  additionalFileUploads: { label: string }[] = [];
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
-  // dialog: any;
- // router: any;
+  shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "CPA", viewValue: "CPPPOOO" }];
+
 
   constructor(private fb: FormBuilder,
     private lcService: LcService,
@@ -80,7 +80,7 @@ export class CreateComponent implements OnInit {
       transShipment: ['', Validators.required],
       issueDate: ['', Validators.required],
       expiryDate: ['', Validators.required],
-      tenor: ['', Validators.required], 
+      tenor: ['', Validators.required],
       transferable: ['', Validators.required],
       negotiationPeriod: ['', Validators.required],
       commodityCode: ['', Validators.required],
@@ -99,7 +99,7 @@ export class CreateComponent implements OnInit {
       guarantorName: ['', Validators.required],
       guarantorAddress: ['', Validators.required],
       guarantorEmail: ['', Validators.required],
-      guarantorPhoneNumber: ['', [Validators.required,Validators.pattern(/^\+?[1-9]\d{1,14}$/)] ],
+      guarantorPhoneNumber: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]],
       documentName1: ['', Validators.required],                   //one to nine
       documentDescription1: ['', Validators.required],
       commercialInvoiceFile: [''],
@@ -117,91 +117,94 @@ export class CreateComponent implements OnInit {
 
   createLOC(data: any) {
     const body = {
-      "accountNumber": data.accountNumber,
-      "cifId": data.cifId,
-      "nationalId": data.nationalId,
-      "accountName": data.accountName,
-      "currency": data.currency,
-      "email": data.email,
-      "phoneNumber":data.phoneNumber,
-      "address": data.address,
-      "city": data.city,
-      "postalCode":data.postalCode,
-      "countryCode":data.countryCode,
-      "country": data.country,
       "lcNumber": "",
       "lcType": data.lcType,
       "applicableRules": data.applicableRules,
-      "shipmentDate": data.shipmentDate,
-      "portOfDischarge": data.portOfDischarge,
-      "portOfLoading": data.portOfLoading,
-      "shipmentTerms": data.shipmentTerms,
-      "partialShipment": data.partialShipment,
-      "transShipment": data.transShipment,
       "issueDate": data.issueDate,
       "expiryDate": data.expiryDate,
       "tenor": data.tenor,
       "transferable": data.transferable,
       "negotiationPeriod": data.negotiationPeriod,
-      "commodityCode": data.commodityCode,
-      "goodsQuantity": data.goodsQuantity,
-      "pricePerUnit": data.pricePerUnit,
-      "countyOfOrigin":data.countyOfOrigin,
-      "chargesBorneBy":data.chargesBorneBy,
+      "chargesBorneBy": data.chargesBorneBy,
       "amount": data.amount,
-      "transferAmount":data.transferAmount,
-      "transferCurrencyCode":data.transferCurrencyCode,
+      "transferAmount": data.transferAmount,
+      "transferCurrencyCode": data.transferCurrencyCode,
       "newExpiryDate": data.newExpiryDate,
       "currencyCode": data.currencyCode,
       "collateralType": data.collateralType,
       "collateralId": data.collateralId,
-      "collateralValue":data.collateralValue,
+      "collateralValue": data.collateralValue,
       "guarantorName": data.guarantorName,
       "guarantorAddress": data.guarantorAddress,
       "guarantorEmail": data.guarantorEmail,
       "guarantorPhoneNumber": data.guarantorPhoneNumber,
-      "documentName1":  data.documentName1,                
+      "documentName1": data.documentName1,
       "documentDescription1": data.documentDescription1,
       "commercialInvoiceFile": data.commercialInvoiceFile,
-      "documentName2": data.documentName2,              
+      "documentName2": data.documentName2,
       "documentDescription2": data.documentDescription2,
       "billOfLadingFile": data.billOfLadingFile,
-      "documentName3": data.documentName3,                  
+      "documentName3": data.documentName3,
       "documentDescription3": data.documentDescription3,
       "packingListFile": data.packingListFile,
       "confirm": data.confirm,
       "advise": data.advise,
-  "beneficiaryDto": {
-  "beneficiaryFirstName": data.beneficiaryFirstName,
-      "beneficiaryMiddleName": data.beneficiaryMiddleName,
-      "beneficiaryLastName": data.beneficiaryLastName,
-      "beneficiaryAccountNumber": data.beneficiaryAccountNumber,
-      "beneficiaryAccountName": data.beneficiaryAccountName,
-      "beneficiaryEmail": data.beneficiaryEmail,
-      "beneficiaryIban": data.beneficiaryIban,
-      "beneficiaryAddressLine1": data.beneficiaryAddressLine1,
-      "beneficiaryAddressLine2": data.beneficiaryAddressLine2,
-      "beneficiaryCity": data.beneficiaryCity,
-      "beneficiaryPostalCode": data.beneficiaryPostalCode,
-      "beneficiaryCountryCode": data.beneficiaryCountryCode,
-      "beneficiaryCountry": data.beneficiaryCountry,
-      "advisingBankName": data.advisingBankName,
-     "advisingBankBranch": data.advisingBankBranch,                                //add this                    //add this
-      "advisingBankBranchCode": data.advisingBankBranchCode,
-      "advisingBankCountry": data.advisingBankCountry,
-      "advisingBankBic":data.advisingBankBic
-  },
-  "documentsRequiredDto": {},
-  "shipmentAndGoodsDto": {},
-  "paymentSecurityDto": {}
-  };
+      "beneficiaryDto": {
+        "beneficiaryFirstName": data.beneficiaryFirstName,
+        "beneficiaryMiddleName": data.beneficiaryMiddleName,
+        "beneficiaryLastName": data.beneficiaryLastName,
+        "beneficiaryAccountNumber": data.beneficiaryAccountNumber,
+        "beneficiaryAccountName": data.beneficiaryAccountName,
+        "beneficiaryEmail": data.beneficiaryEmail,
+        "beneficiaryIban": data.beneficiaryIban,
+        "beneficiaryAddressLine1": data.beneficiaryAddressLine1,
+        "beneficiaryAddressLine2": data.beneficiaryAddressLine2,
+        "beneficiaryCity": data.beneficiaryCity,
+        "beneficiaryPostalCode": data.beneficiaryPostalCode,
+        "beneficiaryCountryCode": data.beneficiaryCountryCode,
+        "beneficiaryCountry": data.beneficiaryCountry,
+        "advisingBankName": data.advisingBankName,
+        "advisingBankBranch": data.advisingBankBranch,                                //add this                    //add this
+        "advisingBankBranchCode": data.advisingBankBranchCode,
+        "advisingBankCountry": data.advisingBankCountry,
+        "advisingBankBic": data.advisingBankBic
+      },
+      "applicantDto": {
+        "accountNumber": data.accountNumber,
+        "cifId": data.cifId,
+        "nationalId": data.nationalId,
+        "accountName": data.accountName,
+        "currency": data.currency,
+        "email": data.email,
+        "phoneNumber": data.phoneNumber,
+        "address": data.address,
+        "city": data.city,
+        "postalCode": data.postalCode,
+        "countryCode": data.countryCode,
+        "country": data.country,
+      },
+      "documentsRequiredDto": {},
+      "shipmentAndGoodsDto": {
+        "shipmentDate": data.shipmentDate,
+        "portOfDischarge": data.portOfDischarge,
+        "portOfLoading": data.portOfLoading,
+        "shipmentTerms": data.shipmentTerms,
+        "partialShipment": data.partialShipment,
+        "transShipment": data.transShipment,
+        "commodityCode": data.commodityCode,
+        "goodsQuantity": data.goodsQuantity,
+        "pricePerUnit": data.pricePerUnit,
+        "countyOfOrigin": data.countyOfOrigin,
+      },
+      "paymentSecurityDto": {}
+    };
     return body;
   }
 
   onSubmit() {
     console.log("Form data", this.applicationForm.value);
     const data = this.createLOC(this.applicationForm.value)
-    this.lcService.createLc(data,this.applicationForm.get('accountNumber')?.value).subscribe({
+    this.lcService.createLc(data, this.applicationForm.get('accountNumber')?.value).subscribe({
       next: ((response) => {
 
         console.log("Lc create response", response);
@@ -216,14 +219,14 @@ export class CreateComponent implements OnInit {
     //alert('Form Submitted Successfully!')
     let result = window.confirm('Click OK to submit. Click Cancel to abort');
     if (result) {
-        alert('Form Submitted Successfully!');
-        this.router.navigate(["/lc/view"]);
+      alert('Form Submitted Successfully!');
+      this.router.navigate(["/lc/view"]);
     } else {
-        alert('Application Cancelled');
-        this.router.navigate(["/lc/create"]);
+      alert('Application Cancelled');
+      this.router.navigate(["/lc/create"]);
     }
-  
-     
+
+
   }
   openLookup(): void {
     const dialogConfig = new MatDialogConfig();
@@ -236,9 +239,9 @@ export class CreateComponent implements OnInit {
       next: (res: any) => {
         console.log("received data", res),
 
-          console.log("passed email", res.data[0].email)
+          console.log("passed email", res.entity[0].email)
 
-        this.patchApplicationForm(res.data[0])
+        this.patchApplicationForm(res.entity[0])
       }
     })
   }
@@ -255,11 +258,11 @@ export class CreateComponent implements OnInit {
       address: data.address,
       city: data.city,
       postalCode: data.postalCode,
-      countryCode: data.countryCode? data.countryCode : 'NAN',
+      countryCode: data.countryCode ? data.countryCode : 'NAN',
       country: data.country
     });
-   }
-   OnFileSelected(event: any) {
+  }
+  OnFileSelected(event: any) {
     const selectedFile = event.target.files[0];
 
     // Check if a file is selected
@@ -287,10 +290,10 @@ export class CreateComponent implements OnInit {
       fileReader.readAsDataURL(selectedFile);
     }
   }
-  
+
   addFileUpload() {
     const newLabel = prompt('Enter Document Name for the New File Upload:'); // Prompts the user to enter the label
-  
+
     if (newLabel) { // Check if the user entered a label
       // Add the new file upload section with the specified label
       const newRow = {
@@ -315,10 +318,23 @@ export class CreateComponent implements OnInit {
 
   //INPUT FIELDS LOOKUPS
   //Beneficiary Details:
-  getIban(){}
-  getCity(){}
-  getCountryandCode(){}
-  getBankDetails(){}
+  getIban() { }
+  getCity() { }
+  getCountryandCode() { }
+  getBankDetails() { }
+  getShipmentTerm() {
+    this.lcService.getAllShipmentTerms().subscribe({
+      next: (response) => {
+        console.log("Get shipment terms response", response);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        alert('Shipment terms retrieved successfully');
+      }
+    });
+  }
 
 
 

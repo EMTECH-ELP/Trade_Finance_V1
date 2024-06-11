@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "view",
+    path: "/users",
     title: "User Management",
     moduleName: "dashboard",
     iconType: "feather",
@@ -30,7 +30,7 @@ export const ROUTES: RouteInfo[] = [
     // privilege: ["All Roles", "Manage Role"],
     submenu: [
       {
-        path: "/users/viewcheckers",
+        path: "/users/view-roles",
         title: "Roles",
         moduleName: "dashboard",
         iconType: "feather",
@@ -44,7 +44,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/users/view",
+        path: "/users/view-users",
         title: "Users",
         moduleName: "dashboard",
         iconType: "feather",
@@ -74,7 +74,7 @@ export const ROUTES: RouteInfo[] = [
     // privilege: ["Dashboard"],
     submenu: [
       {
-        path: "/system",
+        path: "/system/masterdata",
         title: "Master data",
         moduleName: "dashboard",
         iconType: "feather",
@@ -86,34 +86,7 @@ export const ROUTES: RouteInfo[] = [
         role: ["ADMIN"],
         // privilege: ["Dashboard"],
         submenu: [
-          {
-            path: "/system/banks",
-            title: "Bank list management",
-            moduleName: "dashboard",
-            iconType: "feather",
-            icon: "setting",
-            class: "",
-            groupTitle: false,
-            badge: "",
-            badgeClass: "",
-            role: ["ADMIN"],
-            // privilege: ["Dashboard"],
-            submenu: [] ,
-          },
-          {
-            path: "/system/currency & ports",
-            title: "Currency & Ports ",
-            moduleName: "dashboard",
-            iconType: "feather",
-            icon: "setting",
-            class: "",
-            groupTitle: false,
-            badge: "",
-            badgeClass: "",
-            role: ["ADMIN"],
-            // privilege: ["Dashboard"],
-            submenu: [] ,
-          },
+       
         ],
       },
 

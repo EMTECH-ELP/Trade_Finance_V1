@@ -44,6 +44,18 @@ export class LcService {
     return this.httpClient.delete<any>(url, lcData)
   }
 
+
+  //shipmentTermsApi
+  public getAllShipmentTerms(): Observable<any> {
+    const url = `${environment.shipmentTermsApi}/api/v1/shipment_terms`;
+    return this.httpClient.get<any>(url)
+  }
+
+  // generate LC MT Message
+  public getLcMT(): Observable<any> {
+    const url =`${environment.generateMtUrl}/generate-mt700/{lcNumber}`;
+    return this.httpClient.get<any>(url)
+  }
   public patchSearchForm(data: any): void {
     this.searchForm.patchValue({
       lcNumber: data.lcNumber,

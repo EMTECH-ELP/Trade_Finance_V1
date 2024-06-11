@@ -13,6 +13,24 @@ table {
   .header-title {
     margin: 0;
   }
+  .header-buttons-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-buttons-left .flex-grow-1 {
+    flex-grow: 1;
+  }
+  
+  .header-buttons-left li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-buttons-left .m-l-10 {
+    margin-left: 20px;
+  }
   
   .search-field {
     flex-grow: 1;
@@ -125,4 +143,13 @@ table {
     padding: 20px; /* Add padding for better spacing */
   }
   
-  
+ 
+.mat-paginator {
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Make sure the container takes full width */
+}

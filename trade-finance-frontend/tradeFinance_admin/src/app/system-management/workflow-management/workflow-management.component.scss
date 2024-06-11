@@ -1,13 +1,13 @@
 
 .user-management {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   
   button {
     padding: 10px 20px;
     border: none;
-    background-color: #007bff;
+    background-color: #ad3b3a;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -17,11 +17,10 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #007bff
   }
-  
   table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
@@ -34,7 +33,7 @@
   }
   
   th {
-    background-color: #007bff;
+    background-color: #ad3b3a;
     color: white;
     text-transform: uppercase;
     font-weight: bold;

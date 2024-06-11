@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserActivitiesComponent } from './user-activities.component';
+import { CreatePrivilegeComponent } from './create-privilege.component';
 
-describe('UserActivitiesComponent', () => {
-  let component: UserActivitiesComponent;
-  let fixture: ComponentFixture<UserActivitiesComponent>;
+describe('CreatePrivilegeComponent', () => {
+  let component: CreatePrivilegeComponent;
+  let fixture: ComponentFixture<CreatePrivilegeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserActivitiesComponent ]
+      declarations: [ CreatePrivilegeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserActivitiesComponent);
+    fixture = TestBed.createComponent(CreatePrivilegeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

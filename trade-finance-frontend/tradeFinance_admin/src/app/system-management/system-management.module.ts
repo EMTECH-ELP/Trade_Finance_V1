@@ -23,16 +23,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
+import { MasterdataComponent } from './masterdata/masterdata.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PortsComponent } from './ports/ports.component';
+import { WorkflowManagementComponent } from './workflow-management/workflow-management.component';
+import { ModifyBankDialogueComponent } from './modify-bank-dialogue/modify-bank-dialogue.component';
+import { DeletebankdialogueComponent } from './deletebankdialogue/deletebankdialogue.component';
 
 
 @NgModule({
   declarations: [
     BankListComponent,
     AddbankPopupComponent,
+    MasterdataComponent,
     CurrencyComponent,
-    PortsComponent
+    PortsComponent,
+    WorkflowManagementComponent,
+    ModifyBankDialogueComponent,
+    DeletebankdialogueComponent
    
   ],
   imports: [

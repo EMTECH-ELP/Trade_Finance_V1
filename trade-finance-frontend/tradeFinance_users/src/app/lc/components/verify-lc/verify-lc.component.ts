@@ -10,13 +10,11 @@ import { LcService } from '../../services/lc.service';
 })
 export class VerifylcComponent  implements OnInit {
   verifyForm: FormGroup;
+  lcNumber: string = '';
+  loading: boolean = false;
+  errorMessage: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-
-    private lcService: LcService,
-    private router: Router,
-  ) { }
+  constructor(private fb: FormBuilder, private lcService: LcService, private router: Router,) { }
 
   ngOnInit() {
     this.verifyForm = this.fb.group({

@@ -1,0 +1,29 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-buttons-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .m-l-10 {
+    margin-left: 10px;
+  }
+  
+  .m-l-20 {
+    margin-left: 20px;
+  }
+  
+  .tbl-action-btn {
+    margin-right: 5px;
+  }
+  
+  .tbl-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  

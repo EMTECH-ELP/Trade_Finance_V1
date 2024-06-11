@@ -17,24 +17,17 @@ export const environment = {
   
 
 
-  apiUrl: 'http://192.168.137.1:8085',
-
-  getBranchApiUrl: 'http://192.168.88.141:8082',
- // dcApiUrl: "http://192.168.0.1:9090",
-
-
-
- invUrl: 'https://your-backend-api.com/api',      //Replace with Inv.discounting Createform url
-
-//  getBranchApiUrl: 'http://192.168.88.141:8082',
+  apiUrl: 'http://192.90.59.1:8085',
+  getBranchApiUrl: 'http://192.168.90.59:8082',
   dcApiUrl: "http://192.168.0.1:9090",
+  
 
- userUrl:"http://192.168.88.141.8082",    
+ userUrl:"http://192.168.90.59.8082",    
 
 
  //  BanksManagement
- updatebankUrl: '',
- bankUrl: 'http://192.168.89.92:8187',    //fetchbanks
+
+ bankUrl: 'http://192.168.89.76:8187',    //fetchbanks
 // addBankUrl: '',   //post
 
 //Currency & Ports

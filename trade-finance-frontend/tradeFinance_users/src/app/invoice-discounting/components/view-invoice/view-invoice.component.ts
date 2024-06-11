@@ -11,6 +11,8 @@ import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
 import { CreatedformComponent } from '../createdform/createdform.component';
 import { FileUploadComponent } from 'src/app/shared/components/file-upload/file-upload.component';
+import { DataSource } from '@angular/cdk/collections';
+import { TransferFundsComponent } from '../transfer-funds/transfer-funds.component';
 
 
 
@@ -18,7 +20,7 @@ interface InvoiceDiscounting {
   no:number;
   invoiceNumber: string;
   applicantBusinessName: string;
-  buyerName: string;
+  // buyerName: string;
   invoiceAmount: number;
   status: string;
   // branchCode: string;
@@ -32,7 +34,7 @@ interface InvoiceDiscounting {
 
 export class ViewInvoiceComponent implements OnInit {
 
-  
+ 
  geturl = `http://192.168.91.96:9000/invoices/list`;
  rows: any[]; // Define invoices array to hold the invoice objects
 
@@ -49,13 +51,14 @@ formData: any;
 data = []; 
 
 
-// Mock data for testing
+//Mock data for testing
+
 //  mockData: InvoiceDiscounting[] = [
-//   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', buyerName: 'John Buyer', invoiceAmount: 5000, status: 'Pending',  actions: 'Actions' },
-//   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', buyerName: 'Jane Smith', invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
-//   { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', buyerName: 'Jim Beam', invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
-//   { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', buyerName: 'Jack Daniels', invoiceAmount: 7500, status: 'Pending',  actions: 'Actions' },
-//   { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', buyerName: 'Jill Valentine', invoiceAmount: 12500, status: 'Approved',  actions: 'Actions' }
+//   { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', invoiceAmount: 5000, status: 'Pending',  actions: 'Actions' },
+//   { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.',  invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
+//   { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.',  invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
+//   { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.',  invoiceAmount: 7500, status: 'Pending',  actions: 'Actions' },
+//   { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions',  invoiceAmount: 12500, status: 'Approved',  actions: 'Actions' }
 // ];
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
@@ -94,13 +97,14 @@ row: any;
       // this.initializeMockData(); // Add this line to initialize mock data
 
     }
+    
     // initializeMockData(): void {
     //   this.dataSource = new MatTableDataSource(this.mockData);
     //   this.dataSource.sort = this.sort;
     //   this.dataSource.paginator = this.paginator;
     //   this.isLoading = false; // Set loading to false as we are using static data
     // }
-    getAllForms(): void {
+ getAllForms(): void {
       this.isLoading = true;
       console.log('Fetching invoice forms...');
       this.invDiscountingService.getAllForms().subscribe({
@@ -113,20 +117,21 @@ row: any;
           no: index + 1,
          invoiceNumber: invoiceForms.invoiceNumber,           
          applicantBusinessName: invoiceForms.applicantBusinessName, 
-          buyerName: invoiceForms.buyerName,
+          // buyerName: invoiceForms.buyerName,
           invoiceAmount:  invoiceForms.invoiceAmount,
           status:invoiceForms.status,
           actions: 'Actions',// Replace this with actual actions logic
         }));
+      },
     // Set isLoading to false when fetching is completed
-    this.isLoading = false;
-        // error: (err) => {
-        //   console.error('Error fetching invoiceForms:', Error);
-        //   this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
-        //   this.isLoading = false;
-        // }
+    // this.isLoading = false;
+    error: (err) => {
+      console.error('Error fetching invoiceForms:', err.message || err.toString());
+      this.snackbar.showNotification('error', 'Failed to fetch invoice forms');
+      this.isLoading = false;
+    }
 
-    },
+ 
   
   });
 }
@@ -161,11 +166,18 @@ applyFilter(event: Event) {
     });
   }
 
- 
-
-
-
-
+  openTransferDialog(): void {
+    const dialogRef = this.dialog.open(TransferFundsComponent, {
+      width: '600px', 
+      height:'500px',// Adjust width as needed
+      // Other configuration options if needed
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle dialog close if needed
+    });
+  }
   
 
   openDialog(): void {
@@ -180,6 +192,7 @@ applyFilter(event: Event) {
       // Handle dialog close if needed
     });
   }
+
   openFormDialog(rowData: any): void {
     const dialogRef = this.dialog.open(CreatedformComponent, {
       width: '100%',
