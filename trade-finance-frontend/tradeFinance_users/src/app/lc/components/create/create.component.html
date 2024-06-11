@@ -261,7 +261,14 @@
               <mat-label>City</mat-label>
               <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCity" type="text">
+                <mat-select formControlName="beneficiaryCity">
+                  <mat-option value="Nairobi">Nairobi: </mat-option>
+                  <mat-option value="Mombasa">Mombasa: </mat-option>
+                  <mat-option value="Kampala">Kampala:</mat-option>
+                  <mat-option value="Entebbe">Entebbe: </mat-option>
+                  <mat-option value="Entebbe">Entebbe: </mat-option>
+                  <mat-option value="Arusha">Arusha</mat-option>
+                </mat-select>
                 <mat-icon matSuffix (click)="getCity()">search</mat-icon>
               </mat-form-field>
               <small style="color: red;"
@@ -274,6 +281,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="beneficiaryPostalCode" type="text">
               </mat-form-field>
+              <br>
               <small
                 *ngIf="applicationForm.get('beneficiaryPostalCode'). invalid && applicationForm.get('beneficiaryPostalCode').touched">
                 *Beneficiary's Postal code is required</small>
@@ -282,7 +290,14 @@
               <mat-label>Country</mat-label>
               <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountry" type="text">
+                <mat-select formControlName="beneficiaryCountry">
+                  <mat-option value="Uganda">Uganda</mat-option>
+                  <mat-option value="Congo">Congo: </mat-option>
+                  <mat-option value="China">China:</mat-option>
+                  <mat-option value="USA">USA: </mat-option>
+                  <mat-option value="Tanzania">Tanzania: </mat-option>
+                  <mat-option value="Japan">Japan</mat-option>
+                </mat-select>
                 <mat-icon matSuffix (click)="getCountryandCode()">search</mat-icon>
               </mat-form-field>
               <small style="color: red;"
@@ -293,8 +308,16 @@
               <mat-label>Country Code</mat-label>
               <br>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryCountryCode" type="text">
+                <mat-select formControlName="beneficiaryCountryCode">
+                  <mat-option value="UG">UG</mat-option>
+                  <mat-option value="CG">CG: </mat-option>
+                  <mat-option value="CN">CN:</mat-option>
+                  <mat-option value="US">US </mat-option>
+                  <mat-option value="TZ">TZ: </mat-option>
+                  <mat-option value="JY">JY</mat-option>
+                </mat-select>
               </mat-form-field>
+              <br>
               <small style="color: red;"
                 *ngIf="applicationForm.get('beneficiaryCountryCode'). invalid && applicationForm.get('beneficiaryCountryCode').touched">
                 *Beneficiary Country Code is required</small>
@@ -307,6 +330,7 @@
                 <input matInput formControlName="advisingBankName" type="text">
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
+              <br>
               <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankName'). invalid && applicationForm.get('advisingBankName').touched">
                 *Advising Bank Name is required</small>
@@ -337,6 +361,7 @@
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="advisingBankBranch" type="text">
               </mat-form-field>
+              <br>
               <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
                 *Advising Bank Branch is required</small>

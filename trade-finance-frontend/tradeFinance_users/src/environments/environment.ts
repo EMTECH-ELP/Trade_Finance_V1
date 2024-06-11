@@ -2,10 +2,8 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.88.169:8082',
+authUrl: 'http://192.168.90.59:8082',
 resetUrl: '',
-
-
 
 //LCs
   createApiUrl: 'http://192.168.88.101:8085',    //create LC
