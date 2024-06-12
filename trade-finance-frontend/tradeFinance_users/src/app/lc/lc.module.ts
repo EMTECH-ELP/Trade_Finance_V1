@@ -42,7 +42,8 @@ import { ConfirmDeletionDialogComponent } from './components/delete-lc/confirm-d
     VerifylcComponent,
     ModifyLookupComponent,
     ConfirmDeletionDialogComponent,
-    LcMtComponent
+    LcMtComponent,
+    ModelLcComponent
 
     
   ],
@@ -83,6 +84,7 @@ export class LcModule { } import { } from './components/create/create.component'
 
 import { VerifylcComponent } from './components/verify-lc/verify-lc.component';
 import { LcMtComponent } from './components/lc-mt/lc-mt.component';
+import { ModelLcComponent } from './components/model-lc/model-lc.component';
 
 
 
