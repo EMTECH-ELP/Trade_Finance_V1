@@ -4,6 +4,7 @@ import { LcService } from '../../services/lc.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InvDiscountingService } from 'src/app/invoice-discounting/services/inv-discounting.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateComponent implements OnInit {
   additionalFileUploads: { label: string }[] = [];
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
-  shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "FCP", viewValue: "FCP: Free Carrier" },{value: "CPT", viewValue:"CPT:  Carriage Paid To"},  {value: "CIP ", viewValue: "CIP: Carriage and Insurance Paid To "}, {value: "DAP", viewValue: "DAP: Delivered At Place "}, {value:"DPU", viewValue: "DPU: Delivered At Place Unloaded "}, {value: "DDP", viewValue: "DDP: Delivered Duty Paid "}, {value: "EXW", viewValue: " Ex Works"}];
+  shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "FCP", viewValue: "FCP: Free Carrier" }, { value: "CPT", viewValue: "CPT:  Carriage Paid To" }, { value: "CIP ", viewValue: "CIP: Carriage and Insurance Paid To " }, { value: "DAP", viewValue: "DAP: Delivered At Place " }, { value: "DPU", viewValue: "DPU: Delivered At Place Unloaded " }, { value: "DDP", viewValue: "DDP: Delivered Duty Paid " }, { value: "EXW", viewValue: " Ex Works" }];
 
 
   constructor(private fb: FormBuilder,
@@ -26,6 +27,7 @@ export class CreateComponent implements OnInit {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+    private invoiceService: InvDiscountingService,
     // private lookupDialog: MatDialogRef<LookupComponent>
   ) { }
 
@@ -239,9 +241,9 @@ export class CreateComponent implements OnInit {
       next: (res: any) => {
         console.log("received data", res),
 
-          console.log("passed email", res.entity[0].email)
+          console.log("passed email", res.data[0].email)
 
-        this.patchApplicationForm(res.entity[0])
+        this.patchApplicationForm(res.data[0])
       }
     })
   }
@@ -259,7 +261,16 @@ export class CreateComponent implements OnInit {
       city: data.city,
       postalCode: data.postalCode,
       countryCode: data.countryCode ? data.countryCode : 'NAN',
-      country: data.country
+      country: data.country,
+      beneficiaryCity: data.countryCity,
+      beneficiaryCountryCode: data.beneficiaryCountryCode,
+      beneficiaryCountry: data.countryName,
+      advisingBankName: data.advisingBankName,
+      advisingBankBranch: data.advisingBankBranch,                                //add this                    //add this
+      advisingBankBranchCode: data.advisingBankBranchCode,
+      advisingBankCountry: data.advisingBankCountry,
+      advisingBankBic: data.advisingBankBic
+
     });
   }
   OnFileSelected(event: any) {
@@ -371,4 +382,5 @@ export class CreateComponent implements OnInit {
       link.click();
     }
   }
+  
 }
