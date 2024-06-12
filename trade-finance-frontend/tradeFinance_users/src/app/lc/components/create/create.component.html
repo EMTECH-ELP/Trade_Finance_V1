@@ -9,7 +9,7 @@
         <!-- Step 1: Application Details -->
         <mat-step label="Applicant Details">
           <!-- Lookup applicant details -->
-          <div class="row">
+          <div class="row" style="background-color: rgb(204, 227, 226); color: white;">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Search By:</mat-label>
@@ -150,8 +150,12 @@
                   *Applicant's country is required</small>
               </div>
             </div>
-            <div>
+            <!-- <div>
               <button class="nextDC" mat-button matStepperNext>Next</button>
+            </div> -->
+            <div>
+              <span style="margin-right: 90%;"></span>
+              <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
             </div>
           </div>
         </mat-step>
@@ -217,7 +221,15 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>IBAN</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="beneficiaryIban" type="text">
+
+                <mat-select formControlName="beneficiaryIban">
+                  <mat-option value="Nairobi"> ES91 2100 0418 4502 0005 1332</mat-option>
+                  <mat-option value="NL91 ABNA 0417 1643 00">NL91 ABNA 0417 1643 00 </mat-option>
+                  <mat-option value="FR14 2004 1010 0505 0001 3M02 606">FR14 2004 1010 0505 0001 3M02 606</mat-option>
+                  <mat-option value="GB29 NWBK 6016 1331 9268 19 ">GB29 NWBK 6016 1331 9268 19 </mat-option>
+                  <mat-option value="DE89 3704 0044 0532 0130 00">DE89 3704 0044 0532 0130 00 </mat-option>
+
+                </mat-select>
                 <mat-icon matSuffix (click)="getIban()">search</mat-icon>
               </mat-form-field>
               <small style="color: red;"
@@ -299,7 +311,16 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Bank Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankName" type="text">
+                <mat-select formControlName="advisingBankName">
+                  <mat-option value="Centenary Bank">Centenary Bank </mat-option>
+                  <mat-option value="Stanbic Bank Uganda">Stanbic Bank Uganda </mat-option>
+                  <mat-option value="Rawbank">Rawbank</mat-option>
+                  <mat-option value="Trust Merchant Bank (TMB)">Trust Merchant Bank (TMB)</mat-option>
+                  <mat-option value="CRDB Bank">CRDB Bank </mat-option>
+                  <mat-option value="SMBC">SMBC</mat-option>
+                  <mat-option value="MUFG">MUFG</mat-option>
+                  <mat-option value="NBC">NBC</mat-option>
+                </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
               <small style="color: red;"
@@ -308,51 +329,81 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch</mat-label>
-
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankBranch" type="text">
+                <mat-select formControlName="advisingBankBranch">
+                  <mat-option value="Jinja branch">Jinja Main branch</mat-option>
+                  <mat-option value="Entebbe">Entebbe </mat-option>
+                  <mat-option value="Kinshasa">Kinshasa</mat-option>
+                  <mat-option value="Lubumbashi ">Lubumbashi </mat-option>
+                  <mat-option value="Beijing ">Beijing </mat-option>
+                  <mat-option value="Shanghai">Shanghai</mat-option>
+                  <mat-option value="Tokyo ">Tokyo </mat-option>
+                  <mat-option value="Osaka ">Osaka </mat-option>
+                  <mat-option value="Dodoma ">Dodoma </mat-option>
+                  <mat-option value="Arusha ">Arusha </mat-option>
+                </mat-select>
               </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
-                *Advising Bank Branch is required</small> -->
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Branch</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankBranch" type="text">
-              </mat-form-field>
-              <!-- <small
-                *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
-                *Advising Bank Branch is required</small> -->
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-              <mat-label>Bank Country</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankBranch" type="text">
-              </mat-form-field>
-              <small style="color: red;"
+              <small
                 *ngIf="applicationForm.get('advisingBankBranch'). invalid && applicationForm.get('advisingBankBranch').touched">
                 *Advising Bank Branch is required</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Branch Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankBranchCode" type="text">
+                <mat-select formControlName="advisingBankBranchCode">
+                  <mat-option value="J-89">UG J-89</mat-option>
+                  <mat-option value="UG E-103">UG E-103 </mat-option>
+                  <mat-option value="DR-67">DR-67</mat-option>
+                  <mat-option value="DR L-54 ">DR L-54</mat-option>
+                  <mat-option value="CNBI97">CNBI97 </mat-option>
+                </mat-select>
               </mat-form-field>
               <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBranchCode'). invalid && applicationForm.get('advisingBankBranchCode').touched">
                 *Advising Bank Code is required</small>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Bank Country</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-select formControlName="advisingBankCountry">
+                  <mat-option value="Uganda">Uganda</mat-option>
+                  <mat-option value="Congo">DRC: Congo </mat-option>
+                  <mat-option value="China">China</mat-option>
+                  <mat-option value="USA">USA</mat-option>
+                  <mat-option value="Tanzania">Tanzania</mat-option>
+                  <mat-option value="Ethiopia">Ethiopia</mat-option>
+                  <mat-option value="South Sudan">South Sudan</mat-option>
+                  <mat-option value="South Africa">South Africa</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <small style="color: red;"
+                *ngIf="applicationForm.get('advisingBankCountry'). invalid && applicationForm.get('advisingBankCountry').touched">
+                *Please specify the advising bank country</small>
+            </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>SWIFT Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="advisingBankBic" type="text">
+                <mat-select formControlName="advisingBankBic">
+                  <mat-option value="SBICUGKX">SBICUGKX</mat-option>
+                  <mat-option value="CERBUGKA">CERBUGKA</mat-option>
+                  <mat-option value="RAWBCDKI">RAWBCDKI</mat-option>
+                  <mat-option value="TRMSCD3L">TRMSCD3L</mat-option>
+                  <mat-option value="CORUTZTZ">CORUTZTZ</mat-option>
+                  <mat-option value="ICBKCNBJ">ICBKCNBJ</mat-option>
+                </mat-select>
               </mat-form-field>
               <small style="color: red;"
                 *ngIf="applicationForm.get('advisingBankBic'). invalid && applicationForm.get('advisingBankBic').touched">
                 *Advising Bank SWIFT Code is required</small>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Address Line2</mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="beneficiaryAddressLine2" type="text">
+              </mat-form-field>
             </div>
           </div>
           <div>
@@ -389,9 +440,11 @@
               <mat-label>Applicable Rules</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="applicableRules">
-                  <mat-option value="UCP_600">UCP_600</mat-option>
-                  <mat-option value="EUCP">EUCP_LATEST_VERSION</mat-option>
-                  <mat-option value="EUCPRR">EUCPRR</mat-option>
+                  <mat-option value="UCP_600">UCP_600 <mat-hint>Uniform Customs and Practice</mat-hint></mat-option>
+                  <mat-option value="EUCP_LATEST_VERSION">EUCP_LATEST_VERSION <mat-hint>Electronic Presentation, Latest
+                      Version</mat-hint></mat-option>
+                  <mat-option value="EUCPRR">EUCPRR <mat-hint>Electronic Uniform Customs and Practice Rules
+                      Revised</mat-hint></mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
@@ -639,10 +692,17 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Negotiation Period</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="negotiationPeriod" type="text">
+                <mat-select formControlName="negotiationPeriod">
+                  <mat-option value="10">10</mat-option>
+                  <mat-option value="20">20</mat-option>
+                  <mat-option value="30">30 </mat-option>
+                  <mat-option value="40">40 </mat-option>
+                  <mat-option value="50">50 </mat-option>
+                  <mat-option value="Other">Other </mat-option>
+                </mat-select>
               </mat-form-field>
               <small style="color: red;"
-                *ngIf="applicationForm.get('negotiationPeriod').invalid && applicationForm.get('negotiationPeriod').touched">*Amount
+                *ngIf="applicationForm.get('negotiationPeriod').invalid && applicationForm.get('negotiationPeriod').touched">
                 *State the agreed negotiation period</small>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
