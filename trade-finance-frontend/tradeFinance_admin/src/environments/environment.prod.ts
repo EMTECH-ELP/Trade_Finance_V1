@@ -7,7 +7,7 @@ export const environment = {
   privilegeApiUrl: "http://192.168.36.125:8082",          //api for posting privileges
   
   userUrl:  "http://192.168.89.183.8082",    
-  baseUrlAdmin: "http://192.168.90.59:8082",
+  baseUrlAdmin: "http://192.168.90.149:8082",
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",
   baseUrlBudget: "http://52.15.152.26:9090",
