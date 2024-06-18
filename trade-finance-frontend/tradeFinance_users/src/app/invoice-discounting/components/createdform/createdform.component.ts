@@ -29,6 +29,7 @@ export class CreatedformComponent implements OnInit {
 
     // applicationForm!: applicationFormDetails: 
     constructor(
+   
       @Inject(MAT_DIALOG_DATA) public data: any,
       private router: Router,
       public service:InvDiscountingService,
@@ -43,19 +44,9 @@ export class CreatedformComponent implements OnInit {
       const now = new Date();
       // Format the date and time as required by datetime-local input
       this.currentDate = this.formatDateTime(now); 
-      console.log("Data received:", this.data);
-      const data = this.data.rowData
-      if (data) {
-        this.rowData = data
-        this.getInvoiceDataById(data.id)
-      }
-      const invoiceId = this.data.rowData.value
-      if (invoiceId) {
-        this.rowData = invoiceId
-        console.log("data", invoiceId);
-      }
 
-      
+        this.rowData = this.data.rowData;
+    console.log('Row Data:', this.rowData);
     }
 // Function to format date and time
 private formatDateTime(date: Date): string {
@@ -81,23 +72,23 @@ private padZero(num: number): string {
       }
     }
 
-    getInvoiceDataById(id:number){
-      const url = `${environment.invUrl}/invoices/${id}`
-      this.service.getData(url).subscribe(
-        ((response) => {
-          console.log("123456798",response);
-          this.invoiceData = response
+    // getInvoiceDataById(id:number){
+    //   const url = `${environment.invUrl}/applicant/${id}`
+    //   this.service.getDataById(url).subscribe(
+    //     ((response) => {
+    //       console.log("123456798",response);
+    //       this.invoiceData = response
           
-        }),
-        ((error) => {
-          console.log(error);
+    //     }),
+    //     ((error) => {
+    //       console.log(error);
           
-        }),
-        () => {
+    //     }),
+    //     () => {
 
-        }
-      )
-    }
+    //     }
+    //   )
+    // }
     approveAction(): void {
          // Prompt for password for approval
          const enteredPassword = prompt('Please enter your password:');
@@ -133,5 +124,18 @@ private padZero(num: number): string {
     onClose(): void {
       this.dialogRef.close(false);
     }
+    // print(): void {
+    //   const printContent = document.getElementById('printable-content');
+    //   const WindowPrt = window.open('', '', 'width=900,height=650');
+    //   WindowPrt.document.write('<html><head><title>Print Invoice</title>');
+    //   WindowPrt.document.write('<style>/* Your custom styles for print */</style>');
+    //   WindowPrt.document.write('</head><body>');
+    //   WindowPrt.document.write(printContent.innerHTML);
+    //   WindowPrt.document.write('</body></html>');
+    //   WindowPrt.document.close();
+    //   WindowPrt.focus();
+    //   WindowPrt.print();
+    //   WindowPrt.close();
+    // }
   }
   

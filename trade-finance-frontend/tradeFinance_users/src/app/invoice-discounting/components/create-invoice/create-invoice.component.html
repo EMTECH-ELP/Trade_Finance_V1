@@ -52,7 +52,7 @@
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
                 <mat-label>Customer's CIF ID</mat-label>
                 <mat-form-field class="full-width" appearance="outline">
-                  <input matInput formControlName="cifId" type="number">
+                  <input matInput formControlName="cifId" >
                   <!-- <mat-icon matSuffix>search</mat-icon> -->
                 </mat-form-field>
                 <mat-hint style="color: red;"
@@ -165,11 +165,9 @@
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-label>Invoice Number <span class="required">*</span></mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="text">
+                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
-                *Invoice No. is required</small>
+             
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -177,9 +175,7 @@
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="invoiceAmount" type="number">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
-                *Invoice Amount required</small>
+           
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -187,9 +183,7 @@
               <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="applicantBusinessName" type="text">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
-                *Company name is a required field</small>
+           
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -241,7 +235,7 @@
                 [formGroupName]="i">
                 <div>
                   <label style="color: black;font-weight: bold;">Invoice {{i + 2}}</label>
-                  <table border="1" class="invTable" style="width: 100%;">
+                  <mat-table border="1" class="invTable" style="width: 100%;">
                     <thead>
                       <tr *ngFor="let row of [1, ]; let i = index">
                         <th>Invoice No.</th>
@@ -285,7 +279,7 @@
                       </tr>
 
                     </tbody>
-                  </table>
+                  </mat-table>
 
 
                   <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn1()">
@@ -304,10 +298,6 @@
             <br>
 
           </div>
-
-
-
-
 
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
@@ -414,16 +404,11 @@
 
           </div>
 
-
-
-
-
-
           <div *ngFor="let inv of applicationForm.get('importerDetails')['controls']; let i = index"
             [formGroupName]="i">
             <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
             <label style="color: black;font-weight: bold;">Importer {{i + 2}}</label>
-            <table border="1" class="invTable">
+            <mat-table border="1" class="invTable">
               <thead>
                 <tr>
 
@@ -448,7 +433,7 @@
                 <br>
 
               </tbody>
-            </table>
+            </mat-table>
           </div>
           <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
             <mat-icon class="col-white">add</mat-icon>
@@ -516,3 +501,12 @@
     </mat-horizontal-stepper>
   </div>
 </section>
+ <!-- <small
+                *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
+                *Invoice No. is required</small> -->
+                   <!-- <small
+                *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
+                *Invoice Amount required</small> -->
+                   <!-- <small
+                *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
+                *Company name is a required field</small> -->
