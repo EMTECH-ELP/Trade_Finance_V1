@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class UserManagementService {
 
- // private apiUrl = 'http://192.168.89.2:8082/api/privileges'; // Replace with your backend API URL
+  private privilegeUrl = environment.privilegeApiUrl;; // Replace with your backend API URL
 
   constructor(private http: HttpClient) { }
 
