@@ -10,7 +10,7 @@ export const environment = {
     
    
   baseUrlAdmin: "http://192.168.88.82:8082",
-
+  privilegeApiUrl:"http://192.168.88.82:8082",
 
   baseUrlHR: "http://52.15.152.26:6300",
   baseUrlProcurement: "http://52.15.152.26:9090",

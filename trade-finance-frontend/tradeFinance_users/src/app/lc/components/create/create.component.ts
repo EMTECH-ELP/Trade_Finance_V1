@@ -196,7 +196,7 @@ export class CreateComponent implements OnInit {
         "commodityCode": data.commodityCode,
         "goodsQuantity": data.goodsQuantity,
         "pricePerUnit": data.pricePerUnit,
-        "countyOfOrigin": data.countyOfOrigin,
+        "countryOfOrigin": data.countyOfOrigin,
       },
       "paymentSecurityDto": {}
     };
@@ -262,15 +262,6 @@ export class CreateComponent implements OnInit {
       postalCode: data.postalCode,
       countryCode: data.countryCode ? data.countryCode : 'NAN',
       country: data.country,
-      beneficiaryCity: data.countryCity,
-      beneficiaryCountryCode: data.beneficiaryCountryCode,
-      beneficiaryCountry: data.countryName,
-      advisingBankName: data.advisingBankName,
-      advisingBankBranch: data.advisingBankBranch,                                //add this                    //add this
-      advisingBankBranchCode: data.advisingBankBranchCode,
-      advisingBankCountry: data.advisingBankCountry,
-      advisingBankBic: data.advisingBankBic
-
     });
   }
   OnFileSelected(event: any) {
@@ -382,5 +373,5 @@ export class CreateComponent implements OnInit {
       link.click();
     }
   }
-  
+
 }

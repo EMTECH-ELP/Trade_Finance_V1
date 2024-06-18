@@ -23,7 +23,7 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Enter Value</mat-label>
-                <input matInput formControlName="accountNumber" type="number">
+                <input matInput formControlName="accountNumber" type="text">
                 <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
               </mat-form-field>
             </div>
@@ -155,7 +155,7 @@
             </div> -->
             <div>
               <span style="margin-right: 90%;"></span>
-              <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+              <button class="nextDC" mat-button matStepperNext>Next</button>
             </div>
           </div>
         </mat-step>
@@ -223,7 +223,7 @@
               <mat-form-field class="full-width" appearance="outline">
 
                 <mat-select formControlName="beneficiaryIban">
-                  <mat-option value="Nairobi"> ES91 2100 0418 4502 0005 1332</mat-option>
+                  <mat-option value="ES91 2100 0418 4502 0005 1332"> ES91 2100 0418 4502 0005 1332</mat-option>
                   <mat-option value="NL91 ABNA 0417 1643 00">NL91 ABNA 0417 1643 00 </mat-option>
                   <mat-option value="FR14 2004 1010 0505 0001 3M02 606">FR14 2004 1010 0505 0001 3M02 606</mat-option>
                   <mat-option value="GB29 NWBK 6016 1331 9268 19 ">GB29 NWBK 6016 1331 9268 19 </mat-option>
@@ -249,12 +249,16 @@
               <mat-label>City</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="beneficiaryCity">
-                  <mat-option value="Nairobi">Nairobi: </mat-option>
-                  <mat-option value="Mombasa">Mombasa: </mat-option>
-                  <mat-option value="Kampala">Kampala:</mat-option>
-                  <mat-option value="Entebbe">Entebbe: </mat-option>
-                  <mat-option value="Entebbe">Entebbe: </mat-option>
+                  <mat-option value="Entebbe">Entebbe </mat-option>
+                  <mat-option value="Kinshasa">Kinshasa </mat-option>
+                  <mat-option value="Kampala">Kampala</mat-option>
+                  <mat-option value="Beijing">Beijing: </mat-option>
                   <mat-option value="Arusha">Arusha</mat-option>
+                  <mat-option value="Lubumbashi ">Lubumbashi </mat-option>
+                  <mat-option value="Shanghai">Shanghai</mat-option>
+                  <mat-option value="Tokyo ">Tokyo </mat-option>
+                  <mat-option value="Osaka ">Osaka </mat-option>
+                  <mat-option value="Dodoma ">Dodoma </mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getCity()">search</mat-icon>
               </mat-form-field>
@@ -422,10 +426,10 @@
                 <mat-select formControlName="lcType">
                   <mat-option value="Revocable">Revocable</mat-option>
                   <mat-option value="Irrevocable">Irrevocable</mat-option>
-                  <mat-option value="Cancel">Confirmed</mat-option>
+                  <mat-option value="Confirmed">Confirmed</mat-option>
                   <mat-option value="Unconfirmed">Unconfirmed</mat-option>
                   <mat-option value="Transferable">Transferable</mat-option>
-                  <mat-option value="Backtoback">Back-to-Back</mat-option>
+                  <mat-option value="Back-to-back">Back-to-Back</mat-option>
                   <mat-option value="Sight">Sight</mat-option>
                   <mat-option value="Deferred">Deferred</mat-option>
                   <mat-option value="Standby">Standby</mat-option>
@@ -470,12 +474,12 @@
               <mat-label>Commodity Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="commodityCode">
-                  <mat-option value="plastic">3926-Plastic</mat-option>
-                  <mat-option value="other">39269099-Other</mat-option>
-                  <mat-option value="lcd">9013-LCD</mat-option>
-                  <mat-option value="telephoneSets">8517-Telephone sets</mat-option>
-                  <mat-option value="accessories">8473-Parts and Accessories</mat-option>
-                  <mat-option value="machinery">84351000-Machinery</mat-option>
+                  <mat-option value="3926-Plastic">3926-Plastic</mat-option>
+                  <mat-option value="9013-LCD">9013-LCD</mat-option>
+                  <mat-option value="8517-Telephone sets">8517-Telephone sets</mat-option>
+                  <mat-option value="8473-Parts and Accessories">8473-Parts and Accessories</mat-option>
+                  <mat-option value="84351000-Machinery">84351000-Machinery</mat-option>
+                  <mat-option value="39269099-Other">39269099-Other</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>
