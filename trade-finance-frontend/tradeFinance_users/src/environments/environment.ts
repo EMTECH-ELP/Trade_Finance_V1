@@ -5,8 +5,6 @@ export const environment = {
 authUrl: 'http://192.168.90.149:8082',
 resetUrl: '',
 
-
-
 //LCs
   createApiUrl: 'http://192.168.90.231:8085',    //create LC
   getApiUrl: `http://192.168.88.91:8187`, //fetch applicant details
@@ -28,7 +26,7 @@ shipmentTermsApi: 'http://192.168.89.92:8085',      //fetch all shipment terms
 
 
 //bills
-billApiUrl: 'http://192.168.90.231:8085', 
+billApiUrl: 'http://192.168.88.101:8085', 
        // Modify LC details fetched by LcNumber  (enviroment.putUrl)/api/v1/LC/lcNumber/{lcNumber}
 
 

@@ -2,7 +2,8 @@ export const environment = {
   production: true,
 
   // apiUrl: "http://52.15.152.26:9051",
-  baseUrlAdmin: "http://192.168.90.149:8082",
+  // baseUrlAdmin: "http://192.168.88.141:8082",
+  baseUrlAdmin: "http://192.168.88.82:8082",
   // serverAPI: "http://52.15.152.26:9051",
   // AUTH_URL: "http://52.15.152.26:9051",
   // uraUrl: "http://52.15.152.26:9051",

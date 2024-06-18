@@ -25,6 +25,7 @@ export class VerifylcComponent  implements OnInit {
   public onApprove() {
     const data = { ...this.verifyForm.value, status: 'Approved' };
     this.processAction(data);
+   // this.router.navigate(['lc/lc-mt'])
   }
 
   public onReject() {
