@@ -4,7 +4,7 @@ export const environment = {
   // Client's test servers
 
   //Emtech test server
-  privilegeApiUrl: "http://192.168.88.233:8082",          //api for posting privileges
+  privilegeApiUrl: "http://192.168.90.15:8082",          //api for posting privileges
   
   userUrl:  "http://192.168.89.183.8082",    
   baseUrlAdmin: "http://192.168.90.149:8082",
