@@ -50,9 +50,10 @@ export class CreateDcComponent implements OnInit {
   ngOnInit() {
 
     this.applicationForm = this.fb.group({
-      accountNumber: ['', Validators.required],
+      
       cifId: ['', Validators.required],
       nationalId: ['', Validators.required],
+      accountNumber: ['', Validators.required],
       accountName: ['', Validators.required],
       currency: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -75,9 +76,12 @@ export class CreateDcComponent implements OnInit {
       advisingBankBic: ['', Validators.required],
       beneficiaryBankAddressLine2: ['', Validators.required],
       beneficiaryIban: ['', Validators.required],
-      beneficiarySwiftCode: ['', Validators.required],
+      // beneficiarySwiftCode: ['', Validators.required],
       beneficiaryCity: ['', Validators.required],
-      // beneficiaryPostalCode: ['', Validators.required],
+      beneficiaryPostalCode: ['', Validators.required],
+
+
+      
       originCountry: ['', Validators.required],
       loadingPort: ['', Validators.required],
       dischargePort: ['', Validators.required],

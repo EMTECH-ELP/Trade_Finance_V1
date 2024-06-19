@@ -108,12 +108,12 @@ export class OtpComponent implements OnInit {
 
       console.log("params: ", params);
 
-      //this.tokenCookieService.saveUser(userJSON);
+     // this.tokenCookieService.saveUser(userJSON);
 
       //this.router.navigate(["/admin/dashboard"]);
 
 
-      // this.tokenCookieService.clearSharedTokenOrCookie();
+       //this.tokenCookieService.clearSharedTokenOrCookie();
 
       this.authService.validateOTP(this.otpBody.value).subscribe({
         next: (res: any) => {

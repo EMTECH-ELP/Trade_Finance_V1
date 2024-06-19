@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.90.59:8082',
+authUrl: 'http://192.168.90.149:8082',
 resetUrl: '',
 
 

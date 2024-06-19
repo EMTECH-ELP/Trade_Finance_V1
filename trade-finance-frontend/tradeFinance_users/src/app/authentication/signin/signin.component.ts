@@ -54,8 +54,9 @@ ngOnInit() {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
+    this.tokenCookieService.deleteUser();
 }
-  // this.tokenCookieService.deleteUser();
+
 
   onSubmit() {
     this.authService.login(this.authForm.value).subscribe(
