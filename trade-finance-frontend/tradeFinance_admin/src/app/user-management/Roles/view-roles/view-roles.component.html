@@ -7,7 +7,7 @@
         </app-breadcrumb>
 
         <div class="row" >
-            <div class="col-lg-12 col-sm-12" id="widget1">
+            <div class="col-lg-6 col-sm-6" id="widget1">
                 <div class="info-box7 bg-kingdom order-info-box7" style="background-color: maroon;border-radius: 5px;">
                     <div class="info-box7-block">
                         <p class="m-b-20 bold">ROLES</p>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         
-            <div class="col-lg-12 col-sm-12" id="widget2">
+            <div class="col-lg-6 col-sm-6" id="widget2">
                 <div class="info-box7 bg-kingdom order-info-box7"style="background-color: maroon;border-radius: 5px;">
                     <div class="info-box7-block">
                         <p class="m-b-20 bold">PRIVILEGES</p>
@@ -29,6 +29,79 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                    <div class="body">
+          
+                      <div class="table-responsive">
+                        <div class="materialTableHeader">
+                          <div class="row">
+          
+                            <div class="col-12">
+                              <ul class="header-buttons-left ms-0">
+                                <li class="dropdown">
+                                  <h2>ROLES AND PRIVILEGES </h2>
+                                </li>
+          
+                                <li class="dropdown m-l-20">
+                                  <label for="search-input"><i class="material-icons search-icon" style="color:maroon">search</i></label>
+                                  <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
+                                    class="browser-default search-field" aria-label="Search box">
+                                </li>
+
+                                <li>
+                                  <div class="m-l-10" matTooltip="Refresh all roles and privileges">
+                                      <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
+                                      <mat-icon class="col-white">refresh</mat-icon>
+                                    </button>
+                                  </div>
+                                </li>
+          
+                                
+          
+                                
+
+
+                                <li>
+                                  <div class="m-l-10" matTooltip="View all roles and privileges">
+                                      <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
+                                      <mat-icon class="col-white">visibility</mat-icon>
+                                    </button>
+                                  </div>
+                                </li>
+          
+                              </ul>
+                            </div>
+          
+                          </div>
+                        </div>
+            
+                        <table style="width:100%;">
+                            <thead>
+                              <tr>
+                                <th>No</th>
+                                <th>Roles </th>
+                                <th>Number of privileges</th>
+                                
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                
+                                                
+                              </tr>
+        
+        
+                            </thead>
+        
+        
+                            </table>
+        
+        
 
 
             

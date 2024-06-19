@@ -90,4 +90,10 @@ export class ViewDcComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+
+
+
+  
 }

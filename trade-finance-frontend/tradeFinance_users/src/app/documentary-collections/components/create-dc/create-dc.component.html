@@ -8,7 +8,27 @@
 
     <mat-horizontal-stepper linear>
       <form [formGroup]="applicationForm">
-        <!-- Step 1: Application Details -->
+        <div class="row" style="background-color: maroon; color: white;">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label style="color: white;">Search By:</mat-label>
+              <mat-select formControlName="accountNumber">
+                <mat-option value="accountNumber">Account Number</mat-option>
+                <mat-option value="cifId">CIF ID</mat-option>
+                <mat-option value="nationalId">National ID</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label style="color: white;">Enter Value</mat-label>
+              <input matInput formControlName="accountNumber" type="number">
+              <mat-icon matSuffix (click)="openLookup()">search</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Step 1: Application Details -->  
         <mat-step label="Applicant Details">
           <p class="stepHeading">Applicant details</p>
           <div class="row">
@@ -16,7 +36,6 @@
               <mat-label>Account Number</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="accountNumber" type="text">
-                <mat-icon matSuffix (click)="openLookup()" id="searchIcon">search</mat-icon>
               </mat-form-field>
 
 
@@ -28,7 +47,6 @@
               <mat-label>Customer's CIF ID</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="cifId" type="string">
-                <mat-icon matSuffix id="searchIcon">search</mat-icon>
               </mat-form-field>
 
             </div>
@@ -37,7 +55,6 @@
               <mat-label>National ID</mat-label><br />
               <mat-form-field class="full-width" appearance="outline">
                 <input matInput formControlName="nationalId" type="string">
-                <mat-icon matSuffix id="searchIcon">search</mat-icon>
               </mat-form-field>
 
             </div>
@@ -429,19 +446,19 @@
             </div>
 
 
-         <p class="stepHeading"> Documents Attached</p>
-          <div>
-            <table border="1" class="dcTable">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Document Type</th>
-                  <th>Original Document</th>
-                  <th>Copies Documents</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Row 1 -->
+            <p class="stepHeading"> Documents Attached</p>
+            <div>
+              <table border="1" class="dcTable">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Document Type</th>
+                    <th>Original Document</th>
+                    <th>Copies Documents</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1 -->
 
 
                   <!-- <tr *ngFor="let row of rows; let i = index">
@@ -453,20 +470,13 @@
                 </tr> -->
 
 
-
-        
-
-
-
-        
-
-         
-         <div style="margin-top: 20px;">
-          <button class="previousDC" mat-button matStepperPrevious>Back</button>
-          <span style="margin-right: 745px;"></span>
-          <button class="nextDC" mat-button matStepperNext>Next</button>
-        </div>
-
+                  <tr *ngFor="let row of rows; let i = index">
+                    <td><input type="checkbox" (change)="toggleRow(i)"></td>
+                    <td>{{ row.documentType }}</td>
+                    <td><input type="text" [disabled]="!row.checked"></td>
+                    <td><input type="text" [disabled]="!row.checked"></td>
+                    
+                  </tr>
 
 
                 </tbody>
@@ -484,10 +494,11 @@
 
 
 
+
             <div style="margin-top: 20px;">
               <button class="previousDC" mat-button matStepperPrevious>Back</button>
               <span style="margin-right: 745px;"></span>
-              <button class="nextDC" mat-button matStepperNext type="submit" (click)="onSubmit()">Submit</button>
+              <button class="nextDC" mat-button matStepperNext>Next</button>
             </div>
 
 

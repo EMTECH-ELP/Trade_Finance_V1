@@ -12,6 +12,7 @@ export class UserManagementService {
 
   constructor(private http: HttpClient) { }
 
+
   submitPrivilege(privilegeData: any): Observable<any> {
     const url = `${environment.privilegeApiUrl}/api/privileges`
     return this.http.post<any>(url, privilegeData);
@@ -21,6 +22,9 @@ export class UserManagementService {
     return this.http.post<any>(url, privilegeData);
   }
 
-  
+  getPrivileges(): Observable<any> {
+    const url = `${environment.privilegeApiUrl}/api/privileges`;
+    return this.http.get<any>(url);
+  }
 
 }
