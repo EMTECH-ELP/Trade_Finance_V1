@@ -70,4 +70,13 @@ onSubmit() {
 
 }
 
+
+navRole(){
+  this.router.navigate(['/users/add-roles'])
+}
+
+mainPrivilege(){
+  this.router.navigate(['/users/view-roles'])
+}
+
 }

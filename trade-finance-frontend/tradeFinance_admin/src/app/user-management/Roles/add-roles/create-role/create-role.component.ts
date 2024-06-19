@@ -12,6 +12,8 @@ import { UserManagementService } from 'src/app/user-management/user-management.s
 export class CreateRoleComponent implements OnInit {
   roleForm: FormGroup;
   roleDescriptions: Array<{label: string, controlName: string}> = [];
+  privileges: any[] = [];
+  isLoading = true; // Added loading state
   
 
   constructor(private fb: FormBuilder, private router : Router,private userManagementService: UserManagementService) {
@@ -27,7 +29,21 @@ export class CreateRoleComponent implements OnInit {
 
 
   ngOnInit(): void {
+this.getPrivileges()
   }
+public getPrivileges(){
+  this.userManagementService.getPrivileges().subscribe((data: any) => {
+    this.privileges = data;
+    const privilegeControls = this.privileges.map(() => this.fb.control(false));
+    this.roleForm.setControl('privileges', this.fb.array(privilegeControls));
+    this.isLoading = false; // Set loading to false when data is loaded
+  }, error => {
+    console.log('Failed to load privileges', error);
+    this.isLoading = false; // Ensure spinner is hidden if there's an error
+  });
+}
+
+
 
   addRoleDescription() {
     const label = prompt('Enter more new role description:');
@@ -43,22 +59,36 @@ export class CreateRoleComponent implements OnInit {
     this.router.navigate(['/users/view-roles'])
   }
 
-  onSubmit() {
-    console.log('Form data', this.roleForm.value);
-    // if (this.privilegeForm.valid) {
-      
-      this.userManagementService.submitRole(this.roleForm.value).subscribe(response => {
-        // Handle response here
-        console.log('Submission successful', response);
-        this.router.navigate(['/users/add-roles']); // Navigate to a success page or reset the form
-        return;
-      }, error => {
-        console.error('Submission failed', error);
-      });
-      
-    // }
   
+
+  onSubmit() {
+    // Get form value
+    const formValue = this.roleForm.value;
+
+    // Extract selected privileges
+    const selectedPrivileges = formValue.privileges
+      .map((checked: boolean, i: number) => checked ? this.privileges[i].privilege_id : null)
+      .filter((v: any) => v !== null);
+
+    // Prepare role data
+    const roleData = {
+      role_name: formValue.roleName,
+      description: formValue.roleDescription,
+      privilege_ids: selectedPrivileges,
+      additional_descriptions: this.roleDescriptions.map(desc => ({
+        label: desc.label,
+        value: formValue[desc.controlName]
+      }))
+    };
+
+    console.log('Form data', roleData);
+
+    this.userManagementService.submitRole(roleData).subscribe(response => {
+      console.log('Submission successful', response);
+      this.router.navigate(['/users/add-roles']); // Navigate to a success page or reset the form
+    }, error => {
+      console.error('Submission failed', error);
+    });
   }
-
-
 }
+
