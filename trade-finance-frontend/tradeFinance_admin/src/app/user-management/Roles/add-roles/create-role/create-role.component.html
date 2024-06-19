@@ -39,12 +39,13 @@
             <div *ngIf="isLoading" class="spinner-container">
               <mat-spinner class="custom-spinner"></mat-spinner>
             </div>
+
             <div formArrayName="privileges" *ngIf="!isLoading">
               <div *ngFor="let privilege of privileges; let i = index" class="roleInputs">
-                <mat-checkbox [formControlName]="i">{{ privilege.privilege_name }}</mat-checkbox>
+                <mat-checkbox [formControlName]="i">{{ privilege.privilegeName }}</mat-checkbox>
               </div>
             </div>
-            
+            <br/><br/>
             <div>
               <button class="roleButtons">Submit</button>
               <span style="margin-right: 745px;"></span>

@@ -34,6 +34,7 @@ import { ViewRolesComponent } from './Roles/view-roles/view-roles.component';
 import { PrivilegesComponent } from './Roles/privileges/privileges.component';
 import { CreateRoleComponent } from './Roles/add-roles/create-role/create-role.component';
 import { CreatePrivilegeComponent } from './Roles/privileges/create-privilege/create-privilege.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { CreatePrivilegeComponent } from './Roles/privileges/create-privilege/cr
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCheckboxModule,
   ]
 })
 export class UserManagementModule { }
