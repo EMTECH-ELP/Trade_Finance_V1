@@ -99,7 +99,7 @@ export class AuthService {
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
-    const resetPasswordUrl = `${environment.baseUrlAdmin}/api/v1/auth/reset-password`;
+    const resetPasswordUrl = `${environment.baseUrlAdmin}/auth/resetPassword`;
 
     return this.http.post<{ message: string }>(
       resetPasswordUrl,

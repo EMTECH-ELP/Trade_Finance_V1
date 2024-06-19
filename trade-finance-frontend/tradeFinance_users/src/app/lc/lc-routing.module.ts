@@ -7,6 +7,7 @@ import { DeleteLcComponent } from './components/delete-lc/delete-lc.component';
 import { TransferlcComponent } from './components/transferlc/transferlc.component';
 import { ViewComponent } from './components/view/view.component';
 import { VerifylcComponent } from './components/verify-lc/verify-lc.component';
+import { LcMtComponent } from './components/lc-mt/lc-mt.component';
 
 const routes: Routes = [
   {path: "create", component: CreateComponent},
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path: "view", component: ViewComponent},
   {path:"modify",component:ModifyComponent},
   {path: "delete", component: DeleteLcComponent},
-  {path: "verify", component:     VerifylcComponent,},
+  {path: "verify", component: VerifylcComponent},
+  {path: "lc-mt", component:LcMtComponent}
+
 ];
 
 @NgModule({

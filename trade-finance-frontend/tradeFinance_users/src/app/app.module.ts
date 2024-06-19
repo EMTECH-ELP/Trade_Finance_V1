@@ -41,6 +41,7 @@ import { MatStepperModule } from '@angular/material/stepper'; // Import MatStepp
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { LookupComponent } from "./lookups/lookup/lookup.component";
+import { MatMenuModule } from "@angular/material/menu";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -83,7 +84,7 @@ export function createTranslateLoader(http: HttpClient): any {
     PerfectScrollbarModule,
     ClickOutsideModule,
     FormsModule,
-     
+    MatMenuModule,
 
    
     

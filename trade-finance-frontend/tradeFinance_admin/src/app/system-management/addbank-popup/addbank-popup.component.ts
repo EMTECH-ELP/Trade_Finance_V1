@@ -1,12 +1,13 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Bank, MasterdataService } from '../masterdata.service';
+import { Component, OnInit, Output,EventEmitter,Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import {  MasterdataService } from '../masterdata.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-
+import { Bank } from '../bank.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-addbank-popup',
@@ -17,8 +18,13 @@ export class AddbankPopupComponent implements OnInit{
   @Output() bankAdded = new EventEmitter<any>();
   addBankForm: FormGroup;
 
+  isEditMode = false;
+  bank: Bank | undefined;
+  
+
   selectedStatus:string
   bankName:string;
+  bankCode:string;
   branchName: string;
   branchCode: number;
  bankCountry:string;
@@ -33,29 +39,87 @@ export class AddbankPopupComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private bankService: MasterdataService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: Bank
 
-  ) {   this.addBankForm = this.fb.group({
+  ) {   
+    this.addBankForm = this.fb.group({
      bankName: ['', Validators.required],
+     bankCode: ['', Validators.required],
     bankCountry: ['', Validators.required],
       branchName: ['', Validators.required],
         branchCode: ['', Validators.required],
         bankSwiftCode: ['', Validators.required],
        
-    }); }
+    });
+    if (this.isEditMode) {
+      // Assume `bank` is available and populated with existing bank data
+      this.addBankForm.patchValue({
+        bankName: this.bank.bankName,
+        bankCode: this.bank.bankCode,
+        branchName: this.bank.branchName,
+        branchCode: this.bank.branchCode,
+        bankCountry: this.bank.bankCountry,
+        bankSwiftCode: this.bank.swiftCode
+      });
+    }
+   }
 
   ngOnInit(): void {
-  //   this.addBankForm = this.fb.group({
-  //     bankName: ['', Validators.required],
-  //     bankCountry: ['', Validators.required],
-  //     branchName: ['', Validators.required],
-  //     branchCode: ['', Validators.required],
-  //     swiftCode: ['', Validators.required],
-     
-  // });
+    if (this.data) {
+      this.isEditMode = true;
+      this.bank = this.data;
+      this.addBankForm.patchValue(this.data);
+      console.log(this.data); 
+    } else {
+      // Initialize form controls here if not in edit mode
+      this.addBankForm.reset({
+        bankName: '',
+        bankCode: '',
+        bankCountry: '',
+        branchName: '',
+        branchCode: '',
+        bankSwiftCode: ''
+      });
+    }
 }
+// onNoClick(): void {
+//   this.dialogRef.close();
+// }
 
+//Update OR ADD Bank
+// postBank(addBankForm): void {
+//   if (this.addBankForm.valid) {
+//     const bankData = this.addBankForm.value;
+//     if (this.isEditMode) {
+//       this.bankService.updateBank(bankData).subscribe(() => {
+//         this.dialogRef.close(true);
+//       }, error => {
+//         console.error('Error updating bank:', error);
+//       });
+//       console.log('Updating bank:', bankData);
+//       alert('Edited Successfully')
+//     } else {
+//       this.bankService.postbank(bankData).subscribe(() => {
+//         this.dialogRef.close(true);
+//       }, error => {
+//         console.error('Error adding bank:', error);
+//       });
+//       console.log('Adding bank:', bankData);
+//       alert('Bank added Successfully')
+//     }
+//   }
+// }
 
+// toggleEditMode(): void {
+//   this.isEditMode =!this.isEditMode;
+//   if (!this.isEditMode) {
+//     // Clear form if toggling away from edit mode
+//     this.addBankForm.reset();
+//   }
+// }
+
+//Addbank
 postBank(addBankForm): void {
   if (addBankForm.valid) {
     const newBank = addBankForm.value;
@@ -76,13 +140,13 @@ postBank(addBankForm): void {
     console.log(addBankForm.value)
     this.dialogRef.close();
   }else{
-    alert("form invalid")
+    
   }
 }
 
 
 onClose(): void {
-  this.dialogRef.close(false);
+  this.dialogRef.close();
 }
 
 openSnackBar(message: string): void {
@@ -122,10 +186,12 @@ openSnackBar(message: string): void {
   private populateFormWithbankDetails(bankDetails: any): void {
     this.addBankForm.patchValue({
       bankName: bankDetails.bankName,
+      bankCode: bankDetails.bankCode,
       branchName: bankDetails.branchName,
       branchCode: bankDetails.branchCode,
-     swiftCode: bankDetails.bankSwiftCode,
-     bankCountry: bankDetails.bankCountry
+      bankCountry: bankDetails.bankCountry,
+     bankSwiftCode: bankDetails.bankSwiftCode,
+   
     });
   }
 

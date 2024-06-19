@@ -6,6 +6,7 @@ import { AddbankPopupComponent } from './addbank-popup/addbank-popup.component';
 import { MasterdataComponent } from './masterdata/masterdata.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PortsComponent } from './ports/ports.component';
+import { WorkflowManagementComponent } from './workflow-management/workflow-management.component';
 
 const routes: Routes = [
   {path:'banks',component:BankListComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'masterdata',component:MasterdataComponent},
   {path:'currency & ports',component:CurrencyComponent},
   {path:'ports',component:PortsComponent},
+  {path:'user-activities',component:WorkflowManagementComponent},
 
 ]
 @NgModule({

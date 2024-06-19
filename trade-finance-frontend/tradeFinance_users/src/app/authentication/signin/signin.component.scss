@@ -1,17 +1,18 @@
-.authBackground {
 
+.authBackground {
   background-image: linear-gradient(
     rgba(51, 51, 102, 0.7), /* Darker overlay for a more natural look */
     rgba(102, 102, 153, 0.5)
   ),
   url("/assets/images/background/Trade finance_bg.jpg");
+
   // url("/assets/images/background/Bg_.jpg");
   height: 100vh;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  
 }
 
 .form-box {
@@ -26,7 +27,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added box-shadow for better contrast */
   width: 80%; /* Default width for small screens */
   max-width: 500px; /* Added max-width for responsiveness */
-  min-height: 50%; /* Ensure minimum height for content */
+  height: 85vh; /* Ensure minimum height for content */
 }
 /* Media query for medium screens */
 @media (min-width: 600px) {

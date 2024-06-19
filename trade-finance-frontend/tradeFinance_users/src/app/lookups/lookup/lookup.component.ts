@@ -39,6 +39,7 @@ export class LookupComponent implements OnInit {
   ngOnInit(): void {
     // Initialization code here
   }
+  
 
 //    search() {
 //    this.lookupService.getFormDetailsByAccountNumber(this.accountNumber).subscribe(

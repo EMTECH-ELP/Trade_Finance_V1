@@ -10,7 +10,7 @@
         <div class="info-box7 bg-kingdom order-info-box7">
           <div class="info-box7-block">
             <h4 class="m-b-20">Created Invoices</h4>
-            <h2 class="text-end"><span class="float-start">0</span><i class="fab fa-buromobelexperte"></i>
+            <h2 class="text-end"><span class="float-start">17</span><i class="fab fa-buromobelexperte"></i>
             </h2>
             <a href="" class="m-b-0" style="color:white">Click for more details!</a>
           </div>
@@ -21,7 +21,7 @@
         <div class="info-box7 bg-kingdom order-info-box7">
           <div class="info-box7-block">
             <h4 class="m-b-20">Pending Invoices</h4>
-            <h2 class="text-end"><span class="float-start">0</span><i class="fab fa-buromobelexperte"></i></h2>
+            <h2 class="text-end"><span class="float-start">12</span><i class="fab fa-buromobelexperte"></i></h2>
             <a href="" class="m-b-0" style="color:white">Click for more details!</a>
           </div>
         </div>
@@ -79,18 +79,17 @@
                       </li>
 
                       <li>
+
                         <div class="m-l-10" matTooltip="Add">
-                          <div class="m-l-10" matTooltip="Add">
-                            <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
-                              <mat-icon class="col-white">add</mat-icon>
-                            </button>
-                          </div>
+                          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
+                            <mat-icon class="col-white">add</mat-icon>
+                          </button>
                         </div>
                       </li>
-                      ,
+                      <!-- (click)="getAllForms()" -->
                       <li>
                         <div class="m-l-10" matTooltip="Refresh">
-                          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="getAllForms()">
+                          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
                             <mat-icon class="col-white">refresh</mat-icon>
                           </button>
 
@@ -103,85 +102,109 @@
 
                 </div>
               </div>
-
-              <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" table-responsive>
+              <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
+                #exporter="matTableExporter">
 
                 <!-- ID Column -->
+
                 <ng-container matColumnDef="no">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
-                  <mat-cell *matCellDef="let element; let i = index" class="psl-3 tbl-col-width-per-10">
-                    {{ i + 1 }}
-                  </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="psl-3 tbl-col-width-per-10">NO.</mat-header-cell>
+                  <mat-cell *matCellDef="let element;  let i = index" class="psl-3 tbl-col-width-per-10">{{i +
+                    1}}</mat-cell>
                 </ng-container>
-              
-                <!-- Invoice Number Column -->
+
                 <ng-container matColumnDef="invoiceNumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">Invoice No.</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">Invoice
+                    No.</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-10">
-                    {{ row.invoiceNumber }}
-                  </mat-cell>
+                    {{ row.invoiceNumber}}</mat-cell>
                 </ng-container>
-              
-                <!-- Applicant Business Name Column -->
+
                 <ng-container matColumnDef="applicantBusinessName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-40">Applicant's Business</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-40">Applicant's
+                    Business</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
-                    {{ row.applicantBusinessName }}
-                  </mat-cell>
+                    {{ row.applicantBusinessName}}</mat-cell>
                 </ng-container>
-              
-                <!-- Invoice Amount Column -->
+
                 <ng-container matColumnDef="invoiceAmount">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-50">Invoice Amount</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-50">Invoice
+                    Amount</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
-                    {{ row.invoiceAmount }}
-                  </mat-cell>
+                    {{ row.invoiceAmount}}</mat-cell>
                 </ng-container>
-              
-                <!-- Status Column -->
+
                 <ng-container matColumnDef="status">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-40">Status</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="psl-4 tbl-col-width-per-40">Status</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
-                    {{ row.status }}
-                  </mat-cell>
+                    {{ row.status}}</mat-cell>
                 </ng-container>
-              
-                <!-- Actions Column -->
+
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
-                  <mat-cell *matCellDef="let row; let i=index;">
-                    <button mat-icon-button color="accent" (click)="openFormDialog(row)" class="tbl-action-btn">
-                      <app-feather-icons aria-label="View" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
+                  <mat-cell *matCellDef="let row; let i=index;" (click)="onSelect(row)">
+
+                    <button mat-icon-button color="accent" (click)="handleButtonClick($event, row)"
+                      class="tbl-action-btn">
+                      <app-feather-icons aria-label="View" [icon]="'eye'" matTooltip="View"
+                        [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); OpenInvoiceComponent(row)" class="tbl-action-btn">
-                      <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit" [class]="'tbl-fav-edit'"></app-feather-icons>
+
+                    <button mat-icon-button color="accent"
+                      (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)" class="tbl-action-btn">
+                      <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete"
+                        [class]="'tbl-fav-delete'"></app-feather-icons>
                     </button>
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)" class="tbl-action-btn">
-                      <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete" [class]="'tbl-fav-delete'"></app-feather-icons>
+
+
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); OpenInvoiceComponent(row)"
+                      class="tbl-action-btn">
+                      <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit"
+                        [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
-                    <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu" class="tbl-action-btn">
-                      <app-feather-icons style="color: black;" [icon]="'more-vertical'" [class]="'tbl-fav-delete'" matTooltip="More" aria-label="More"></app-feather-icons>
+
+
+                    <!-- More Options. Funding & Transfer -->
+                    <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu"
+                      class="tbl-action-btn">
+                      <app-feather-icons style="color: black;" [icon]="'more-vertical'" [class]="'tbl-fav-delete'"
+                        matTooltip="More" aria-label="More"></app-feather-icons>
                     </button>
+                    <!-- More Options. Funding & Transfer -->
                     <mat-menu #menu="matMenu">
-                      <button mat-menu-item mat-icon-button color="blue" (click)="$event.stopPropagation(); openDialog()" class="tbl-action-btn">Repayment details</button>
-                      <button mat-menu-item><app-feather-icons style="color:black; padding-right: 10px;" [icon]="'download'" [class]="'tbl-fav-delete'" matTooltip="Download" aria-label="Download"></app-feather-icons> Download documents</button>
+                      <button mat-menu-item  color="blue"
+                        (click)="$event.stopPropagation(); openTransferDialog()" class="tbl-action-btn">Funding
+                        Details</button>
+
+                      <button mat-menu-item  color="blue"
+                        (click)="$event.stopPropagation(); openRepaymentDialog()" class="tbl-action-btn">Repayment
+                        details</button>
                       <button mat-menu-item (click)="option3()">Option 3</button>
+
                     </mat-menu>
+
+
                   </mat-cell>
                 </ng-container>
-              
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" [style.cursor]="'pointer'" matRipple></mat-row>
-                <mat-cell *matNoDataRow colspan="4">No data matching the filter "{{input.value}}"</mat-cell>
-              
+
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
+                  [style.cursor]="'pointer'" matRipple>
+                </mat-row>
+
+                <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
+
               </mat-table>
-              
+
 
               <!-- Loading spinner -->
-              <div *ngIf="isLoading" class="tbl-spinner">
+              <!-- <div *ngIf="isLoading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
-              </div>
+              </div> -->
 
               <mat-menu #contextMenu="matMenu">
                 <ng-template matMenuContent let-item="item">
@@ -228,7 +251,7 @@
               </mat-menu>
 
               <mat-paginator [pageSize]="10" [pageSizeOptions]="[2,5,10,20, 30, 40, 50, 100]"
-                aria-label="Select page of users"></mat-paginator>
+                aria-label="Select page of forms"></mat-paginator>
 
             </div>
 

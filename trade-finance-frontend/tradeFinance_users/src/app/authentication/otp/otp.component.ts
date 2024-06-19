@@ -23,9 +23,9 @@ export class OtpComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
   otpForm: FormGroup;
-  otpBody: FormGroup
-  otpValue: any
-  currentEmail: string=""
+  otpBody: FormGroup;
+  otpValue: number;
+  currentEmail: string="";
   maskedEmail: any;
   currentUser: any;
 
@@ -42,7 +42,7 @@ export class OtpComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmail();
-    this.initOtpBody()
+    this.initOtpBody();
     this.otpForm = this.fb.group({
       first: ["", [Validators.required]],
       second: ["", [Validators.required]],
@@ -124,7 +124,6 @@ export class OtpComponent implements OnInit {
               console.log("res.entity: ", res.body.entity);
               this.tokenCookieService.setSharedRefreshTokenToCookie(res.body.entity.accessToken);
               console.log("set refreshToken: ", res.body.entity.accessToken)
-
               this.snackbar.showNotification(
                 "snackbar-success",
                 res.body.message
