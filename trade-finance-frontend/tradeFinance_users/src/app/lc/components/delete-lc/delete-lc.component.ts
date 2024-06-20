@@ -36,13 +36,24 @@ export class DeleteLcComponent implements OnInit {
   }
 
   deleteLC() {
-   
+    this.lcService.deleteLC(this.deletionForm).subscribe({
+      next: (response) => {
+        console.log("LC Deletion response", response);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        alert('LC deleted successfully and records updated!');
+        this.router.navigate(["/lc/view"]);
+      }
+    });
     console.log('Form deletion details', this.deletionForm.value);
     console.log('Deleting LC:', this.lcNumber);
     console.log('Comments:', this.comments);
-   //this.lcService.deleteLC.
-    // After deletion, navigate to another page or show a success message.
-    this.router.navigate(['/lc/view']);
+  //  //this.lcService.deleteLC.
+  //   // After deletion, navigate to another page or show a success message.
+  //   this.router.navigate(['/lc/view']);
   }
 
   getLcNumber() {

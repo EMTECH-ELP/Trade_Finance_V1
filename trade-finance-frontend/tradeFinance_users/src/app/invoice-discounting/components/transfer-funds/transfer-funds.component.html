@@ -1,76 +1,57 @@
-<p>transfer-funds works!</p>
+<div class="container-fluid">
+  <h2 mat-dialog-title>Funding Details</h2>
 
-<h1 mat-dialog-title>Funding details</h1>
-<div mat-dialog-content>
-  <form [formGroup]="fundingForm">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Bank Name</mat-label>
-      <input matInput placeholder="Bank Name" formControlName="bankName" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Bank Code</mat-label>
-      <input matInput placeholder="Bank Code" formControlName="bankCode" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Bank Country</mat-label>
-      <input matInput placeholder="Bank Country" formControlName="bankCountry" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Branch Name</mat-label>
-      <input matInput placeholder="Branch Name" formControlName="branchName" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Branch Code</mat-label>
-      <input matInput placeholder="Branch Code" formControlName="branchCode" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Swift Code</mat-label>
-      <input matInput placeholder="Swift Code" formControlName="bankSwiftCode" required>
-    </mat-form-field>
-  </form>
+  <mat-dialog-content>
+
+    <form [formGroup]="fundingForm" (ngSubmit)="saveForm()">
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-label>Discount Rate <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="discountRate" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Funding Amount <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="fundingAmount" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Credit Limit <span class="required">*</span></mat-label>
+          <mat-form-field class="full-width" style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="creditLimit" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Credit Account <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="creditAccount" type="number">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+     
+        <div class="col-sm-6">
+          <mat-label>Proposed Disbursal Date <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="disbursalDate" type="date">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Re-Payment Date <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="repaymentDate" type="date">
+          </mat-form-field>
+        </div>
+      </div>
+   
+    </form>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button class="btn btn-primary" (click)="closeDialog()">Cancel</button>
+    <button mat-button style="background-color: #ad3b3a;" (click)="saveForm()">Save</button>
+  </mat-dialog-actions>
 </div>
-<!-- <div mat-dialog-actions>
-    <button mat-button class="btn btn-primary"  (click)="onSave()" [disabled]="!fundingForm.valid">Save</button>
-    <button mat-button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
-  </div> -->
-
-
-<!-- <div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label>Proposed Funding Amount <span class="required">*</span> </mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="fundingAmount" type="number">
-      </mat-form-field>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label> Credit limit <span class="required">*</span></mat-label>
-      <mat-form-field class="full-width" style=" display:flex; flex-direction:row;white-space:nowrap;"
-        appearance="outline">
-        <input matInput formControlName="creditLimit" type="number">
-      </mat-form-field>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label> Credit Account <span class="required">*</span></mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="creditAccount" type="number">
-      </mat-form-field>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label>Proposed Disbursal Date <span class="required">*</span></mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="disbursalDate" type="date">
-      </mat-form-field>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-      <mat-label> Re-Payment Date <span class="required">*</span></mat-label>
-      <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-        <input matInput formControlName="repaymentDate" type="date">
-      </mat-form-field>
-    </div>
-
-  
-
-  </div> -->

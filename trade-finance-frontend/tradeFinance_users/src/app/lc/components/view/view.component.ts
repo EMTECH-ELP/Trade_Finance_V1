@@ -32,8 +32,8 @@ export class ViewComponent implements OnInit {
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
   totalCreatedLetters: number = 10;
-  totalPendingLetters: number = 10;
-  totalApprovedLetters: number = 0;
+  totalPendingLetters: number = 2;
+  totalApprovedLetters: number = 8;
   totalRejectedLetters: number = 0;
   selectedactions = 'all';
   count = 0;
@@ -117,6 +117,7 @@ export class ViewComponent implements OnInit {
     });
   }
   public refresh() {
+    this.router.navigate(['lc/lc-mt']);
     // const dialogConfig = new MatDialogConfig()
     // dialogConfig.disableClose = true
     // dialogConfig.autoFocus = true

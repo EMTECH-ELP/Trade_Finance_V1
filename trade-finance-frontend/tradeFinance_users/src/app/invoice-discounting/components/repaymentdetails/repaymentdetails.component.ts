@@ -45,7 +45,7 @@ currency: any;
     }
     submitForm(){
       console.log(this.repaymentForm.value)
-      this. invDiscountingService.postData(this.repaymentForm.value).subscribe({
+      this. invDiscountingService.postPaymentData(this.repaymentForm.value).subscribe({
        next: ((response) => {
  
          console.log("Invoice Form response", response);

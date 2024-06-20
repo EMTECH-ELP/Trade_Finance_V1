@@ -16,11 +16,11 @@
           <input type="text" class="form-control" id="lcNumber" formControlName="lcNumber" placeholder="Enter LC Number">
         </div>
         <div class="d-flex justify-content-between mt-3">
-          <button class="btn btn-primary" type="reset" [disabled]="loading" (click)="onReject()">
+          <button class="btn btn-secondary" type="reset" [disabled]="loading" (click)="onReject()">
             Reject
             <span *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></span>
           </button>
-          <button class="btn btn-secondary" type="submit" [disabled]="loading" (click)="onApprove()" >
+          <button class="btn btn-primary" type="submit" [disabled]="loading" (click)="onApprove()" >
             Approve
             <span *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></span>
           </button>

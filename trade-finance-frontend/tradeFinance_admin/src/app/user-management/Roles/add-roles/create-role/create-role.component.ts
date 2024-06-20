@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserManagementService } from 'src/app/user-management/user-management.service'; 
+import { UserManagementService } from 'src/app/user-management/user-management.service';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 
 @Component({
@@ -12,13 +13,15 @@ import { UserManagementService } from 'src/app/user-management/user-management.s
 export class CreateRoleComponent implements OnInit {
   roleForm: FormGroup;
   roleDescriptions: Array<{label: string, controlName: string}> = [];
+  privileges: any[] = [];
+  isLoading = true; // Added loading state
   
 
   constructor(private fb: FormBuilder, private router : Router,private userManagementService: UserManagementService) {
     this.roleForm = this.fb.group({
       roleName: ['', Validators.required],
       roleDescription: ['', Validators.required],
-      privileges: this.fb.array([]),
+      privilegeCode: this.fb.array([]),
       additionalDescriptions: this.fb.array([]),
 
     });
@@ -27,7 +30,24 @@ export class CreateRoleComponent implements OnInit {
 
 
   ngOnInit(): void {
+this.getPrivileges()
   }
+
+
+
+public getPrivileges(){
+  this.userManagementService.getPrivileges().subscribe((data: any) => {
+    this.privileges = data;
+    const privilegeControls = this.privileges.map(() => this.fb.control(false));
+    this.roleForm.setControl('privileges', this.fb.array(privilegeControls));
+    this.isLoading = false; // Set loading to false when data is loaded
+  }, error => {
+    console.log('Failed to load privileges', error);
+    this.isLoading = false; // Ensure spinner is hidden if there's an error
+  });
+}
+
+
 
   addRoleDescription() {
     const label = prompt('Enter more new role description:');
@@ -43,9 +63,10 @@ export class CreateRoleComponent implements OnInit {
     this.router.navigate(['/users/view-roles'])
   }
 
+  
   onSubmit() {
     console.log('Form data', this.roleForm.value);
-    // if (this.privilegeForm.valid) {
+    if (this.roleForm.valid) {
       
       this.userManagementService.submitRole(this.roleForm.value).subscribe(response => {
         // Handle response here
@@ -56,9 +77,11 @@ export class CreateRoleComponent implements OnInit {
         console.error('Submission failed', error);
       });
       
-    // }
+    }
   
   }
 
 
+  
 }
+

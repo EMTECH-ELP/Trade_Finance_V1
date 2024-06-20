@@ -8,36 +8,48 @@
         </div>
 
         <div class="formRole">
-            <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
-              
-              <div class="roleInputs">
-                <mat-label>Role Name:</mat-label><br/>
-                <mat-form-field class="full-width" appearance="outline">
-                  <input matInput formControlName="roleName">
-                </mat-form-field>
-              </div>
-          
-              <div class="roleInputs">
-                <mat-label>Role Description:</mat-label><br/>
-                <mat-form-field class="full-width" appearance="outline">
-                  <input matInput formControlName="roleDescription">
-                </mat-form-field>
-              </div>
+          <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+            
+            <div class="roleInputs">
+              <mat-label>Role Name:</mat-label><br/>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="roleName">
+              </mat-form-field>
+            </div>
+            
+            <div class="roleInputs">
+              <mat-label>Role Description:</mat-label><br/>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput formControlName="roleDescription">
+              </mat-form-field>
+            </div>
+            
+            <div *ngFor="let desc of roleDescriptions; let i = index" class="roleInputs">
+              <mat-label>{{ desc.label }}</mat-label><br/>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput [formControlName]="desc.controlName">
+              </mat-form-field>
+            </div>
+            
+            <button type="button" style="border-radius: 5px; margin-left: 760px;" (click)="addRoleDescription()">Add more role description</button>
+            <br/>
+            <br/>
+            
+            <p style="margin-left: 10px;font-size: 16px;"><b>Privileges:</b></p>
+            <div *ngIf="isLoading" class="spinner-container">
+              <mat-spinner class="custom-spinner"></mat-spinner>
+            </div>
 
-              <div *ngFor="let desc of roleDescriptions; let i = index" class="roleInputs">
-                <mat-label>{{desc.label}}</mat-label><br/>
-                <mat-form-field class="full-width" appearance="outline">
-                  <input matInput [formControlName]="desc.controlName">
-                </mat-form-field>
-              </div> 
-
-               <button type="button" style="border-radius: 5px; margin-left: 760px;" (click)="addRoleDescription()">Add more role description</button>
-              <br/>
-              <br/>
-
-               <div>
-                <button class="roleButtons"> Submit</button>
-                <span style="margin-right: 745px;"></span>
-                <button class="roleButtons" (click)="cancel()">Cancel</button>
+            <div formArrayName="privileges" *ngIf="!isLoading">
+              <div *ngFor="let privilege of privileges; let i = index" class="roleInputs">
+                <mat-checkbox [formControlName]="i">{{ privilege.privilegeName }}</mat-checkbox>
               </div>
-          
+            </div>
+            <br/><br/>
+            <div>
+              <button class="roleButtons">Submit</button>
+              <span style="margin-right: 745px;"></span>
+              <button class="roleButtons" type="button" (click)="cancel()">Cancel</button>
+            </div>
+          </form>
+        </div>

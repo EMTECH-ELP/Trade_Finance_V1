@@ -82,6 +82,14 @@ export class AddRolesComponent implements OnInit {
       //FOR ERRORS
     } 
 
+    privilege(){
+      this.router.navigate(['/users/privileges'])
+    }
+
+    mainRole(){
+      this.router.navigate(['/users/view-roles'])
+    }
+
 
 }
 

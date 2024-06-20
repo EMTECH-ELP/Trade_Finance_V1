@@ -1,12 +1,14 @@
 import { Component, OnInit,  AfterViewInit, ViewChild, ElementRef, Renderer2, OnDestroy} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import{ Router } from '@angular/router';
 import { Observable, debounceTime, map, of, startWith, switchMap } from 'rxjs';
 import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from "rxjs";
+import { HttpHeaders } from '@angular/common/http';
 
 interface CityResponse {
   cities: string[]; // Adjust the type according to the actual structure of your data
@@ -16,9 +18,9 @@ interface CityResponse {
   templateUrl: './create-invoice.component.html',
   styleUrls: ['./create-invoice.component.sass']
 })
-export class CreateInvoiceComponent implements OnInit {
+export class CreateInvoiceComponent implements OnInit, OnDestroy {
   @ViewChild('countrySelect') countrySelect!: ElementRef;
-  @ViewChild('citySelect') citySelect!: ElementRef;
+  // @ViewChild('citySelect') citySelect!: ElementRef;
 
   [x: string]: any;
  
@@ -52,17 +54,16 @@ private countrySubscription: Subscription;
   countryCity: Array<{ value: string }> = [];
   filteredCountries: string[];
   filteredCities: string[];
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private builder: FormBuilder,
     private invDiscountingService: InvDiscountingService,
     private dialog: MatDialog,
-    private route: ActivatedRoute,
     private router: Router,
     private renderer: Renderer2,
+    private snackBar: MatSnackBar,
  
-  ) {  }
-
-  ngOnInit(): void {
+  ) { 
     this.applicationForm = this.builder.group({
       countryFilter: [''],
       cityFilter: [''],
@@ -78,7 +79,6 @@ private countrySubscription: Subscription;
       postalCode: ['', Validators.required],
       countryCode: ['', Validators.required],
       country: ['', Validators.required],
-
       // invoice details
 
       invoiceDate: ['', Validators.required],
@@ -87,10 +87,8 @@ private countrySubscription: Subscription;
       applicantBusinessName: ['', Validators.required],
       applicantBusinessAddress: ['', Validators.required],
       dueDate: ['', Validators.required],
-      invoices: ['', Validators.required],    //file upload
-      applicationForm: ['', Validators.required],       //file upload
-
-      //  importer details
+      // invoices: ['', Validators.required],    //file upload
+      // applicationForm: ['', Validators.required],       //file upload
       buyerName: ['', Validators.required],
       buyerBusinessName: ['', Validators.required],
       buyerCity: ['', Validators.required],
@@ -98,7 +96,7 @@ private countrySubscription: Subscription;
       countryName: ['', Validators.required],
       buyerAddress: ['', Validators.required],
       buyerEmailAddress: ['', [Validators.required, Validators.email]],
-      // terms_and_condition: ['', Validators.required],
+    
 
       //  Funding details
       // fundingAmount: ['', Validators.required],
@@ -106,7 +104,7 @@ private countrySubscription: Subscription;
       // repaymentDate: ['', Validators.required],
       // creditAccount: ['', Validators.required],
       // creditLimit: ['', Validators.required],
-      creditAppraisalForm: ['', Validators.required],   //file upload
+      //creditAppraisalForm: ['', Validators.required],   //file upload
  
       additionalInvoices: new FormArray ([
         new FormGroup({
@@ -128,11 +126,19 @@ private countrySubscription: Subscription;
            importerCity: new FormControl(''),
         })
     ]),
-  });
- 
+  })
+   }
+
+  ngOnInit(): void {
+  
     // Fetching the countries
-   
-    this.invDiscountingService.getCountries().subscribe(
+    // this.invDiscountingService.getCountries().pipe(
+    //   takeUntil(this.destroy$)
+    // ).subscribe(
+    
+    this.invDiscountingService.getCountries().pipe(
+      takeUntil(this.destroy$)
+      ).subscribe(
       (response: any) => {
         if (response.message === 'success' && Array.isArray(response.data)) {
           this.countries = response.data.map((country: any) => country.countryName);
@@ -140,7 +146,7 @@ private countrySubscription: Subscription;
         }
         console.log('Response from getCountries:', response);
       },
-      (error: any) => console.error('Error fetching countries', error)
+      (error: any) => console.log('Error fetching countries', error)
     );
     
     this.applicationForm.get('countryFilter')!.valueChanges
@@ -153,7 +159,11 @@ private countrySubscription: Subscription;
       });
     
 }
-  
+ngOnDestroy(): void {
+  this.destroy$.next(true);
+  this.destroy$.complete();
+}
+
 getCitiesByCountry(countryName: string): void {
   this.invDiscountingService.getCitiesByCountry(countryName).subscribe(
     (cities: string[]) => {
@@ -188,10 +198,11 @@ onCountrySelect(countryName: string): void {
 }
 
 
-  filterCountries(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.countries.filter(country => country.toLowerCase().includes(filterValue));
-  }
+filterCountries(value: string): string[] {
+  if (!value || !this.countries) return [];
+  const filterValue = value.toLowerCase();
+  return this.countries.filter(country => country.toLowerCase().includes(filterValue));
+}
 
 
   ngAfterViewInit(): void {
@@ -409,69 +420,157 @@ onCountrySelect(countryName: string): void {
   }
 
 //Full form submission
-createInvoiceForm(data: any) {
-  const body = {
-    "accountNumber": data.accountNumber,
-    "cifId": data.cifId,
-    "nationalId": data.nationalId,
-    "accountName": data.accountName,
-    "currency": data.currency,
-    "email": data.email,
-    "phoneNumber":data.phoneNumber,
-    "address": data.address,
-    "city": data.city,
-    "postalCode":data.postalCode,
-    "countryCode":data.countryCode,
-    "country": data.country,
-    "invoiceDate": data.invoiceDate,
-      "invoiceNumber":data.invoiceNumber,
-      "invoiceAmount": data.invoiceAmount,
-      "applicantBusinessName": data.applicantBusinessName,
-      "applicantBusinessAddress": data.applicantBusinessAddress,
-      "dueDate":data.dueDate,
-      "invoices": data.invoices,                          //Doc upload
-      "applicationForm": data.applicationForm,
-      "buyerName":data.buyerName,
-      "buyerBusinessName":data.buyerBusinessName,
-      "buyerCity": data.buyerCity,
-      "buyerCountry":data.buyerCountry,
-      "buyerEmailAddress":data.buyerEmailAddress,
-  
-      "fundingAmount": data.fundingAmount,
-      "disbursalDate": data.disbursalDate,
-      "repaymentDate": data.repaymentDate,
-      "creditAccount": data.creditAccount,
-      "creditLimit": data.creditLimit,
-      "creditAppraisalForm": data.creditAppraisalForm,    //Doc upload
-};
-  return body;
-}
-onSubmit() {
-  console.log("Form data", this.applicationForm.value);
-  const data = this.createInvoiceForm(this.applicationForm.value)
-  this.invDiscountingService.sendData(this.applicationForm).subscribe({
-    next: ((response) => {
-      console.log("InvoiceForm create response", response);
-    }),
-    error: ((err) => {
-      console.error(err)
-    }),
-    complete: (() => { })
-  })
-  this.applicationForm.reset()
-  this.ngOnInit()
-  //alert('Form Submitted Successfully!')
-  let result = window.confirm('Click OK to submit. Click Cancel to abort');
-  if (result) {
-      alert('Form Submitted Successfully!');
-      this.router.navigate(["/invoice-discounting/viewInvoiceForm"]);
-  } else {
-      alert('Application Cancelled');
-      this.router.navigate(["/invoice-discounting/createInvoiceForm"]);
+// createInvoiceForm(data: any) {
+
+ 
+//   const body = {
+//     "ApplicantDTO": {
+//       "accountNumber": data.accountNumber,
+//       "cifId": data.cifId,
+//       "nationalId": data.nationalId,
+//       "accountName": data.accountName,
+     
+//     },
+//     "InvoiceDTO": {
+//       "invoiceDate": data.invoiceDate,
+//       "invoiceNumber": data.invoiceNumber,
+//       "invoiceAmount": data.invoiceAmount,
+//       "applicantBusinessName": data.applicantBusinessName,
+//       "applicantBusinessAddress": data.applicantBusinessAddress,
+//       "dueDate": data.dueDate,
+//       // "invoices": data.invoices,
+//       // "applicationForm": data.applicationForm,
+//       "buyerName": data.buyerName,
+//       "buyerBusinessName": data.buyerBusinessName,
+//       "buyerCity": data.buyerCity,
+//       "buyerCountry": data.buyerCountry,
+//       "countryName": data.countryName,
+//       "buyerAddress": data.buyerAddress,
+//       "buyerEmailAddress": data.buyerEmailAddress,
+//     }
+//   };
+
+
+//   // return this.invDiscountingService.sendData(body).subscribe(
+//   //   (response: any) => {
+//   //     if (response.message === 'success') {
+//   //       this.applicationForm.reset();
+//   //       alert('Form Submitted Successfully!');
+//   //     }
+//   //     console.log('Response from createInvoice:', response);
+//   //   },
+//   //   (error: any) => {
+//   //     console.error('Error creating invoice:', error); // Log error for debugging
+//   //     // Optionally handle error message or notify user
+//   //   }
+//   // );
+
+//   }
+  onSubmit() {
+    const data = this.applicationForm.value
+    const items = {
+      "accountNumber":  data.accountNumber,
+      "cifId": data.cifId,
+      "nationalId": data.nationalId,
+      "accountName": data.accountName,
+      "currency": data.currency,
+      "email": data.email,
+      "phoneNumber": data.phoneNumber,
+      "address": data.address,
+      "city": data.city,
+      "postalCode": data.postalCode,
+      "countryCode": data.countryCode,
+      "country": data.country,
+   
+      "invoices": [
+        {
+          "invoiceDate": data.invoiceDate,
+          "invoiceNumber": data.invoiceNumber,
+          "invoiceAmount": data.invoiceAmount,
+          "applicantBusinessName": data.applicantBusinessName,
+          "applicantBusinessAddress": data.applicantBusinessAddress,
+          "dueDate": data.dueDate,
+          // "invoices": data.invoices,
+          // "applicationForm": data.applicationForm,
+          "buyerName": data.buyerName,
+          "buyerBusinessName": data.buyerBusinessName,
+          "buyerCity": data.buyerCity,
+          "buyerCountry": data.buyerCountry,
+          "countryName": data.countryName,
+          "buyerAddress": data.buyerAddress,
+          "buyerEmailAddress": data.buyerEmailAddress,
+          // "termsAndCondition": data.terms_and_condition,
+          // "status": "CREATED"
+        }
+      ]
+    }
+    // const invoiceData = { /* your invoice data here */ };
+    console.log("Form data", this.applicationForm.value);
+    this.invDiscountingService.sendData(items).subscribe({
+      next: ((response) => {
+
+        console.log("Invoice Form response", response);
+      }),
+      error: ((err) => {
+        console.error(err)
+      }),
+      complete: (() => { })
+    })
   }
 
-   
-}
+    // }
+
+  // openSnackBar(message: string, action: string) {
+  //   this.snackBar.open(message, action, {
+  //     duration: 3000,
+  //   });
+// onSubmit() {
+//   this.createInvoiceForm(this.applicationForm.value);
+//   const data = this.createInvoiceForm(this.applicationForm.value)
+//   console.log("Form data", this.applicationForm.value);
+//   return this.invDiscountingService.sendData(this.applicationForm).subscribe(
+//     (response: any) => {
+//       if (response.message === 'success') {
+//         this.applicationForm.reset();
+//         alert('Form Submitted Successfully!');
+//       }
+//       console.log('Response from createInvoice:', response);
+//     },
+//     (error: any) => {
+//       console.log('Error creating invoice:', error); // Log error for debugging
+//       // Optionally handle error message or notify user
+//     }
+//   );
+// }
+// onSubmit(): void {
+//   // Check if the form is dirty and valid
+// if (this.applicationForm.dirty && this.applicationForm.valid) {
+//     // Prepare the data to be sent to the server
+//     // const data = this.applicationForm.value;
+//     console.log("Form data", this.applicationForm.value);
+//     const data = this.createInvoiceForm(this.applicationForm.value)
+//     // Call the service method to send the data to the server
+//     this.invDiscountingService.sendData(data)
+//      .subscribe(
+//         response => {
+//           console.log('Invoice created successfully:', response);
+//           // Handle success case, e.g., show a success message or navigate away
+//           alert('Form Submitted Successfully!');
+//           this.applicationForm.reset(); // Reset the form
+//         },
+//         error => {
+//           console.error('Error creating invoice:', error);
+//           // Handle error case, e.g., show an error message
+//           alert('There was an error submitting the form. Please try again.');
+//         }
+//       );
+//   } else {
+//     // Handle the case where the form is not dirty or not valid
+//     alert('Please fill out the form correctly and try again.');
+//   }
+// }
+
+
 
 
   public patchApplicationForm(data: any): void {
