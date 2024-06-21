@@ -27,4 +27,9 @@ export class UserManagementService {
     return this.http.get<any>(url);
   }
 
+
+  getRoles():Observable<any> {
+    const url = `${environment.privilegeApiUrl}/api/roles`;
+    return this.http.get<any>(url);
+  }
 }

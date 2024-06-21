@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserManagementService } from 'src/app/user-management/user-management.service';
 
 
 interface privilege{
@@ -17,9 +22,13 @@ export class AddRolesComponent implements OnInit {
   roleForm: FormGroup;
   showPrivilegesTable = false;
   roleDescriptions: Array<{label: string, controlName: string}> = [];
+  roles: any[] = [];
+  isLoading = true; // Added loading state
+
+  searchText: string;
   
 
-  constructor(private fb: FormBuilder, private router : Router) {
+  constructor(private fb: FormBuilder, private router : Router,private snackBar: MatSnackBar, private userManagementService: UserManagementService) {
     this.roleForm = this.fb.group({
       roleName: ['', Validators.required],
       roleDescription: ['', Validators.required],
@@ -31,21 +40,20 @@ export class AddRolesComponent implements OnInit {
    }
 
 
-   get privileges(): FormArray {
-    return this.roleForm.get('privileges') as FormArray;
-  }
+   
 
   togglePrivilegesTable() {
     this.showPrivilegesTable = !this.showPrivilegesTable;
   }
 
-  addPrivilege() {
-    const privilegeGroup = this.fb.group({
-      name: [''],
-      description: ['']
-    });
-    this.privileges.push(privilegeGroup);
-  }
+  // addPrivilege() {
+  //   const privilegeGroup = this.fb.group({
+  //     name: [''],
+  //     description: ['']
+  //   });
+  //   this.privileges.push(privilegeGroup);
+  // }
+
   callAdd(){
     console.log('privilege called successfully!');
 
@@ -54,6 +62,7 @@ export class AddRolesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.roleTable()
   }
 
   cancel(){
@@ -91,9 +100,22 @@ export class AddRolesComponent implements OnInit {
     }
 
 
+roleTable(){
+  this.userManagementService.getRoles().subscribe(
+    data => {
+      this.roles = data;
+      this.isLoading = false;
+    },
+    error => {
+      console.error('Error fetching roles:', error);
+      this.isLoading = false;
+    }
+  );
+}
+   
 }
 
-//undo here!!
+
 
 
 
