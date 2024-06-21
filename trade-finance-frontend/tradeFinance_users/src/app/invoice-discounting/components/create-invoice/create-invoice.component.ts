@@ -9,7 +9,6 @@ import { Observable, debounceTime, map, of, startWith, switchMap } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Subject, takeUntil } from "rxjs";
 import { HttpHeaders } from '@angular/common/http';
-
 interface CityResponse {
   cities: string[]; // Adjust the type according to the actual structure of your data
 }
@@ -21,7 +20,7 @@ interface CityResponse {
 export class CreateInvoiceComponent implements OnInit, OnDestroy {
   @ViewChild('countrySelect') countrySelect!: ElementRef;
   // @ViewChild('citySelect') citySelect!: ElementRef;
-
+  nationalId: number;
   [x: string]: any;
  
   ShowLookupComponent: boolean = false;
@@ -397,10 +396,6 @@ filterCountries(value: string): string[] {
   //   })
   // }
 
- 
-
-
-
   openLookup(): void {
     // Create a MatDialogConfig object
     const dialogConfig = new MatDialogConfig();
@@ -450,22 +445,6 @@ filterCountries(value: string): string[] {
 //     }
 //   };
 
-
-//   // return this.invDiscountingService.sendData(body).subscribe(
-//   //   (response: any) => {
-//   //     if (response.message === 'success') {
-//   //       this.applicationForm.reset();
-//   //       alert('Form Submitted Successfully!');
-//   //     }
-//   //     console.log('Response from createInvoice:', response);
-//   //   },
-//   //   (error: any) => {
-//   //     console.error('Error creating invoice:', error); // Log error for debugging
-//   //     // Optionally handle error message or notify user
-//   //   }
-//   // );
-
-//   }
   onSubmit() {
     const data = this.applicationForm.value
     const items = {
@@ -516,61 +495,20 @@ filterCountries(value: string): string[] {
       }),
       complete: (() => { })
     })
+    this.applicationForm.reset()
+    this.ngOnInit()
+    let result = window.confirm('Click OK to submit. Click Cancel to abort');
+    if (result) {
+      alert('Form Submitted Successfully!');
+      this.router.navigate(["/invoice-discounting/viewInvoice"]);
+    } else {
+      alert('Application Cancelled');
+      this.router.navigate(["/invoice-discounting/createInvoice"]);
+    }
   }
 
-    // }
 
-  // openSnackBar(message: string, action: string) {
-  //   this.snackBar.open(message, action, {
-  //     duration: 3000,
-  //   });
-// onSubmit() {
-//   this.createInvoiceForm(this.applicationForm.value);
-//   const data = this.createInvoiceForm(this.applicationForm.value)
-//   console.log("Form data", this.applicationForm.value);
-//   return this.invDiscountingService.sendData(this.applicationForm).subscribe(
-//     (response: any) => {
-//       if (response.message === 'success') {
-//         this.applicationForm.reset();
-//         alert('Form Submitted Successfully!');
-//       }
-//       console.log('Response from createInvoice:', response);
-//     },
-//     (error: any) => {
-//       console.log('Error creating invoice:', error); // Log error for debugging
-//       // Optionally handle error message or notify user
-//     }
-//   );
-// }
-// onSubmit(): void {
-//   // Check if the form is dirty and valid
-// if (this.applicationForm.dirty && this.applicationForm.valid) {
-//     // Prepare the data to be sent to the server
-//     // const data = this.applicationForm.value;
-//     console.log("Form data", this.applicationForm.value);
-//     const data = this.createInvoiceForm(this.applicationForm.value)
-//     // Call the service method to send the data to the server
-//     this.invDiscountingService.sendData(data)
-//      .subscribe(
-//         response => {
-//           console.log('Invoice created successfully:', response);
-//           // Handle success case, e.g., show a success message or navigate away
-//           alert('Form Submitted Successfully!');
-//           this.applicationForm.reset(); // Reset the form
-//         },
-//         error => {
-//           console.error('Error creating invoice:', error);
-//           // Handle error case, e.g., show an error message
-//           alert('There was an error submitting the form. Please try again.');
-//         }
-//       );
-//   } else {
-//     // Handle the case where the form is not dirty or not valid
-//     alert('Please fill out the form correctly and try again.');
-//   }
-// }
-
-
+  
 
 
   public patchApplicationForm(data: any): void {
