@@ -1,0 +1,126 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Country List'" [items]="['Home']" [active_item]="'View'">
+      </app-breadcrumb>
+    </div>
+
+
+    <div class="countryForm">
+      <form [formGroup]="countryForm" (ngSubmit)="addCountry()">
+        
+        <div class="countrieInputs">
+          <mat-label>Country:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="roleName">
+          </mat-form-field>
+        </div>
+    
+        <div class="countrieInputs">
+          <mat-label>Capital:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="roleDescription">
+          </mat-form-field>
+        </div>
+
+        <div class="countrieInputs">
+          <mat-label>City 1:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="roleDescription">
+          </mat-form-field>
+        </div>
+
+        <div class="countrieInputs">
+          <mat-label>City 2:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="roleDescription">
+          </mat-form-field>
+        </div>
+
+        <div class="countrieInputs">
+          <mat-label>City 3:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="roleDescription">
+          </mat-form-field>
+        </div>
+
+
+         <div>
+          <button> Submit</button>
+          <span style="margin-right: 745px;"></span>
+          <button>Cancel</button>
+        </div>
+
+        </form>
+        </div>
+        </div>
+        </section>
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <form [formGroup]="countryForm" (ngSubmit)="addCountry()" class="form-container">
+      
+        <mat-label>Country Name</mat-label>
+        <mat-form-field>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      
+      
+      
+        <mat-label>Country Code</mat-label>
+        <mat-form-field>
+        <input matInput formControlName="code">
+        </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Capital City</mat-label>
+        <input matInput formControlName="capital">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>City 1</mat-label>
+        <input matInput formControlName="city1">
+      </mat-form-field>
+      
+      
+        <mat-label>City 2</mat-label>
+        <mat-form-field class="full-width" appearance="outline">
+        <input matInput formControlName="city2">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>City 3</mat-label>
+        <input matInput formControlName="city3">
+      </mat-form-field>
+      
+      <button mat-raised-button type="submit">Add Country</button>
+    </form>
+    
+    <div class="table-container">
+      <table mat-table>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Country Name </th>
+          <td mat-cell *matCellDef="let country"> {{ country.name }} </td>
+        </ng-container>
+        
+         Define other columns similarly 
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div> 
+
+
+  </div>
+</section>  -->

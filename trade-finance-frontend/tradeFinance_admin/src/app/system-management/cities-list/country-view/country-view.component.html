@@ -1,0 +1,50 @@
+
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Countries'" [items]="['Home']" [active_item]="'View'">
+        </app-breadcrumb>
+      </div>
+
+
+
+<div class="content-block">
+    <div class="table-header">
+      <h6>Countries</h6>
+      <span style="width: 60%;"></span>
+
+     
+    </div>
+    <div class="row">
+      <div class="card">
+        <div class="body">
+
+          <div class="table-responsive">
+            <div class="materialTableHeader">
+
+
+              <div class="col-12">
+                <ul class="header-buttons-left ms-0 d-flex justify-content-between align-items-center">
+                  <li>
+                    <mat-form-field class="flex-grow-1">
+                      <mat-label>Filter</mat-label>
+                      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                    </mat-form-field>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <div class="m-l-10" matTooltip="Add">
+                      <button mat-raised-button color="primary" (click)="addCountry()">Add Country</button>
+                    </div>
+                    <div class="m-l-10" matTooltip="Refresh">
+                      <button mat-mini-fab color="primary" (click)="getBanks()">
+                        <mat-icon class="col-white">refresh</mat-icon>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+
+
+            </div>
