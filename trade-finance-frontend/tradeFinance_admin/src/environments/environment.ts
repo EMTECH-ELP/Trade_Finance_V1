@@ -17,8 +17,8 @@ export const environment = {
   
 
 
-  apiUrl: 'http://192.90.59.1:8085',
-  getBranchApiUrl: 'http://192.168.90.59:8082',
+  apiUrl: 'http://192.168.90.149:8085',
+  getBranchApiUrl: 'http://192.168.90.149:8082',
   dcApiUrl: "http://192.168.0.1:9090",
   
 

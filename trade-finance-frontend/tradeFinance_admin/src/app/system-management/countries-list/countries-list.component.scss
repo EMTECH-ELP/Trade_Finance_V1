@@ -1,0 +1,170 @@
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%; /* Set table width to 100% */
+  margin: 0 auto; /* Center the table horizontally */
+}
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  margin: 0;
+}
+.header-buttons-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons-left .flex-grow-1 {
+  flex-grow: 1;
+}
+
+.header-buttons-left li {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons-left .m-l-10 {
+  margin-left: 20px;
+}
+
+.search-field {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  background-color: #eef5f9;
+  font-weight: bold;
+}
+
+/* Alternate row colors */
+tr:nth-child(even) {
+  background-color: #eef5f9;
+}
+
+/* Hover effect */
+tr:hover {
+  background-color: #a0f0a4;
+}
+
+/* Dropdown styles */
+.action-dropdown select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #2589c6;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Icon styles */
+mat-icon {
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-right: 5px;
+  color: #007bff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  td {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    overflow: auto;
+    text-overflow: unset;
+  }
+
+  td:last-child {
+    text-align: center;
+  }
+
+  .actions {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  td input {
+    width: calc(100% - 16px);
+    margin-bottom: 5px;
+    padding: 4px;
+    font-size: 14px;
+  }
+
+  .editing td input {
+    display: inline-block;
+  }
+
+  .actions mat-icon {
+    display: inline-block;
+    margin: 5px;
+    font-size: 1.2em;
+  }
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0px auto 0 0px; /* 20px top and left margin */
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Add some margin below the header */
+}
+
+.table-header h6 {
+  margin: 0; /* Remove default margin of h2 */
+}
+
+.table-header button {
+  margin-left: auto;/* Align button to the right */
+  background-color: #2196f3; 
+  margin-top: 10px;
+}
+
+.content {
+  background-color: #eef5f9;
+  color: black; /* Set text color to black for better visibility */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+
+.mat-paginator {
+width: 100%;
+}
+
+.flex-container {
+display: flex;
+flex-direction: column;
+width: 100%; /* Make sure the container takes full width */
+}
+
+
+
+.countrieInputs{
+  margin-left: 20px;
+    margin-top: 0px;
+}
+
+
+.countryForm{
+  background-color: white;
+    border-radius: 5px;
+    margin-left: -10px;
+    height: 100%;
+}
