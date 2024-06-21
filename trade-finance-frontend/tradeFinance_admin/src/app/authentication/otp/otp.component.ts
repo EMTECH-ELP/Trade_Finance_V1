@@ -108,12 +108,12 @@ export class OtpComponent implements OnInit {
 
       console.log("params: ", params);
 
-      //this.tokenCookieService.saveUser(userJSON);
+      // this.tokenCookieService.saveUser(this.router.navigateByUrl("/admin/dashboard/view"));
 
-      //this.router.navigate(["/admin/dashboard"]);
+      // this.router.navigate(["/admin/dashboard"]);
 
 
-      // this.tokenCookieService.clearSharedTokenOrCookie();
+      //  this.tokenCookieService.clearSharedTokenOrCookie();
 
       this.authService.validateOTP(this.otpBody.value).subscribe({
         next: (res: any) => {
@@ -130,6 +130,7 @@ export class OtpComponent implements OnInit {
                 res.body.message
               );
 
+          // this.router.navigateByUrl("/admin/dashboard/view");
           this.router.navigateByUrl("/admin/dashboard/view");
           } else {
             this.snackbar.showNotification("snackbar-danger", res.body.message);

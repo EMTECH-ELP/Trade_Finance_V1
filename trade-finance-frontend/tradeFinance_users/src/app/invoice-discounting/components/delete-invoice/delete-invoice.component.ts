@@ -19,7 +19,9 @@ export class DeleteInvoiceComponent implements OnInit {
      private service:SearchService) { }
 
 
-
+     ngOnInit(): void {
+    }
+  
 
 
   onDelete() {
@@ -50,7 +52,5 @@ export class DeleteInvoiceComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-  }
-
+  
 }

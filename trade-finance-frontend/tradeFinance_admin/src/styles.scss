@@ -219,3 +219,14 @@ $remark-text-color: #757575; // Grey for remark text
   margin-right: 8px !important;
 }
 
+.sidebarIcon {
+  background-color: maroon;
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  font-size: 20px; /* Adjust font size to fit icon */
+}

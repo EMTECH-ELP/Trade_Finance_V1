@@ -3,7 +3,7 @@ export const environment = {
 
   // apiUrl: "http://52.15.152.26:9051",
   // baseUrlAdmin: "http://192.168.88.141:8082",
-  baseUrlAdmin: "http://192.168.90.149:8082",
+  // baseUrlAdmin: "http://192.168.88.82:8082",
   // serverAPI: "http://52.15.152.26:9051",
   // AUTH_URL: "http://52.15.152.26:9051",
   // uraUrl: "http://52.15.152.26:9051",
@@ -27,7 +27,7 @@ export const environment = {
 
  //  BanksManagement
 
- bankUrl: 'http://192.168.90.149:8187',    //fetchbanks
+ bankUrl: 'http://192.168.89.86:8187',    //fetchbanks
 // addBankUrl: '',   //post
 
 //Currency & Ports

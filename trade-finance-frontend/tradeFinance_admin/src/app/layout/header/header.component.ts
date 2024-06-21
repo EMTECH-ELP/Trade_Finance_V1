@@ -246,7 +246,7 @@ export class HeaderComponent
   }
 
   backToDashboard(){
-    this.router.navigate(["/checker/dashboard/analytics"]);
+    this.router.navigate(["/admin/dashboard/view"]);
   }
 
   

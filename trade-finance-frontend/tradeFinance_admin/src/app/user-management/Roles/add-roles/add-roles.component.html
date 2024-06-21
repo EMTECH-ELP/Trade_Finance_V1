@@ -63,34 +63,51 @@
                               </div>
                             </div>
                 
-                            <table style="width:100%;">
-                                <thead>
-                                  <tr>
-                                    <th>No</th>
-                                    <th>Role Code </th>
-                                    <th>Role Name</th>
-                                    <th>Role Description</th>
-                                    <th>Date Created</th>
-                                    <th>Actions</th>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <button matTooltip="View role" style="background-color:transparent;color:maroon;border:none"><mat-icon>visibility</mat-icon></button>
-                                      <button matTooltip="Modify role"style="background-color:transparent;color:maroon;border:none"><mat-icon>edit</mat-icon></button>
-                                      <button matTooltip="Delete role"style="background-color:transparent;color:maroon;border:none"><mat-icon>delete</mat-icon></button>
-                                    </td>                
-                                  </tr>
-            
-            
-                                </thead>
-            
-            
-                                </table>
+                          
+
+                                <div *ngIf="isLoading" class="spinner-container">
+                                  <!-- Loading spinner or message -->
+                                  <mat-spinner class="custom-spinner" style="color: maroon;margin-left:500px;"></mat-spinner>
+                                </div>
+                                <div *ngIf="!isLoading">
+                                  
+                                  <table class="table">
+                                    <thead>
+                                      <tr>
+                                        
+                                        <th>Role Name </th>
+                                        <th>Role Code</th>
+                                        <th>Role Description</th>
+                                        <th>Actions</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let privilege of privileges">
+                                        
+                                        <td>{{role.roleName}}</td>
+                                        <td>{{role.roleDescription}}</td>
+                                        <td>{{role.roleName}}</td>
+                                        <td><button matTooltip="View privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>visibility</mat-icon></button>                                                              
+                                          <button matTooltip="Modify privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>edit</mat-icon></button>                              
+                                          <button matTooltip="Delete privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>delete</mat-icon></button></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+
+
+
+
+
+
+<br/><br/>
+                                
+
+                                <div>
+                                  <button class="roleButtons" type="button" (click)="mainRole()">Cancel</button>
+                                  <span style="margin-right:66%;"></span>
+                                  <button class="roleButtons" type="button" (click)="privilege()">To Privileges</button>
+                                </div>
             
             
 

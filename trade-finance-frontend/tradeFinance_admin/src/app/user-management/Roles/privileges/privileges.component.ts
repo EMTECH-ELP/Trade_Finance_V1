@@ -12,6 +12,8 @@ import { UserManagementService } from '../../user-management.service';
 export class PrivilegesComponent implements OnInit {
   privilegeForm: FormGroup;
   privilegeDescriptions: Array<{label: string, controlName: string}> = [];
+  isLoading = true; // Added loading state
+  privileges: any[] = [];
 
   constructor(private fb: FormBuilder,private router: Router, private userManagementService: UserManagementService) { 
     this.privilegeForm = this.fb.group({
@@ -24,6 +26,7 @@ export class PrivilegesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.privilegeTable()
   }
 
 addPrivilege(){
@@ -70,4 +73,29 @@ onSubmit() {
 
 }
 
+
+navRole(){
+  this.router.navigate(['/users/add-roles'])
 }
+
+mainPrivilege(){
+  this.router.navigate(['/users/view-roles'])
+}
+
+privilegeTable(){
+  this.userManagementService.getPrivileges().subscribe(
+    data => {
+      this.privileges = data;
+      this.isLoading = false;
+    },
+    error => {
+      console.error('Error fetching privileges:', error);
+      this.isLoading = false;
+    }
+  );
+}
+}
+
+
+
+

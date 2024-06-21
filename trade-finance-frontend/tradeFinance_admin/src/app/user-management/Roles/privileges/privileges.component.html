@@ -63,36 +63,45 @@
                         </div>
                       </div>
 
-                      <table style="width:100%;">
-                        <thead>
-                          <tr>
-                            <th>No</th>
-                            <th>Privilege Code </th>
-                            <th>Privilege Name</th>
-                            <th>Privilege Description</th>
-                            <th>Date Created</th>
-                            <th>Actions</th>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                               
-                                 <button matTooltip="View privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>visibility</mat-icon></button>                                                              
-                                 <button matTooltip="Modify privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>edit</mat-icon></button>                              
-                                 <button matTooltip="Delete privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>delete</mat-icon></button>
+                      
+
+
+                        <div *ngIf="isLoading" class="spinner-container">
+                          <!-- Loading spinner or message -->
+                          <mat-spinner class="custom-spinner" style="color: maroon;margin-left:500px;"></mat-spinner>
+                        </div>
+                        <div *ngIf="!isLoading">
+                          
+                          <table class="table">
+                            <thead>
+                              <tr>
                                 
-                            </td>                
-                          </tr>
-    
-    
-                        </thead>
-    
-    
-                        </table>
+                                <th>Privilege Name </th>
+                                <th>Privilege Code</th>
+                                <th>Privilege Description</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let privilege of privileges">
+                                
+                                <td>{{ privilege.privilegeName}}</td>
+                                <td>{{ privilege.code }}</td>
+                                <td>{{ privilege.privilegeDescription}}</td>
+                                <td><button matTooltip="View privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>visibility</mat-icon></button>                                                              
+                                  <button matTooltip="Modify privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>edit</mat-icon></button>                              
+                                  <button matTooltip="Delete privilege" style="background-color:transparent;color:maroon;border:none"><mat-icon>delete</mat-icon></button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <br/><br/>
+
+                        <div>
+                          <button class="privilegeButton" type="button" (click)="mainPrivilege()">Cancel</button>
+                          <span style="margin-right:66%;"></span>
+                          <button class="privilegeButton" type="button" (click)="navRole()">To Roles</button>
                         </div>
                         
 
