@@ -12,7 +12,6 @@ export class ForgotPasswordComponent implements OnInit {
   authForm: FormGroup;
   submitted = false;
   returnUrl: string;
-
   loading = false;
   error = "";
   hide = true;
