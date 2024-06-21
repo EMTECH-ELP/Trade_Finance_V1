@@ -42,13 +42,13 @@
 
             <div formArrayName="privileges" *ngIf="!isLoading">
               <div *ngFor="let privilege of privileges; let i = index" class="roleInputs">
-                <mat-checkbox [formControlName]="i">{{ privilege.privilegeName }}</mat-checkbox>
+                <mat-checkbox [formControlName]="i">{{ privilege.privilegeName }} ( Code: {{ privilege.code }})</mat-checkbox>
               </div>
             </div>
             <br/><br/>
             <div>
               <button class="roleButtons">Submit</button>
-              <span style="margin-right: 745px;"></span>
+              <span style="margin-right:66%;"></span>
               <button class="roleButtons" type="button" (click)="cancel()">Cancel</button>
             </div>
           </form>
