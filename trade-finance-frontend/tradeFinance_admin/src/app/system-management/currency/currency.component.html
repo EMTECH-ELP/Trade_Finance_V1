@@ -4,12 +4,6 @@
         <app-breadcrumb [title]="'CURRENCIES'" [items]="['Home']" [active_item]="'View'">
         </app-breadcrumb>
       </div>
-  
-      <div class="content-block">
-        <div class="table-header">
-          <span style="width: 60%;"></span>       
-        </div>
-
 
         <div class="row">
 
@@ -97,6 +91,11 @@
           <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
           </mat-progress-spinner>
         </div>
+
+                <br/><br/>
+                <div>
+                  <button class="roleButtons" (click)="masterView()">Back</button>
+                </div>
       </div>
     </div>
   

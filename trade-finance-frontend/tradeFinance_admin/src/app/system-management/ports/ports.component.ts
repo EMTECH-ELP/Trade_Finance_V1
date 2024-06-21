@@ -62,4 +62,8 @@ export class PortsComponent implements OnInit {
   addPort(){
     //add port navigation logic here
   }
+
+  masterView(){
+    this.router.navigate(['/system/masterdata'])
+  }
 }

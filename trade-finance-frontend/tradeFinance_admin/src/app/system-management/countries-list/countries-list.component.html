@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Country List'" [items]="['Home']" [active_item]="'View'">
+      <app-breadcrumb [title]="'New country'" [items]="['Home']" [active_item]="'View'">
       </app-breadcrumb>
     </div>
 
@@ -11,45 +11,52 @@
       <form [formGroup]="countryForm" (ngSubmit)="addCountry()">
         
         <div class="countrieInputs">
-          <mat-label>Country:</mat-label><br/>
+          <mat-label>Country Name:</mat-label><br/>
           <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="roleName">
+            <input matInput formControlName="countryName">
+          </mat-form-field>
+        </div>
+
+        <div class="countrieInputs">
+          <mat-label>Country Code:</mat-label><br/>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="countryCode">
           </mat-form-field>
         </div>
     
         <div class="countrieInputs">
-          <mat-label>Capital:</mat-label><br/>
+          <mat-label>Capital City:</mat-label><br/>
           <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="roleDescription">
+            <input matInput formControlName="countryCapital">
           </mat-form-field>
         </div>
 
         <div class="countrieInputs">
           <mat-label>City 1:</mat-label><br/>
           <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="roleDescription">
+            <input matInput formControlName="city1">
           </mat-form-field>
         </div>
 
         <div class="countrieInputs">
           <mat-label>City 2:</mat-label><br/>
           <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="roleDescription">
+            <input matInput formControlName="city2">
           </mat-form-field>
         </div>
 
         <div class="countrieInputs">
           <mat-label>City 3:</mat-label><br/>
           <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="roleDescription">
+            <input matInput formControlName="city3">
           </mat-form-field>
         </div>
 
 
-         <div>
-          <button> Submit</button>
-          <span style="margin-right: 745px;"></span>
-          <button>Cancel</button>
+        <div>
+          <button class="roleButtons" type="submit">Submit</button>
+          <span style="margin-right:66%;"></span>
+          <button class="roleButtons" type="button" (click)="cancel()">Cancel</button>
         </div>
 
         </form>
