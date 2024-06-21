@@ -22,12 +22,9 @@ export class TransferFundsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fundingForm = this.fb.group({
-      discountRate: ['', Validators.required],
-      fundingAmount: ['', Validators.required],
-      creditLimit: ['', Validators.required],
-      creditAccount: ['', Validators.required],
-      disbursalDate: ['', Validators.required],
-      repaymentDate: ['', Validators.required]
+      discountRate: [''],
+      fundingAmount: [''],
+      creditLimit: ['']
     });
 
     this.onChanges();
@@ -36,21 +33,25 @@ export class TransferFundsComponent implements OnInit {
   onChanges(): void {
     this.fundingForm.get('discountRate').valueChanges.subscribe(value => {
       if (value) {
-        // Assuming you have a service to fetch the funding amount and credit limit
         this.fetchFundingDetails(value);
       }
     });
   }
 
   fetchFundingDetails(discountRate: number): void {
-    // Call your service here and set the values to the form controls
     this.invDiscountingService.getDataBasedOnDiscountRate(discountRate).subscribe(data => {
       this.fundingForm.patchValue({
         fundingAmount: data.fundingAmount,
         creditLimit: data.creditLimit
       });
+    }, error => {
+      console.error('Error fetching funding details:', error);
+      // Handle error as needed (e.g., show user-friendly message)
     });
   }
+
+
+  
 
   closeDialog():void{
     this.router.navigate(["/invoice-discounting/viewInvoice"])

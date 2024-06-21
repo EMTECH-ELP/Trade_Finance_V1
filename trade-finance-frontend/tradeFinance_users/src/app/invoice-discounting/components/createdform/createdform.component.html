@@ -1,73 +1,78 @@
 <div class="container-fluid">
   <h2 mat-dialog-title>
     Invoice Discounting Form
-    <span style="margin-right: 50%;"></span>
     <button style="margin-right: 1%;" class="btn btn-primary" (click)="approveAction()">Approve</button>
     <button mat-flat-button mat-button color="warn" (click)="rejectAction()">Reject</button>
     <button class="btn btn-secondary"  style="margin-right: 1%;" (click)="onClose()" tabindex="-1">Close</button>
-    <!-- <button class="btn btn-secondary" (click)="print()">Print</button> -->
   </h2>
-  <mat-dialog-content  id="printable-content">
+  <mat-dialog-content id="printable-content">
+  
+    <!-- Form content here -->
     <div class="container">
+      <!-- Applicant Details -->
+      <p style="color: maroon; font-size: 18px; font-weight: bold;">Applicant Details:</p>
       <div class="row">
-        <!-- <p style="color: maroon; font-size: 20px; font-weight: bold;">Invoice Discounting Form:</p> -->
-        <p style="color: maroon; font-size: 18px; font-weight: bold;">Applicant Details:</p>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Account Number:</strong> {{rowData?.accountNumber}}</p>
-          <p><strong>Account Name:</strong> {{rowData?.accountName}}</p>
-          <p><strong>Currency:</strong> {{rowData?.currency}}</p>
+          <p><strong>Account Name:</strong> {{data?.accountName }}</p>
+          <p><strong>Account Number:</strong> {{data?.accountNumber }}</p>
+          <p><strong>Cif Id:</strong> {{data?.cifId}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Phone Number:</strong> {{rowData?.phoneNumber}}</p>
-          <p><strong>Email:</strong> {{rowData?.email}}</p>
-          <p><strong>City:</strong> {{rowData?.city}}</p>
+          <p><strong>Phone Number:</strong> {{data?.phoneNumber}}</p>
+          <p><strong>Email:</strong> {{data?.email}}</p>
+          <p><strong>NationalId:</strong> {{data?.nationalId}}</p>
+       
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Address:</strong> {{rowData?.address}}</p>
-          <p><strong>Postal Code:</strong> {{rowData?.postalCode}}</p>
+          <p><strong>City:</strong> {{data?.city}}</p>
+          <p><strong>Address:</strong> {{data?.address}}</p>
+          <p><strong>Postal Code:</strong> {{data?.postalCode}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Country:</strong> {{rowData?.country}}</p>
-          <p><strong>Country Code:</strong> {{rowData?.countryCode}}</p>
+          <p><strong>Currency:</strong> {{data?.currency}}</p>
+          <p><strong>Country:</strong> {{data?.country}}</p>
+          <p><strong>Country Code:</strong> {{data?.countryCode}}</p>
         </div>
       </div>
+      <!-- Invoice Details -->
+      <p style="color: maroon; font-size: 18px; font-weight: bold;">Invoice Details:</p>
       <div class="row">
-        <p style="color: maroon; font-size: 18px; font-weight: bold;">Invoice Details:</p>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Invoice Date:</strong> {{rowData?.invoices?.[0]?.invoiceDate}}</p>
-          <p><strong>Invoice Number:</strong> {{rowData?.invoices?.[0]?.invoiceNumber}}</p>
+          <p><strong>Invoice Date:</strong> {{data?.invoices?.[0]?.invoiceDate}}</p>
+          <p><strong>Invoice Number:</strong> {{data?.invoices?.[0]?.invoiceNumber}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Invoice Amount:</strong> {{rowData?.invoices?.[0]?.invoiceAmount}}</p>
-          <p><strong>Applicant's Company Name:</strong> {{rowData?.invoices?.[0]?.applicantBusinessName}}</p>
+          <p><strong>Invoice Amount:</strong> {{data?.invoices?.[0]?.invoiceAmount}}</p>
+          <p><strong>Applicant's Company Name:</strong> {{data?.invoices?.[0]?.applicantBusinessName}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Applicant's Business Address:</strong> {{rowData?.invoices?.[0]?.applicantBusinessAddress}}</p>
-          <p><strong>Due date:</strong> {{rowData?.invoices?.[0]?.dueDate}}</p>
+          <p><strong>Applicant's Business Address:</strong> {{data?.invoices?.[0]?.applicantBusinessAddress}}</p>
+          <p><strong>Due date:</strong> {{data?.invoices?.[0]?.dueDate}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Application Form:</strong> {{rowData?.applicationForm}}</p>
-          <a *ngIf="rowData?.invoices?.[0]" (click)="downloadFile()" style="cursor: pointer;">
+          <p><strong>Application Form:</strong> {{data?.applicationForm}}</p>
+          <a *ngIf="data?.invoices?.[0]" (click)="downloadFile()" style="cursor: pointer;">
             <mat-icon>file_download</mat-icon>
           </a>
-          <p><strong>Uploaded Invoices:</strong> {{rowData?.invoices}}</p>
-          <a *ngIf="rowData?.invoices?.[0]" (click)="downloadFile()" style="cursor: pointer;">
+          <p><strong>Uploaded Invoices:</strong> {{data?.invoices}}</p>
+          <a *ngIf="data?.invoices?.[0]" (click)="downloadFile()" style="cursor: pointer;">
             <mat-icon>file_download</mat-icon>
           </a>
         </div>
       </div>
+      <!-- Importer Details -->
+      <p style="color: maroon; font-size: 18px; font-weight: bold;">Importer Details:</p>
       <div class="row">
-        <p style="color: maroon; font-size: 18px; font-weight: bold;">Importer Details:</p>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Buyer's Name:</strong> {{rowData?.invoices?.[0]?.buyerName}}</p>
-          <p><strong>Buyer's Email:</strong> {{rowData?.invoices?.[0]?.buyerEmailAddress}}</p>
+          <p><strong>Buyer's Name:</strong> {{data?.invoices?.[0]?.buyerName}}</p>
+          <p><strong>Buyer's Email:</strong> {{data?.invoices?.[0]?.buyerEmailAddress}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Country:</strong> {{rowData?.invoices?.[0]?.buyerCountry}}</p>
-          <p><strong>City:</strong> {{rowData?.invoices?.[0]?.buyerCity}}</p>
+          <p><strong>Country:</strong> {{data?.invoices?.[0]?.buyerCountry}}</p>
+          <p><strong>City:</strong> {{data?.invoices?.[0]?.buyerCity}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-          <p><strong>Business Name:</strong> {{rowData?.invoices?.[0]?.buyerBusinessName}}</p>
+          <p><strong>Business Name:</strong> {{data?.invoices?.[0]?.buyerBusinessName}}</p>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
           <mat-label style="font-weight: bold; display: block; margin-bottom: 5px;">Approved by:</mat-label>
@@ -83,60 +88,4 @@
 </div>
 
 
- <!-- <div class="row">
-
-<!-- <div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <p style="color: maroon;font-size: 18inputx; font-weight: bold;">Applicant Details: </p>
-      <label >Account Number: </label> <input [placeholder]="rowData?.accountNumber"readonly >
-<strong><label >Account Name: </label></strong> <input [placeholder]="rowData?.accountName" readonly  >
-<label >Currency </label> <input  [placeholder]="rowData?.currency"readonly  >
-<label >Phone Number: </label> <input   [placeholder]="rowData?.phoneNumber"readonly  >
-<label >Email: </label> <input [placeholder]="rowData?.email"readonly  >
-<label >City: </label> <input  [placeholder]="rowData?.city"readonly  >
-<label >Address: </label> <input  [placeholder]="rowData?.address" readonly >
-<label >Postal Code: </label> <input  [placeholder]="rowData?.postalCode"readonly  >
-<label >Country: </label> <input  [placeholder]="rowData?.country"readonly  >
-<label >Country Code: </label> <input  [placeholder]="rowData?.countryCode"readonly  >
-</div> -->
-<!-- <div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <p style="color: maroon;font-size: 18inputx; font-weight: bold;">Invoice Details: </p>
-      <p><strong>Invoices:</strong> {{rowData?.invoices}}</p>
-      <label style="font-weight: bold;">Invoice Date: </label> <p></p> <input [placeholder]="rowData?.invoiceDate"readonly>
-      <label style="font-weight: bold;">Invoice Number: </label> <input [placeholder]="rowData?.invoiceNumber" readonly >
-      <label >Invoice Amount: </label> <input [placeholder]="rowData?.invoiceAmount" readonly >
-      <label >Applicant's Company Name: </label><input [placeholder]="rowData?.applicantBusinessName"readonly >
-      <label >Applicant's Business Address: </label> <input [placeholder]="rowData?.applicantBusinessAddress"readonly >
-      <label >Due date: </label> <input [placeholder]="rowData?.dueDate"readonly >
-      <label >Invoices: </label> <input [placeholder]="rowData?.invoices"readonly >  
-       <a *ngIf="rowData?.invoices" (click)="downloadFile()"
-      style="cursor: pointer;">
-      <mat-icon>file_download</mat-icon>
-      </a>
-      <label >Application Form: </label> <input [placeholder]="rowData?.applicationForm"readonly >
-      <a *ngIf="rowData?.applicationForm" (click)="downloadFile()"
-      style="cursor: pointer;">
-      <mat-icon>file_download</mat-icon>
-      </a>
-    </div> -->
-<!-- <div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <p  style="color: maroon;font-size: 18inputx; font-weight: bold;">Importer Details: </p>
-      <label >Buyer's Name: </label> <input  [placeholder]="rowData?.buyerName"readonly>
-      <label >Buyer's Email: </label> <input  [placeholder]="rowData?.buyerEmailAddress"readonly >
-      <label >Business Name: </label> <input  [placeholder]="rowData?.buyerBusinessName"readonly >
-      <label >City: </label> <input  [placeholder]="rowData?.buyerCity"readonly >
-      <label >Country: </label> <input  [placeholder]="rowData?.buyerCountry"readonly >
-    </div> 
-    <div  class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-      <p  style="color: maroon;font-size: 18inputx; font-weight: bold;">Funding Details: </p>
-      <label >Disbursal Date: </label> <input [placeholder]="rowData?.disbursalDate"readonly >
-      <label >Funding Amount: </label> <input [placeholder]="rowData?.fundingAmount" readonly>
-      <label >Repayment Date: </label> <input [placeholder]="rowData?.repaymentDate"readonly>
-      <label >Credit Account: </label> <input [placeholder]="rowData?.creditAccount"readonly >
-      <label >Credit Limit: </label> <input [placeholder]="rowData?.creditLimit"readonly >
-      <label >Credit AppraisalForm: </label> <input  [placeholder]="rowData?.creditAppraisalForm"readonly>
-      <a *ngIf="rowData?.creditAppraisalForm" (click)="downloadFile()"
-    style="cursor: pointer;">
-    <mat-icon>file_download</mat-icon>
-    </a>
-    
-    </div> -->
+ 
