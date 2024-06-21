@@ -40,7 +40,11 @@ addCountry(){
   //FOR ERRORS
   }
 
+view(){
+  //view all countries logic
+}
 
-
-  
+masterView(){
+  this.router.navigate(['/system/masterdata'])
+}
 }

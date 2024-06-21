@@ -23,9 +23,9 @@ export class CountriesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.countryForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      code: ['', Validators.required],
-      capital:['', Validators.required],
+      countryName: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      ccountryCapital:['', Validators.required],
       city1: [''],
       city2: [''],
       city3: ['']
@@ -56,5 +56,10 @@ export class CountriesListComponent implements OnInit {
         this.countryForm.reset();
       });
     }
+  }
+
+
+  cancel(){
+    this.router.navigate(['/system/countryView'])
   }
 }

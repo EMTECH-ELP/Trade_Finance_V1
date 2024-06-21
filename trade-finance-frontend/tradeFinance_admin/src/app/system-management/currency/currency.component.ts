@@ -71,6 +71,10 @@ export class CurrencyComponent implements OnInit {
   }
   
 
+  masterView(){
+    this.router.navigate(['/system/masterdata'])
+  }
+
   viewCurrencies(){
     //view currency function
   }
