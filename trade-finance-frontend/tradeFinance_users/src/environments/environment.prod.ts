@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  // Client's test servers
+  // Client's test serversj
 
   //Emtech test server
 

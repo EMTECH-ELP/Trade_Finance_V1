@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 })
 export class TransferFundsComponent implements OnInit {
   fundingForm: FormGroup;
-
+  today = new Date().toISOString().split('T')[0];
   constructor( private router: Router,
     private builder: FormBuilder,
     private fb: FormBuilder, 
@@ -25,6 +25,7 @@ export class TransferFundsComponent implements OnInit {
       discountRate: [''],
       fundingAmount: [''],
       creditLimit: ['']
+   
     });
 
     this.onChanges();
@@ -42,7 +43,7 @@ export class TransferFundsComponent implements OnInit {
     this.invDiscountingService.getDataBasedOnDiscountRate(discountRate).subscribe(data => {
       this.fundingForm.patchValue({
         fundingAmount: data.fundingAmount,
-        creditLimit: data.creditLimit
+       
       });
     }, error => {
       console.error('Error fetching funding details:', error);

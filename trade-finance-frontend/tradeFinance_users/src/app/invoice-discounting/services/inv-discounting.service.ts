@@ -75,15 +75,18 @@ export class InvDiscountingService {
       })
     );
   }
-  approveInvoice(invoiceNumber: string): Observable<any> {
+  approveInvoice(invoiceNumber: any): Observable<any> {
     const url = `${this.invUrl}/api/invoices/approve/${invoiceNumber}`;
-    return this.http.post<any>(url, {}).pipe(
-      catchError((error: any) => {
+    const payload = { invoiceId: invoiceNumber }; // Adjust according to server expectations
+    return this.http.post<any>(url, payload).pipe(
+      catchError((error: HttpErrorResponse) => {
         console.error('Error approving invoice:', error);
-        throw error;
+        // Transform the error into a more user-friendly message or handle differently
+        return throwError(() => new Error('Failed to approve invoice.'));
       })
     );
   }
+  
   saveFundingData(){
 
   }
