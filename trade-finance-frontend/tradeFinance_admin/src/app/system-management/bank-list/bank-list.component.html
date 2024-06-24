@@ -43,15 +43,19 @@
                         <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
                       </mat-form-field>
                     </li>
+                    <!-- <button style="background-color: #ad3b3a;" mat-button (click)="onSubmit()" matStepperSubmit>Submit</button> -->
                     <li class="d-flex align-items-center">
                       <div class="m-l-10" matTooltip="Add">
-                        <button mat-raised-button color="primary" (click)="openAddBankDialog()">Add Bank</button>
+                        <button style="background-color: #ad3b3a;" mat-button  (click)="openAddBankDialog()">Add Bank</button>
                       </div>
-                      <div class="m-l-10" matTooltip="Refresh">
-                        <button mat-mini-fab color="primary" (click)="getBanks()">
-                          <mat-icon class="col-white">refresh</mat-icon>
-                        </button>
-                      </div>
+                
+                        <div class="m-l-10" matTooltip="Refresh">
+                          <button mat-mini-fab style="background-color: #ad3b3a;" (click)="getBanks()">
+                            <mat-icon class="col-white">refresh</mat-icon>
+                          </button>
+
+                        </div>
+                
                     </li>
                   </ul>
                 </div>
