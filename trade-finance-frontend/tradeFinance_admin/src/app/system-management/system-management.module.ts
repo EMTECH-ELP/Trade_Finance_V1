@@ -30,6 +30,11 @@ import { WorkflowManagementComponent } from './workflow-management/workflow-mana
 import { ModifyBankDialogueComponent } from './modify-bank-dialogue/modify-bank-dialogue.component';
 import { DeletebankdialogueComponent } from './deletebankdialogue/deletebankdialogue.component';
 
+import { CountriesListComponent } from './countries-list/countries-list.component';
+import { CitiesListComponent } from './cities-list/cities-list.component';
+import { CountryViewComponent } from './cities-list/country-view/country-view.component';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +45,10 @@ import { DeletebankdialogueComponent } from './deletebankdialogue/deletebankdial
     PortsComponent,
     WorkflowManagementComponent,
     ModifyBankDialogueComponent,
-    DeletebankdialogueComponent
+    DeletebankdialogueComponent,
+     CountriesListComponent,
+     CitiesListComponent,
+     CountryViewComponent
    
   ],
   imports: [

@@ -2,7 +2,7 @@
     <div class="content-block">
       <div class="block-header">
         <!-- breadcrumb -->
-        <app-breadcrumb [title]="'Checkers'" [items]="['Home']" [active_item]="'View'">
+        <app-breadcrumb [title]="'USERS'" [items]="['Home']" [active_item]="'View'">
         </app-breadcrumb>
       </div>
       <div class="row">
@@ -18,30 +18,43 @@
                     <div class="col-12">
                       <ul class="header-buttons-left ms-0">
                         <li class="dropdown">
-                          <h2>Checkers</h2>
+                          <h2>USERS</h2>
                         </li>
   
                         <li class="dropdown m-l-20">
-                          <label for="search-input"><i class="material-icons search-icon" >search</i></label>
+                          <label for="search-input"><i class="material-icons search-icon" style="color:maroon">search</i></label>
                           <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
                             class="browser-default search-field" aria-label="Search box">
                         </li>
-  
+
+ 
                         <li>
-                          <div class="m-l-10" matTooltip="Add">
-                            <button mat-mini-fab color="primary" (click)="add()">
-                              <mat-icon class="col-white">add</mat-icon>
-                            </button>
-                          </div>
-                        </li>
-  
-                        <li>
-                          <div class="m-l-10" matTooltip="Refresh">
-                            <button mat-mini-fab color="primary" (click)="refresh()">
+                          <div class="m-l-10" matTooltip="Refresh Users">
+                              <button mat-mini-fab style="background-color: maroon; color: white;" (click)="refresh()">
                               <mat-icon class="col-white">refresh</mat-icon>
                             </button>
                           </div>
                         </li>
+
+
+                        <li>
+                          <div class="m-l-10" matTooltip="Add user">
+                              <button mat-mini-fab style="background-color: maroon; color: white;" (click)="add()">
+                              <mat-icon class="col-white">add</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+
+                        <li>
+                          <div class="m-l-10" matTooltip="view all users">
+                              <button mat-mini-fab style="background-color: maroon; color: white;" (click)="view()">
+                              <mat-icon class="col-white">visibility</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+
+
+                        
   
                       </ul>
                     </div>

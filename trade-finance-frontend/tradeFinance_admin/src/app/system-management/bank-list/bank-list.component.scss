@@ -15,7 +15,6 @@ table {
   }
   .header-buttons-left {
     display: flex;
-    justify-content: space-between;
     align-items: center;
   }
   
@@ -72,9 +71,7 @@ table {
   /* Icon styles */
   mat-icon {
     cursor: pointer;
-    font-size: 1.2em;
-    margin-right: 5px;
-    color: #007bff;
+    
   }
   
   /* Responsive styles */

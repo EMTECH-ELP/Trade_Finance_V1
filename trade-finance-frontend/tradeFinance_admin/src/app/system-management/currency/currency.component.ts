@@ -65,6 +65,19 @@ export class CurrencyComponent implements OnInit {
         }
       });
   }
+
+  addCurrency(){
+    //add currency function
+  }
+  
+
+  masterView(){
+    this.router.navigate(['/system/masterdata'])
+  }
+
+  viewCurrencies(){
+    //view currency function
+  }
 }
 // function subscribe(arg0: { next: (res: any) => void; error: (err: any) => void; }): {
 //   headers?: import("@angular/common/http").HttpHeaders | { [header: string]: string | string[]; }; context?: import("@angular/common/http").HttpContext; observe?: "body"; params?: import("@angular/common/http").HttpParams | { //192.168.88.109:9000/api/currencies'; 

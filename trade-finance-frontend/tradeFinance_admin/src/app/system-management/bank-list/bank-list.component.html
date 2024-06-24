@@ -2,14 +2,11 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Bank List'" [items]="['Home']" [active_item]="'View'">
+      <app-breadcrumb [title]="'BANKS'" [items]="['Home']" [active_item]="'View'">
       </app-breadcrumb>
     </div>
 
-    <div class="content-block">
-      <div class="table-header">
-        <h6>Available Banks</h6>
-        <span style="width: 60%;"></span>
+    
 
         <!--        
                         <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
@@ -26,13 +23,45 @@
             <div class="table-responsive">
               <div class="materialTableHeader">
         </div> -->
-      </div>
-      <div class="row">
-        <div class="card">
-          <div class="body">
+            <div class="row">
 
-            <div class="table-responsive">
-              <div class="materialTableHeader">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="body">
+        
+                    <div class="table-responsive">
+                      <div class="materialTableHeader">
+                        <div class="row">
+        
+                          <div class="col-12">
+                            <ul class="header-buttons-left ms-0">
+                              <li class="dropdown">
+                                <h2>BANKS</h2>
+                              </li>
+        
+                              <li class="dropdown m-l-20">
+                                <label for="search-input"><i class="material-icons search-icon" style="color:maroon">search</i></label>
+                                <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
+                                  class="browser-default search-field" aria-label="Search box">
+                              </li>
+
+                              <li>
+                                <div class="m-l-10" matTooltip="Refresh banks">
+                                    <button mat-mini-fab style="background-color: maroon; color: white;" (click)="getBanks()">
+                                    <mat-icon class="col-white">refresh</mat-icon>
+                                  </button>
+                                </div>
+                              </li>
+        
+                              <li>
+                                <div class="m-l-10" matTooltip="Add bank">
+                                    <button mat-mini-fab style="background-color: maroon; color: white;" (click)="openAddBankDialog()">
+                                    <mat-icon class="col-white">add</mat-icon>
+                                  </button>
+                                </div>
+                              </li>
+        
+                              
 
 
                 <div class="col-12">
@@ -62,8 +91,23 @@
 
 
 
-              </div>
+              <!-- </div> -->
        
+                              <li>
+                                <div class="m-l-10" matTooltip="View all banks">
+                                    <button mat-mini-fab style="background-color: maroon; color: white;" (click)="getBanks()">
+                                    <mat-icon class="col-white">visibility</mat-icon>
+                                  </button>
+                                </div>
+                              </li>
+        
+                            </ul>
+                          </div>
+        
+                        </div>
+                      </div>
+          
+          
             <!-- [dataSource]="banks" -->
             <div class="flex-container">
               <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
@@ -206,6 +250,10 @@
 
               <mat-paginator class="paginator-container" [pageSize]="10"
                 [pageSizeOptions]="[2,5,10,20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+                <br/><br/>
+                <div>
+                  <button class="roleButtons" (click)="masterView()">Back</button>
+                </div>
             </div>
           </div>
         </div>
@@ -213,4 +261,3 @@
       </div>
     </div>
   </div>
-</section>

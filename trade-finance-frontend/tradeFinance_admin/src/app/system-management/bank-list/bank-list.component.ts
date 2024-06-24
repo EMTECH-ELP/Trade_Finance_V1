@@ -138,6 +138,28 @@ export class BankListComponent implements OnInit {
     }
   }
 
+
+  masterView(){
+    this.router.navigate(['/system/masterdata'])
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //   public onDeleteBank(){
 //     const dialogConfig = new MatDialogConfig()
 //     dialogConfig.disableClose = true
