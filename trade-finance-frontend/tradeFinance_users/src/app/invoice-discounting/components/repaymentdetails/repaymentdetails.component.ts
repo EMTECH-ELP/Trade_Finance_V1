@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
   styleUrls: ['./repaymentdetails.component.sass']
 })
 export class RepaymentdetailsComponent implements OnInit {
+  today = new Date().toISOString().split('T')[0];
   formData: any;
   date: Date;
   invoiceId: string;

@@ -85,10 +85,12 @@
                       </li>
 
                       <li class="dropdown m-l-20">
-                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
-                          class="browser-default search-field" aria-label="Search box">
+                        <label style="padding-right: 80%;"  for="search-input"><i style="padding-top: 2%;" class="material-icons search-icon">search</i></label>
+                        <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter class="browser-default search-field" aria-label="Search box">
                       </li>
+                      
+                      
+                      
 
                       <li>
 
@@ -208,12 +210,9 @@
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
-                  [style.cursor]="'pointer'" matRipple>
-                </mat-row>
-
-                <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" [style.cursor]="'pointer'" matRipple></mat-row>
+                <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{searchTerm}}"</mat-cell>
+         
 
               </mat-table>
 

@@ -67,7 +67,8 @@ export class ViewInvoiceComponent implements OnInit {
   }
 
   selectedStatus = 'all';
-
+  filteredDataSource = new MatTableDataSource<any>([]);
+  searchTerm: string = '';
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantBusinessName', 'accountNumber' ,'invoiceAmount', 'status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -102,12 +103,14 @@ export class ViewInvoiceComponent implements OnInit {
   }
 
 
-  public applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+  
 
 
   public add() {

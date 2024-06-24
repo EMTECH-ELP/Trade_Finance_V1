@@ -22,7 +22,7 @@ export class CreateInvoiceComponent implements OnInit, OnDestroy {
   // @ViewChild('citySelect') citySelect!: ElementRef;
   nationalId: number;
   [x: string]: any;
- 
+  today = new Date().toISOString().split('T')[0]; // Formats today's date as YYYY-MM-DD
   ShowLookupComponent: boolean = false;
   selectedValue: string;
 
