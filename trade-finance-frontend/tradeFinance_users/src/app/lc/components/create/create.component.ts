@@ -36,12 +36,12 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
 
     this.applicationForm = this.fb.group({
-      accountNumber: ['', Validators.required],
-      cifId: ['', Validators.required],
-      nationalId: ['', Validators.required],
+      accountNumber: ['', [Validators.required, Validators.maxLength(15)]],
+      cifId: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
+      nationalId: ['', [Validators.required, Validators.maxLength(10)]],
       accountName: ['', Validators.required],
       currency: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
