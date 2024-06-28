@@ -173,11 +173,13 @@
                     </button>
 
                     <button mat-icon-button color="accent"
-                      (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)" class="tbl-action-btn">
-                      <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete"
-                        [class]="'tbl-fav-delete'"></app-feather-icons>
-                    </button>
-
+                    (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)"
+                    class="tbl-action-btn">
+                    <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete"
+                      [class]="'tbl-fav-delete'"></app-feather-icons>
+                  </button>
+                  
+                 
 
                     <button mat-icon-button color="accent" (click)="$event.stopPropagation(); OpenInvoiceComponent(row)"
                       class="tbl-action-btn">
@@ -197,11 +199,11 @@
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openTransferDialog()" class="tbl-action-btn">Funding
                         Details</button>
-
+                        <button mat-menu-item (click)="option2()">Transfer Options</button>
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openRepaymentDialog()" class="tbl-action-btn">Repayment
                         details</button>
-                      <button mat-menu-item (click)="option3()">Option 3</button>
+                    
 
                     </mat-menu>
 

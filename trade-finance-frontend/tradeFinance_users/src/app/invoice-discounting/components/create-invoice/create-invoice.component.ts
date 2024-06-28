@@ -479,7 +479,7 @@ filterCountries(value: string): string[] {
           "buyerAddress": data.buyerAddress,
           "buyerEmailAddress": data.buyerEmailAddress,
           // "termsAndCondition": data.terms_and_condition,
-          // "status": "CREATED"
+          "status": data.status,
         }
       ]
     }

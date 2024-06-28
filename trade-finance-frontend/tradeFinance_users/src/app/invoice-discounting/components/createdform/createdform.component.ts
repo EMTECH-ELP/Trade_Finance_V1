@@ -32,6 +32,8 @@ export class CreatedformComponent implements OnInit {
   currentDate: string;
   invoices: any;
   data: any;
+event: any;
+  
 
   // applicationForm!: applicationFormDetails: 
   constructor(
@@ -53,19 +55,9 @@ export class CreatedformComponent implements OnInit {
 
 
   }
-  getFormByNationalId(id: any): void {
-    console.log(id)
-    this.service.getDataById(id).subscribe(
-      (response: any) => {
-        console.log('Form Data:', response);
-        // Handle successful response, e.g., assign to a property for binding in template
-      },
-      (error) => {
-        console.error('Error fetching form data:', error);
-        // Handle error, show error message, etc.
-      }
-    );
-  }
+  
+ 
+  
   // Function to format date and time
   private formatDateTime(date: Date): string {
     const year = date.getFullYear();
@@ -91,19 +83,30 @@ export class CreatedformComponent implements OnInit {
   }
 
   approveAction(): void {
-    // Prompt for InvoiceNumber for approval
-    const enteredinvoiceNumber = prompt('Please enter the Invoice Number for Approval:');
+    const enteredInvoiceNumber = prompt('Please enter the Invoice Number for Approval:');
     const invoiceNumber = this.data?.invoices?.[0]?.invoiceNumber;
-    if (invoiceNumber) {
-      this.service.approveInvoice(invoiceNumber).subscribe(response => {
-        this.snackBar.open('Invoice approved successfully!', 'Close', { duration: 3000 });
-        this.dialogRef.close(true); // Close dialog and return success
-      }, error => {
-        console.error('Error approving invoice:', error);
-        this.snackBar.open('Failed to approve invoice. Please try again.', 'Close', { duration: 3000 });
-      });
+  
+    if (enteredInvoiceNumber === invoiceNumber) {
+      this.service.approveInvoice(invoiceNumber).subscribe(
+        response => {
+          this.snackBar.open('Invoice approved successfully!', 'Close', { duration: 3000 });
+          this.dialogRef.close(true); // Close dialog and return success
+        },
+        error => {
+          console.error('Error approving invoice:', error);
+          // Improved error handling based on the error object
+          if (error.status === 404) {
+            this.snackBar.open('Invoice not found. Please check the invoice number and try again.', 'Close', { duration: 3000 });
+          } else {
+            this.snackBar.open('Failed to approve invoice. Please try again.', 'Close', { duration: 3000 });
+          }
+        }
+      );
+    } else {
+      this.snackBar.open('Invoice number does not match. Please try again.', 'Close', { duration: 3000 });
     }
-  }
+  } 
+
 
   rejectAction(): void {
     // Prompt for reason and password for rejection
@@ -118,10 +121,42 @@ export class CreatedformComponent implements OnInit {
   }
 
 
+ 
 
-  onClose(): void {
-    this.dialogRef.close(false);
-  }
+ closeAndUpdateStatus(): void {
+    this.dialogRef.close(false); // Close dialog and return false
+    
+}
+
+// closeAndUpdateStatus(): void {
+//   // Assuming the status is stored in a field named 'status' within 'receivedData'
+//   // Adjust the path according to your actual data structure
+//   const currentStatus = this.data?.applicationForm?.status;
+
+//   if (!currentStatus) {
+//     console.error('Status is not available in receivedData');
+//     return; // Exit the function if status is not available
+//   }
+
+//   // Update the status to 'PENDING'
+//   const updatedStatus = 'PENDING';
+
+//   // Call the updateApplicantStatus method to update the status
+//   this.service.updateApplicantStatus(this.data.id, updatedStatus).subscribe({
+//     next: () => {
+//       console.log(`Status updated successfully to '${updatedStatus}'`);
+//       // Close the dialog after successful status update
+//       this.dialogRef.close(true); // Pass true to indicate success
+//     },
+//     error: err => {
+//       console.error(`Error updating status to '${updatedStatus}':`, err);
+//       // Optionally, handle the error, e.g., show a notification to the user
+//     }
+//   });
+// }
+ 
+  
+  
   // print(): void {
   //   const printContent = document.getElementById('printable-content');
   //   const WindowPrt = window.open('', '', 'width=900,height=650');
