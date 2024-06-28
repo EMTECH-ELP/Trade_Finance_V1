@@ -3,7 +3,7 @@
     Invoice Discounting Form
     <button style="margin-right: 1%;" class="btn btn-primary" (click)="approveAction()">Approve</button>
     <button mat-flat-button mat-button color="warn" (click)="rejectAction()">Reject</button>
-    <button class="btn btn-secondary"  style="margin-right: 1%;" (click)="onClose()" tabindex="-1">Close</button>
+    <button class="btn btn-secondary"  style="margin-right: 1%;"(click)="closeAndUpdateStatus()" tabindex="-1">Close</button>
   </h2>
   <mat-dialog-content id="printable-content">
   

@@ -15,6 +15,7 @@ import { Subject, Subscription, takeUntil, throwError } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { DeleteInvoiceComponent } from '../delete-invoice/delete-invoice.component';
 // import { InvoiceDiscountingModule } from '../../invoice-discounting.module';
 
 
@@ -119,8 +120,8 @@ export class ViewInvoiceComponent implements OnInit {
   }
 
   public refresh() {
-    // this.mockData
-    // this.getAllForms();
+  
+    this.getAllForms();
   }
 
    public getAllForms(): void {
@@ -218,5 +219,21 @@ export class ViewInvoiceComponent implements OnInit {
       }
     );
   }
-  
+
+ openDeleteConfirmationDialog(row:any){
+    const dialogRef = this.dialog.open(DeleteInvoiceComponent, {
+      data: { id: row.id },
+      width: '400px',
+    
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        console.log('Invoice deleted');
+      }else{
+        console.log('Deletion Cancelled');
+      
+      }
+    })
+  } 
 }

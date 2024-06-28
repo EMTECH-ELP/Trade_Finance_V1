@@ -32,7 +32,7 @@ billApiUrl: 'http://192.168.88.101:8085',
 
 // invoice discounting
 
- invUrl: 'http://192.168.89.2:8085' ,     //fETCH &  post invoice discounting forms. Createform url
+ invUrl: 'http://192.168.91.150:8085' ,     //fETCH &  post invoice discounting forms. Createform url
 
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
 
