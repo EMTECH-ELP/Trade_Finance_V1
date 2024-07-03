@@ -15,7 +15,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from "../shared/components/components.module";
 import { MatStepperModule } from '@angular/material/stepper';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';

@@ -219,14 +219,14 @@
             <br>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="Upload invoices">Upload Invoices <span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" multiple accept=".pdf" id="invoice"(change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Upload Application Form <span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" multiple accept=".pdf" id="applicationForm" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -370,41 +370,6 @@
                 *Applicant's address is required</mat-hint>
             </div>
 
-            <!-- 
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label> Country<span class="required">*</span> </mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
-                <mat-select #countrySelect formControlName="buyerCountry" [(ngModel)]="selectedCountry" >
-                  <mat-option value="" disabled>--Select Country--</mat-option>
-                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;" placeholder="Type to search countries" formControlName="countryFilter">
-                  <mat-option *ngFor="let country of filteredCountries" [value]="country">{{ country }}</mat-option>
-              
-                </mat-select>
-              </mat-form-field>
-            </div> -->
-            <!-- <small
-              *ngIf="applicationForm.get('buyerCountry').invalid && applicationForm.get('buyerCountry').touched">
-              *Country is required</small> -->
-
-
-            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label>City <span class="required">*</span></mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
-                <mat-select #citySelect formControlName="buyerCity" [(ngModel)]="selectedCity">
-                  <mat-option value="" disabled>--Select City--</mat-option>
-                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;"  placeholder="Type to search city" formControlName="cityFilter">
-                  <mat-option *ngFor="let city of filteredCities" [value]="city">{{ city }}</mat-option>
-                
-                </mat-select>
-              </mat-form-field>   
-            </div> -->
-            <!-- <div style="display: flex;" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <input type="checkbox" style="margin-right: 10px;" formControlName="terms_and_condition">
-              <div>
-                <label style="margin-top: 5px;">I agree to terms & conditions<span class="required">*</span></label>
-              </div>
-            </div> -->
-
           </div>
 
           <div *ngFor="let inv of applicationForm.get('importerDetails')['controls']; let i = index"
@@ -458,7 +423,7 @@
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Valid Business Permit/Trading license <span
                   class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="businessPermit" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -466,7 +431,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Delivery Notes/ Purchase Orders<span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="deliveryNote" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -474,7 +439,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Credit Appraisal Form<span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="creditAppraisalForm" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -482,7 +447,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Business Registration Identification <span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" multiple accept=".pdf" id="businessRegistration" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -504,12 +469,3 @@
     </mat-horizontal-stepper>
   </div>
 </section>
- <!-- <small
-                *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
-                *Invoice No. is required</small> -->
-                   <!-- <small
-                *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
-                *Invoice Amount required</small> -->
-                   <!-- <small
-                *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
-                *Company name is a required field</small> -->

@@ -14,7 +14,11 @@ export class DeleteInvoiceComponent implements OnInit {
 event: Event;
 id: number;
   // data: any;
-
+  invoiceNumber: string;
+  deletionReason: string;
+  message: string;
+  deleting: boolean = false;
+ 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DeleteInvoiceComponent>,
 
   private snackBar: MatSnackBar,
@@ -23,24 +27,37 @@ id: number;
 
      ngOnInit(): void {
       // Assuming data is injected via MatDialogData
-      this.id = this.data.id;
+      // this.id = this.data.id;
     }
     
   
 
 
-    onDelete(event: Event, id: number): void {
-      event.stopPropagation();
-      if (confirm('Are you sure you want to delete this invoice?')) {
-        this.service.deleteInvoice(id).subscribe(() => {
-          this.snackBar.open('Invoice deleted successfully', 'Close', {
-            duration: 3000,
-          });
-          this.dialogRef.close(true);
+    onDeleteInvoice(): void {
+      if (this.invoiceNumber && this.deletionReason) {
+        const trimmedInvoiceNumber = this.invoiceNumber.trim();
+        this.deleting = true; // Indicate deletion is in progress
+        this.service.deleteInvoice(trimmedInvoiceNumber).subscribe(
+          response => {
+            this.message = 'Invoice deleted successfully!';
+            this.snackBar.open(this.message, 'Close', { duration: 3000 });
+            this.dialogRef.close(true); // Close dialog and return true to the caller
+          },
+          error => {
+            this.message = 'Error deleting invoice. Please try again.';
+            this.snackBar.open(this.message, 'Close', { duration: 3000 });
+            console.error('Error deleting invoice:', error);
+          }
+        ).add(() => {
+          this.deleting = false; // Reset deletion state
         });
+      } else {
+        this.message = 'Please enter both invoice number and reason for deleting.';
+        this.snackBar.open(this.message, 'Close', { duration: 3000 });
       }
     }
-    
+  
+   
 
   onCancel() {
     // Close the dialog without deleting the invoice
