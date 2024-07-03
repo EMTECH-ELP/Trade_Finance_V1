@@ -16,6 +16,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./createdform.component.sass']
 })
 export class CreatedformComponent implements OnInit {
+  approverName: string = '';
+  approverEmail: string = '';
+
+
   viewForm: FormGroup;
   showRejectPrompt = false;
   isLoggedIn: string;
@@ -126,48 +130,48 @@ event: any;
  closeAndUpdateStatus(): void {
     this.dialogRef.close(false); // Close dialog and return false
     
-}
+} 
+  
+// print(): void {
+//   const printContent = document.getElementById('printable-content');
 
-// closeAndUpdateStatus(): void {
-//   // Assuming the status is stored in a field named 'status' within 'receivedData'
-//   // Adjust the path according to your actual data structure
-//   const currentStatus = this.data?.applicationForm?.status;
+//   if (printContent) {
+//     const WindowPrt = window.open('', '', 'width=900,height=650');
+//     const printDiv = WindowPrt.document.createElement('div');
 
-//   if (!currentStatus) {
-//     console.error('Status is not available in receivedData');
-//     return; // Exit the function if status is not available
+//     // Append the existing content
+//     printDiv.innerHTML = printContent.innerHTML;
+
+//     // Append additional information
+//     const approverParagraph = WindowPrt.document.createElement('p');
+//     approverParagraph.innerHTML = `<strong>Approved by:</strong> ${this.approverName}`;
+//     printDiv.appendChild(approverParagraph);
+
+//     const emailParagraph = WindowPrt.document.createElement('p');
+//     emailParagraph.innerHTML = `<strong>Email:</strong> ${this.approverEmail}`;
+//     printDiv.appendChild(emailParagraph);
+
+//     const dateParagraph = WindowPrt.document.createElement('p');
+//     dateParagraph.innerHTML = `<strong>Date:</strong> ${this.currentDate}`;
+//     printDiv.appendChild(dateParagraph);
+//     WindowPrt.document.body.appendChild(printDiv);
+//     // Add custom styles if needed
+//     const style = WindowPrt.document.createElement('style');
+//     style.textContent = `
+//       /* Your custom styles for print */
+//       body { font-family: Arial, sans-serif; }
+//       p { margin: 10px 0; }
+//       strong { font-weight: bold; }
+//     `;
+//     WindowPrt.document.head.appendChild(style);
+
+//     WindowPrt.focus();
+//     WindowPrt.print();
+//     WindowPrt.close();
+//   } else {
+//     console.error('Printable content element not found.');
 //   }
-
-//   // Update the status to 'PENDING'
-//   const updatedStatus = 'PENDING';
-
-//   // Call the updateApplicantStatus method to update the status
-//   this.service.updateApplicantStatus(this.data.id, updatedStatus).subscribe({
-//     next: () => {
-//       console.log(`Status updated successfully to '${updatedStatus}'`);
-//       // Close the dialog after successful status update
-//       this.dialogRef.close(true); // Pass true to indicate success
-//     },
-//     error: err => {
-//       console.error(`Error updating status to '${updatedStatus}':`, err);
-//       // Optionally, handle the error, e.g., show a notification to the user
-//     }
-//   });
 // }
- 
-  
-  
-  // print(): void {
-  //   const printContent = document.getElementById('printable-content');
-  //   const WindowPrt = window.open('', '', 'width=900,height=650');
-  //   WindowPrt.document.write('<html><head><title>Print Invoice</title>');
-  //   WindowPrt.document.write('<style>/* Your custom styles for print */</style>');
-  //   WindowPrt.document.write('</head><body>');
-  //   WindowPrt.document.write(printContent.innerHTML);
-  //   WindowPrt.document.write('</body></html>');
-  //   WindowPrt.document.close();
-  //   WindowPrt.focus();
-  //   WindowPrt.print();
-  //   WindowPrt.close();
-  // }
+
+
 }

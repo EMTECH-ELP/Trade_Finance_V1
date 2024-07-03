@@ -1,13 +1,18 @@
 <div class="container-fluid">
-  <h2 mat-dialog-title>
-    Invoice Discounting Form
-    <button style="margin-right: 1%;" class="btn btn-primary" (click)="approveAction()">Approve</button>
-    <button mat-flat-button mat-button color="warn" (click)="rejectAction()">Reject</button>
-    <button class="btn btn-secondary"  style="margin-right: 1%;"(click)="closeAndUpdateStatus()" tabindex="-1">Close</button>
+  <h2 mat-dialog-title class="header">
+    Application Form
+    <div class="button-container" style="float: right;">
+      <button class="btn btn-primary" (click)="approveAction()">Approve</button>
+      <button mat-flat-button mat-button color="warn" (click)="rejectAction()">Reject</button>
+      <button class="btn btn-secondary" (click)="closeAndUpdateStatus()" tabindex="-1">Close</button>
+        <!-- <button mat-icon-button color="primary" (click)="print()" aria-label="Print">
+    <mat-icon>print</mat-icon>
+  </button> -->
+    </div>
   </h2>
   <mat-dialog-content id="printable-content">
-  
-    <!-- Form content here -->
+
+    <p style="color: black; font-size: 18px; font-weight: bold;">Invoice Discounting Form</p>
     <div class="container">
       <!-- Applicant Details -->
       <p style="color: maroon; font-size: 18px; font-weight: bold;">Applicant Details:</p>
@@ -21,7 +26,6 @@
           <p><strong>Phone Number:</strong> {{data?.phoneNumber}}</p>
           <p><strong>Email:</strong> {{data?.email}}</p>
           <p><strong>NationalId:</strong> {{data?.nationalId}}</p>
-       
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
           <p><strong>City:</strong> {{data?.city}}</p>
@@ -76,9 +80,9 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
           <mat-label style="font-weight: bold; display: block; margin-bottom: 5px;">Approved by:</mat-label>
-          <input type="text" placeholder="Full name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+          <input type="text" [(ngModel)]="approverName" placeholder="Full name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
           <mat-label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Email:</mat-label>
-          <input type="email" placeholder="Email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+          <input type="email" [(ngModel)]="approverEmail" placeholder="Email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
           <mat-label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Date:</mat-label>
           <input type="datetime-local" placeholder="DD/MM/YY" [(ngModel)]="currentDate" [disabled]="true" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
         </div>
@@ -86,6 +90,3 @@
     </div>
   </mat-dialog-content>
 </div>
-
-
- 

@@ -10,7 +10,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
 const routes: Routes = [
   {path:"viewInvoice",component:ViewInvoiceComponent},
   {path:"createInvoice",component:CreateInvoiceComponent},
-  {path: "modifyInvoice",component:ModifyInvoiceComponent},
+  {path: "modify-invoice",component:ModifyInvoiceComponent},
   {path: "createdform",component:CreatedformComponent},
  
 

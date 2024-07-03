@@ -172,7 +172,9 @@ export class ViewInvoiceComponent implements OnInit {
 
     // this.subscriptions.add(sub);
   }
-
+  OpenModifyComponent(row){
+    this.router.navigate(["invoice-discounting/modify-invoice"])
+  }
  public  openTransferDialog(): void {
     const dialogRef = this.dialog.open(TransferFundsComponent, {
       width: '600px',
@@ -206,7 +208,7 @@ export class ViewInvoiceComponent implements OnInit {
         dialogConfig.data = data;
         dialogConfig.width = '1000px';
         dialogConfig.height = '750px';
-        
+  
         const dialogRef = this.dialog.open(CreatedformComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed', result);
@@ -219,6 +221,7 @@ export class ViewInvoiceComponent implements OnInit {
       }
     );
   }
+  
 
  openDeleteConfirmationDialog(row:any){
     const dialogRef = this.dialog.open(DeleteInvoiceComponent, {
