@@ -320,113 +320,96 @@
 
 
         <!--3. Importer Details -->
-        <mat-step label="Importer Details" >
-        
-          <p style="color: maroon; font-size: 16px;font-weight: bold;">Importer / Buyer's Details:</p>
+        <mat-step label="Importer Details">
+          <p style="color: maroon; font-size: 16px; font-weight: bold;">Importer / Buyer's Details:</p>
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Full Name <span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerName" type="text">
               </mat-form-field>
-              <small
-              *ngIf="applicationForm.get('buyerName').invalid && applicationForm.get('buyerName').touched">
-              *Enter the Importer's name</small>
+              <small *ngIf="applicationForm.get('buyerName').invalid && applicationForm.get('buyerName').touched">
+                *Enter the Importer's name
+              </small>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Business Name <span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerBusinessName" type="text">
               </mat-form-field>
-              <small
-              *ngIf="applicationForm.get('buyerBusinessName').invalid && applicationForm.get('buyerBusinessName').touched">
-              *Business name required</small>
+              <small *ngIf="applicationForm.get('buyerBusinessName').invalid && applicationForm.get('buyerBusinessName').touched">
+                *Business name required
+              </small>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label> Email Address<span class="required">*</span> </mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Email Address <span class="required">*</span></mat-label>
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerEmailAddress" type="email">
               </mat-form-field>
-              <small
-              *ngIf="applicationForm.get('buyerEmailAddress').invalid && applicationForm.get('buyerEmailAddress').touched">
-              *Email required</small>
+              <small *ngIf="applicationForm.get('buyerEmailAddress').invalid && applicationForm.get('buyerEmailAddress').touched">
+                *Email required
+              </small>
             </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label> Country<span class="required">*</span> </mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput formControlName="buyerCountry" type="email">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Country<span class="required">*</span></mat-label>
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-select formControlName="buyerCountry" [(ngModel)]="selectedCountry" (selectionChange)="onCountrySelect($event.value)">
+                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;" placeholder="Type to search countries" formControlName="countryFilter">
+                  <mat-option value="" disabled>--Select Country--</mat-option>
+                  <mat-option *ngFor="let country of filteredCountries" [value]="country">{{ country }}</mat-option>
+                </mat-select>
               </mat-form-field>
-              <small
-              *ngIf="applicationForm.get('buyerCountry').invalid && applicationForm.get('buyerCountry').touched">
-              *Country is required</small>
             </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label>City <span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>City<span class="required">*</span></mat-label>
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerCity" type="text">
               </mat-form-field>
-              <small
-              *ngIf="applicationForm.get('buyerCity').invalid && applicationForm.get('buyerCity').touched">
-              *City required</small>
             </div>
-            <!-- <div style="display: flex;" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <input type="checkbox" style="margin-right: 10px;" formControlName="terms_and_condition">
-              <div>
-                <label style="margin-top: 5px;">I agree to terms & conditions<span class="required">*</span></label>
-              </div>
-            </div> -->
-
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Address</mat-label>
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <input matInput formControlName="buyerAddress" type="text">
+              </mat-form-field>
+              <small *ngIf="applicationForm.get('buyerAddress').invalid && applicationForm.get('buyerAddress').touched">
+                *Applicant's address is required
+              </small>
+            </div>
           </div>
-
-
-
-
-
-          <p style="color: maroon; font-weight: bold;">Multiple importers:</p> 
-          <div *ngFor="let inv of applicationForm.get('importerDetails')['controls']; let i = index"
-            [formGroupName]="i">
-            <label style="color: black;font-weight: bold;">Importer {{i + 2}}</label>
-            <table border="1" class="invTable" >
+          <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
+          <div *ngFor="let importer of applicationForm.get('importerDetails')['controls']; let i = index" [formGroupName]="i">
+            <label style="color: black;font-weight: bold;">Importer {{ i + 2 }}</label>
+            <table border="1" class="invTable">
               <thead>
                 <tr>
-
                   <th>Full Name</th>
                   <th>Email</th>
                   <th>Business Name</th>
                   <th>Country</th>
                   <th>City</th>
-
                 </tr>
               </thead>
               <tbody>
-                <!-- Row 1 -->
-                <tr *ngFor="let row of  [1, ];">
-                  <td><input type="text" formControlName="{{ row.formControlName }}"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-
+                <tr>
+                  <td><input type="text" formControlName="fullName"></td>
+                  <td><input type="text" formControlName="email"></td>
+                  <td><input type="text" formControlName="buyerBusinessName"></td>
+                  <td><input type="text" formControlName="importerCountry"></td>
+                  <td><input type="text" formControlName="importerCity"></td>
                 </tr>
-                <br>
-
               </tbody>
             </table>
           </div>
           <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
             <mat-icon class="col-white">add</mat-icon>
           </button>
-          <br>
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <span style="margin-right: 745px;"></span>
-            <button style="background-color: #ad3b3a;"  mat-button matStepperNext>Next</button>
+            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
           </div>
-
-
         </mat-step>
+        
         <!-- 4.Additional Documents  -->
         <mat-step label="Additional Documents">
 
