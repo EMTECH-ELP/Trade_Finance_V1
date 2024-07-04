@@ -6,6 +6,8 @@ import { Role } from "./core/models/role";
 import { AuthLayoutComponent } from "./layout/app-layout/auth-layout/auth-layout.component";
 import { MainLayoutComponent } from "./layout/app-layout/main-layout/main-layout.component";
 import { MainDashboardComponent } from "./layout/app-layout/main-dashboard/main-dashboard.component";
+import { ModifyInvoiceComponent } from "./invoice-discounting/components/modify-invoice/modify-invoice.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -68,7 +70,7 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
-
+  { path: 'modify/:invoiceNumber', component:ModifyInvoiceComponent },
   { path: "**", component: Page404Component },
 ];
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-
+import { SharedService } from "src/app/invoice-discounting/components/shared.service";
 
 @Component({
   selector: "app-gen-widgets",
@@ -15,8 +15,9 @@ export class GenWidgetsComponent implements OnInit {
 
   all: number = 0;
 
+  totalCreatedInvoices: number = 0;
 
-  constructor(private router: Router,) {}
+  constructor(private router: Router, private sharedService: SharedService,) {}
 
   ngOnInit(): void {
     this.getSuppliers();
@@ -25,6 +26,9 @@ export class GenWidgetsComponent implements OnInit {
     this.getAllUsers();
   }
 
+  updateInvoiceCounts(counts: { total: number, pending: number, approved: number, rejected: number, funded: number, repaid: number }) {
+    this.totalCreatedInvoices = counts.total;
+  }
   suppliers() {
     this.router.navigateByUrl('/admin/supplier/suppliers-management/all');
 

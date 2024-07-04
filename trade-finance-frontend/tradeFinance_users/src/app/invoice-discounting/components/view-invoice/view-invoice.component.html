@@ -5,12 +5,24 @@
       </app-breadcrumb>
     </div>
 
+    <!-- <div class="row" style="margin: 0;">
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">All Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{ totalCreatedInvoices }}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
+      
+    </div> -->
     <div class="row" style="margin: 0;">
       <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
         <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
           <div class="info-box7-block">
             <h4 class="m-b-0">All Invoices</h4>
-            <h2 class="text-end"><span class="float-start">{{all}}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <h2 class="text-end"><span class="float-start">{{ totalCreatedInvoices }}</span><i class="fab fa-buromobelexperte"></i></h2>
             <a href="" class="m-b-0" style="color:white">Click for more details!</a>
           </div>
         </div>
@@ -66,6 +78,8 @@
         </div>
       </div>
     </div>
+
+
 
 
     <div class="row">
@@ -181,11 +195,10 @@
                   
                  
 
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); OpenModifyComponent(row)"
-                      class="tbl-action-btn">
-                      <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit"
-                        [class]="'tbl-fav-edit'"></app-feather-icons>
-                    </button>
+                  <button mat-icon-button color="accent" (click)="$event.stopPropagation(); openModifyComponent(row)" class="tbl-action-btn">
+                    <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit" [class]="'tbl-fav-edit'"></app-feather-icons>
+                  </button>
+                  
 
 
                     <!-- More Options. Funding & Transfer -->
@@ -199,7 +212,7 @@
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openTransferDialog()" class="tbl-action-btn">Funding
                         Details</button>
-                        <button mat-menu-item (click)="option2()">Transfer Options</button>
+                        <!-- <button mat-menu-item (click)="option2()">Transfer Options</button> -->
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openRepaymentDialog()" class="tbl-action-btn">Repayment
                         details</button>
