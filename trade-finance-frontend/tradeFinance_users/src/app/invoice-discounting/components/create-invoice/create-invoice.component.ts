@@ -95,8 +95,8 @@ private countrySubscription: Subscription;
       countryName: ['', Validators.required],
       buyerAddress: ['', Validators.required],
       buyerEmailAddress: ['', [Validators.required, Validators.email]],
+      // additionalInvoices: this.builder.array([]), 
     
-
       //  Funding details
       // fundingAmount: ['', Validators.required],
       // disbursalDate: ['', Validators.required],
@@ -116,17 +116,18 @@ private countrySubscription: Subscription;
            files: new FormControl(''),
         })
     ]),
-     importerDetails: new FormArray ([
-        new FormGroup({
-           fullName: new FormControl(''),
-           email: new FormControl(''),
-           buyerBusinessName: new FormControl(''),
-           importerCountry: new FormControl(''),
-           importerCity: new FormControl(''),
-        })
-    ]),
-  })
-   }
+    importerDetails: new FormArray ([
+      new FormGroup({
+         fullName: new FormControl(''),
+         email: new FormControl(''),
+         buyerBusinessName: new FormControl(''),
+         importerCountry: new FormControl(''),
+         importerCity: new FormControl(''),
+      })
+  ]),
+})
+}
+
 
   ngOnInit(): void {
     this.invDiscountingService.getCountries().pipe(

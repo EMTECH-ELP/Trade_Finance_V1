@@ -1,4 +1,4 @@
-import { Component,  OnInit, ViewChild } from '@angular/core';
+import { Component,  EventEmitter,  OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,7 +9,7 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
 import { CreatedformComponent } from '../createdform/createdform.component';
-
+import { SharedService } from '../shared.service';
 import { TransferFundsComponent } from '../transfer-funds/transfer-funds.component';
 import { Subject, Subscription, takeUntil, throwError } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
@@ -35,7 +35,8 @@ import { DeleteInvoiceComponent } from '../delete-invoice/delete-invoice.compone
 })
 
 export class ViewInvoiceComponent implements OnInit {
- 
+  @Output() invoiceCounts = new EventEmitter<{ total: number, pending: number, approved: number, rejected: number, funded: number, repaid: number }>();
+
   // private subscriptions: Subscription = new Subscription();
   rows: any[]; // Define invoices array to hold the invoice objects
   InvoiceDiscounting: any;
@@ -52,7 +53,7 @@ export class ViewInvoiceComponent implements OnInit {
   rowData: any;
   // data = [];
 
-  all: number = 0;
+  totalCreatedInvoices: number = 0;
   pendingCount: number = 0;
   approvedCount: number = 0;
   fundedCount: number = 0;
@@ -75,7 +76,7 @@ export class ViewInvoiceComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-
+  // totalCreatedInvoices: number = 0;
   isLoading = true;
   products: any;
   invForms: any;
@@ -92,6 +93,7 @@ export class ViewInvoiceComponent implements OnInit {
   constructor(public dialog: MatDialog,
     private router: Router,
     private http: HttpClient, 
+    private sharedService: SharedService,
     private invDiscountingService: InvDiscountingService,
     private snackbar: SnackbarService) { }
 
@@ -99,7 +101,9 @@ export class ViewInvoiceComponent implements OnInit {
   ngOnInit(): void {
     // Set isLoading to true when fetching starts
     this.getAllForms();
-  
+    this.sharedService.invoiceCount$.subscribe((count) => {
+      this.totalCreatedInvoices = count;
+    });
  
   }
 
@@ -120,7 +124,6 @@ export class ViewInvoiceComponent implements OnInit {
   }
 
   public refresh() {
-  
     this.getAllForms();
   }
 
@@ -150,7 +153,7 @@ export class ViewInvoiceComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
 
             // Total count of all invoices
-            this.all = extractedData.length;
+            this.totalCreatedInvoices = extractedData.length;
 
      //   Calculate counts based on status
      this.pendingCount = extractedData.filter(row => row.status === 'PENDING').length;
@@ -159,9 +162,15 @@ export class ViewInvoiceComponent implements OnInit {
      this.fundedCount = extractedData.filter(row => row.status === 'FUNDED').length;
      this.repaidCount = extractedData.filter(row => row.status === 'REPAID').length;
      
-
-
-
+     this.invoiceCounts.emit({
+      total: this.totalCreatedInvoices,
+      pending: this.pendingCount,
+      approved: this.approvedCount,
+      rejected: this.rejectedCount,
+      funded: this.fundedCount,
+      repaid: this.repaidCount
+    });
+    this.sharedService.setInvoiceCount(this.totalCreatedInvoices);
       },
       error: (err) => {
         console.error('Error fetching invoice forms:', err);
@@ -172,8 +181,9 @@ export class ViewInvoiceComponent implements OnInit {
 
     // this.subscriptions.add(sub);
   }
-  OpenModifyComponent(row){
-    this.router.navigate(["invoice-discounting/modify-invoice"])
+  openModifyComponent(row: any): void {
+    const invoiceNumber = row.invoiceNumber; // Adjust this based on your row data structure
+    this.router.navigate(['/modify', invoiceNumber]);
   }
  public  openTransferDialog(): void {
     const dialogRef = this.dialog.open(TransferFundsComponent, {

@@ -18,8 +18,8 @@ export class InvDiscountingService {
   applicationForm: any;
   selectedCountry:any;
   // private invoiceforms: form[] = [];
-  // private countrieslistUrl = 'http://192.168.88.91:8187/api/v1/Country/all'; 
-  // private getCountryByNameUrl = 'http://192.168.88.91:8187/api/v1/Country/getByName';
+  private countrieslistUrl = 'http://192.168.88.179:8187/api/v1/Country/all'; 
+  private getCountryByNameUrl = 'http://192.168.88.179:8187/api/v1/Country/getByName';
   // private invUrl = 'http://192.168.89.160:8085';
   private invUrl = environment.invUrl;
   private baseUrl = environment.invUrl;
@@ -50,22 +50,20 @@ export class InvDiscountingService {
     );
   }
 //applicant/nationalId/{nationalId}
-  getCountries(): Observable<string[]> {
-    const url = `${environment.invUrl}/api/v1/Country/all`;  
-    return this.http.get<string[]>(environment.getCountry_CityUrl).pipe(
-      catchError((error: any) => {
-        console.log('Error fetching countries:', error);
-        // Return an empty array or a default value as needed
-        return of([]);
-      })
-    );
-  }
-  
+getCountries(): Observable<string[]> {
+  return this.http.get<string[]>(this.countrieslistUrl).pipe(
+    catchError((error: any) => {
+      console.log('Error fetching countries:', error);
+      // Return an empty array or a default value as needed
+      return of([]);
+    })
+  );
+}
 
- getCitiesByCountry(countryName: string): Observable<any[]> {
-  const url = `${environment.invUrl}/api/v1/Country/getByName'`;  
-    return this.http.get<any[]>(`${environment.getCountry_CityUrl}/${countryName}`);
-  }
+
+getCitiesByCountry(countryName: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.getCountryByNameUrl}/${countryName}`);
+}
   
   getDataBasedOnDiscountRate(discountRate: number): Observable<any> {
     const url = `${environment.invUrl}/api/fundings/${discountRate}`;
