@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, OnDestroy} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
@@ -17,7 +17,7 @@ interface CityResponse {
   templateUrl: './create-invoice.component.html',
   styleUrls: ['./create-invoice.component.sass']
 })
-export class CreateInvoiceComponent implements OnInit, OnDestroy {
+export class CreateInvoiceComponent implements OnInit{
   @ViewChild('countrySelect') countrySelect!: ElementRef;
   // @ViewChild('citySelect') citySelect!: ElementRef;
   nationalId: number;
@@ -65,7 +65,6 @@ private countrySubscription: Subscription;
   ) { 
     this.applicationForm = this.builder.group({
       countryFilter: [''],
-      cityFilter: [''],
       accountNumber: ['', Validators.required],
       cifId: ['', Validators.required],
       nationalId: ['', Validators.required],

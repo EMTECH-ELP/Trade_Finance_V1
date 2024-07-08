@@ -18,8 +18,11 @@ export class InvDiscountingService {
   applicationForm: any;
   selectedCountry:any;
   // private invoiceforms: form[] = [];
-  private countrieslistUrl = 'http://192.168.88.179:8187/api/v1/Country/all'; 
-  private getCountryByNameUrl = 'http://192.168.88.179:8187/api/v1/Country/getByName';
+  
+  private countrieslistUrl = `${environment.getCountry_CityUrl}/api/v1/Country/all`;
+  private getCountryByNameUrl = `${environment.getCountry_CityUrl}/api/v1/Country/getByName`;
+  // private countrieslistUrl = 'http://192.168.88.33:8187/api/v1/Country/all'; 
+  // private getCountryByNameUrl = 'http://192.168.88.33:8187/api/v1/Country/getByName';
   // private invUrl = 'http://192.168.89.160:8085';
   private invUrl = environment.invUrl;
   private baseUrl = environment.invUrl;
@@ -60,9 +63,15 @@ getCountries(): Observable<string[]> {
   );
 }
 
-
-getCitiesByCountry(countryName: string): Observable<any[]> {
-  return this.http.get<any[]>(`${this.getCountryByNameUrl}/${countryName}`);
+getCitiesByCountry(countryName: string): Observable<string[]> {
+  const url = `${this.getCountryByNameUrl}/${countryName}`;
+  return this.http.get<any[]>(url).pipe(
+    catchError((error: any) => {
+      console.log('Error fetching cities:', error);
+      // Return an empty array or handle the error in another way
+      return of([]);
+    })
+  );
 }
   
   getDataBasedOnDiscountRate(discountRate: number): Observable<any> {

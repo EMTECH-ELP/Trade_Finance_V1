@@ -180,12 +180,15 @@
                   <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
                   <mat-cell *matCellDef="let row; let i=index;" (click)="onSelect(row)">
 
-                    <button mat-icon-button color="accent"
-                      class="tbl-action-btn"  >
-                      <app-feather-icons aria-label="View" [icon]="'eye'"  (click)="openDialogById(row.accountNumber)" matTooltip="View"
-                        [class]="'tbl-fav-edit'"></app-feather-icons>
+                    <!-- <button mat-icon-button color="accent" class="tbl-action-btn" (click)="openDialogById(row.accountNumber)">
+                      <app-feather-icons aria-label="View" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
-
+                     -->
+                    <!-- Test in View -->
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); openViewComponent(row.accountNumber)" class="tbl-action-btn">
+                      <app-feather-icons aria-label="view" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
+                    </button>
+                    
                     <button mat-icon-button color="accent"
                     (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)"
                     class="tbl-action-btn">

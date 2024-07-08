@@ -185,6 +185,7 @@ export class ViewInvoiceComponent implements OnInit {
     const invoiceNumber = row.invoiceNumber; // Adjust this based on your row data structure
     this.router.navigate(['/modify', invoiceNumber]);
   }
+ 
  public  openTransferDialog(): void {
     const dialogRef = this.dialog.open(TransferFundsComponent, {
       width: '600px',
@@ -211,26 +212,20 @@ export class ViewInvoiceComponent implements OnInit {
       // Handle dialog close if needed
     });
   }
-  openDialogById(accountNumber: any): void {
+  openViewComponent(accountNumber: string): void {
     this.invDiscountingService.getDataById(accountNumber).subscribe(
       (data) => {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.data = data;
-        dialogConfig.width = '1000px';
-        dialogConfig.height = '750px';
-  
-        const dialogRef = this.dialog.open(CreatedformComponent, dialogConfig);
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed', result);
-        });
+        // Assuming 'data' contains the necessary information for the component
+        // Navigate to the component with the account number as a route parameter
+        this.router.navigate(['/view', accountNumber]);
       },
       (error) => {
         console.error('Error fetching data by ID:', error);
-        // Display a user-friendly error message
         alert('Failed to fetch data. Please try again later.');
       }
     );
   }
+  
   
 
  openDeleteConfirmationDialog(row:any){

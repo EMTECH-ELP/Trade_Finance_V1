@@ -8,6 +8,8 @@ import { MainLayoutComponent } from "./layout/app-layout/main-layout/main-layout
 import { MainDashboardComponent } from "./layout/app-layout/main-dashboard/main-dashboard.component";
 import { ModifyInvoiceComponent } from "./invoice-discounting/components/modify-invoice/modify-invoice.component";
 
+import { CreatedformComponent } from "./invoice-discounting/components/createdform/createdform.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -47,7 +49,10 @@ const routes: Routes = [
         path: "invoice-discounting",
         loadChildren: () =>
           import("./invoice-discounting/invoice-discounting.module").then((m) => m.InvoiceDiscountingModule),
+          
       },
+      { path: "view/:accountNumber", component: CreatedformComponent },
+      { path: "modify/:invoiceNumber", component: ModifyInvoiceComponent },
       {
         path: "documentary-collection",
         loadChildren: () =>
@@ -70,6 +75,7 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  { path: 'view/:accountNumber', component:CreatedformComponent },
   { path: 'modify/:invoiceNumber', component:ModifyInvoiceComponent },
   { path: "**", component: Page404Component },
 ];
