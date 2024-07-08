@@ -12,8 +12,9 @@ import { ModifyInvoiceComponent } from './components/modify-invoice/modify-invoi
 const routes: Routes = [
   {path:"viewInvoice",component:ViewInvoiceComponent},
   {path:"createInvoice",component:CreateInvoiceComponent},
+  { path: 'view/:accountNumber', component: CreatedformComponent},
   { path: 'modify/:invoiceNumber', component: ModifyInvoiceComponent},
-  {path: "createdform",component:CreatedformComponent},
+  // {path: "createdform",component:CreatedformComponent},
  
 
 
