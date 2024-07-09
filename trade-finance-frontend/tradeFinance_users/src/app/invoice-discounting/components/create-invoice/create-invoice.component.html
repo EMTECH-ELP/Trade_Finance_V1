@@ -377,28 +377,35 @@
             </div>
           </div>
           <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
-          <div *ngFor="let importer of applicationForm.get('importerDetails')['controls']; let i = index" [formGroupName]="i">
+          <div *ngFor="let importer of applicationForm.get('importerDetails')['controls']; let i = index" [formGroupName]="i" trackBy="trackByFn">
+
             <label style="color: black;font-weight: bold;">Importer {{ i + 2 }}</label>
-            <table border="1" class="invTable">
+            <table border="1" class="invTable" style="width: 100%;">
               <thead>
-                <tr>
+                <tr *ngFor="let row of [1, ]; let i = index">
                   <th>Full Name</th>
                   <th>Email</th>
-                  <th>Business Name</th>
+                  <th>Company Name</th>
                   <th>Country</th>
                   <th>City</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="text" formControlName="fullName"></td>
-                  <td><input type="text" formControlName="email"></td>
-                  <td><input type="text" formControlName="buyerBusinessName"></td>
-                  <td><input type="text" formControlName="importerCountry"></td>
-                  <td><input type="text" formControlName="importerCity"></td>
+                <!-- Row 1 -->
+                <tr *ngFor="let row of  [1, ];">
+                  <td><input type="text" formControlName="{{ row.formControlName }}"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                
+              
                 </tr>
               </tbody>
+             
             </table>
+
+          
           </div>
           <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
             <mat-icon class="col-white">add</mat-icon>
