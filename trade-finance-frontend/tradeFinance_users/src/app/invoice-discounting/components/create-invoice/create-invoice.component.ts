@@ -132,7 +132,9 @@ private countrySubscription: Subscription;
 
   ngOnInit(): void {
    this.fetchCountries();
+  
 }
+
 fetchCountries(): void {
 this.invDiscountingService.getCountries().pipe(
   takeUntil(this.destroy$)
