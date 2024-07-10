@@ -33,7 +33,7 @@ billApiUrl: 'http://192.168.88.101:8085',
 // invoice discounting
 
  invUrl: 'http://192.168.89.121:8085' ,     //fETCH &  post invoice discounting forms. Createform url
- getCountry_CityUrl: 'http://192.168.88.33:8187',  //Dropdowncountries
+ getCountry_CityUrl: 'http://192.168.88.88:8187',  //Dropdowncountries
 
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
  uploadUrl: '',                             //Upload Documents

@@ -8,6 +8,7 @@ import{ Router } from '@angular/router';
 import {  map, startWith } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Subject, takeUntil } from "rxjs";
+import { ChangeDetectionStrategy } from '@angular/core';
 
 interface CityResponse {
   cities: string[]; // Adjust the type according to the actual structure of your data
@@ -15,7 +16,8 @@ interface CityResponse {
 @Component({
   selector: 'create-invoice',
   templateUrl: './create-invoice.component.html',
-  styleUrls: ['./create-invoice.component.sass']
+  styleUrls: ['./create-invoice.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateInvoiceComponent implements OnInit{
   @ViewChild('countrySelect') countrySelect!: ElementRef;
@@ -129,34 +131,34 @@ private countrySubscription: Subscription;
 
 
   ngOnInit(): void {
-    this.invDiscountingService.getCountries().pipe(
-      takeUntil(this.destroy$)
-      ).subscribe(
-      (response: any) => {
-        if (response.message === 'success' && Array.isArray(response.data)) {
-          this.countries = response.data.map((country: any) => country.countryName);
-          this.filteredCountries = this.countries;
-        }
-        console.log('Response from getCountries:', response);
-      },
-      (error: any) => console.log('Error fetching countries', error)
-    );
-    
-    this.applicationForm.get('countryFilter')!.valueChanges
-     .pipe(
-        startWith(''),
-        map(value => this.filterCountries(value))
-      )
-     .subscribe(filtered => {
-        this.filteredCountries = filtered;
-      });
-    
-}
-ngOnDestroy(): void {
-  this.destroy$.next(true);
-  this.destroy$.complete();
+   this.fetchCountries();
+  
 }
 
+fetchCountries(): void {
+this.invDiscountingService.getCountries().pipe(
+  takeUntil(this.destroy$)
+  ).subscribe(
+  (response: any) => {
+    if (response.message === 'success' && Array.isArray(response.data)) {
+      this.countries = response.data.map((country: any) => country.countryName);
+      this.filteredCountries = this.countries;
+    }
+    console.log('Response from getCountries:', response);
+  },
+  (error: any) => console.log('Error fetching countries', error)
+);
+
+this.applicationForm.get('countryFilter')!.valueChanges
+ .pipe(
+    startWith(''),
+    map(value => this.filterCountries(value))
+  )
+ .subscribe(filtered => {
+    this.filteredCountries = filtered;
+  });
+
+}
 getCitiesByCountry(countryName: string): void {
   this.invDiscountingService.getCitiesByCountry(countryName).subscribe(
     (cities: string[]) => {

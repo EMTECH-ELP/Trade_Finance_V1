@@ -376,33 +376,7 @@
               </small>
             </div>
           </div>
-          <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
-          <div *ngFor="let importer of applicationForm.get('importerDetails')['controls']; let i = index" [formGroupName]="i">
-            <label style="color: black;font-weight: bold;">Importer {{ i + 2 }}</label>
-            <table border="1" class="invTable">
-              <thead>
-                <tr>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Business Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" formControlName="fullName"></td>
-                  <td><input type="text" formControlName="email"></td>
-                  <td><input type="text" formControlName="buyerBusinessName"></td>
-                  <td><input type="text" formControlName="importerCountry"></td>
-                  <td><input type="text" formControlName="importerCity"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
-            <mat-icon class="col-white">add</mat-icon>
-          </button>
+      
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <span style="margin-right: 745px;"></span>
