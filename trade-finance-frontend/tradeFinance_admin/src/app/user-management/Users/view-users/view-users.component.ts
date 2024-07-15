@@ -14,7 +14,7 @@ import { MatSort } from '@angular/material/sort';
 export class ViewUsersComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'name', 'employeeId', 'email', 'branchName', 'branchCode','status'];
+  displayedColumns: string[] = ['no', 'name', 'employeeId', 'email', 'branchName', 'branchCode','roles', 'status',  'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isLoading = true;
