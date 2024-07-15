@@ -5,14 +5,7 @@ import {
   HttpHeaders,
   HttpParams,
 } from "@angular/common/http";
-import {
-  BehaviorSubject,
-  catchError,
-  map,
-  Observable,
-  of,
-  throwError,
-} from "rxjs";
+import { BehaviorSubject, catchError, map, Observable, of, throwError } from "rxjs";
 
 import { Auth } from "../models/auth";
 import { environment } from "src/environments/environment.prod";
@@ -28,135 +21,97 @@ const httpOptions = {
 @Injectable({
   providedIn: "root",
 })
-// /auth/signin
 export class AuthService {
-
-
-  private userUrl = environment.userUrl;
+  private userurl = environment.userUrl;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  constructor(private http: HttpClient, private router: Router, private mockDataService: MockSessionService) {}
+
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private mockDataService: MockSessionService
+  ) {}
 
   headers = new HttpHeaders().set("Content-Type", "application/json");
 
-  // login(): Observable<any> {
-  //   return this.mockDataService.getSessionData().pipe(
-  //     map((sessionData: any) => {
-  //       // Use the session data in your authentication logic
-  //       const mockedResponse = {
-  //         body: {
-  //           statusCode: 200,
-  //           entity: sessionData.entity, // Assuming 'entity' is the key in your session data
-  //           message: sessionData.message || 'Mocked authentication successful'
-  //         }
-  //       };
-
-  //       return mockedResponse;
-  //     }),
-  //     catchError((error: any) => {
-  //       // Handle error loading session data (e.g., file not found)
-  //       console.error('Error loading session data:', error);
-  //       return of({
-  //         body: {
-  //           statusCode: 500, // Adjust the status code as needed
-  //           message: 'Error loading session data'
-  //         }
-  //       });
-  //     })
-  //   );
-  // }
-  
   login(data: any): Observable<any> {
     let CREATE_URL = `${environment.baseUrlAdmin}/api/v1/auth/login`;
-    return this.http
-      .post(CREATE_URL, data, {
-        observe: "response",
-        headers: this.headers,
-        withCredentials: true,
-      })
-      .pipe(
-        map((res) => {
-          console.log("service login", res)
-          return res || {};
-        })
-      );
+    return this.http.post(CREATE_URL, data, {
+      observe: "response",
+      headers: this.headers,
+      withCredentials: true,
+    }).pipe(
+      map((res) => {
+        console.log("service login", res);
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
   }
 
   validateOTP(data: any): Observable<any> {
     const OTP_URL = `${environment.baseUrlAdmin}/api/v1/auth/validateOtp`;
-
     return this.http.post<any>(OTP_URL, data, {
       observe: "response",
       headers: this.headers,
       withCredentials: true,
-    })
-    .pipe(
+    }).pipe(
       map((res) => {
-        console.log("otp service", res)
+        console.log("otp service", res);
         return res || {};
-      }));
+      }),
+      catchError(this.errorMgmt)
+    );
   }
 
   resetPassword(resetPasswordDetails): Observable<{ message: string }> {
     const resetPasswordUrl = `${environment.baseUrlAdmin}/auth/resetPassword`;
-
-    return this.http.post<{ message: string }>(
-      resetPasswordUrl,
-      resetPasswordDetails
-    );
+    return this.http.post<{ message: string }>(resetPasswordUrl, resetPasswordDetails)
+      .pipe(catchError(this.errorMgmt));
   }
 
   forgotPassword(email): Observable<any> {
     const resetPasswordUrl = `${environment.baseUrlAdmin}/soa/users/forgot-password`;
-
-    return this.http.post<any>(resetPasswordUrl, email);
+    return this.http.post<any>(resetPasswordUrl, email)
+      .pipe(catchError(this.errorMgmt));
   }
 
-
   refreshAccessToken(refreshToken: string): Observable<any> {
-    // Endpoint URL for refreshing the access token
     const REFRESH_URL = `${environment.baseUrlAdmin}/api/v1/auth/refreshtoken`;
-
-    console.log("Checking for: ", refreshToken)
-
-    let refreshTokenReq ={refreshToken: refreshToken} 
-
-    return this.http.post<any>(REFRESH_URL, refreshTokenReq);
+    let refreshTokenReq = { refreshToken: refreshToken };
+    return this.http.post<any>(REFRESH_URL, refreshTokenReq)
+      .pipe(catchError(this.errorMgmt));
   }
 
   logout(refreshToken: string): Observable<any> {
     const LOGOUT_URL = `${environment.baseUrlAdmin}/api/v1/auth/logout`;
-
-    // Define request parameters including the refresh token
     const requestParams = new HttpParams().set('refreshToken', refreshToken);
-
-    // Make the PUT request to log out using the refresh token
-    return this.http.put<any>(LOGOUT_URL, {}, {params: requestParams });
+    return this.http.put<any>(LOGOUT_URL, {}, { params: requestParams })
+      .pipe(catchError(this.errorMgmt));
   }
 
+  addNewUser(user: any): Observable<any> {
+    return this.http.post<any>(`${environment.userUrl}/auth/admin/addNewUser`, user, this.httpOptions)
+      .pipe(catchError(this.errorMgmt));
+  }
 
-addNewUser(user: any): Observable<any> {
-    return this.http.post<any>(`${environment.userUrl}/auth/admin/addNewUser`, user, this.httpOptions);
-}
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`${environment.userUrl}/auth/admin/getAllUsers`)
+      .pipe(catchError(this.errorMgmt));
+  }
 
-getAllUsers(): Observable<any> {
-  return this.http.get<any>(`${environment.userUrl}/auth/admin/getAllUsers`);
-}
-
-
-
-
-  // Error handling
+  // Improved error handling
   errorMgmt(error: HttpErrorResponse) {
-    let errorMessage = "";
+    let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
+      // Client-side error
       errorMessage = error.error.message;
     } else {
-      // Get server-side error
-      errorMessage = `${error.error.message}`;
+      // Server-side error
+      errorMessage = error.message || error.statusText || 'Server error';
     }
+    console.error('Error:', errorMessage);
     return throwError(errorMessage);
   }
 }
