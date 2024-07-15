@@ -1,4 +1,4 @@
-import { Component,  OnInit, ViewChild } from '@angular/core';
+import { Component,  EventEmitter,  OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,11 +9,13 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { RepaymentdetailsComponent } from '../repaymentdetails/repaymentdetails.component';
 import { CreatedformComponent } from '../createdform/createdform.component';
-
+import { SharedService } from '../shared.service';
 import { TransferFundsComponent } from '../transfer-funds/transfer-funds.component';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil, throwError } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { DeleteInvoiceComponent } from '../delete-invoice/delete-invoice.component';
 // import { InvoiceDiscountingModule } from '../../invoice-discounting.module';
 
 
@@ -33,11 +35,12 @@ import { environment } from 'src/environments/environment';
 })
 
 export class ViewInvoiceComponent implements OnInit {
+  @Output() invoiceCounts = new EventEmitter<{ total: number, pending: number, approved: number, rejected: number, funded: number, repaid: number }>();
 
   // private subscriptions: Subscription = new Subscription();
   rows: any[]; // Define invoices array to hold the invoice objects
   InvoiceDiscounting: any;
-  all: number = 8;
+
   pending: number = 0;
   approved: number = 0;
   rejected: number = 0;
@@ -47,23 +50,33 @@ export class ViewInvoiceComponent implements OnInit {
   // Defining the pageEvent property
   // pageEvent: PageEvent;
   formData: any;
+  rowData: any;
   // data = [];
 
+  totalCreatedInvoices: number = 0;
+  pendingCount: number = 0;
+  approvedCount: number = 0;
+  fundedCount: number = 0;
+  repaidCount: number = 0;
+  rejectedCount: number = 0;
 
   loggedInUser: { name: string; role: string } = { name: 'User Name', role: 'maker' }; // Replace with actual user data
+  dialogData: any;
+  data: any;
+  onSelect(row: any) {
+    // Your logic here
+    console.log('Selected row:', row);
+  }
 
-
-  totainvoiceFormscreatedInvoices = 17;
-  totalPendingInvoices = 0;
-  totalApprovedInvoices = 0;
   selectedStatus = 'all';
-
+  filteredDataSource = new MatTableDataSource<any>([]);
+  searchTerm: string = '';
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantBusinessName', 'invoiceAmount', 'status', 'actions'];
+  displayedColumns: string[] = ['no', 'invoiceNumber', 'applicantBusinessName', 'accountNumber' ,'invoiceAmount', 'status', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-
+  // totalCreatedInvoices: number = 0;
   isLoading = true;
   products: any;
   invForms: any;
@@ -71,18 +84,6 @@ export class ViewInvoiceComponent implements OnInit {
   row: any;
 
 
-  mockData = [
-    { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', invoiceAmount: 5000, status: 'Pending', actions: 'Actions' },
-    { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
-    { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
-    { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', invoiceAmount: 7500, status: 'Pending', actions: 'Actions' },
-    { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', invoiceAmount: 12500, status: 'Approved', actions: 'Actions' },
-    { no: 1, invoiceNumber: 'INV-001', applicantBusinessName: 'Doe Enterprises', invoiceAmount: 5000, status: 'Pending', actions: 'Actions' },
-    { no: 2, invoiceNumber: 'INV-002', applicantBusinessName: 'Smith Ltd.', invoiceAmount: 15000, status: 'Approved', actions: 'Actions' },
-    { no: 3, invoiceNumber: 'INV-003', applicantBusinessName: 'ACME Corp.', invoiceAmount: 2500, status: 'Rejected', actions: 'Actions' },
-    { no: 4, invoiceNumber: 'INV-004', applicantBusinessName: 'Global Inc.', invoiceAmount: 7500, status: 'Pending', actions: 'Actions' },
-    { no: 5, invoiceNumber: 'INV-005', applicantBusinessName: 'Tech Solutions', invoiceAmount: 12500, status: 'Approved', actions: 'Actions' }
-  ];
   invoiceData: any;
   
   // destroy$: any;
@@ -91,6 +92,8 @@ export class ViewInvoiceComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private router: Router,
+    private http: HttpClient, 
+    private sharedService: SharedService,
     private invDiscountingService: InvDiscountingService,
     private snackbar: SnackbarService) { }
 
@@ -98,34 +101,21 @@ export class ViewInvoiceComponent implements OnInit {
   ngOnInit(): void {
     // Set isLoading to true when fetching starts
     this.getAllForms();
-    // console.log('ViewInvoiceComponent initialized');
-    // this.initializeMockData(); // Add this line to initialize mock data
+    this.sharedService.invoiceCount$.subscribe((count) => {
+      this.totalCreatedInvoices = count;
+    });
+ 
   }
 
 
-
-  // }
-  initializeMockData(): void {
-    this.dataSource = new MatTableDataSource(this.mockData);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    // this.isLoading = false; // Set loading to false as we are using static data
-  }
-  // ngOnDestroy(): void {
-    
-  //   this.subscriptions.unsubscribe();
-  //   this.destroy$.next();
-  //   this.destroy$.complete();
-  // }
-
-
-
-  public applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+  
 
 
   public add() {
@@ -134,8 +124,7 @@ export class ViewInvoiceComponent implements OnInit {
   }
 
   public refresh() {
-    // this.mockData
-    // this.getAllForms();
+    this.getAllForms();
   }
 
    public getAllForms(): void {
@@ -150,6 +139,7 @@ export class ViewInvoiceComponent implements OnInit {
               no: index * 100 + invoiceIndex + 1, // Unique numbering for each invoice
               invoiceNumber: invoice.invoiceNumber,
               applicantBusinessName: invoice.applicantBusinessName,
+              accountNumber: applicationForm.accountNumber,
               invoiceAmount: invoice.invoiceAmount,
               status: invoice.status,
               actions: 'Actions', // Replace this with actual actions logic
@@ -162,7 +152,25 @@ export class ViewInvoiceComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
 
+            // Total count of all invoices
+            this.totalCreatedInvoices = extractedData.length;
 
+     //   Calculate counts based on status
+     this.pendingCount = extractedData.filter(row => row.status === 'PENDING').length;
+     this.approvedCount = extractedData.filter(row => row.status === 'APPROVED').length;
+     this.rejectedCount = extractedData.filter(row => row.status === 'REJECTED').length;
+     this.fundedCount = extractedData.filter(row => row.status === 'FUNDED').length;
+     this.repaidCount = extractedData.filter(row => row.status === 'REPAID').length;
+     
+     this.invoiceCounts.emit({
+      total: this.totalCreatedInvoices,
+      pending: this.pendingCount,
+      approved: this.approvedCount,
+      rejected: this.rejectedCount,
+      funded: this.fundedCount,
+      repaid: this.repaidCount
+    });
+    this.sharedService.setInvoiceCount(this.totalCreatedInvoices);
       },
       error: (err) => {
         console.error('Error fetching invoice forms:', err);
@@ -173,7 +181,11 @@ export class ViewInvoiceComponent implements OnInit {
 
     // this.subscriptions.add(sub);
   }
-
+  openModifyComponent(row: any): void {
+    const invoiceNumber = row.invoiceNumber; // Adjust this based on your row data structure
+    this.router.navigate(['/modify', invoiceNumber]);
+  }
+ 
  public  openTransferDialog(): void {
     const dialogRef = this.dialog.open(TransferFundsComponent, {
       width: '600px',
@@ -200,43 +212,36 @@ export class ViewInvoiceComponent implements OnInit {
       // Handle dialog close if needed
     });
   }
-
-  handleButtonClick(event: Event, row: any): void {
-    event.stopPropagation();
-    console.log('Button clicked, row data:', row);
-    this.getInvoiceDataById(row.no);  // Assuming `no` is the ID you use to fetch the invoice data
-  }
-  
-  
-  getInvoiceDataById(id: number): void {
-    const url = `${environment.invUrl}/applicant/${id}`;
-    console.log("Request URL:", url);  // Debugging statement to check URL
-    this.invDiscountingService.getDataById(id).subscribe(
-      response => {
-        console.log("Invoice Data:", response);
-        this.invoiceData = response;
-        this.openFormDialog(this.invoiceData);
+  openViewComponent(accountNumber: string): void {
+    this.invDiscountingService.getDataById(accountNumber).subscribe(
+      (data) => {
+        // Assuming 'data' contains the necessary information for the component
+        // Navigate to the component with the account number as a route parameter
+        this.router.navigate(['/view', accountNumber]);
       },
-      error => {
-        console.error("Error:", error);
+      (error) => {
+        console.error('Error fetching data by ID:', error);
+        alert('Failed to fetch data. Please try again later.');
       }
     );
   }
+  
+  
 
-  
-  openFormDialog(rowData: any): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '1000px';
-    dialogConfig.height = '750px';
-    dialogConfig.data = { rowData: rowData };
-  
-    const dialogRef = this.dialog.open(CreatedformComponent, dialogConfig);
+ openDeleteConfirmationDialog(row:any){
+    const dialogRef = this.dialog.open(DeleteInvoiceComponent, {
+      data: { id: row.id },
+      width: '400px',
     
-  
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+
     });
-  }
-  
- 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        console.log('Invoice deleted');
+      }else{
+        console.log('Deletion Cancelled');
+      
+      }
+    })
+  } 
 }

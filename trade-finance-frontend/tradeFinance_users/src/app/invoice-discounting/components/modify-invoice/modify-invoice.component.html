@@ -1,29 +1,10 @@
-<h1 mat-dialog-title>Modify Form</h1>
-<mat-dialog-content class="container">
-  <form #invoice discounting form="ngForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <input matInput [(ngModel)]="firstName" invoiceNumber="invoiceNumber" placeholder="Enter Invoice Number" class="bold-placeholder" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [(ngModel)]="lastName" name="lastName" placeholder="lastName" class="bold-placeholder" required>
-    </mat-form-field>
-    <!-- <mat-form-field>
-      <input matInput [(ngModel)]="email" name="email" placeholder="email" >
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [(ngModel)]="phoneNo" name="phoneNo" placeholder="phoneNo">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput name="username" placeholder="username">
-    </mat-form-field>     -->
-      
-    <!-- <mat-form-field>
-      <input matInput [(ngModel)]="role" name="role" placeholder="role">
-    </mat-form-field> -->
-    <mat-dialog-actions>
-      <button mat-button type="button" class="cancel-button" mat-dialog-close>Cancel</button>
-      <button mat-button type="submit" class="submit-button">Save</button>
-    </mat-dialog-actions>
-  </form>
-</mat-dialog-content>
-
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+   
+      <app-breadcrumb [title]="'Invoice Discounting'" [items]="['Home']" [active_item]="'Modify Invoice'">
+      </app-breadcrumb>
+<P>Modify works</P>
+</div>
+</div>
+</section>

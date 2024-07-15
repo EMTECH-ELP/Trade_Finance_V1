@@ -57,4 +57,13 @@ export class PortsComponent implements OnInit {
     // Handle row selection
     console.log('Selected row:', row);
   }
+
+
+  addPort(){
+    //add port navigation logic here
+  }
+
+  masterView(){
+    this.router.navigate(['/system/masterdata'])
+  }
 }

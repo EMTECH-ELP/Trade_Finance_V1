@@ -6,9 +6,22 @@
     <form [formGroup]="fundingForm" (ngSubmit)="saveForm()">
       <div class="row">
         <div class="col-sm-6">
-          <mat-label>Discount Rate <span class="required">*</span></mat-label>
+          <mat-label>Discount Rate in % <span class="required">*</span></mat-label>
           <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
             <input matInput formControlName="discountRate" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Invoice Number <span class="required">*</span></mat-label>
+          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="invoiceNumber" >
+          </mat-form-field>
+        </div>
+     
+        <div class="col-sm-6">
+          <mat-label>Credit Limit <span class="required">*</span></mat-label>
+          <mat-form-field class="full-width" style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <input matInput formControlName="creditLimit" type="number">
           </mat-form-field>
         </div>
         <div class="col-sm-6">
@@ -17,32 +30,36 @@
             <input matInput formControlName="fundingAmount" type="number">
           </mat-form-field>
         </div>
-        <div class="col-sm-6">
-          <mat-label>Credit Limit <span class="required">*</span></mat-label>
-          <mat-form-field class="full-width" style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-            <input matInput formControlName="creditLimit" type="number">
-          </mat-form-field>
-        </div>
+       
+      </div>
+      <div class="row">
         <div class="col-sm-6">
           <mat-label>Credit Account <span class="required">*</span></mat-label>
           <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
             <input matInput formControlName="creditAccount" type="number">
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
-     
         <div class="col-sm-6">
-          <mat-label>Proposed Disbursal Date <span class="required">*</span></mat-label>
-          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-            <input matInput formControlName="disbursalDate" type="date">
+          <mat-form-field style="display:flex; flex-direction:row; white-space:nowrap;" appearance="outline">
+            <mat-label>Proposed Disbursal Date <span class="required">*</span></mat-label>
+            <!-- Set the min attribute to today's date -->
+            <input matInput formControlName="disbursalDate" type="date" [min]="today">
           </mat-form-field>
         </div>
         <div class="col-sm-6">
-          <mat-label>Re-Payment Date <span class="required">*</span></mat-label>
-          <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-            <input matInput formControlName="repaymentDate" type="date">
+          <mat-form-field style="display:flex; flex-direction:row; white-space:nowrap;" appearance="outline">
+            <mat-label> Due Date <span class="required">*</span></mat-label>
+            <!-- Set the min attribute to today's date -->
+            <input matInput formControlName="dueDate" type="date" [min]="today">
           </mat-form-field>
+         
+        </div>
+        <div class="col-sm-6">
+          <mat-dialog-actions>
+            <button mat-button class="btn btn-primary" (click)="closeDialog()">Cancel</button>
+            <button mat-button style="background-color: #ad3b3a;" (click)="saveForm()">Save</button>
+          </mat-dialog-actions>
+         
         </div>
       </div>
    
@@ -50,8 +67,5 @@
 
   </mat-dialog-content>
 
-  <mat-dialog-actions>
-    <button mat-button class="btn btn-primary" (click)="closeDialog()">Cancel</button>
-    <button mat-button style="background-color: #ad3b3a;" (click)="saveForm()">Save</button>
-  </mat-dialog-actions>
+ 
 </div>

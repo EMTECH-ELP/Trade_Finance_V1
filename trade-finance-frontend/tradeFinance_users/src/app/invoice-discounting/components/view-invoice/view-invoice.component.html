@@ -5,53 +5,79 @@
       </app-breadcrumb>
     </div>
 
-    <div class="row">
-      <div class="col-lg-3 col-sm-6">
-        <div class="info-box7 bg-kingdom order-info-box7">
+    <!-- <div class="row" style="margin: 0;">
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
           <div class="info-box7-block">
-            <h4 class="m-b-20">Created Invoices</h4>
-            <h2 class="text-end"><span class="float-start">17</span><i class="fab fa-buromobelexperte"></i>
-            </h2>
+            <h4 class="m-b-0">All Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{ totalCreatedInvoices }}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
+      
+    </div> -->
+    <div class="row" style="margin: 0;">
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">All Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{ totalCreatedInvoices }}</span><i class="fab fa-buromobelexperte"></i></h2>
             <a href="" class="m-b-0" style="color:white">Click for more details!</a>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-sm-6">
-        <div class="info-box7 bg-kingdom order-info-box7">
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
           <div class="info-box7-block">
-            <h4 class="m-b-20">Pending Invoices</h4>
-            <h2 class="text-end"><span class="float-start">12</span><i class="fab fa-buromobelexperte"></i></h2>
-            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
-            <h4 class="m-b-20">Approved Invoices</h4>
-            <h2 class="text-end"><span class="float-start">0</span><i class="fab fa-buromobelexperte"></i>
-            </h2>
-
-            <div>
-              <a href="" class="m-b-0" style="color:white">Click for more details!</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="info-box7 bg-kingdom order-info-box7">
-          <div class="info-box7-block">
-            <h4 class="m-b-20">Rejected Invoices</h4>
-            <h2 class="text-end"><span class="float-start">0</span><i class="fab fa-buromobelexperte"></i></h2>
+            <h4 class="m-b-0">Pending Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{pendingCount}}</span><i class="fab fa-buromobelexperte"></i></h2>
             <a href="" class="m-b-0" style="color:white">Click for more details!</a>
           </div>
         </div>
       </div>
 
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">Approved Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{approvedCount}}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">Funded Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{fundedCount}}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">Re-Paid Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{repaidCount}}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-6" style="padding: 0 5px;">
+        <div class="info-box7 bg-kingdom order-info-box7 custom-box" style="height: 150px; width: 100%;">
+          <div class="info-box7-block">
+            <h4 class="m-b-0">Rejected Invoices</h4>
+            <h2 class="text-end"><span class="float-start">{{rejectedCount}}</span><i class="fab fa-buromobelexperte"></i></h2>
+            <a href="" class="m-b-0" style="color:white">Click for more details!</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- #END# Widgets -->
-
 
 
 
@@ -73,10 +99,12 @@
                       </li>
 
                       <li class="dropdown m-l-20">
-                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter
-                          class="browser-default search-field" aria-label="Search box">
+                        <label style="padding-right: 80%;"  for="search-input"><i style="padding-top: 2%;" class="material-icons search-icon">search</i></label>
+                        <input placeholder="Filter..." type="text" (keyup)="applyFilter($event)" #filter class="browser-default search-field" aria-label="Search box">
                       </li>
+                      
+                      
+                      
 
                       <li>
 
@@ -115,28 +143,34 @@
                 </ng-container>
 
                 <ng-container matColumnDef="invoiceNumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-3 tbl-col-width-per-10">Invoice
+                  <mat-header-cell  style="white-space: nowrap;" *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-10">Invoice
                     No.</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-3 tbl-col-width-per-10">
+                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-2 tbl-col-width-per-10">
                     {{ row.invoiceNumber}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="applicantBusinessName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-40">Applicant's
+                  <mat-header-cell  style="white-space: nowrap;" *matHeaderCellDef mat-sort-header class="psl-2 tbl-col-width-per-50">Applicant's
                     Business</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-2 tbl-col-width-per-50">
                     {{ row.applicantBusinessName}}</mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="accountNumber">
+                  <mat-header-cell  style="white-space: nowrap;" *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-40">Account Number</mat-header-cell>
+                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
+                    {{ row.accountNumber}}</mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="invoiceAmount">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-50">Invoice
+                  <mat-header-cell  style="white-space: nowrap; "*matHeaderCellDef mat-sort-header class="psl-4 tbl-col-width-per-30">Invoice
                     Amount</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-50">
+                  <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-30">
                     {{ row.invoiceAmount}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="status">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                  <mat-header-cell *matHeaderCellDef mat-sort-header 
                     class="psl-4 tbl-col-width-per-40">Status</mat-header-cell>
                   <mat-cell *matCellDef="let row" (click)="onSelect(row)" class="psl-4 tbl-col-width-per-40">
                     {{ row.status}}</mat-cell>
@@ -146,24 +180,28 @@
                   <mat-header-cell *matHeaderCellDef class="psl-3 tbl-col-width-per-30">Actions</mat-header-cell>
                   <mat-cell *matCellDef="let row; let i=index;" (click)="onSelect(row)">
 
-                    <button mat-icon-button color="accent" (click)="handleButtonClick($event, row)"
-                      class="tbl-action-btn">
-                      <app-feather-icons aria-label="View" [icon]="'eye'" matTooltip="View"
-                        [class]="'tbl-fav-edit'"></app-feather-icons>
+                    <!-- <button mat-icon-button color="accent" class="tbl-action-btn" (click)="openDialogById(row.accountNumber)">
+                      <app-feather-icons aria-label="View" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button>
-
+                     -->
+                    <!-- Test in View -->
+                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); openViewComponent(row.accountNumber)" class="tbl-action-btn">
+                      <app-feather-icons aria-label="view" [icon]="'eye'" matTooltip="View" [class]="'tbl-fav-edit'"></app-feather-icons>
+                    </button>
+                    
                     <button mat-icon-button color="accent"
-                      (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)" class="tbl-action-btn">
-                      <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete"
-                        [class]="'tbl-fav-delete'"></app-feather-icons>
-                    </button>
+                    (click)="$event.stopPropagation(); openDeleteConfirmationDialog(row)"
+                    class="tbl-action-btn">
+                    <app-feather-icons aria-label="Delete" [icon]="'trash-2'" matTooltip="Delete"
+                      [class]="'tbl-fav-delete'"></app-feather-icons>
+                  </button>
+                  
+                 
 
-
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation(); OpenInvoiceComponent(row)"
-                      class="tbl-action-btn">
-                      <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit"
-                        [class]="'tbl-fav-edit'"></app-feather-icons>
-                    </button>
+                  <button mat-icon-button color="accent" (click)="$event.stopPropagation(); openModifyComponent(row)" class="tbl-action-btn">
+                    <app-feather-icons aria-label="edit" [icon]="'edit'" matTooltip="Edit" [class]="'tbl-fav-edit'"></app-feather-icons>
+                  </button>
+                  
 
 
                     <!-- More Options. Funding & Transfer -->
@@ -177,11 +215,11 @@
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openTransferDialog()" class="tbl-action-btn">Funding
                         Details</button>
-
+                        <!-- <button mat-menu-item (click)="option2()">Transfer Options</button> -->
                       <button mat-menu-item  color="blue"
                         (click)="$event.stopPropagation(); openRepaymentDialog()" class="tbl-action-btn">Repayment
                         details</button>
-                      <button mat-menu-item (click)="option3()">Option 3</button>
+                    
 
                     </mat-menu>
 
@@ -190,12 +228,9 @@
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"
-                  [style.cursor]="'pointer'" matRipple>
-                </mat-row>
-
-                <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{input.value}}"</mat-cell>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" [style.cursor]="'pointer'" matRipple></mat-row>
+                <mat-cell *matNoDataRow colspan="4"> No data matching the filter "{{searchTerm}}"</mat-cell>
+         
 
               </mat-table>
 

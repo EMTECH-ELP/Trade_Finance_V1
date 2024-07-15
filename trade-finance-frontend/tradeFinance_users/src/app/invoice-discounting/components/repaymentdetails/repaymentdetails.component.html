@@ -11,9 +11,10 @@
   <form [formGroup]="repaymentForm"   (ngSubmit)="submitForm()">
    <div class="row">
    <div class="col-sm-6">
-    <label for="Date" style="font-size: 16px;" >Re-payment Date</label>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput [(ngModel)]="date" name="date" formControlName="date"  type="date">
+    <mat-form-field style="display:flex; flex-direction:row; white-space:nowrap;" appearance="outline">
+      <mat-label> Due Date <span class="required">*</span></mat-label>
+      <!-- Set the min attribute to today's date -->
+      <input matInput formControlName="dueDate" type="date" [min]="today">
     </mat-form-field>
   </div>
     <div class="col-sm-6 ">

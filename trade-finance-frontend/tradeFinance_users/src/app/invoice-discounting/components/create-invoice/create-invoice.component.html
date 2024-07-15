@@ -159,15 +159,17 @@
         </mat-step>
 
         <!-- 2.invoice details -->
-        <mat-step label="Invoice Details">
-          <p class="stepHeading">Invoice Details:</p>
+        <mat-step label="Invoice Details" >
+          <p  style="color: maroon; font-size: 16px;font-weight: bold;">Invoice Details:</p>  
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-label>Invoice Number <span class="required">*</span></mat-label>
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
-                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber">
-              </mat-form-field>
-             
+                <input matInput placeholder="Invoice Number" formControlName="invoiceNumber" type="text" >
+             </mat-form-field>
+               <small
+               *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
+               *Invoice No. is required</small>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -175,7 +177,9 @@
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="invoiceAmount" type="number">
               </mat-form-field>
-           
+              <small
+              *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
+              *Invoice Amount  required</small>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -183,7 +187,9 @@
               <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="applicantBusinessName" type="text">
               </mat-form-field>
-           
+              <small
+              *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
+              *Company name is a required field</small>
             </div>
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -193,16 +199,17 @@
                 <input matInput formControlName="applicantBusinessAddress" type="text">
               </mat-form-field>
               <small
-                *ngIf="applicationForm.get('applicantBusinessAddress').invalid && applicationForm.get('applicantBusinessAddress').touched">
-                *Enter Business Address</small>
+              *ngIf="applicationForm.get('applicantBusinessAddress').invalid && applicationForm.get('applicantBusinessAddress').touched">
+              *Enter Business Address</small>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <mat-label> Invoice Date <span class="required">*</span></mat-label>
                 <input matInput placeholder="Enter the Invoice Date" formControlName="invoiceDate" type="date">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('invoiceDate').invalid && applicationForm.get('invoiceDate').touched">
-                *Select the Invoice date</small>
+              <small
+              *ngIf="applicationForm.get('invoiceDate').invalid && applicationForm.get('invoiceDate').touched">
+              *Select the Invoice date</small>
             </div><br>
             <br>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -210,8 +217,9 @@
                 <mat-label> Due Date <span class="required">*</span></mat-label>
                 <input matInput formControlName="dueDate" type="date">
               </mat-form-field>
-              <small *ngIf="applicationForm.get('dueDate').invalid && applicationForm.get('dueDate').touched">
-                *Select the due date</small>
+              <small
+              *ngIf="applicationForm.get('dueDate').invalid && applicationForm.get('dueDate').touched">
+              *Select the due date</small>
             </div>
             <br>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
@@ -229,13 +237,13 @@
               </div>
             </div>
 
-            <div formArrayName="additionalInvoices">
-              <p class="stepHeading">For Additional Invoices:</p>
+            <div  formArrayName="additionalInvoices">
+              <p style="color: maroon; font-weight: bold;">For Additional Invoices:</p>
               <div *ngFor="let inv of applicationForm.get('additionalInvoices')['controls']; let i = index"
-                [formGroupName]="i">
+                [formGroupName]="i">             
                 <div>
                   <label style="color: black;font-weight: bold;">Invoice {{i + 2}}</label>
-                  <mat-table border="1" class="invTable" style="width: 100%;">
+                  <table border="1" class="invTable" style="width: 100%;">
                     <thead>
                       <tr *ngFor="let row of [1, ]; let i = index">
                         <th>Invoice No.</th>
@@ -257,7 +265,7 @@
                             {{ file.name }}
                           </div>
                         </td>
-
+                    
                       </tr>
                     </tbody>
                     <thead>
@@ -265,7 +273,7 @@
                       <tr *ngFor="let row of [1 ]; let i = index">
                         <th>Invoice Date</th>
                         <th>Due Date</th>
-
+                    
                       </tr>
                     </thead>
                     <tbody>
@@ -274,24 +282,24 @@
                         <!-- <td><input type="text" formControlName="{{ row.formControlName }}"></td> -->
                         <td><input type="date"></td>
                         <td><input type="date"></td>
-
-
+                     
+  
                       </tr>
-
+                    
                     </tbody>
-                  </mat-table>
-
-
+                  </table>
+  
+     
                   <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn1()">
                     <mat-icon class="col-white">add</mat-icon>
                   </button>
-
+  
                   <br>
-
-
+  
+  
                 </div>
-
-
+  
+  
               </div>
             </div>
 
@@ -299,154 +307,83 @@
 
           </div>
 
+
+
+
+
           <div>
-            <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+            <button class="btn btn-primary" mat-button matStepperPrevious >Back</button>
             <span style="margin-right: 745px;"></span>
-            <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
+            <button style="background-color: #ad3b3a;"  mat-button matStepperNext>Next</button>
           </div>
         </mat-step>
 
 
         <!--3. Importer Details -->
         <mat-step label="Importer Details">
-
-          <p class="stepHeading">Importer / Buyer's Details:</p>
+          <p style="color: maroon; font-size: 16px; font-weight: bold;">Importer / Buyer's Details:</p>
           <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4  col-sm-4  mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Full Name <span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerName" type="text">
               </mat-form-field>
               <small *ngIf="applicationForm.get('buyerName').invalid && applicationForm.get('buyerName').touched">
-                *Enter the Importer's name</small>
+                *Enter the Importer's name
+              </small>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4  col-sm-4  mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Business Name <span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerBusinessName" type="text">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('buyerBusinessName').invalid && applicationForm.get('buyerBusinessName').touched">
-                *Business name required</small>
+              <small *ngIf="applicationForm.get('buyerBusinessName').invalid && applicationForm.get('buyerBusinessName').touched">
+                *Business name required
+              </small>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4  col-sm-4  mb-2">
-              <mat-label> Email Address<span class="required">*</span> </mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+              <mat-label>Email Address <span class="required">*</span></mat-label>
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerEmailAddress" type="email">
               </mat-form-field>
-              <small
-                *ngIf="applicationForm.get('buyerEmailAddress').invalid && applicationForm.get('buyerEmailAddress').touched">
-                *Email required</small>
+              <small *ngIf="applicationForm.get('buyerEmailAddress').invalid && applicationForm.get('buyerEmailAddress').touched">
+                *Email required
+              </small>
             </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4  col-sm-4  mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Country<span class="required">*</span></mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
-                <mat-select formControlName="buyerCountry" [(ngModel)]="selectedCountry"
-                  (selectionChange)="onCountrySelect($event.value)">
-                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;"
-                    placeholder="Type to search countries" formControlName="countryFilter">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+                <mat-select formControlName="buyerCountry" [(ngModel)]="selectedCountry" (selectionChange)="onCountrySelect($event.value)">
+                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;" placeholder="Type to search countries" formControlName="countryFilter">
                   <mat-option value="" disabled>--Select Country--</mat-option>
                   <mat-option *ngFor="let country of filteredCountries" [value]="country">{{ country }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4  col-sm-4  mb-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>City<span class="required">*</span></mat-label>
-              <mat-form-field style=" display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerCity" type="text">
               </mat-form-field>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>Address</mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
+              <mat-form-field style="display:flex; flex-direction:row;white-space:nowrap;" appearance="outline">
                 <input matInput formControlName="buyerAddress" type="text">
               </mat-form-field>
-              <mat-hint
-                *ngIf="applicationForm.get('buyerAddress').invalid && applicationForm.get('buyerAddress').touched">
-                *Applicant's address is required</mat-hint>
+              <small *ngIf="applicationForm.get('buyerAddress').invalid && applicationForm.get('buyerAddress').touched">
+                *Applicant's address is required
+              </small>
             </div>
-
-            <!-- 
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label> Country<span class="required">*</span> </mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
-                <mat-select #countrySelect formControlName="buyerCountry" [(ngModel)]="selectedCountry" >
-                  <mat-option value="" disabled>--Select Country--</mat-option>
-                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;" placeholder="Type to search countries" formControlName="countryFilter">
-                  <mat-option *ngFor="let country of filteredCountries" [value]="country">{{ country }}</mat-option>
-              
-                </mat-select>
-              </mat-form-field>
-            </div> -->
-            <!-- <small
-              *ngIf="applicationForm.get('buyerCountry').invalid && applicationForm.get('buyerCountry').touched">
-              *Country is required</small> -->
-
-
-            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <mat-label>City <span class="required">*</span></mat-label>
-              <mat-form-field style="display: flex; flex-direction: row; white-space: nowrap;" appearance="outline">
-                <mat-select #citySelect formControlName="buyerCity" [(ngModel)]="selectedCity">
-                  <mat-option value="" disabled>--Select City--</mat-option>
-                  <input matInput style="font-size:14px; height: 50px; padding-top: 10px; padding-bottom: 10px;"  placeholder="Type to search city" formControlName="cityFilter">
-                  <mat-option *ngFor="let city of filteredCities" [value]="city">{{ city }}</mat-option>
-                
-                </mat-select>
-              </mat-form-field>   
-            </div> -->
-            <!-- <div style="display: flex;" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
-              <input type="checkbox" style="margin-right: 10px;" formControlName="terms_and_condition">
-              <div>
-                <label style="margin-top: 5px;">I agree to terms & conditions<span class="required">*</span></label>
-              </div>
-            </div> -->
-
           </div>
-
-          <div *ngFor="let inv of applicationForm.get('importerDetails')['controls']; let i = index"
-            [formGroupName]="i">
-            <p style="color: maroon; font-weight: bold;">Multiple importers:</p>
-            <label style="color: black;font-weight: bold;">Importer {{i + 2}}</label>
-            <mat-table border="1" class="invTable">
-              <thead>
-                <tr>
-
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Business Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Row 1 -->
-                <tr *ngFor="let row of  [1, ];">
-                  <td><input type="text" formControlName="{{ row.formControlName }}"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
-
-                </tr>
-                <br>
-
-              </tbody>
-            </mat-table>
-          </div>
-          <button mat-mini-fab style="background-color: maroon; color: white;" (click)="addRowbtn2()">
-            <mat-icon class="col-white">add</mat-icon>
-          </button>
-          <br>
+      
           <div>
             <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
             <span style="margin-right: 745px;"></span>
             <button style="background-color: #ad3b3a;" mat-button matStepperNext>Next</button>
           </div>
-
-
         </mat-step>
+        
         <!-- 4.Additional Documents  -->
         <mat-step label="Additional Documents">
 
@@ -455,7 +392,7 @@
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Valid Business Permit/Trading license <span
                   class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="businessPermit" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -463,7 +400,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Delivery Notes/ Purchase Orders<span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="deliveryNote" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -471,7 +408,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Credit Appraisal Form<span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" id="creditAppraisalForm" multiple accept=".pdf" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -479,7 +416,7 @@
 
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-2">
               <label for="application form">Business Registration Identification <span class="required">*</span></label>
-              <input matInput type="file" multiple accept=".pdf" (change)="onFileSelected($event)">
+              <input matInput type="file" multiple accept=".pdf" id="businessRegistration" (change)="onFileSelected($event)">
               <div *ngFor="let file of selectedFiles">
                 {{ file.name }}
               </div>
@@ -501,12 +438,3 @@
     </mat-horizontal-stepper>
   </div>
 </section>
- <!-- <small
-                *ngIf="applicationForm.get('invoiceNumber').invalid && applicationForm.get('invoiceNumber').touched">
-                *Invoice No. is required</small> -->
-                   <!-- <small
-                *ngIf="applicationForm.get('invoiceAmount').invalid && applicationForm.get('invoiceAmount').touched">
-                *Invoice Amount required</small> -->
-                   <!-- <small
-                *ngIf="applicationForm.get('applicantBusinessName').invalid && applicationForm.get('applicantBusinessName').touched">
-                *Company name is a required field</small> -->

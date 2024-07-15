@@ -3,11 +3,26 @@
     <div class="content-block">
       <div class="block-header">
         <!-- breadcrumb -->
-        <app-breadcrumb [title]="'ROLES AND PRIVILEGES'" [items]="['Home']" [active_item]="'View'">
+        <app-breadcrumb [title]="'USER MANAGEMENT'" [items]="['Home']" [active_item]="'View'">
         </app-breadcrumb>
 
-        <div class="row" >
-            <div class="col-lg-6 col-sm-6" id="widget1">
+    
+
+        <div class="row" > 
+          
+          <div class="col-lg-4 col-sm-6" id="widget1">
+            <div class="info-box7 bg-kingdom order-info-box7" style="background-color: maroon;border-radius: 5px;">
+                <div class="info-box7-block">
+                    <p class="m-b-20 bold">USERS</p>
+                    <h2 class="text-end"><span class="float-start" >0</span><i
+                        class="fab fa-buromobelexperte" style="color:white"></i>
+                    </h2>
+                    <a [routerLink]="'/users/view-users'" style="color: white;">Click for more details!</a>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-lg-4 col-sm-6" id="widget1">
                 <div class="info-box7 bg-kingdom order-info-box7" style="background-color: maroon;border-radius: 5px;">
                     <div class="info-box7-block">
                         <p class="m-b-20 bold">ROLES</p>
@@ -19,7 +34,7 @@
                 </div>
             </div>
         
-            <div class="col-lg-6 col-sm-6" id="widget2">
+            <div class="col-lg-4 col-sm-6" id="widget2">
                 <div class="info-box7 bg-kingdom order-info-box7"style="background-color: maroon;border-radius: 5px;">
                     <div class="info-box7-block">
                         <p class="m-b-20 bold">PRIVILEGES</p>
@@ -29,6 +44,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
+        
 
             <div class="row">
 
@@ -43,7 +61,7 @@
                             <div class="col-12">
                               <ul class="header-buttons-left ms-0">
                                 <li class="dropdown">
-                                  <h2>ROLES AND PRIVILEGES </h2>
+                                  <h2>USER, ROLE & PRIVILEGES </h2>
                                 </li>
           
                                 <li class="dropdown m-l-20">
@@ -83,7 +101,8 @@
                             <thead>
                               <tr>
                                 <th>No</th>
-                                <th>Roles </th>
+                                <th>User</th>
+                                <th>Role</th>
                                 <th>Number of privileges</th>
                                 
                               </tr>

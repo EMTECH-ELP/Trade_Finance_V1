@@ -21,6 +21,19 @@ export const environment = {
 
  //  BanksManagement
  bankUrl: 'http://192.168.88.174:8187',    //fetchbanks
+
+  apiUrl: 'http://192.168.90.149:8085',
+  
+  dcApiUrl: "http://192.168.0.1:9090",
+  
+
+   
+
+
+ //  BanksManagement
+
+//  bankUrl: 'http://192.168.91.1:8187',   
+  //fetchbanks
 // addBankUrl: '',   //post
 
 //Currency & Ports
@@ -28,7 +41,7 @@ currencyUrl:'http://192.168.88.109:9000',
 // (this.http://192.168.88.109:9000/api/currencies) 
 
 
-apiUrl: 'http://192.91.152:8085',
-dcApiUrl: "http://192.168.0.1:9090",
+// apiUrl: 'http://192.91.152:8085',
+// dcApiUrl: "http://192.168.0.1:9090",
  
 };

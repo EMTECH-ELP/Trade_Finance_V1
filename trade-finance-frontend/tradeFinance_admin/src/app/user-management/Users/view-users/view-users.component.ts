@@ -90,4 +90,8 @@ export class ViewUsersComponent implements OnInit {
     });
 
   }
+
+  view(){
+    //fetch all view details functions
+  }
 }
