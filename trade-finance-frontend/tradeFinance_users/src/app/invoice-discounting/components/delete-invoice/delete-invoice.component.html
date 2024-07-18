@@ -1,11 +1,27 @@
-
 <mat-dialog-content class="deletion">
-    <p> Are you sure you want to delete this invoice?</p>
-     <input type="text" placeholder="deletion reason">
-   </mat-dialog-content>
-   <mat-dialog-actions align="end">
-       <div>
-     <button mat-button style="background-color: #ad3b3a;"   (click)="onDelete()">Confirm</button>
-     <button mat-button  class="btn btn-primary"  (click)="onCancel()">Cancel</button>
-   </div>
-   </mat-dialog-actions>
+  <p>Are you sure you want to delete this invoice?</p>
+  <form (ngSubmit)="onDeleteInvoice()">
+    <div>
+      <label for="invoiceNumber">Invoice Number:</label>
+      <input type="text" id="invoiceNumber" [(ngModel)]="invoiceNumber" name="invoiceNumber" required>
+    </div>
+    <div>
+      <label for="deletionReason">Reason for deleting:</label>
+      <input type="text" id="deletionReason" [(ngModel)]="deletionReason" name="deletionReason">
+    </div>
+    <div *ngIf="!deletionReason && message"  class="message danger">
+      Please enter a reason for deleting.
+    </div>
+    <div *ngIf="deleting" class="message">
+      Deleting...
+    </div>
+    <div *ngIf="message" class="message">
+      {{ message }}
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="submit" style="background-color: #ad3b3a;" [disabled]="deleting" (click)="onDeleteInvoice()">Confirm</button>
+  <button mat-button class="btn btn-primary" [disabled]="deleting" (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

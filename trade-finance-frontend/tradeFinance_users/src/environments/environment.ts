@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
 //Authentication
-authUrl: 'http://192.168.90.149:8082',
+authUrl: 'http://192.168.91.152:8080',
 resetUrl: '',
 
 //LCs
@@ -32,17 +32,13 @@ billApiUrl: 'http://192.168.88.88:8085',
 
 // invoice discounting
 
- invUrl: 'http://192.168.89.2:8085' ,     //fETCH &  post invoice discounting forms. Createform url
+ invUrl: 'http://192.168.89.121:8085' ,     //fETCH &  post invoice discounting forms. Createform url
+ getCountry_CityUrl: 'http://192.168.88.88:8187',  //Dropdowncountries
 
  saveUrl: 'http://192.168.91.141:9000',    // save repayment details form
+ uploadUrl: '',                             //Upload Documents
 
- //Full invoice form submission.
- //http://192.168.89.160:9001
- createInvoiceForm: '',
-//Dropdowncountries
- getCountryByNameUrl: 'http://192.168.88.88:8187',
 
- deleteurl:'http://192.168.89.160.8085', 
  //bank gurantee url
 bgUrl: 'http://192.168.91.61:8085',
 

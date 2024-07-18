@@ -28,6 +28,7 @@ import { AnalyticsComponent } from './pages/components/analytics/analytics.compo
 import { MatCardModule } from '@angular/material/card';
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,

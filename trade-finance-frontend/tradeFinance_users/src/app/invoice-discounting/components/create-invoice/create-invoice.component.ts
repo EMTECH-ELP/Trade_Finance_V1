@@ -1,23 +1,25 @@
-import { Component, OnInit,  AfterViewInit, ViewChild, ElementRef, Renderer2, OnDestroy} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InvDiscountingService } from '../../services/inv-discounting.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { LookupComponent } from 'src/app/lookups/lookup/lookup.component';
 import{ Router } from '@angular/router';
-import { Observable, debounceTime, map, of, startWith, switchMap } from 'rxjs';
+import {  map, startWith } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Subject, takeUntil } from "rxjs";
-import { HttpHeaders } from '@angular/common/http';
+import { ChangeDetectionStrategy } from '@angular/core';
+
 interface CityResponse {
   cities: string[]; // Adjust the type according to the actual structure of your data
 }
 @Component({
   selector: 'create-invoice',
   templateUrl: './create-invoice.component.html',
-  styleUrls: ['./create-invoice.component.sass']
+  styleUrls: ['./create-invoice.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateInvoiceComponent implements OnInit, OnDestroy {
+export class CreateInvoiceComponent implements OnInit{
   @ViewChild('countrySelect') countrySelect!: ElementRef;
   // @ViewChild('citySelect') citySelect!: ElementRef;
   nationalId: number;
@@ -65,7 +67,6 @@ private countrySubscription: Subscription;
   ) { 
     this.applicationForm = this.builder.group({
       countryFilter: [''],
-      cityFilter: [''],
       accountNumber: ['', Validators.required],
       cifId: ['', Validators.required],
       nationalId: ['', Validators.required],
@@ -95,8 +96,8 @@ private countrySubscription: Subscription;
       countryName: ['', Validators.required],
       buyerAddress: ['', Validators.required],
       buyerEmailAddress: ['', [Validators.required, Validators.email]],
+      // additionalInvoices: this.builder.array([]), 
     
-
       //  Funding details
       // fundingAmount: ['', Validators.required],
       // disbursalDate: ['', Validators.required],
@@ -116,53 +117,48 @@ private countrySubscription: Subscription;
            files: new FormControl(''),
         })
     ]),
-     importerDetails: new FormArray ([
-        new FormGroup({
-           fullName: new FormControl(''),
-           email: new FormControl(''),
-           buyerBusinessName: new FormControl(''),
-           importerCountry: new FormControl(''),
-           importerCity: new FormControl(''),
-        })
-    ]),
-  })
-   }
+    importerDetails: new FormArray ([
+      new FormGroup({
+         fullName: new FormControl(''),
+         email: new FormControl(''),
+         buyerBusinessName: new FormControl(''),
+         importerCountry: new FormControl(''),
+         importerCity: new FormControl(''),
+      })
+  ]),
+})
+}
+
 
   ngOnInit(): void {
+   this.fetchCountries();
   
-    // Fetching the countries
-    // this.invDiscountingService.getCountries().pipe(
-    //   takeUntil(this.destroy$)
-    // ).subscribe(
-    
-    this.invDiscountingService.getCountries().pipe(
-      takeUntil(this.destroy$)
-      ).subscribe(
-      (response: any) => {
-        if (response.message === 'success' && Array.isArray(response.data)) {
-          this.countries = response.data.map((country: any) => country.countryName);
-          this.filteredCountries = this.countries;
-        }
-        console.log('Response from getCountries:', response);
-      },
-      (error: any) => console.log('Error fetching countries', error)
-    );
-    
-    this.applicationForm.get('countryFilter')!.valueChanges
-     .pipe(
-        startWith(''),
-        map(value => this.filterCountries(value))
-      )
-     .subscribe(filtered => {
-        this.filteredCountries = filtered;
-      });
-    
-}
-ngOnDestroy(): void {
-  this.destroy$.next(true);
-  this.destroy$.complete();
 }
 
+fetchCountries(): void {
+this.invDiscountingService.getCountries().pipe(
+  takeUntil(this.destroy$)
+  ).subscribe(
+  (response: any) => {
+    if (response.message === 'success' && Array.isArray(response.data)) {
+      this.countries = response.data.map((country: any) => country.countryName);
+      this.filteredCountries = this.countries;
+    }
+    console.log('Response from getCountries:', response);
+  },
+  (error: any) => console.log('Error fetching countries', error)
+);
+
+this.applicationForm.get('countryFilter')!.valueChanges
+ .pipe(
+    startWith(''),
+    map(value => this.filterCountries(value))
+  )
+ .subscribe(filtered => {
+    this.filteredCountries = filtered;
+  });
+
+}
 getCitiesByCountry(countryName: string): void {
   this.invDiscountingService.getCitiesByCountry(countryName).subscribe(
     (cities: string[]) => {
@@ -248,153 +244,12 @@ filterCountries(value: string): string[] {
     (<FormArray>this.applicationForm.get('importerDetails')).push(formgroup);
   }
   
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
+  files: FileList | null = null;
 
-    // Check if a file is selected
-    if (selectedFile) {
-      // Check file type
-      if (selectedFile.type !== 'application/pdf') {
-        // Display an error message or take appropriate action
-        alert('Please select a PDF file.');
-
-        // Clear the file input and disable it
-        event.target.value = '';
-        return;
-      }
-    }
-    
+  onFileSelected(event: Event) {
+    this.files = (event.target as HTMLInputElement).files;
   }
- 
-  // processValues(){
-  //   const applicantDetails = {
-  //     "accountNumber": this.applicationForm?.get("accountNumber").value,
-  //     "cifId": this.applicationForm?.get("cifId").value,
-  //     "nationalId": this.applicationForm?.get("nationalId").value,
-  //     "accountName": this.applicationForm?.get("accountName").value,
-  //     "currency":this.applicationForm?.get("currency").value,
-  //     "email": this.applicationForm?.get("email").value,
-  //     "phoneNumber":this.applicationForm?.get("phoneNumber").value,
-  //     "address": this.applicationForm?.get("address").value,
-  //     "city": this.applicationForm?.get("city").value,
-  //     "postalCode": this.applicationForm?.get("postalCode").value,
-  //     "countryCode": this.applicationForm?.get("countryCode").value,
-  //     "country": this.applicationForm?.get("country").value,
-  //   }
-
-  //   const invoiceDetails = {
-  //     "invoiceDate": this.applicationForm?.get("invoiceDate").value,
-  //     "invoiceNumber": this.applicationForm?.get("invoiceNumber").value,
-  //     "invoiceAmount": this.applicationForm?.get("invoiceAmount").value,
-  //     "applicantBusinessName": this.applicationForm?.get("applicantBusinessName").value,
-  //     "applicantBusinessAddress": this.applicationForm?.get("applicantBusinessAddress").value,
-  //     "dueDate":this.applicationForm?.get("dueDate").value,
-  //     "invoices": this.applicationForm?.get("invoices").value,  //file upload
-  //     "applicationForm": this.applicationForm?.get("applicationForm").value,      //file upload
-
-  //     //  importer details
-  //     "buyerName": this.applicationForm?.get("buyerName").value,
-  //     "buyerBusinessName":this.applicationForm?.get("buyerBusinessName").value,
-  //     "buyerCity": this.applicationForm?.get("buyerCity").value,
-  //     "buyerCountry": this.applicationForm?.get("buyerCountry").value,
-  //     "buyerAddress": this.applicationForm?.get("buyerCountry").value,
-  //     "buyerEmailAddress": this.applicationForm?.get("buyerEmailAddress").value,
-  //     // "terms_and_condition":this.applicationForm?.get("terms_and_condition").value,
-  //   }
-
-  //   const fundingDetails = {
-  //     // "fundingAmount": this.applicationForm?.get("fundingAmount").value,
-  //     // "disbursalDate": this.applicationForm?.get("disbursalDate").value,
-  //     // "repaymentDate": this.applicationForm?.get("repaymentDate").value,
-  //     // "creditAccount": this.applicationForm?.get("creditAccount").value,
-  //     // "creditLimit": this.applicationForm?.get("creditLimit").value,
-  //     "creditAppraisalForm": this.applicationForm?.get("creditAppraisalForm").value,
-  //   }
-
-  //   this.applicantDetails = applicantDetails
-  //   this.invoiceDetails = invoiceDetails
-  //   this.fundingDetails = fundingDetails
-  // }
-  // onSubmit(): void {
-  //   this.processValues()
-  //   this.invDiscountingService.postApplicantDetails
-  //   this.invDiscountingService.postInvoiceDetails
-  //   this.invDiscountingService.postFundingDetails
-  //   const formData = this.applicationForm.value;
-  //      console.log(this.applicationForm.value);
-
-  //   // if (this.applicationForm.valid) {
-  //   //   const formData = this.applicationForm.value;
-  //   //   console.log(formData);
-  //   // } else {
-  //   //   console.log(this.applicationForm.value);
-  //   //   console.error('Form is invalid');
-  //   //  alert("Form is Invalid")
-  //   // }
-  //   this.SubmitApplicant()
-  // }
-  // SubmitApplicant() {
-  //   console.log(this.applicantDetails);
-  //   console.log(this.invoiceDetails);
-  //   console.log(this.fundingDetails);
-
-  //   console.log("Form data", this.applicantDetails);
-  //   this.invDiscountingService.postApplicantDetails(this.applicantDetails).subscribe({
-  //     next: (responses) => {
-  //       console.log("Invoice Form response", responses);
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //     },
-  //     complete: () => {
-  //       this.submitInvoice()
-      
-  //         }
-  //   });
-
-
   
-  // }
-  // submitInvoice(){
-  //   console.log("Form data", this.invoiceDetails);
-  //   this.invDiscountingService.postInvoiceDetails(this.invoiceDetails).subscribe({
-  //     next: (responses) => {
-  //       console.log("Invoice Form response", responses);
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-    
-  //     },
-  //     complete: () => {
-  //       this.submitFunding()
-      
-  //         }
-  //   })
-  // }
-  // submitFunding(){
-
-  //   console.log("Form data", this.fundingDetails);
-  //   this.invDiscountingService.postFundingDetails(this.fundingDetails).subscribe({
-  //     next: (responses) => {
-  //       console.log("Invoice Form response", responses);
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //     },
-  //     complete: () => {
-  //        this.applicationForm.reset();
-  //       this.ngOnInit();
-  //         alert('Form Submitted Successfully!')
-  //       let result = window.confirm('Click OK to submit. Click Cancel to abort');
-  //       if (result) {
-  //         console.log(result)
-  //           alert('Form Submitted Successfully!');
-  //       }
-
-      
-  //         }
-  //   })
-  // }
 
   openLookup(): void {
     // Create a MatDialogConfig object
@@ -415,35 +270,6 @@ filterCountries(value: string): string[] {
   }
 
 //Full form submission
-// createInvoiceForm(data: any) {
-
- 
-//   const body = {
-//     "ApplicantDTO": {
-//       "accountNumber": data.accountNumber,
-//       "cifId": data.cifId,
-//       "nationalId": data.nationalId,
-//       "accountName": data.accountName,
-     
-//     },
-//     "InvoiceDTO": {
-//       "invoiceDate": data.invoiceDate,
-//       "invoiceNumber": data.invoiceNumber,
-//       "invoiceAmount": data.invoiceAmount,
-//       "applicantBusinessName": data.applicantBusinessName,
-//       "applicantBusinessAddress": data.applicantBusinessAddress,
-//       "dueDate": data.dueDate,
-//       // "invoices": data.invoices,
-//       // "applicationForm": data.applicationForm,
-//       "buyerName": data.buyerName,
-//       "buyerBusinessName": data.buyerBusinessName,
-//       "buyerCity": data.buyerCity,
-//       "buyerCountry": data.buyerCountry,
-//       "countryName": data.countryName,
-//       "buyerAddress": data.buyerAddress,
-//       "buyerEmailAddress": data.buyerEmailAddress,
-//     }
-//   };
 
   onSubmit() {
     const data = this.applicationForm.value
@@ -479,10 +305,32 @@ filterCountries(value: string): string[] {
           "buyerAddress": data.buyerAddress,
           "buyerEmailAddress": data.buyerEmailAddress,
           // "termsAndCondition": data.terms_and_condition,
-          // "status": "CREATED"
+          "status": data.status,
         }
       ]
     }
+  
+  
+  // Prepare FormData
+  const formData = new FormData();
+  Object.keys(data).forEach(key => {
+    if (key === 'invoices') {
+      data[key].forEach((item, index) => {
+        Object.keys(item).forEach(subKey => {
+          formData.append(`${subKey}[${index}]`, item[subKey]);
+        });
+      });
+    } else {
+      formData.append(key, data[key]);
+    }
+  });
+
+  // Append files
+  if (this.files) {
+    Array.from(this.files).forEach((file, index) => {
+      formData.append(`documents[${index}]`, file, file.name);
+    });
+  }
     // const invoiceData = { /* your invoice data here */ };
     console.log("Form data", this.applicationForm.value);
     this.invDiscountingService.sendData(items).subscribe({

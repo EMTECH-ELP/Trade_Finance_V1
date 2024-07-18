@@ -11,9 +11,9 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  public deleteInvoice(id: string): Observable<any> {
-    const url = `${environment.deleteurl}/invoice/${id}`;
-    return this.http.delete<any>(url);
+  public deleteInvoice(invoiceNumber: string): Observable<any> {
+    const url = `${environment.invUrl}/api/invoices/delete?invoiceNumber=${encodeURIComponent(invoiceNumber.trim())}`;
+    return this.http.delete(url);
   }
   // search(query: string): Observable<any> {
   //   return this.http.get(`API_ENDPOINT?q=${query}`);

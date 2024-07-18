@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@ang
 import { Router } from '@angular/router';
 import { UserManagementService } from 'src/app/user-management/user-management.service';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
-
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-create-role',
@@ -17,7 +17,7 @@ export class CreateRoleComponent implements OnInit {
   isLoading = true; // Added loading state
   
 
-  constructor(private fb: FormBuilder, private router : Router,private userManagementService: UserManagementService) {
+  constructor(private fb: FormBuilder, private router : Router,private userManagementService: UserManagementService, private snackbar:SnackbarService) {
     this.roleForm = this.fb.group({
       roleName: ['', Validators.required],
       roleDescription: ['', Validators.required],

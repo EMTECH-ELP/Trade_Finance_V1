@@ -18,8 +18,11 @@ export class InvDiscountingService {
   applicationForm: any;
   selectedCountry:any;
   // private invoiceforms: form[] = [];
-  private countrieslistUrl = 'http://192.168.88.91:8187/api/v1/Country/all'; 
-  private getCountryByNameUrl = 'http://192.168.88.91:8187/api/v1/Country/getByName';
+  
+  private countrieslistUrl = `${environment.getCountry_CityUrl}/api/v1/Country/all`;
+  private getCountryByNameUrl = `${environment.getCountry_CityUrl}/api/v1/Country/getByName`;
+  // private countrieslistUrl = 'http://192.168.88.33:8187/api/v1/Country/all'; 
+  // private getCountryByNameUrl = 'http://192.168.88.33:8187/api/v1/Country/getByName';
   // private invUrl = 'http://192.168.89.160:8085';
   private invUrl = environment.invUrl;
   private baseUrl = environment.invUrl;
@@ -50,23 +53,28 @@ export class InvDiscountingService {
     );
   }
 //applicant/nationalId/{nationalId}
-  getCountries(): Observable<string[]> {
-    return this.http.get<string[]>(this.countrieslistUrl).pipe(
-      catchError((error: any) => {
-        console.log('Error fetching countries:', error);
-        // Return an empty array or a default value as needed
-        return of([]);
-      })
-    );
-  }
-  
+getCountries(): Observable<string[]> {
+  return this.http.get<string[]>(this.countrieslistUrl).pipe(
+    catchError((error: any) => {
+      console.log('Error fetching countries:', error);
+      // Return an empty array or a default value as needed
+      return of([]);
+    })
+  );
+}
 
- getCitiesByCountry(countryName: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.getCountryByNameUrl}/${countryName}`);
-  }
+getCitiesByCountry(countryName: string): Observable<string[]> {
+  const url = `${this.getCountryByNameUrl}/${countryName}`;
+  return this.http.get<any[]>(url).pipe(
+    catchError((error: any) => {
+      console.log('Error fetching cities:', error);
+      // Return an empty array or handle the error in another way
+      return of([]);
+    })
+  );
+}
   
   getDataBasedOnDiscountRate(discountRate: number): Observable<any> {
-   
     const url = `${environment.invUrl}/api/fundings/${discountRate}`;
     return this.http.get<any>(url).pipe(
       catchError((error: any) => {
@@ -75,18 +83,18 @@ export class InvDiscountingService {
       })
     );
   }
-  approveInvoice(invoiceNumber: any): Observable<any> {
-    const url = `${this.invUrl}/api/invoices/approve/${invoiceNumber}`;
-    const payload = { invoiceId: invoiceNumber }; // Adjust according to server expectations
-    return this.http.post<any>(url, payload).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Error approving invoice:', error);
-        // Transform the error into a more user-friendly message or handle differently
-        return throwError(() => new Error('Failed to approve invoice.'));
-      })
-    );
+  // Approve by Invoice Number.
+  approveInvoice(invoiceNumber: string): Observable<any> {
+    const url = `${this.invUrl}/api/invoices/approve/${invoiceNumber}`; // Correctly interpolate the invoiceNumber
+    return this.http.put(url, { invoiceNumber });
   }
-  
+  updateApplicantStatus(id: number, status: string): Observable<any> {
+    const url = `${this.invUrl}/applicant/${id}`;
+    return this.http.put(url, { status });
+  }
+  uploadDocuments(formData: FormData): Observable<any> {
+    return this.http.post(this.uploadUrl, formData);
+  }
   saveFundingData(){
 
   }

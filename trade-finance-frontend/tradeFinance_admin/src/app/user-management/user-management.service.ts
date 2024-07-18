@@ -27,6 +27,10 @@ export class UserManagementService {
     const url = `${environment.privilegeApiUrl}/api/privileges`;
     return this.http.get<any>(url);
   }
+  getAllRoles(){
+    const url = `${environment.privilegeApiUrl}/api/roles`;    //put exact URL for getting all roles
+    return this.http.get<any>(url);
+  }
 
 
   getRoles():Observable<any> {

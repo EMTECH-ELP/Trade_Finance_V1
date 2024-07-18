@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SearchService } from '../../services/search.service';
 import { HttpClient } from '@angular/common/http';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-delete-invoice',
@@ -10,38 +10,54 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./delete-invoice.component.sass']
 })
 export class DeleteInvoiceComponent implements OnInit {
-  data: any;
+  injector: any;
+event: Event;
+id: number;
+  // data: any;
+  invoiceNumber: string;
+  deletionReason: string;
+  message: string;
+  deleting: boolean = false;
+ 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DeleteInvoiceComponent>,
 
-  
-  constructor(private http:HttpClient, 
-    private dialogRef: MatDialogRef<DeleteInvoiceComponent >,
-    
+  private snackBar: MatSnackBar,
      private service:SearchService) { }
 
 
      ngOnInit(): void {
+      // Assuming data is injected via MatDialogData
+      // this.id = this.data.id;
     }
+    
   
 
 
-  onDelete() {
-    this.service.deleteInvoice(this.data.id).subscribe(
-      response => {
-        // Handle successful deletion
-        alert('Successfully deleted');
-        this.dialogRef.close(true);
-      },
-      error => {
-        // Handle error
-        alert('Error deleting invoice');
-        this.dialogRef.close(false);
+    onDeleteInvoice(): void {
+      if (this.invoiceNumber && this.deletionReason) {
+        const trimmedInvoiceNumber = this.invoiceNumber.trim();
+        this.deleting = true; // Indicate deletion is in progress
+        this.service.deleteInvoice(trimmedInvoiceNumber).subscribe(
+          response => {
+            this.message = 'Invoice deleted successfully!';
+            this.snackBar.open(this.message, 'Close', { duration: 3000 });
+            this.dialogRef.close(true); // Close dialog and return true to the caller
+          },
+          error => {
+            this.message = 'Error deleting invoice. Please try again.';
+            this.snackBar.open(this.message, 'Close', { duration: 3000 });
+            console.error('Error deleting invoice:', error);
+          }
+        ).add(() => {
+          this.deleting = false; // Reset deletion state
+        });
+      } else {
+        this.message = 'Please enter both invoice number and reason for deleting.';
+        this.snackBar.open(this.message, 'Close', { duration: 3000 });
       }
-    );
-    // Add logic to delete the invoice
-    // Close the dialog after deletion
-    
-    
-  }
+    }
+  
+   
 
   onCancel() {
     // Close the dialog without deleting the invoice
