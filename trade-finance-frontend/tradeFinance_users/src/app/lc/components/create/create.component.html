@@ -46,7 +46,6 @@
                 <mat-label>Customer's CIF ID</mat-label>
                 <mat-form-field class="full-width" appearance="outline">
                   <input matInput formControlName="cifId" type="number">
-                  <!-- <mat-icon matSuffix>search</mat-icon> -->
                 </mat-form-field>
                 <small style="color: red;"
                   *ngIf="applicationForm.get('cifId').invalid && applicationForm.get('cifId').touched">
@@ -56,7 +55,6 @@
                 <mat-label>National ID</mat-label>
                 <mat-form-field class="full-width" appearance="outline">
                   <input matInput formControlName="nationalId" type="number">
-                  <!-- <mat-icon matSuffix>search</mat-icon> -->
                 </mat-form-field>
                 <small style="color: red;"
                   *ngIf="applicationForm.get('nationalId').invalid && applicationForm.get('nationalId').touched">
@@ -221,14 +219,10 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
               <mat-label>IBAN</mat-label>
               <mat-form-field class="full-width" appearance="outline">
-
                 <mat-select formControlName="beneficiaryIban">
-                  <mat-option value="ES91 2100 0418 4502 0005 1332"> ES91 2100 0418 4502 0005 1332</mat-option>
-                  <mat-option value="NL91 ABNA 0417 1643 00">NL91 ABNA 0417 1643 00 </mat-option>
-                  <mat-option value="FR14 2004 1010 0505 0001 3M02 606">FR14 2004 1010 0505 0001 3M02 606</mat-option>
-                  <mat-option value="GB29 NWBK 6016 1331 9268 19 ">GB29 NWBK 6016 1331 9268 19 </mat-option>
-                  <mat-option value="DE89 3704 0044 0532 0130 00">DE89 3704 0044 0532 0130 00 </mat-option>
-
+                  <!-- The options will be dynamically loaded from the backend -->
+                  <mat-option *ngFor="let iban of beneficiaryIban" [value]="iban.value">{{ iban.viewValue
+                    }}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getIban()">search</mat-icon>
               </mat-form-field>
@@ -249,16 +243,8 @@
               <mat-label>City</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="beneficiaryCity">
-                  <mat-option value="Entebbe">Entebbe </mat-option>
-                  <mat-option value="Kinshasa">Kinshasa </mat-option>
-                  <mat-option value="Kampala">Kampala</mat-option>
-                  <mat-option value="Beijing">Beijing: </mat-option>
-                  <mat-option value="Arusha">Arusha</mat-option>
-                  <mat-option value="Lubumbashi ">Lubumbashi </mat-option>
-                  <mat-option value="Shanghai">Shanghai</mat-option>
-                  <mat-option value="Tokyo ">Tokyo </mat-option>
-                  <mat-option value="Osaka ">Osaka </mat-option>
-                  <mat-option value="Dodoma ">Dodoma </mat-option>
+                  <!-- The options will be dynamically loaded from the backend -->
+                  <mat-option *ngFor="let city of cities" [value]="city.value">{{ city.viewValue}}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getCity()">search</mat-icon>
               </mat-form-field>
@@ -281,12 +267,8 @@
               <mat-label>Country</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="beneficiaryCountry">
-                  <mat-option value="Uganda">Uganda</mat-option>
-                  <mat-option value="Congo">Congo </mat-option>
-                  <mat-option value="China">China</mat-option>
-                  <mat-option value="USA">USA</mat-option>
-                  <mat-option value="Tanzania">Tanzania</mat-option>
-                  <mat-option value="Japan">Japan</mat-option>
+                  <mat-option *ngFor="let country of countries" [value]="country.value">{{
+                    country.viewValue}}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getCountryandCode()">search</mat-icon>
               </mat-form-field>
@@ -298,12 +280,8 @@
               <mat-label>Country Code</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="beneficiaryCountryCode">
-                  <mat-option value="UG">UG</mat-option>
-                  <mat-option value="CG">CG: </mat-option>
-                  <mat-option value="CN">CN:</mat-option>
-                  <mat-option value="US">US </mat-option>
-                  <mat-option value="TZ">TZ: </mat-option>
-                  <mat-option value="JY">JY</mat-option>
+                  <mat-option *ngFor="let code of countrycodes" [value]="code.value">{{
+                    code.viewValue}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <small style="color: red;"
@@ -316,14 +294,8 @@
               <mat-label>Bank Name</mat-label>
               <mat-form-field class="full-width" appearance="outline">
                 <mat-select formControlName="advisingBankName">
-                  <mat-option value="Centenary Bank">Centenary Bank </mat-option>
-                  <mat-option value="Stanbic Bank Uganda">Stanbic Bank Uganda </mat-option>
-                  <mat-option value="Rawbank">Rawbank</mat-option>
-                  <mat-option value="Trust Merchant Bank (TMB)">Trust Merchant Bank (TMB)</mat-option>
-                  <mat-option value="CRDB Bank">CRDB Bank </mat-option>
-                  <mat-option value="SMBC">SMBC</mat-option>
-                  <mat-option value="MUFG">MUFG</mat-option>
-                  <mat-option value="NBC">NBC</mat-option>
+                  <mat-option *ngFor="let bank of beneficiarybanks" [value]="bank.value">{{
+                    bank.viewValue}}</mat-option>
                 </mat-select>
                 <mat-icon matSuffix (click)="getBankDetails()">search</mat-icon>
               </mat-form-field>

@@ -8,6 +8,7 @@ import { TransferlcComponent } from './components/transferlc/transferlc.componen
 import { ViewComponent } from './components/view/view.component';
 import { VerifylcComponent } from './components/verify-lc/verify-lc.component';
 import { LcMtComponent } from './components/lc-mt/lc-mt.component';
+import { Page404Component } from '../authentication/page404/page404.component';
 
 const routes: Routes = [
   {path: "create", component: CreateComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:"modify",component:ModifyComponent},
   {path: "delete", component: DeleteLcComponent},
   {path: "verify", component: VerifylcComponent},
-  {path: "lc-mt", component:LcMtComponent}
+  {path: "lc-mt", component:LcMtComponent},
+  {path: '**', component: Page404Component}
 
 ];
 

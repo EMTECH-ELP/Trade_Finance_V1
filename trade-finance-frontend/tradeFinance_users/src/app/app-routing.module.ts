@@ -17,19 +17,19 @@ const routes: Routes = [
         path: "checker",
         loadChildren: () =>
           import("./checker/checker.module").then((m) => m.CheckerModule),
-          
+
       },
       {
         path: "maker",
         loadChildren: () =>
           import("./maker/maker.module").then((m) => m.MakerModule),
-        
+
       },
       {
         path: "lc",
         loadChildren: () =>
           import("./lc/lc.module").then((m) => m.LcModule),
-        canActivate:[]
+        canActivate: []
       },
       {
         path: "bank-guarantee",

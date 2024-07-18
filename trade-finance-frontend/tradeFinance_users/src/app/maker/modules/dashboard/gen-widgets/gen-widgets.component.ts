@@ -13,6 +13,7 @@ export class GenWidgetsComponent implements OnInit {
   costCentersCount: number = 0;
   usersCount: number = 0;
 
+  all: number = 0;
 
 
   constructor(private router: Router,) {}

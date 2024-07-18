@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MasterdataService } from '../masterdata.service';
 
+
 @Component({
   selector: 'app-workflow-management',
   templateUrl: './workflow-management.component.html',
