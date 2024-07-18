@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { TestComponent } from '../../test/test.component';
 import { LcService } from '../../services/lc.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-import { ModifyComponent } from '../modify/modify.component';
 import { DeleteLcComponent } from '../delete-lc/delete-lc.component';
 
 
@@ -71,10 +70,10 @@ export class ViewComponent implements OnInit {
           lcNumber: lc.lcNumber,
           lcType: lc.lcType,
           amount: lc.amount,
-          accountName: lc.accountName ? 'Account Name' : '', // Replace this with actual account name retrieval logic
+          accountName: lc.accountName ? 'Account Name' : '',
           accountNumber: lc.accountNumber ? lc.accountNumber : '',
           status: lc.status,
-          actions: 'Actions',// Replace this with actual actions logic
+          actions: 'Actions',
         }));
 
         this.dataSource = new MatTableDataSource(extractedData);

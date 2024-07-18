@@ -94,22 +94,6 @@ public getPrivileges() {
   
   onSubmit() {
     if (this.roleForm.valid) {
-<<<<<<< HEAD
-      
-      this.userManagementService.submitRole(this.roleForm.value).subscribe(response => {
-        // Handle response here
-        console.log('Submission successful', response);
-        this.snackbar.showNotification(
-          "snackbar-success",
-        " Role added successfully")
-        this.router.navigate(['/users/add-roles']);// Navigate to a success page or reset the form
-        
-        return;
-      }, error => {
-        console.error('Submission failed', error);
-      });
-      
-=======
         const formValue = this.roleForm.value;
 
         // Extract selected privileges
@@ -137,7 +121,6 @@ public getPrivileges() {
         });
     } else {
         console.error('Form is invalid');
->>>>>>> ce33ca4dd89608125e8e50c6503222d092a2f629
     }
 }
 

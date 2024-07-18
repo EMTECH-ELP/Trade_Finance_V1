@@ -56,24 +56,7 @@ export class LcService {
     const url =`${environment.generateMtUrl}/generate-mt700/{lcNumber}`;
     return this.httpClient.get<any>(url)
   }
-  public patchSearchForm(data: any): void {
-    this.searchForm.patchValue({
-      lcNumber: data.lcNumber,
-      lcType: data.lcType,
-      applicableRules: data.applicableRules,
-      currencyCode: data.currencyCode,
-      phoneNumber: data.phoneNumber,
-      amount: data. amount,
-      expiryDate: data.expiryDate,
-      chargesBornlcNumber: data.chargesBornlcNumber,
-      negotiationPeriod: data.negotiationPeriod,
-      issueDate: data.issueDate,
-      tenor: data.tenor,
-      transferable: data.transferable,
-      confirm: data.confirm,
-      advise: data.advise,
-    });
-  }
+
 
   public emitApplicationForm(data: any): void {
     // Emit an event with application form details

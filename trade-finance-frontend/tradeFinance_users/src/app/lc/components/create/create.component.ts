@@ -20,7 +20,11 @@ export class CreateComponent implements OnInit {
   uploadedFile: File | null = null;
   fileUrl: string | null = null;
   shipmentTerms: Array<{ value: string, viewValue: string }> = [{ value: "FCP", viewValue: "FCP: Free Carrier" }, { value: "CPT", viewValue: "CPT:  Carriage Paid To" }, { value: "CIP ", viewValue: "CIP: Carriage and Insurance Paid To " }, { value: "DAP", viewValue: "DAP: Delivered At Place " }, { value: "DPU", viewValue: "DPU: Delivered At Place Unloaded " }, { value: "DDP", viewValue: "DDP: Delivered Duty Paid " }, { value: "EXW", viewValue: " Ex Works" }];
-
+  beneficiaryIban: Array<{ value: string, viewValue: string }> = [{ value: "ES91 2100 0418 4502 0005 1332", viewValue: "ES91 2100 0418 4502 0005 1332" }, { value: "NL91 ABNA 0417 1643 00 ", viewValue: "NL91 ABNA 0417 1643 00 " }, { value: "FR14 2004 1010 0505 0001 3M02 606", viewValue: "FR14 2004 1010 0505 0001 3M02 606" }, { value: "GB29 NWBK 6016 1331 9268 19 ", viewValue: "GB29 NWBK 6016 1331 9268 19 " }, { value: "DE89 3704 0044 0532 0130 00", viewValue: "DE89 3704 0044 0532 0130 00" }];
+  cities: Array<{value: string, viewValue: string}> = [{value: 'Entebbe', viewValue: 'Entebbe'}, {value: 'Kinshasa', viewValue: 'Kinshasa'}, {value: 'Kampala', viewValue: 'Kampala'}, {value: 'Osaka', viewValue:'Osaka'}, {value: 'Beijing', viewValue: 'Beijing'}, {value: 'Arusha', viewValue: 'Arusha'}, {value: 'Lubumbashi', viewValue: 'Lubumbashi'}, {value: 'Shanghai', viewValue: 'Tokyo'}];
+  countries: Array<{value: string, viewValue: string}> = [{value: 'Uganda', viewValue: 'Uganda'}, {value: 'Congo', viewValue: 'Congo'}, {value: 'China', viewValue: 'China'}, {value: 'USA', viewValue: 'USA'}, {value: 'Tanzania', viewValue: 'Tanzania'}, {value: 'Japan', viewValue: 'Japan'}, {value: 'South Africa', viewValue: 'South Africa'}, {value: 'Egypt', viewValue: 'Egypt'},];
+  countrycodes: Array<{value: string, viewValue: string}> = [{value: 'UG', viewValue: 'UG'}, {value: 'CG', viewValue: 'CG'}, {value: 'CN', viewValue: 'CN'}, {value: 'US', viewValue: 'US'}, {value: 'TZ', viewValue: 'TZ'}, {value: 'JY', viewValue: 'JY'}, {value: '', viewValue: ''}];
+  beneficiarybanks: Array<{value: string,viewValue: string}> = [{value: 'Centenary Bank', viewValue: 'Centenary Bank'}, {value: 'Stanbic Bank Uganda', viewValue: 'Stanbic Bank Uganda'},{value: 'Rawbank', viewValue: 'Rawbank'},{value: 'Trust Merchant Bank (TMB)', viewValue: 'Trust Merchant Bank (TMB)'},{value: 'CRDB Bank', viewValue: 'CRDB Bank'},{value: 'SMBC', viewValue: 'SMBC'},{value: 'MUFG', viewValue: 'MUFG'},{value: 'NBC', viewValue: 'NBC'}]; 
 
   constructor(private fb: FormBuilder,
     private lcService: LcService,
@@ -36,12 +40,12 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
 
     this.applicationForm = this.fb.group({
-      accountNumber: ['', Validators.required],
-      cifId: ['', Validators.required],
-      nationalId: ['', Validators.required],
+      accountNumber: ['', [Validators.required, Validators.maxLength(15)]],
+      cifId: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
+      nationalId: ['', [Validators.required, Validators.maxLength(10)]],
       accountName: ['', Validators.required],
       currency: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
@@ -196,7 +200,7 @@ export class CreateComponent implements OnInit {
         "commodityCode": data.commodityCode,
         "goodsQuantity": data.goodsQuantity,
         "pricePerUnit": data.pricePerUnit,
-        "countyOfOrigin": data.countyOfOrigin,
+        "countryOfOrigin": data.countyOfOrigin,
       },
       "paymentSecurityDto": {}
     };
@@ -262,15 +266,6 @@ export class CreateComponent implements OnInit {
       postalCode: data.postalCode,
       countryCode: data.countryCode ? data.countryCode : 'NAN',
       country: data.country,
-      beneficiaryCity: data.countryCity,
-      beneficiaryCountryCode: data.beneficiaryCountryCode,
-      beneficiaryCountry: data.countryName,
-      advisingBankName: data.advisingBankName,
-      advisingBankBranch: data.advisingBankBranch,                                //add this                    //add this
-      advisingBankBranchCode: data.advisingBankBranchCode,
-      advisingBankCountry: data.advisingBankCountry,
-      advisingBankBic: data.advisingBankBic
-
     });
   }
   OnFileSelected(event: any) {
@@ -382,5 +377,5 @@ export class CreateComponent implements OnInit {
       link.click();
     }
   }
-  
+
 }
