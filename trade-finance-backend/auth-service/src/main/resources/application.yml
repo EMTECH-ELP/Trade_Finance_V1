@@ -1,0 +1,62 @@
+#server:
+#  port: 8082
+#
+#spring:
+##  config:
+##    import: classpath:application-secrets.properties
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    open-in-view: false
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#  datasource:
+#
+#    #
+#    url: jdbc:mariadb://localhost/secure_db
+#    username: root
+#    password:
+#
+#    driverClassName: org.mariadb.jdbc.Driver
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: ivyboino5@gmail.com
+#    password: lzwa tdue rszl hngn
+#    properties:
+#      mail:
+#        auth: true
+#        smtp:
+#          ssl:
+#            enable: true
+#          starttls:
+#            enable: true
+#
+#
+#  application:
+#    enableEmail: true
+#    useOTP: true
+#    otpProd: true
+#    otpTestMail: ivyboino5@gmail.com@gmail.com
+#
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+#
+## Email Parameters
+#enableEmail: true
+#backup_mail: ivyboino5@gmail.com
+#from_mail: no-reply@emtechhouse.co.ke
+#cc_mail: ivyboino5@gmail.com
+#organizationMail: no-reply@emtechhouse.co.ke
+#
+#emailSalutation: Dear
+#emailMessage: Find the attached information from our partnership.
+#emailRemarks: Thank you.
+#emailRegards: Regards,
+#emailOrganizationName: Trade and Finance System
+#emailOrganizationPhone: +254 726009032
+#emailOrganizationMail: info@emtechhouse.co.ke
+#emailOrganizationAddress: P.O. Box 11001 - 00100
+#emailOrganizationLocation: 3rd Floor, Samtech business park, Tatu city,
+#emailOrganizationWebsite: https://www.TradeFinance.co.ke/

@@ -1,0 +1,43 @@
+server:
+#  address: 0.0.0.0
+  port: 8085
+
+spring:
+  application:
+    useOTP: false
+    otpProd: false
+    otpTestMail: mailto:tkilunda@emtechhouse.co.ke
+    name: InvoiceDiscountingMicroservice
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mariadb://localhost/invoicediscounting
+    username: root
+    password:
+    driverClassName: org.mariadb.jdbc.Driver
+
+  springdoc:
+    swagger-ui:
+      path: /api-docs  # Set a custom path for Swagger UI (optional)
+      configurationUrl: "http://localhost:8181/api-docs"
+
+users:
+  app:
+    jwtSecret: /buCOEjS/+H7ZwekxyLKLdDeegHUGEytjxuivosdrzjRG4g4E+kA3uXO5lvGBVsl2NwqsgiGUUI5bjgY/6WG/VSIIG+22b1Rvdb59BY0YRod6Dnjnp0REsPn//hshs6ucnOVCBRp0lbVb1kP+EDOM7W7N72/+t+R1d8JQ4pjisoJZI4e0MV3PlZtzXKI0SY2EQUtI
+    jwtExpirationMs: 43200000
+    client:
+      origin: http://localhost:4200/
+#
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#  swagger-ui:
+#    path: /swagger-ui.html

@@ -1,0 +1,38 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8187
+
+
+spring:
+  application:
+    name: accounts-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: false
+    properties:
+      hibernate:
+        show-sql: true
+  #        dialect: org.hibernate.dialect.MariaDBDialect
+
+  datasource:
+    url: jdbc:mariadb://localhost/accounts_db
+    username: root
+    password:
+    driverClassName: org.mariadb.jdbc.Driver
+  springdoc:
+    swagger-ui:
+      path: /api-docs  # Set a custom path for Swagger UI (optional)
+      configurationUrl: "http://localhost:8181/api-docs"
+
+  users:
+    app:
+    client:
+      origin: http://localhost:4200/

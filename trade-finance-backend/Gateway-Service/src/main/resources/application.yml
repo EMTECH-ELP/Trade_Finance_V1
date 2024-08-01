@@ -1,0 +1,60 @@
+# application.yml
+#spring.application.name=Gateway-Service
+
+server:
+  port: 9090
+
+spring:
+  application:
+    name: GatewayService
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+cloud:
+  gateway:
+    routes:
+      - id: invoice_discounting_route
+        uri: lb://INVOICEDISCOUNTING
+        predicates:
+          - Path=/api/invoices/**
+        filters:
+          - RewritePath=/api/invoices/(?<remaining>.*), /$\{remaining}
+
+#      - id: product_microservice_route
+#        uri: lb://PRODUCTMICROSERVICE
+#        predicates:
+#          - Path=/api/products/**
+#        filters:
+#          - RewritePath=/api/products/(?<remaining>.*), /$\{remaining}
+#
+#      - id: product_microservice_route
+#        uri: lb://PRODUCTMICROSERVICE
+#        predicates:
+#          - Path=/api/products/**
+#        filters:
+#          - RewritePath=/api/products/(?<remaining>.*), /$\{remaining}
+#
+#
+#      - id: product_microservice_route
+#        uri: lb://PRODUCTMICROSERVICE
+#        predicates:
+#          - Path=/api/products/**
+#        filters:
+#          - RewritePath=/api/products/(?<remaining>.*), /$\{remaining}
+#
+#      - id: product_microservice_route
+#        uri: lb://PRODUCTMICROSERVICE
+#        predicates:
+#          - Path=/api/products/**
+#        filters:
+#          - RewritePath=/api/products/(?<remaining>.*), /$\{remaining}
+
+#Swagger Config
+springdoc:
+  swagger-ui:
+    path: /api-docs  # Set a custom path for Swagger UI (optional)
+    configurationUrl: "http://localhost:9095/api-docs"
+

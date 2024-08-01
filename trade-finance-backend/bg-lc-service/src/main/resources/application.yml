@@ -1,0 +1,87 @@
+server:
+  port: 8085
+  max-http-request-header-size: 32KB
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: bg-lc-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: false
+    properties:
+      hibernate:
+        show-sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+  datasource:
+    url: jdbc:mariadb://localhost/bg_lc_db
+    username: root
+    password:
+    driverClassName: org.mariadb.jdbc.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+# application.yml
+
+  main:
+    allow-bean-definition-overriding: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    template:
+      default-topic: notificationTopic
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: event:com.TradeFinance.LetterOfCredit.event.LetterOfCreditCreatedEvent
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, shutdown, prometheus
+
+      metrics:
+      export:
+        prometheus:
+          enabled: true
+          scrape_configs:
+            - job_name: 'spring-actuator'
+              metrics_path: '/actuator/prometheus'
+              scrape_interval: 5s
+              static_configs:
+                - targets: [ 'localhost:8085' ]
+                  labels:
+                    group: 'production'
+              tags:
+                    application: ${spring.application.name}
+    zipkin:
+      tracing:
+        endpoint: http://localhost:9411/api/v2/spans
+    tracing:
+      sampling:
+        probability: 1.0
+
+logging:
+  level:
+    root: INFO
+    com.TradeFinance: DEBUG
+    org.springframework: DEBUG
+
+users:
+  app:
+    jwtSecret: /buCOEjS/+H7ZwekxyLKLdDeegHUGEytjxuivosdrzjRG4g4E+kA3uXO5lvGBVsl2NwqsgiGUUI5bjgY/6WG/VSIIG+22b1Rvdb59BY0YRod6Dnjnp0REsPn//hshs6ucnOVCBRp0lbVb1kP+EDOM7W7N72/+t+R1d8JQ4pjisoJQ4pjisoJV3PlZtzXKI0SY2EQUtI
+    jwtExpirationMs: 43200000
+    client:
+      origin: http://localhost:4200/
+

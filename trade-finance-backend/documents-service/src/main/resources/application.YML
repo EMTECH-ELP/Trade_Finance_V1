@@ -1,0 +1,28 @@
+
+server:
+  port: 8189
+
+spring:
+  application:
+    name: collection-service
+
+  datasource:
+    url: jdbc:mariadb://localhost/documents_db
+    username: root
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQLDialect
+  springdoc:
+    swagger-ui:
+      path: /api-docs  # Set a custom path for Swagger UI (optional)
+      configurationUrl: "http://localhost:8181/api-docs"
+
+
