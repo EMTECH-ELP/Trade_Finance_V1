@@ -1,1 +1,2 @@
-# comrades_backend
+# trade-finance-backend-application
+Trade finance application
